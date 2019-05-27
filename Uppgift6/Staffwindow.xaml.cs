@@ -27,6 +27,7 @@ namespace Uppgift6
         }
 
         Staff selectedStaff;
+        public static int selectedStaffID;
 
         private void UpdateListView()
         {
@@ -44,18 +45,12 @@ namespace Uppgift6
         }
 
 
-        private void UpdateTextboxes()
-        {
-            textBoxID.Text = selectedStaff.staffID.ToString();
-            textBoxFirstName.Text = selectedStaff.firstname;
-            textBoxLastName.Text = selectedStaff.lastname;
-            textBoxProfession.Text = selectedStaff.profession;
-        }
+       
 
         private void listViewStaffs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectedStaff = (Staff)listViewStaffs.SelectedItem;
-            UpdateTextboxes();
+            
         }
 
         private void btnCloseStaff_Click(object sender, RoutedEventArgs e)
@@ -70,6 +65,26 @@ namespace Uppgift6
             NewStaff win = new NewStaff();
             win.Show();
             this.Close();
+        }
+
+        private void btnUpdateStaff_Click(object sender, RoutedEventArgs e)
+        {
+
+            DbOperations db = new DbOperations();
+
+            selectedStaff = (Staff)listViewStaffs.SelectedItem;
+
+            try
+            {
+                selectedStaffID = selectedStaff.staffID;
+                UpdateStaff win = new UpdateStaff();
+                win.Show();
+            }
+            catch (PostgresException ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }           
         }
     }
 }

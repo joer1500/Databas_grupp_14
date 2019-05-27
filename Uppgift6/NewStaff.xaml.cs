@@ -44,7 +44,7 @@ namespace Uppgift6
             try
             {
                 db.AddNewStaff(fname, lname, profession, section);
-                MessageBox.Show("Anställd tillagd i database");
+                MessageBox.Show($"{fname} {lname} är nu tillagd i personalregistret");
                 EmptyTextboxes();
             }
             catch (PostgresException ex)
@@ -63,5 +63,12 @@ namespace Uppgift6
             textBoxSection.Text = "";
 
         }
+
+        private void textBoxSection_GotFocus(object sender, RoutedEventArgs e)
+        {
+            textBoxSection.Text = "";
+        }
+
+       
     }
 }

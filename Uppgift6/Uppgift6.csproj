@@ -105,6 +105,9 @@
     <Compile Include="Staffwindow.xaml.cs">
       <DependentUpon>Staffwindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UpdateStaff.xaml.cs">
+      <DependentUpon>UpdateStaff.xaml</DependentUpon>
+    </Compile>
     <Page Include="Guardian.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -127,6 +130,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Staffwindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateStaff.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

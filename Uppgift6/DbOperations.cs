@@ -93,7 +93,35 @@ namespace Uppgift6
             
         }
 
+        public Staff GetStaffByID(int id)
+        {
+            Staff s = new Staff();
+            string stmt = "SELECT * FROM staff WHERE staff_id = @staff_id";
+            using (var conn = new
+                NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
 
+                    cmd.Parameters.AddWithValue("staff_id", id);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            s.staffID = reader.GetInt32(0);
+                            s.firstname = reader.GetString(1);
+                            s.lastname = reader.GetString(2);
+                            s.profession = reader.GetString(3);
+                        }
+                    }
+                }
+                return s;
+            }
+        }
 
 
     }
