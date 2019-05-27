@@ -32,7 +32,7 @@ namespace Uppgift6
             int id = int.Parse(textBoxID.Text);
             List<Schoolchild> children = new List <Schoolchild>();
 
-            children = db.GetChildNameFromID(id);
+            children = db.GetChildNameFromGuardianID(id);
 
             listBoxChildName.ItemsSource = null;
             listBoxChildName.ItemsSource = children;
@@ -50,7 +50,9 @@ namespace Uppgift6
             string walk_home_alone = textBoxWalk_home_alone.Text.ToString();
             string walk_with_friend = textBoxHome_with_friend.Text.ToString();
 
-            db.InsertSchedule(schoolchild, date, day_off, breakfast, should_pickup, should_drop, walk_home_alone, walk_with_friend);
+            db.InsertSchedule(schoolchild, date, day_off, breakfast, should_drop, should_pickup, walk_home_alone, walk_with_friend);
+
+            MessageBox.Show($"Ditt schema har lagts till för {schoolchild.firstname} den {textBoxDate.Text.ToString()}.");
         }
     }
 }

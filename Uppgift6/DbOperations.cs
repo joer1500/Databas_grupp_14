@@ -64,12 +64,14 @@ namespace Uppgift6
             }
         }
 
-        public List<Schoolchild> GetChildNameFromID (int ID)
+        public List<Schoolchild> GetChildNameFromGuardianID (int ID)
         {
             Schoolchild sc;
             List<Schoolchild> children = new List<Schoolchild>();
 
-            string stmt = $"SELECT * FROM schoolchild WHERE schoolchild_id = {ID}";
+            string stmt = $"SELECT guardian_schoolchild.guardian_id, guardian_schoolchild.schoolchild_id, schoolchild.firstname, schoolchild.lastname " +
+                $"          FROM(guardian_schoolchild INNER JOIN schoolchild ON guardian_schoolchild.schoolchild_id = schoolchild.schoolchild_id) " +
+                $"          WHERE guardian_id = {ID}";
 
             using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
             {
@@ -81,9 +83,9 @@ namespace Uppgift6
                     {
                         sc = new Schoolchild()
                         {
-                            id = (reader.GetInt32(0)),
-                            firstname = (reader.GetString(1)),
-                            lastname = (reader.GetString(2)),
+                            id = (reader.GetInt32(1)),
+                            firstname = (reader.GetString(2)),
+                            lastname = (reader.GetString(3)),
                         };
                         children.Add(sc);
                     }
