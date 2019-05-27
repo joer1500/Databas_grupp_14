@@ -8,7 +8,8 @@
         Title="Startsida" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Button x:Name="btnStaff" Content="Anställda" HorizontalAlignment="Left" Margin="644,46,0,0" VerticalAlignment="Top" Width="81" Height="23" Click="btnStaff_Click"/>
-        <Label x:Name="label" Content="Skapad med github?" HorizontalAlignment="Left" Margin="221,142,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label" Content="hejhej" HorizontalAlignment="Left" Margin="221,142,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="410,282,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
 
     </Grid>
 </Window>
