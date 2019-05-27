@@ -44,11 +44,13 @@ namespace Uppgift6
 
             DateTime date = DateTime.Parse(textBoxDate.Text);
             string day_off = textBoxDay_of.Text.ToString();
-            string breakfast = textBoxBreakfast.ToString();
+            string breakfast = textBoxBreakfast.Text.ToString();
             DateTime should_drop = DateTime.Parse(textBoxShould_drop.Text);
             DateTime should_pickup = DateTime.Parse(textBoxShould_pickup.Text);
             string walk_home_alone = textBoxWalk_home_alone.Text.ToString();
             string walk_with_friend = textBoxHome_with_friend.Text.ToString();
+
+            db.InsertSchedule(schoolchild, date, day_off, breakfast, should_pickup, should_drop, walk_home_alone, walk_with_friend);
         }
     }
 }

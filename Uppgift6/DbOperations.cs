@@ -90,7 +90,38 @@ namespace Uppgift6
                 }
                 return children;
             }
-            
+
+        }
+        public void InsertSchedule(Schoolchild child, DateTime date, string day_off, string breakfast, 
+            DateTime should_drop, DateTime should_pickup, string walk_home_alone, string walk_with_friend)
+         {
+            Schoolchild schoolchild;
+            schoolchild = child;
+
+            string stmt = "INSERT INTO schedule(schoolchild_id, date, day_off, breakfast, " +
+                "should_drop, should_pickup, walk_home_alone, home_with_friend) " +
+                "VALUES(@id, @date, @day_off, @breakfast, @drop, @pickup, @walk_alone, @walk_friend) ";
+
+            using (var conn = new
+            NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
+
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("id", child.id);
+                    cmd.Parameters.AddWithValue("date", date);
+                    cmd.Parameters.AddWithValue("day_off", day_off);
+                    cmd.Parameters.AddWithValue("breakfast", breakfast);
+                    cmd.Parameters.AddWithValue("drop", should_drop);
+                    cmd.Parameters.AddWithValue("pickup", should_pickup);
+                    cmd.Parameters.AddWithValue("walk_alone", walk_home_alone);
+                    cmd.Parameters.AddWithValue("walk_friend", walk_with_friend);
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
 
