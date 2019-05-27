@@ -93,13 +93,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Guardian.xaml.cs">
+      <DependentUpon>Guardian.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NewStaff.xaml.cs">
       <DependentUpon>NewStaff.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Schoolchild.cs" />
     <Compile Include="Staff.cs" />
     <Compile Include="Staffwindow.xaml.cs">
       <DependentUpon>Staffwindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Guardian.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

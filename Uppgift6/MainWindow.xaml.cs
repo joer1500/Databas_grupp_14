@@ -38,5 +38,12 @@ namespace Uppgift6
         {
 
         }
+
+        private void BtnGuardian_Click(object sender, RoutedEventArgs e)
+        {
+            Guardian Guardiandwin = new Guardian();
+            Guardiandwin.Show();
+            this.Close();
+        }
     }
 }
