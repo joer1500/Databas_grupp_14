@@ -64,12 +64,14 @@ namespace Uppgift6
             }
         }
 
-        public List<Schoolchild> GetChildNameFromID (int ID)
+        public List<Schoolchild> GetChildNameFromGuardianID (int ID)
         {
             Schoolchild sc;
             List<Schoolchild> children = new List<Schoolchild>();
 
-            string stmt = $"SELECT * FROM schoolchild WHERE schoolchild_id = {ID}";
+            string stmt = $"SELECT guardian_schoolchild.guardian_id, guardian_schoolchild.schoolchild_id, schoolchild.firstname, schoolchild.lastname " +
+                $"          FROM(guardian_schoolchild INNER JOIN schoolchild ON guardian_schoolchild.schoolchild_id = schoolchild.schoolchild_id) " +
+                $"          WHERE guardian_id = {ID}";
 
             using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
             {
@@ -81,16 +83,47 @@ namespace Uppgift6
                     {
                         sc = new Schoolchild()
                         {
-                            id = (reader.GetInt32(0)),
-                            firstname = (reader.GetString(1)),
-                            lastname = (reader.GetString(2)),
+                            id = (reader.GetInt32(1)),
+                            firstname = (reader.GetString(2)),
+                            lastname = (reader.GetString(3)),
                         };
                         children.Add(sc);
                     }
                 }
                 return children;
             }
-            
+
+        }
+        public void InsertSchedule(Schoolchild child, DateTime date, string day_off, string breakfast, 
+            DateTime should_drop, DateTime should_pickup, string walk_home_alone, string walk_with_friend)
+         {
+            Schoolchild schoolchild;
+            schoolchild = child;
+
+            string stmt = "INSERT INTO schedule(schoolchild_id, date, day_off, breakfast, " +
+                "should_drop, should_pickup, walk_home_alone, home_with_friend) " +
+                "VALUES(@id, @date, @day_off, @breakfast, @drop, @pickup, @walk_alone, @walk_friend) ";
+
+            using (var conn = new
+            NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
+
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("id", child.id);
+                    cmd.Parameters.AddWithValue("date", date);
+                    cmd.Parameters.AddWithValue("day_off", day_off);
+                    cmd.Parameters.AddWithValue("breakfast", breakfast);
+                    cmd.Parameters.AddWithValue("drop", should_drop);
+                    cmd.Parameters.AddWithValue("pickup", should_pickup);
+                    cmd.Parameters.AddWithValue("walk_alone", walk_home_alone);
+                    cmd.Parameters.AddWithValue("walk_friend", walk_with_friend);
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
         public Staff GetStaffByID(int id) //Hämtar staff baserat på ID
