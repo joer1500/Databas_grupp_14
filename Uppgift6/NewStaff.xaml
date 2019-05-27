@@ -14,7 +14,7 @@
         <TextBox x:Name="textBoxLastname" HorizontalAlignment="Left" Height="25" Margin="23,153,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="textBoxProfession" HorizontalAlignment="Left" Height="25" Margin="23,210,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="labelSection" Content="Avdelning" HorizontalAlignment="Left" Margin="23,241,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBoxSection"  HorizontalAlignment="Left" Height="25" Margin="23,267,0,0" TextWrapping="Wrap" Text="Ange avdelnings-ID" VerticalAlignment="Top" Width="120" FontStyle="Italic" GotFocus="textBoxSection_GotFocus" TextChanged="textBoxSection_TextChanged"/>
+        <TextBox x:Name="textBoxSection"  HorizontalAlignment="Left" Height="25" Margin="23,267,0,0" TextWrapping="Wrap" Text="Ange avdelnings-ID" VerticalAlignment="Top" Width="120" FontStyle="Italic" GotFocus="textBoxSection_GotFocus"/>
         <Label x:Name="labelTitle" Content="Lägg till ny anställd i personalregistret" Margin="0,21,73.333,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Right" Width="245"/>
         <Button x:Name="buttonExit" Content="Avbryt" HorizontalAlignment="Left" Margin="23,351,0,0" VerticalAlignment="Top" Width="83" Height="24" Click="buttonExit_Click"/>
         <Button x:Name="buttonAdd" Content="Lägg till" HorizontalAlignment="Left" Margin="130,351,0,0" VerticalAlignment="Top" Width="83" Height="24" Click="buttonAdd_Click"/>

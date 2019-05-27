@@ -93,7 +93,7 @@ namespace Uppgift6
             
         }
 
-        public Staff GetStaffByID(int id)
+        public Staff GetStaffByID(int id) //Hämtar staff baserat på ID
         {
             Staff s = new Staff();
             string stmt = "SELECT * FROM staff WHERE staff_id = @staff_id";
@@ -123,6 +123,26 @@ namespace Uppgift6
             }
         }
 
+        public void UpdateStaff(int id, string firstname, string lastname, string profession)
+        {
+            string stmt = "UPDATE staff SET (firstname, lastname, profession) = (@fname, @lname, @profession) WHERE staff_id = @id";
+
+            using (var conn = new
+            NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("id", id);
+                    cmd.Parameters.AddWithValue("fname", firstname);
+                    cmd.Parameters.AddWithValue("lname", lastname);
+                    cmd.Parameters.AddWithValue("profession", profession);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
 
     }
 }

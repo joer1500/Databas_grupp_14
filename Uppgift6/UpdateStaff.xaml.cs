@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Npgsql;
 
 namespace Uppgift6
 {
@@ -42,11 +43,47 @@ namespace Uppgift6
 
         private void buttonUpdate_Click(object sender, RoutedEventArgs e)
         {
+            DbOperations db = new DbOperations();
+            int id = Convert.ToInt32(textBoxID.Text);
+            string fname = textBoxFirstname.Text;
+            string lname = textBoxLastname.Text;
+            string prof = textBoxProfession.Text;
+
+            try
+            {
+                db.UpdateStaff(id, fname, lname, prof);
+                Staffwindow win = new Staffwindow();
+                EmptyTextBoxes();
+                MessageBox.Show($"Personalregistret uppdaterat");
+
+                //win.UpdateListView();
+                
+                win.Show();
+                this.Close();
+
+            }
+            catch (PostgresException ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }    
+
+            
+        }
+
+        private void EmptyTextBoxes()
+        {
+            textBoxID.Text = "";
+            textBoxFirstname.Text = "";
+            textBoxLastname.Text = "";
+            textBoxProfession.Text = "";
 
         }
 
         private void buttonExit_Click(object sender, RoutedEventArgs e)
         {
+            Staffwindow win = new Staffwindow();
+            win.Show();
             this.Close();
         }
     }

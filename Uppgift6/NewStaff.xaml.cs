@@ -46,6 +46,7 @@ namespace Uppgift6
                 db.AddNewStaff(fname, lname, profession, section);
                 MessageBox.Show($"{fname} {lname} är nu tillagd i personalregistret");
                 EmptyTextboxes();
+                this.Close();
             }
             catch (PostgresException ex)
             {

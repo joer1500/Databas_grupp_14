@@ -26,7 +26,6 @@
         <Button x:Name="btnCloseStaff" Content="Återgå" HorizontalAlignment="Left" Margin="31,10,0,0" VerticalAlignment="Top" Width="75" Height="22" Click="btnCloseStaff_Click" Grid.ColumnSpan="2"/>
         <Button x:Name="btnAddStaff" Content="Ny anställd" HorizontalAlignment="Left" Margin="591,343,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Height="28" Click="btnAddStaff_Click"/>
         <Label x:Name="label" Content="Anställningsregister" HorizontalAlignment="Left" Margin="28,44,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="169" FontWeight="Bold" FontSize="16"/>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="20" Margin="6,10,0,0" VerticalAlignment="Top" Width="23"/>
         <Button x:Name="btnUpdateStaff" Content="Uppdatera" HorizontalAlignment="Left" Margin="591,307,0,0" VerticalAlignment="Top" Width="75"  Grid.Column="1" Height="28" Click="btnUpdateStaff_Click"/>
 
     </Grid>

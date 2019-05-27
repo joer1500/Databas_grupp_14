@@ -29,7 +29,7 @@ namespace Uppgift6
         Staff selectedStaff;
         public static int selectedStaffID;
 
-        private void UpdateListView()
+        public void UpdateListView()
         {
             DbOperations db = new DbOperations();
 
@@ -69,22 +69,26 @@ namespace Uppgift6
 
         private void btnUpdateStaff_Click(object sender, RoutedEventArgs e)
         {
-
             DbOperations db = new DbOperations();
 
-            selectedStaff = (Staff)listViewStaffs.SelectedItem;
-
+            selectedStaff = (Staff)listViewStaffs.SelectedItem;             
             try
             {
                 selectedStaffID = selectedStaff.staffID;
                 UpdateStaff win = new UpdateStaff();
                 win.Show();
+                this.Close();
             }
             catch (PostgresException ex)
             {
 
                 MessageBox.Show(ex.Message);
             }           
+        }
+
+        private void btnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateListView();
         }
     }
 }
