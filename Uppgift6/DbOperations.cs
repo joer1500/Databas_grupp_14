@@ -64,6 +64,35 @@ namespace Uppgift6
             }
         }
 
+        public List<Schoolchild> GetChildNameFromID (int ID)
+        {
+            Schoolchild sc;
+            List<Schoolchild> children = new List<Schoolchild>();
+
+            string stmt = $"SELECT * FROM schoolchild WHERE schoolchild_id = {ID}";
+
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand(stmt, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        sc = new Schoolchild()
+                        {
+                            id = (reader.GetInt32(0)),
+                            firstname = (reader.GetString(1)),
+                            lastname = (reader.GetString(2)),
+                        };
+                        children.Add(sc);
+                    }
+                }
+                return children;
+            }
+            
+        }
+
 
 
 

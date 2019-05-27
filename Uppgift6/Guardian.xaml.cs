@@ -23,5 +23,32 @@ namespace Uppgift6
         {
             InitializeComponent();
         }
+
+        DbOperations db = new DbOperations();
+        Schoolchild schoolchild;
+
+        private void BtnSearchChild_Click(object sender, RoutedEventArgs e)
+        {
+            int id = int.Parse(textBoxID.Text);
+            List<Schoolchild> children = new List <Schoolchild>();
+
+            children = db.GetChildNameFromID(id);
+
+            listBoxChildName.ItemsSource = null;
+            listBoxChildName.ItemsSource = children;
+        }
+
+        private void BtnSaveNewSchedule_Click(object sender, RoutedEventArgs e)
+        {
+            schoolchild = (Schoolchild)listBoxChildName.SelectedItem;
+
+            DateTime date = DateTime.Parse(textBoxDate.Text);
+            string day_off = textBoxDay_of.Text.ToString();
+            string breakfast = textBoxBreakfast.ToString();
+            DateTime should_drop = DateTime.Parse(textBoxShould_drop.Text);
+            DateTime should_pickup = DateTime.Parse(textBoxShould_pickup.Text);
+            string walk_home_alone = textBoxWalk_home_alone.Text.ToString();
+            string walk_with_friend = textBoxHome_with_friend.Text.ToString();
+        }
     }
 }

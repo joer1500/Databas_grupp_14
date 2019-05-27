@@ -13,5 +13,10 @@ namespace Uppgift6
         public string lastname { get; set; }
         public string section { get; set; }
 
+
+        public override string ToString()
+        {
+            return firstname + "  " + lastname;
+        }
     }
 }
