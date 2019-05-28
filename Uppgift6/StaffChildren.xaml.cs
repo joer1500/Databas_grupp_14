@@ -72,6 +72,13 @@ namespace Uppgift6
         {
             UpdateListView();
         }
+
+        private void btnAddChild_Click(object sender, RoutedEventArgs e)
+        {
+            NewSchoolchild win = new NewSchoolchild();
+            win.Show();
+            this.Close();
+        }
     }
 
 }

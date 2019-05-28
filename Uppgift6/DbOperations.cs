@@ -287,7 +287,7 @@ namespace Uppgift6
             }
         }
 
-        public List<Schoolchild> GetSchoolchildrenOrderByLastname() // Hämtar alla barn och sorterar på efternamn
+        public List<Schoolchild> GetSchoolchildrenOrderByLastname() // Hämtar alla skolbarn och sorterar på efternamn
         {
             Schoolchild schoolchild;
             List<Schoolchild> schoolchildren = new List<Schoolchild>();
@@ -314,7 +314,7 @@ namespace Uppgift6
             }
         }
 
-        public List<Schoolchild> GetSchoolchildrenOrderByFirstname() // Hämtar barn och storterar efter förnamn
+        public List<Schoolchild> GetSchoolchildrenOrderByFirstname() // Hämtar skolbarn och storterar efter förnamn
         {
             Schoolchild schoolchild;
             List<Schoolchild> schoolchildren = new List<Schoolchild>();
@@ -341,7 +341,7 @@ namespace Uppgift6
             }
         }
 
-        public List<Schoolchild> GetSchoolchildrenOrderBySection() // Hämtar barn och sorterar efter avdelning
+        public List<Schoolchild> GetSchoolchildrenOrderBySection() // Hämtar skolbarn och sorterar efter avdelning
         {
             Schoolchild schoolchild;
             List<Schoolchild> schoolchildren = new List<Schoolchild>();
@@ -368,6 +368,26 @@ namespace Uppgift6
             }
         }
 
+        public void AddSchoolchild(string firstname, string lastname, int section)    // Lägger till skolbarn, funkar ej än
+        {
+            string stmt = "INSERT INTO schoolchild(firstname, lastname, section_id) VALUES (@firstname, @lastname, @section_id)";
+
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("firstname", firstname);
+                    cmd.Parameters.AddWithValue("lastname", firstname);
+                    cmd.Parameters.AddWithValue("section_id", section);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        
 
         public List<Staff> GetAllStaffOrderByProfession() //Hämtar alla staffs och sorterar på roll
         {
