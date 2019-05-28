@@ -7,19 +7,19 @@
         mc:Ignorable="d"
         Title="Ny anställd" Height="450" Width="348.263" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Label x:Name="labelFname" Content="Förnamn" HorizontalAlignment="Left" Margin="23,55,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="labelLname" Content="Efternamn" HorizontalAlignment="Left" Margin="23,121,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="labelProfession" Content="Roll" HorizontalAlignment="Left" Margin="23,183,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelFname" Content="Förnamn" HorizontalAlignment="Left" Margin="19,60,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelLname" Content="Efternamn" HorizontalAlignment="Left" Margin="18,122,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelProfession" Content="Roll" HorizontalAlignment="Left" Margin="19,182,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="textBoxFirstname" HorizontalAlignment="Left" Height="25" Margin="23,86,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="textBoxLastname" HorizontalAlignment="Left" Height="25" Margin="23,153,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="textBoxProfession" HorizontalAlignment="Left" Height="25" Margin="23,210,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="labelSection" Content="Avdelning" HorizontalAlignment="Left" Margin="23,241,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBoxSection"  HorizontalAlignment="Left" Height="25" Margin="23,267,0,0" TextWrapping="Wrap" Text="Ange avdelnings-ID" VerticalAlignment="Top" Width="120" FontStyle="Italic" GotFocus="textBoxSection_GotFocus"/>
-        <Label x:Name="labelTitle" Content="Lägg till ny anställd i personalregistret" Margin="0,21,73.333,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Right" Width="245"/>
+        <TextBox x:Name="textBoxLastname" HorizontalAlignment="Left" Height="25" Margin="23,148,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBoxProfession" HorizontalAlignment="Left" Height="25" Margin="23,207,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="labelSection" Content="Avdelning" HorizontalAlignment="Left" Margin="19,239,0,0" VerticalAlignment="Top" MouseEnter="labelSection_MouseEnter" MouseLeave="labelSection_MouseLeave" Width="65"/>
+        <TextBox x:Name="textBoxSection"  HorizontalAlignment="Left" Height="25" Margin="23,265,0,0" TextWrapping="Wrap" Text="Ange avdelnings-ID" VerticalAlignment="Top" Width="120" FontStyle="Italic" GotFocus="textBoxSection_GotFocus"/>
+        <Label x:Name="labelTitle" Content="Lägg till ny anställd i personalregistret" Margin="0,21,54.667,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Right" Width="267" FontWeight="Bold"/>
         <Button x:Name="buttonExit" Content="Avbryt" HorizontalAlignment="Left" Margin="23,351,0,0" VerticalAlignment="Top" Width="83" Height="24" Click="buttonExit_Click"/>
         <Button x:Name="buttonAdd" Content="Lägg till" HorizontalAlignment="Left" Margin="130,351,0,0" VerticalAlignment="Top" Width="83" Height="24" Click="buttonAdd_Click"/>
-        <TextBlock x:Name="textBlockSectionInfo" HorizontalAlignment="Left" Margin="160,241,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="62" Width="109" FontSize="10" IsEnabled="False"><Run Text="Avdelning "/><Run Text="blå"/><Run Text="= id 1"/><LineBreak/><Run Text="Avdelning gul = id 2"/><LineBreak/><Run Text="Avdelning röd = id 3"/><LineBreak/><Run Text="Avdelning grön = id 4"/></TextBlock>
-        <Image x:Name="Icon_Question_mark_svg_png" Margin="86,248,242.667,160" Source="Icon-round-Question_mark.svg.png" Stretch="Fill" Height="14" MouseEnter="Icon_Question_mark_svg_png_MouseEnter" MouseLeave="Icon_Question_mark_svg_png_MouseLeave"/>
+        <TextBlock x:Name="textBlockSectionInfo" HorizontalAlignment="Left" Margin="172,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="62" Width="109" FontSize="10" IsEnabled="False"><Run Text="Avdelning "/><Run Text="blå"/><Run Text=" "/><Run Text="= id 1"/><LineBreak/><Run Text="Avdelning gul = id 2"/><LineBreak/><Run Text="Avdelning röd = id 3"/><LineBreak/><Run Text="Avdelning grön = id 4"/></TextBlock>
+        <Image x:Name="Icon_Question_mark_svg_png" Margin="82,243,0,0" Source="Icon-round-Question_mark.svg.png" Stretch="Fill" MouseEnter="Icon_Question_mark_svg_png_MouseEnter" MouseLeave="Icon_Question_mark_svg_png_MouseLeave" Width="18" Height="18" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
     </Grid>
 </Window>

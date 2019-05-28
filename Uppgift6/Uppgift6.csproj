@@ -97,6 +97,9 @@
     <Compile Include="Guardian_win.xaml.cs">
       <DependentUpon>Guardian.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NewSchoolchild.xaml.cs">
+      <DependentUpon>NewSchoolchild.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NewStaff.xaml.cs">
       <DependentUpon>NewStaff.xaml</DependentUpon>
     </Compile>
@@ -129,6 +132,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="NewSchoolchild.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NewStaff.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -190,6 +197,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icon-round-Question_mark.svg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="arrow_back.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

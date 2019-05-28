@@ -23,6 +23,7 @@ namespace Uppgift6
         public NewStaff()
         {
             InitializeComponent();
+            textBlockSectionInfo.Visibility = Visibility.Collapsed;
         }
 
         private void buttonExit_Click(object sender, RoutedEventArgs e)
@@ -38,9 +39,16 @@ namespace Uppgift6
             string fname = textBoxFirstname.Text;
             string lname = textBoxLastname.Text;
             string profession = textBoxProfession.Text;
-            int section = int.Parse(textBoxSection.Text);
 
-            if (fname == null || lname == null || profession == null || section == 0)
+            if (textBoxSection.Text == "")
+            {
+                MessageBox.Show("Vänligen ange ett avdelnings-id");
+                return;               
+            }
+
+            int section = int.Parse(textBoxSection.Text); //Lägg till en check som kollar om inmatningen har bokstäver
+
+            if (fname == null || lname == null || profession == null)
             {
                 MessageBox.Show("Vänligen ange ett förnamn, efternamn, roll samt en avdelning");
                 return;
@@ -49,8 +57,11 @@ namespace Uppgift6
             try
             {
                 db.AddNewStaff(fname, lname, profession, section);
-                MessageBox.Show($"{fname} {lname} är nu tillagd i personalregistret");
+                MessageBox.Show($"{fname} {lname} är nu tillagd i personalregistret", "Titel");
                 EmptyTextboxes();
+
+                Staffwindow win = new Staffwindow();
+                win.Show();
                 this.Close();
             }
             catch (PostgresException ex)
@@ -72,14 +83,24 @@ namespace Uppgift6
             textBoxSection.Text = "";
         }
 
-        private void Icon_Question_mark_svg_png_MouseEnter(object sender, MouseEventArgs e) //okklart om denna funkar
+        private void Icon_Question_mark_svg_png_MouseEnter(object sender, MouseEventArgs e) 
         {
-            textBlockSectionInfo.IsEnabled = true;
+            textBlockSectionInfo.Visibility = Visibility.Visible;
         }
 
-        private void Icon_Question_mark_svg_png_MouseLeave(object sender, MouseEventArgs e) //oklart om denna funkar
+        private void Icon_Question_mark_svg_png_MouseLeave(object sender, MouseEventArgs e) 
         {
-            textBlockSectionInfo.IsEnabled = false;
+            textBlockSectionInfo.Visibility = Visibility.Collapsed;
+        }
+
+        private void labelSection_MouseEnter(object sender, MouseEventArgs e)
+        {
+            textBlockSectionInfo.Visibility = Visibility.Visible;
+        }
+
+        private void labelSection_MouseLeave(object sender, MouseEventArgs e)
+        {
+            textBlockSectionInfo.Visibility = Visibility.Collapsed;
         }
     }
 }
