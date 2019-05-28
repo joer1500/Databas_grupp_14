@@ -39,6 +39,8 @@ namespace Uppgift6
             win.Show();
             this.Close();
         }
+
+        
     }
 
 }
