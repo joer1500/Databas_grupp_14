@@ -27,6 +27,7 @@
         <TextBox x:Name="textBoxHome_with_friend" HorizontalAlignment="Left" Height="23" Margin="589,239,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="btnSaveNewSchedule" Content="Lägg till nytt schema" HorizontalAlignment="Left" Margin="586,295,0,0" VerticalAlignment="Top" Width="123" Click="BtnSaveNewSchedule_Click"/>
         <TextBlock x:Name="textBlockChildName" HorizontalAlignment="Left" Margin="40,328,0,0" TextWrapping="Wrap" Text="Markera det barn i listan som du vill lägga till ett schema för" VerticalAlignment="Top" Height="39" Width="206"/>
+        <Button x:Name="btnCloseStaff" Content="Tillbaka" HorizontalAlignment="Left" Margin="40,10,0,0" VerticalAlignment="Top" Width="75" Height="22" Click="btnCloseStaff_Click"/>
 
     </Grid>
 </Window>
