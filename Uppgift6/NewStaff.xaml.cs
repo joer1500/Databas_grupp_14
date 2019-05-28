@@ -40,6 +40,12 @@ namespace Uppgift6
             string profession = textBoxProfession.Text;
             int section = int.Parse(textBoxSection.Text);
 
+            if (fname == null || lname == null || profession == null || section == 0)
+            {
+                MessageBox.Show("Vänligen ange ett förnamn, efternamn, roll samt en avdelning");
+                return;
+            }
+
             try
             {
                 db.AddNewStaff(fname, lname, profession, section);
