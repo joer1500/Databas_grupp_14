@@ -61,5 +61,12 @@ namespace Uppgift6
             m.Show();
             this.Close();
         }
+
+        private void listBoxChildName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            schoolchild = (Schoolchild)listBoxChildName.SelectedItem;
+
+            label_child_schema.Content = schoolchild + "  schema";
+        }
     }
 }
