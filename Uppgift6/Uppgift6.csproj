@@ -94,7 +94,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Guardian.cs" />
-    <Compile Include="Guardian.xaml.cs">
+    <Compile Include="Guardian_win.xaml.cs">
       <DependentUpon>Guardian.xaml</DependentUpon>
     </Compile>
     <Compile Include="NewStaff.xaml.cs">
@@ -184,6 +184,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="frågetecken.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon-round-Question_mark.svg.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
