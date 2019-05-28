@@ -1,0 +1,22 @@
+﻿<Window x:Class="Uppgift6.StaffChildren"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Uppgift6"
+        mc:Ignorable="d"
+        Title="StaffChildren" Height="450" Width="800">
+    <Grid>
+        <ListView x:Name="listViewSC" HorizontalAlignment="Left" Height="218" VerticalAlignment="Top" Width="406" Margin="32,90,0,0">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Efternamn" Width="150" DisplayMemberBinding="{Binding lastname}"/>
+                    <GridViewColumn Header="Förnamn" Width="150" DisplayMemberBinding="{Binding firstname}"/>
+                    <GridViewColumn Header="Avdelning" Width="100" DisplayMemberBinding="{Binding section}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="btnHandleStaff" Content="Hantera personal" HorizontalAlignment="Left" Margin="595,59,0,0" VerticalAlignment="Top" Width="130" Click="btnHandleStaff_Click" Height="37"/>
+
+    </Grid>
+</Window>

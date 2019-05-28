@@ -29,7 +29,7 @@ namespace Uppgift6
 
         private void btnStaff_Click(object sender, RoutedEventArgs e)
         {
-            Staffwindow win = new Staffwindow();
+            StaffChildren win = new StaffChildren();
             win.Show();
             this.Close();
         }
