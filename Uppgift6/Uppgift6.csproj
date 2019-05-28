@@ -102,6 +102,9 @@
     <Compile Include="Schedule.cs" />
     <Compile Include="Schoolchild.cs" />
     <Compile Include="Staff.cs" />
+    <Compile Include="StaffChildren.xaml.cs">
+      <DependentUpon>StaffChildren.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Staffwindow.xaml.cs">
       <DependentUpon>Staffwindow.xaml</DependentUpon>
     </Compile>
@@ -126,6 +129,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="NewStaff.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StaffChildren.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
