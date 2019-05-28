@@ -40,7 +40,6 @@ namespace Uppgift6
             string profession = textBoxProfession.Text;
             int section = int.Parse(textBoxSection.Text);
 
-
             try
             {
                 db.AddNewStaff(fname, lname, profession, section);
@@ -50,11 +49,9 @@ namespace Uppgift6
             }
             catch (PostgresException ex)
             {
-
                 MessageBox.Show(ex.Message);
             }           
         }
-
 
         private void EmptyTextboxes()
         {
@@ -62,7 +59,6 @@ namespace Uppgift6
             textBoxLastname.Text = "";
             textBoxProfession.Text = "";
             textBoxSection.Text = "";
-
         }
 
         private void textBoxSection_GotFocus(object sender, RoutedEventArgs e)

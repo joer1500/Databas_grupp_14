@@ -309,5 +309,66 @@ namespace Uppgift6
             }
         }
 
+
+        public List<Staff> GetAllStaffOrderByProfession() //Hämtar alla staffs och sorterar på roll
+        {
+            Staff s;
+            List<Staff> staffs = new List<Staff>();
+
+            string stmt = "SELECT staff_id, firstname, lastname, profession, section_name FROM staff INNER JOIN section on staff.section_id = section.section_id ORDER BY profession ASC;";
+
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand(stmt, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        s = new Staff()
+                        {
+                            staffID = (reader.GetInt32(0)),
+                            firstname = (reader.GetString(1)),
+                            lastname = (reader.GetString(2)),
+                            profession = (reader.GetString(3)),
+                            section = (reader.GetString(4))
+                        };
+                        staffs.Add(s);
+                    }
+                }
+                return staffs;
+            }
+        }
+
+        public List<Staff> GetAllStaffOrderBySection() //Hämtar alla staffs och sorterar på avdelning
+        {
+            Staff s;
+            List<Staff> staffs = new List<Staff>();
+
+            string stmt = "SELECT staff_id, firstname, lastname, profession, section_name FROM staff INNER JOIN section on staff.section_id = section.section_id ORDER BY section.section_id;";
+
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand(stmt, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        s = new Staff()
+                        {
+                            staffID = (reader.GetInt32(0)),
+                            firstname = (reader.GetString(1)),
+                            lastname = (reader.GetString(2)),
+                            profession = (reader.GetString(3)),
+                            section = (reader.GetString(4))
+                        };
+                        staffs.Add(s);
+                    }
+                }
+                return staffs;
+            }
+        }
+
     }
 }
