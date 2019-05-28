@@ -38,9 +38,17 @@ namespace Uppgift6
             string fname = textBoxFirstname.Text;
             string lname = textBoxLastname.Text;
             string profession = textBoxProfession.Text;
+
+            if (textBoxSection.Text == "")
+            {
+                MessageBox.Show("Vänligen ange ett avdelnings-id");
+                return;
+                
+            }
+
             int section = int.Parse(textBoxSection.Text);
 
-            if (fname == null || lname == null || profession == null || section == 0)
+            if (fname == null || lname == null || profession == null)
             {
                 MessageBox.Show("Vänligen ange ett förnamn, efternamn, roll samt en avdelning");
                 return;
@@ -49,8 +57,11 @@ namespace Uppgift6
             try
             {
                 db.AddNewStaff(fname, lname, profession, section);
-                MessageBox.Show($"{fname} {lname} är nu tillagd i personalregistret");
+                MessageBox.Show($"{fname} {lname} är nu tillagd i personalregistret", "Titel");
                 EmptyTextboxes();
+
+                Staffwindow win = new Staffwindow();
+                win.Show();
                 this.Close();
             }
             catch (PostgresException ex)

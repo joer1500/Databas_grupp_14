@@ -212,5 +212,12 @@ namespace Uppgift6
         {
             UpdateListView();
         }
+
+        private void arrow_back_png_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow m = new MainWindow();
+            m.Show();
+            this.Close();
+        }
     }
 }
