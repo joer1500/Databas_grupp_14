@@ -26,11 +26,29 @@ namespace Uppgift6
             UpdateListView();
         }
 
-        private void UpdateListView()
+        public void UpdateListView()
         {
             DbOperations db = new DbOperations();
-            listViewSC.ItemsSource = null;
-            listViewSC.ItemsSource = db.GetSchoolchildrenOrderByLastname();
+
+            if (rbtnSortByLastname.IsChecked == true)   // Sortera på efternamn
+            {
+                listViewSC.ItemsSource = null;
+                listViewSC.ItemsSource = db.GetSchoolchildrenOrderByLastname();
+            }
+
+            else if (rbtnSortByFirstname.IsChecked == true)  // Sortera på förnamn
+            {
+                listViewSC.ItemsSource = null;
+                listViewSC.ItemsSource = db.GetSchoolchildrenOrderByFirstname();
+            }
+
+            else if (rbtnSortBySection.IsChecked == true)   // Sortera på avdelning
+            {
+                listViewSC.ItemsSource = null;
+                listViewSC.ItemsSource = db.GetSchoolchildrenOrderBySection();
+            }
+
+           
         }
 
         private void btnHandleStaff_Click(object sender, RoutedEventArgs e)

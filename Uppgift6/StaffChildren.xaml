@@ -18,7 +18,7 @@
             
         </ListView>
         <Button x:Name="btnHandleStaff" Content="Hantera personal" HorizontalAlignment="Left" Margin="631,93,0,0" VerticalAlignment="Top" Width="130" Click="btnHandleStaff_Click" Height="37"/>
-        <RadioButton x:Name="rbtnSortByLastname" Content="Efternamn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="156,325,0,0"/>
+        <RadioButton x:Name="rbtnSortByLastname" Content="Efternamn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="156,325,0,0" IsChecked="True"/>
         <RadioButton x:Name="rbtnSortByFirstname" Content="Förnamn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="249,325,0,0"/>
         <RadioButton x:Name="rbtnSortBySection" Content="Avdelning" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="336,325,0,0"/>
         <Label x:Name="label" Content="Sortera elevlista:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="38,320,0,0"/>
