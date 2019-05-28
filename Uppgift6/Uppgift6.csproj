@@ -94,7 +94,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Guardian.cs" />
-    <Compile Include="Guardian.xaml.cs">
+    <Compile Include="Guardian_win.xaml.cs">
       <DependentUpon>Guardian.xaml</DependentUpon>
     </Compile>
     <Compile Include="NewStaff.xaml.cs">
