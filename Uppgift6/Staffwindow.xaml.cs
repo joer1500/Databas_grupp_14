@@ -70,22 +70,65 @@ namespace Uppgift6
         private void btnUpdateStaff_Click(object sender, RoutedEventArgs e)
         {
             DbOperations db = new DbOperations();
+            selectedStaff = (Staff)listViewStaffs.SelectedItem;
 
-            selectedStaff = (Staff)listViewStaffs.SelectedItem;             
-            try
+            if (selectedStaff == null)
             {
-                selectedStaffID = selectedStaff.staffID;
-                UpdateStaff win = new UpdateStaff();
-                win.Show();
-                this.Close();
+                return;
             }
-            catch (PostgresException ex)
+            else
             {
+                try
+                {
+                    selectedStaffID = selectedStaff.staffID;
+                    UpdateStaff win = new UpdateStaff();
+                    win.Show();
+                    this.Close();
+                }
+                catch (PostgresException ex)
+                {
 
-                MessageBox.Show(ex.Message);
-            }           
+                    MessageBox.Show(ex.Message);
+                }
+            }                     
         }
 
-       
+        private void buttonDeleteStaff_Click(object sender, RoutedEventArgs e)
+        {
+            DbOperations db = new DbOperations();
+            selectedStaff = (Staff)listViewStaffs.SelectedItem;
+
+            if (selectedStaff == null)
+            {
+                return;
+            }
+            else
+            {
+                int id = selectedStaff.staffID;
+                
+                try
+                {
+                    if (MessageBox.Show($"Vill du verkligen ta bort: {selectedStaff.firstname} {selectedStaff.lastname} från personalregistret?", "Varning!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    {
+                        db.DeleteStaff(selectedStaff.staffID);
+                    }
+                    else
+                    {
+                        return;
+                    }
+                    UpdateListView();
+
+                }
+                catch (PostgresException ex)
+                {
+
+                    MessageBox.Show(ex.Message);
+                }
+            }
+           
+
+           
+
+        }
     }
 }

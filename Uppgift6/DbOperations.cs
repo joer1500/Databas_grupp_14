@@ -11,7 +11,6 @@ namespace Uppgift6
 {
     class DbOperations
     {
-
         public List<Staff> GetAllStaff() //Hämtar alla staffs
         {
             Staff s;
@@ -156,7 +155,7 @@ namespace Uppgift6
             }
         }
 
-        public void UpdateStaff(int id, string firstname, string lastname, string profession)
+        public void UpdateStaff(int id, string firstname, string lastname, string profession) //Uppdaterar staff
         {
             string stmt = "UPDATE staff SET (firstname, lastname, profession) = (@fname, @lname, @profession) WHERE staff_id = @id";
 
@@ -176,6 +175,27 @@ namespace Uppgift6
                 }
             }
         }
+
+
+        public void DeleteStaff (int id) //Ta bort staff baserat på ID
+        {
+
+            string stmt = "DELETE FROM staff WHERE staff_id = @staffID";
+            using (var conn = new
+            NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("staffID", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+
 
     }
 }

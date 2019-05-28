@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Uppgift6"
         mc:Ignorable="d"
-        Title="Hantera anställda" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Hantera anställda" Height="450" Width="750" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="82*"/>
             <ColumnDefinition Width="711*"/>
         </Grid.ColumnDefinitions>
-        <ListView x:Name="listViewStaffs" HorizontalAlignment="Left" Height="299" Margin="31,77,0,0" VerticalAlignment="Top" Width="536" SelectionChanged="listViewStaffs_SelectionChanged" Grid.ColumnSpan="2">
+        <ListView x:Name="listViewStaffs" HorizontalAlignment="Left" Height="277" Margin="31,77,0,0" VerticalAlignment="Top" Width="540" SelectionChanged="listViewStaffs_SelectionChanged" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" Width="30" DisplayMemberBinding="{Binding staffID}"/>
@@ -23,10 +23,18 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="btnCloseStaff" Content="Återgå" HorizontalAlignment="Left" Margin="31,10,0,0" VerticalAlignment="Top" Width="75" Height="22" Click="btnCloseStaff_Click" Grid.ColumnSpan="2"/>
-        <Button x:Name="btnAddStaff" Content="Ny anställd" HorizontalAlignment="Left" Margin="591,343,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Height="28" Click="btnAddStaff_Click"/>
+        <Button x:Name="btnCloseStaff" Content="Tillbaka" HorizontalAlignment="Left" Margin="31,10,0,0" VerticalAlignment="Top" Width="75" Height="22" Click="btnCloseStaff_Click" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnAddStaff" Content="Ny anställd" HorizontalAlignment="Left" Margin="534.333,291,0,0" VerticalAlignment="Top" Width="80" Grid.Column="1" Height="28" Click="btnAddStaff_Click"/>
         <Label x:Name="label" Content="Anställningsregister" HorizontalAlignment="Left" Margin="28,44,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="169" FontWeight="Bold" FontSize="16"/>
-        <Button x:Name="btnUpdateStaff" Content="Uppdatera" HorizontalAlignment="Left" Margin="591,307,0,0" VerticalAlignment="Top" Width="75"  Grid.Column="1" Height="28" Click="btnUpdateStaff_Click"/>
+        <Button x:Name="btnUpdateStaff" Content="Uppdatera" HorizontalAlignment="Left" Margin="534.333,255,0,0" VerticalAlignment="Top" Width="80"  Grid.Column="1" Height="28" Click="btnUpdateStaff_Click"/>
+        <Button x:Name="buttonDeleteStaff" Content="Ta bort" Grid.Column="1" HorizontalAlignment="Left" Margin="534.333,326,0,0" VerticalAlignment="Top" Width="80" Height="28" Click="buttonDeleteStaff_Click"/>
+        <RadioButton x:Name="radioButtonID" Content="ID" Grid.Column="1" HorizontalAlignment="Left" Margin="80.333,367,0,0" VerticalAlignment="Top" IsChecked="True"/>
+        <RadioButton x:Name="radioButtonFname" Content="Förnamn" Grid.Column="1" HorizontalAlignment="Left" Margin="120.333,367,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="radioButtonLname" Content="Efternamn" Grid.Column="1" HorizontalAlignment="Left" Margin="191.333,367,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="radioButtonProfession" Content="Roll" Grid.Column="1" HorizontalAlignment="Left" Margin="270.333,367,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="radioButtonSection" Content="Avdelning" Grid.Column="1" HorizontalAlignment="Left" Margin="314.333,367,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelSortBy" Content="Sortera personallista:" HorizontalAlignment="Left" Margin="31,360,0,0" VerticalAlignment="Top" Height="32" Grid.ColumnSpan="2"/>
+        <Label x:Name="labelSortBy_Copy" Content="(Ej fungerande ännu)" HorizontalAlignment="Left" Margin="31,379,0,0" VerticalAlignment="Top" Height="32" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>
