@@ -86,9 +86,6 @@ namespace Uppgift6
             }           
         }
 
-        private void btnRefresh_Click(object sender, RoutedEventArgs e)
-        {
-            UpdateListView();
-        }
+       
     }
 }
