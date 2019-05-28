@@ -62,6 +62,34 @@ namespace Uppgift6
             }
         }
 
+        public List<Schedule> GetChildScheduleDatesFromChildID(int ID)
+        {
+            Schedule sd;
+            List<Schedule> schedule = new List<Schedule>();
+
+            string stmt = $"SELECT schedule.date, schedule.day_off, schedule.breakfast, schedule.should_drop, schedule.should_pickup, schedule.walk_home_alone, schedule.home_with_friend " +
+                $"FROM schedule WHERE schoolchild_id = {ID}";
+
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand(stmt, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        sd = new Schedule()
+                        {
+                            date = (reader.GetDateTime(0))
+                            // eventuellt vilken veckodag det är här?
+                        };
+                        schedule.Add(sd);
+                    }
+                }
+                return schedule;
+            }
+        }
+
         public List<Schoolchild> GetChildNameFromGuardianID (int ID)
         {
             Schoolchild sc;
@@ -92,6 +120,7 @@ namespace Uppgift6
             }
 
         }
+
         public void InsertSchedule(Schoolchild child, DateTime date, string day_off, string breakfast, 
             DateTime should_drop, DateTime should_pickup, string walk_home_alone, string walk_with_friend)
          {

@@ -50,7 +50,7 @@
             </Separator.RenderTransform>
         </Separator>
         <Label x:Name="label_Copy" Content="Lägg till nytt schema" HorizontalAlignment="Left" Margin="555,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
-        <ListBox x:Name="listBox_ChildSchedule" HorizontalAlignment="Left" Height="128" Margin="286,76,0,0" VerticalAlignment="Top" Width="218"/>
+        <ListBox x:Name="listBox_ChildSchedule" HorizontalAlignment="Left" Height="143" Margin="286,61,0,0" VerticalAlignment="Top" Width="218"/>
         <TextBox x:Name="textBoxDay_of_Copy" HorizontalAlignment="Left" Height="23" Margin="339,273,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="47"/>
         <Label x:Name="labelDay_of_Copy" Content="Ledig:" HorizontalAlignment="Left" Margin="292,270,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.591,-1.026"/>
         <Label x:Name="labelBreakfast_Copy" Content="Frukost:" HorizontalAlignment="Left" Margin="400,270,0,0" VerticalAlignment="Top"/>

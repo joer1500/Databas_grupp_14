@@ -68,13 +68,13 @@ namespace Uppgift6
             schoolchild = (Schoolchild)listBoxChildName.SelectedItem;
             label_child_schema.Content = schoolchild + "  schema";
 
-            // Hämta schoolchild ID här
+            int schoolchild_id = 1; // = Hämta vald schoolchild ID här
 
             List<Schedule> schedule = new List<Schedule>();
-            schedule = //db.GetChildNameFromGuardianID(id);
+            schedule = db.GetChildScheduleDatesFromChildID(schoolchild_id);
 
-            listBoxChildName.ItemsSource = null;
-            listBoxChildName.ItemsSource = schedule;
+            listBox_ChildSchedule.ItemsSource = null;
+            listBox_ChildSchedule.ItemsSource = schedule;
         }
     }
 }
