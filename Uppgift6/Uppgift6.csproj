@@ -94,9 +94,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Guardian.cs" />
-    <Compile Include="Guardians.xaml.cs">
+    <Page Include="Guardians.xaml.cs">
       <DependentUpon>Guardians.xaml</DependentUpon>
-    </Compile>
+    </Page>
     <Compile Include="NewSchoolchild.xaml.cs">
       <DependentUpon>NewSchoolchild.xaml</DependentUpon>
     </Compile>
@@ -109,9 +109,9 @@
     <Compile Include="StaffChildren.xaml.cs">
       <DependentUpon>StaffChildren.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Staffwindow.xaml.cs">
+    <Page Include="Staffwindow.xaml.cs">
       <DependentUpon>Staffwindow.xaml</DependentUpon>
-    </Compile>
+    </Page>
     <Compile Include="UpdateStaff.xaml.cs">
       <DependentUpon>UpdateStaff.xaml</DependentUpon>
     </Compile>

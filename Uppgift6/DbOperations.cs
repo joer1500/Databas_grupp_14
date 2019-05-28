@@ -80,8 +80,10 @@ namespace Uppgift6
                     {
                         sd = new Schedule()
                         {
-                            date = (reader.GetDateTime(0))
-                            // eventuellt vilken veckodag det är här?
+                            id = (reader.GetInt32(0)),
+                            schoolchild_id = (reader.GetInt32(1)),
+                            date = (reader.GetDateTime(2)),
+                            day_off = (reader.GetString(3)),
                         };
                         schedule.Add(sd);
                     }

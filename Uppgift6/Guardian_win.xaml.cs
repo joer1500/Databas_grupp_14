@@ -74,7 +74,7 @@ namespace Uppgift6
             schedule = db.GetChildScheduleDatesFromChildID(schoolchild_id);
 
             listBox_ChildSchedule.ItemsSource = null;
-            listBox_ChildSchedule.ItemsSource = schedule;
+            listBox_ChildSchedule.ItemsSource = schedule(1);
         }
     }
 }
