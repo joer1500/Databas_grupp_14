@@ -21,10 +21,11 @@
             </Separator.RenderTransform>
         </Separator>
         <Label x:Name="label_Copy" Content="Logga in som personal" HorizontalAlignment="Left" Margin="503,118,0,0" VerticalAlignment="Top"/>
-        <ListView x:Name="listView" HorizontalAlignment="Left" Height="144" Margin="45,244,0,0" VerticalAlignment="Top" Width="290">
+        <ListView x:Name="listView" HorizontalAlignment="Left" Height="144" Margin="45,244,0,0" VerticalAlignment="Top" Width="250">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn/>
+                    <GridViewColumn Header="Förnamn" Width="125" DisplayMemberBinding="{Binding firstname}"/>
+                    <GridViewColumn Header="Lastnamn" Width="125" DisplayMemberBinding="{Binding lastname}"/>
                 </GridView>
             </ListView.View>
         </ListView>

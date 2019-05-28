@@ -23,9 +23,25 @@ namespace Uppgift6
     public partial class MainWindow : Window
     {
         public MainWindow()
+
         {
             InitializeComponent();
+
+            DbOperations db = new DbOperations();
+            List<Guardian> guardians = new List<Guardian>();
+            guardians = db.GetAllGuardians();
+
+            public static List<Guardian> SetValueForList = Guardians;
+
+            Form2 frm2 = new Form2();
+            frm2.Show();
+            
         }
+
+        public void GetListValue()
+         {
+
+         }
 
         private void btnStaff_Click(object sender, RoutedEventArgs e)
         {
