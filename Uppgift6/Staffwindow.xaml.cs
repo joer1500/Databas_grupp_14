@@ -132,7 +132,7 @@ namespace Uppgift6
 
             if (selectedStaff == null)
             {
-                MessageBox.Show("Vänligen markera en anställd i listan");
+                MessageBox.Show("Vänligen markera en anställd i listan.");
                 return;
             }
             else
@@ -166,7 +166,7 @@ namespace Uppgift6
                 
                 try
                 {
-                    if (MessageBox.Show($"Vill du verkligen ta bort: {selectedStaff.firstname} {selectedStaff.lastname} från personalregistret?\rDenna åtgärd kan inte ångras!", "Varning!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    if (MessageBox.Show($"Vill du verkligen ta bort: {selectedStaff.firstname} {selectedStaff.lastname} från personalregistret?\rObservera att denna åtgärd inte kan ångras.", "Varning!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     {
                         db.DeleteStaff(selectedStaff.staffID);
                     }
@@ -187,8 +187,15 @@ namespace Uppgift6
         private void listViewStaffs_MouseDoubleClick(object sender, MouseButtonEventArgs e) //Dubbelklicka på en anställd för att få upp information
         {
             selectedStaff = (Staff)listViewStaffs.SelectedItem;
-
-            MessageBox.Show($"Förnamn: {selectedStaff.firstname}\rEfternamn: {selectedStaff.lastname}\rRoll: {selectedStaff.profession}\rAvdelning: {selectedStaff.section}", "Information om personal");          
+            if (selectedStaff == null)
+            {
+                return;
+            }
+            else
+            {
+                MessageBox.Show($"Förnamn: {selectedStaff.firstname}\rEfternamn: {selectedStaff.lastname}\rRoll: {selectedStaff.profession}\rAvdelning: {selectedStaff.sectionname}\rAvdelnings-id: {selectedStaff.sectionid}", "Information om personal");
+            }
+                     
         }
         private void radioButtonLname_Click(object sender, RoutedEventArgs e)
         {
