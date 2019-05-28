@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Uppgift6
 {
-    class Guardians
+    public partial class Guardian 
     {
         public int id { get; set; }
         public string firstname { get; set; }
