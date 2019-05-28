@@ -26,6 +26,7 @@ namespace Uppgift6
 
         DbOperations db = new DbOperations();
         Schoolchild schoolchild;
+        Schedule schedule;
 
         private void BtnSearchChild_Click(object sender, RoutedEventArgs e)
         {
@@ -65,8 +66,15 @@ namespace Uppgift6
         private void listBoxChildName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             schoolchild = (Schoolchild)listBoxChildName.SelectedItem;
-
             label_child_schema.Content = schoolchild + "  schema";
+
+            // Hämta schoolchild ID här
+
+            List<Schedule> schedule = new List<Schedule>();
+            schedule = //db.GetChildNameFromGuardianID(id);
+
+            listBoxChildName.ItemsSource = null;
+            listBoxChildName.ItemsSource = schedule;
         }
     }
 }
