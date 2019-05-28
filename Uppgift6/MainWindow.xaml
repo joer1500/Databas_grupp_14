@@ -21,6 +21,7 @@
             </Separator.RenderTransform>
         </Separator>
         <Label x:Name="label_Copy" Content="Logga in som personal" HorizontalAlignment="Left" Margin="503,118,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="161,295,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
 </Window>
