@@ -24,6 +24,7 @@ namespace Uppgift6
         {
             InitializeComponent();
             UpdateStaffInfo();
+            textBlockSectionInfo.Visibility = Visibility.Collapsed;
         }
 
 
@@ -39,28 +40,42 @@ namespace Uppgift6
             textBoxFirstname.Text = staff.firstname;
             textBoxLastname.Text = staff.lastname;
             textBoxProfession.Text = staff.profession;
+            textBoxSection.Text = staff.sectionid.ToString();
         }
 
         private void buttonUpdate_Click(object sender, RoutedEventArgs e)
         {
             DbOperations db = new DbOperations();
-            int id = Convert.ToInt32(textBoxID.Text);
+
+            int staffid = int.Parse(textBoxID.Text);
             string fname = textBoxFirstname.Text;
             string lname = textBoxLastname.Text;
             string prof = textBoxProfession.Text;
+            int sectionid = int.Parse(textBoxSection.Text);
 
             try
             {
-                db.UpdateStaff(id, fname, lname, prof);
-                Staffwindow win = new Staffwindow();
-                EmptyTextBoxes();
-                MessageBox.Show($"Personalregistret uppdaterat");
+                if (fname == "" || lname == "" || prof == "")
+                {
+                    MessageBox.Show("Vänligen ange både förnamn, efternamn och roll.");
+                    return;
+                }
+                else if (sectionid == 0 || sectionid > 4)
+                {
+                    MessageBox.Show("Felaktigt avdelnings-id.");
+                    return;
+                }
+                else
+                {
+                    db.UpdateStaff(staffid, fname, lname, prof, sectionid);
+                    Staffwindow win = new Staffwindow();
+                    EmptyTextBoxes();
+                    MessageBox.Show($"Personalregistret uppdaterat", "Lyckad inmatning");
 
-                //win.UpdateListView();
+                    win.Show();
+                    this.Close();
+                }
                 
-                win.Show();
-                this.Close();
-
             }
             catch (PostgresException ex)
             {
@@ -77,6 +92,7 @@ namespace Uppgift6
             textBoxFirstname.Text = "";
             textBoxLastname.Text = "";
             textBoxProfession.Text = "";
+            textBoxSection.Text = "";
 
         }
 
@@ -85,6 +101,26 @@ namespace Uppgift6
             Staffwindow win = new Staffwindow();
             win.Show();
             this.Close();
+        }
+
+        private void Icon_Question_mark_svg_png_MouseEnter(object sender, MouseEventArgs e)
+        {
+            textBlockSectionInfo.Visibility = Visibility.Visible;
+        }
+
+        private void Icon_Question_mark_svg_png_MouseLeave(object sender, MouseEventArgs e)
+        {
+            textBlockSectionInfo.Visibility = Visibility.Collapsed;
+        }
+
+        private void labelSection_MouseEnter(object sender, MouseEventArgs e)
+        {
+            textBlockSectionInfo.Visibility = Visibility.Visible;
+        }
+
+        private void labelSection_MouseLeave(object sender, MouseEventArgs e)
+        {
+            textBlockSectionInfo.Visibility = Visibility.Collapsed;
         }
     }
 }

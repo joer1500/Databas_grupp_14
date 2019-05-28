@@ -15,7 +15,7 @@ namespace Uppgift6
         {
             Staff s;
             List<Staff> staffs = new List<Staff>();
-            string stmt = "SELECT staff_id, firstname, lastname, profession, section_name FROM staff INNER JOIN section on staff.section_id = section.section_id ORDER BY staff_id;";
+            string stmt = "SELECT staff_id, firstname, lastname, profession, section_name, staff.section_id FROM staff INNER JOIN section on staff.section_id = section.section_id ORDER BY staff_id;";
 
             using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
             {
@@ -31,7 +31,8 @@ namespace Uppgift6
                             firstname = (reader.GetString(1)),
                             lastname = (reader.GetString(2)),
                             profession = (reader.GetString(3)),
-                            section = (reader.GetString(4))
+                            sectionname = (reader.GetString(4)),
+                            sectionid = (reader.GetInt32(5))
                         };
                         staffs.Add(s);
                     }
@@ -145,6 +146,7 @@ namespace Uppgift6
                             s.firstname = reader.GetString(1);
                             s.lastname = reader.GetString(2);
                             s.profession = reader.GetString(3);
+                            s.sectionid = reader.GetInt32(4);
                         }
                     }
                 }
@@ -152,9 +154,9 @@ namespace Uppgift6
             }
         }
 
-        public void UpdateStaff(int id, string firstname, string lastname, string profession) //Uppdaterar staff
+        public void UpdateStaff(int id, string firstname, string lastname, string profession, int sectionID) //Uppdaterar staff
         {
-            string stmt = "UPDATE staff SET (firstname, lastname, profession) = (@fname, @lname, @profession) WHERE staff_id = @id";
+            string stmt = "UPDATE staff SET (firstname, lastname, profession, section_id) = (@fname, @lname, @profession, @section) WHERE staff_id = @id";
 
             using (var conn = new
             NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
@@ -168,6 +170,7 @@ namespace Uppgift6
                     cmd.Parameters.AddWithValue("fname", firstname);
                     cmd.Parameters.AddWithValue("lname", lastname);
                     cmd.Parameters.AddWithValue("profession", profession);
+                    cmd.Parameters.AddWithValue("section", sectionID);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -196,7 +199,7 @@ namespace Uppgift6
             Staff s;
             List<Staff> staffs = new List<Staff>();
 
-            string stmt = "SELECT staff_id, firstname, lastname, profession, section_name FROM staff INNER JOIN section on staff.section_id = section.section_id ORDER BY firstname;";
+            string stmt = "SELECT staff_id, firstname, lastname, profession, section_name, staff.section_id FROM staff INNER JOIN section on staff.section_id = section.section_id ORDER BY firstname;";
 
             using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
             {
@@ -212,7 +215,8 @@ namespace Uppgift6
                             firstname = (reader.GetString(1)),
                             lastname = (reader.GetString(2)),
                             profession = (reader.GetString(3)),
-                            section = (reader.GetString(4))
+                            sectionname = (reader.GetString(4)),
+                            sectionid = (reader.GetInt32(5))
                         };
                         staffs.Add(s);
                     }
@@ -226,7 +230,7 @@ namespace Uppgift6
             Staff s;
             List<Staff> staffs = new List<Staff>();
 
-            string stmt = "SELECT staff_id, firstname, lastname, profession, section_name FROM staff INNER JOIN section on staff.section_id = section.section_id ORDER BY lastname;";
+            string stmt = "SELECT staff_id, firstname, lastname, profession, section_name, staff.section_id FROM staff INNER JOIN section on staff.section_id = section.section_id ORDER BY lastname;";
 
             using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
             {
@@ -242,7 +246,8 @@ namespace Uppgift6
                             firstname = (reader.GetString(1)),
                             lastname = (reader.GetString(2)),
                             profession = (reader.GetString(3)),
-                            section = (reader.GetString(4))
+                            sectionname = (reader.GetString(4)),
+                            sectionid = (reader.GetInt32(5))
                         };
                         staffs.Add(s);
                     }
@@ -273,7 +278,7 @@ namespace Uppgift6
                             firstname = (reader.GetString(1)),
                             lastname = (reader.GetString(2)),
                             profession = (reader.GetString(3)),
-                            section = (reader.GetString(4))
+                            sectionname = (reader.GetString(4))
                         };
                         staffs.Add(s);
                     }
@@ -369,7 +374,7 @@ namespace Uppgift6
             Staff s;
             List<Staff> staffs = new List<Staff>();
 
-            string stmt = "SELECT staff_id, firstname, lastname, profession, section_name FROM staff INNER JOIN section on staff.section_id = section.section_id ORDER BY profession ASC;";
+            string stmt = "SELECT staff_id, firstname, lastname, profession, section_name, staff.section_id FROM staff INNER JOIN section on staff.section_id = section.section_id ORDER BY profession ASC;";
 
             using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
             {
@@ -385,7 +390,8 @@ namespace Uppgift6
                             firstname = (reader.GetString(1)),
                             lastname = (reader.GetString(2)),
                             profession = (reader.GetString(3)),
-                            section = (reader.GetString(4))
+                            sectionname = (reader.GetString(4)),
+                            sectionid = (reader.GetInt32(5))
                         };
                         staffs.Add(s);
                     }
@@ -399,7 +405,7 @@ namespace Uppgift6
             Staff s;
             List<Staff> staffs = new List<Staff>();
 
-            string stmt = "SELECT staff_id, firstname, lastname, profession, section_name FROM staff INNER JOIN section on staff.section_id = section.section_id ORDER BY section.section_id;";
+            string stmt = "SELECT staff_id, firstname, lastname, profession, section_name, staff.section_id FROM staff INNER JOIN section on staff.section_id = section.section_id ORDER BY section.section_id;";
 
             using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
             {
@@ -415,7 +421,8 @@ namespace Uppgift6
                             firstname = (reader.GetString(1)),
                             lastname = (reader.GetString(2)),
                             profession = (reader.GetString(3)),
-                            section = (reader.GetString(4))
+                            sectionname = (reader.GetString(4)),
+                            sectionid = (reader.GetInt32(5))
                         };
                         staffs.Add(s);
                     }

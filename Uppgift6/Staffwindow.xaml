@@ -18,7 +18,7 @@
                     <GridViewColumn Header="Förnamn" Width="130" DisplayMemberBinding="{Binding firstname}"/>
                     <GridViewColumn Header="Efternamn" Width="160" DisplayMemberBinding="{Binding lastname}"/>
                     <GridViewColumn Header="Roll" Width="140" DisplayMemberBinding="{Binding profession}"/>
-                    <GridViewColumn Header="Avdelning" Width="70" DisplayMemberBinding="{Binding section}"/>
+                    <GridViewColumn Header="Avdelning" Width="70" DisplayMemberBinding="{Binding sectionname}"/>
 
                 </GridView>
             </ListView.View>
