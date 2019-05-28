@@ -72,6 +72,14 @@ namespace Uppgift6
             textBoxSection.Text = "";
         }
 
-       
+        private void Icon_Question_mark_svg_png_MouseEnter(object sender, MouseEventArgs e) //okklart om denna funkar
+        {
+            textBlockSectionInfo.IsEnabled = true;
+        }
+
+        private void Icon_Question_mark_svg_png_MouseLeave(object sender, MouseEventArgs e) //oklart om denna funkar
+        {
+            textBlockSectionInfo.IsEnabled = false;
+        }
     }
 }
