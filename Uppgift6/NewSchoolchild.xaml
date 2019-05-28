@@ -1,0 +1,33 @@
+﻿<Window x:Class="Uppgift6.NewSchoolchild"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Uppgift6"
+        mc:Ignorable="d"
+        Title="Nytt barn" Height="525.962" Width="818.455" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <GroupBox x:Name="groupBoxSChild" Header="Nytt barn" HorizontalAlignment="Left" Height="299" VerticalAlignment="Top" Width="314" Margin="10,71,0,0"/>
+
+        <Label x:Name="lblFirstname" Content="Förnamn" HorizontalAlignment="Left" Margin="23,94,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblLastname" Content="Efternamn" HorizontalAlignment="Left" Margin="23,160,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtBoxFirstname" HorizontalAlignment="Left" Height="25" Margin="23,125,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtBoxLastname" HorizontalAlignment="Left" Height="25" Margin="23,192,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="labelTitle" Content="Lägg till nytt barn" Margin="0,20,553,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Right" Width="245"/>
+        <Button x:Name="btnAddChild" Content="Lägg till" HorizontalAlignment="Left" Margin="434,390,0,0" VerticalAlignment="Top" Width="83" Height="24"/>
+        <Label x:Name="lblSection" Content="Avdelning" HorizontalAlignment="Left" Margin="23,289,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtBoxSection"  HorizontalAlignment="Left" Height="25" Margin="23,315,0,0" TextWrapping="Wrap" Text="Ange avdelnings-ID" VerticalAlignment="Top" Width="120" FontStyle="Italic"/>
+        <TextBlock x:Name="txtBlckSectionInfo" HorizontalAlignment="Left" Margin="214,289,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="62" Width="109" FontSize="10" IsEnabled="False"><Run Text="Avdelning "/><Run Text="blå"/><Run Text="= id 1"/><LineBreak/><Run Text="Avdelning gul = id 2"/><LineBreak/><Run Text="Avdelning röd = id 3"/><LineBreak/><Run Text="Avdelning grön = id 4"/></TextBlock>
+        <GroupBox x:Name="groupBoxGuardian" Header="Barnets vårdnadshavare" HorizontalAlignment="Left" Height="299" VerticalAlignment="Top" Width="173" Margin="345,71,0,0"/>
+        <TextBox x:Name="txtGuardianFname" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="364,125,0,0"/>
+        <TextBox x:Name="txtGuardianLname" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="364,192,0,0"/>
+        <TextBox x:Name="txtGuardianPhoneNr" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="364,249,0,0"/>
+        <TextBox x:Name="txtGuardianAddress" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="364,315,0,0"/>
+        <Label x:Name="lblGuardianFname" Content="Förnamn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="364,94,0,0"/>
+        <Label x:Name="lblGuardianLname" Content="Efternamn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="364,166,0,0"/>
+        <Label x:Name="lblGuardianPhoneNr" Content="Telefonnummer" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="364,222,0,0"/>
+        <Label x:Name="lblGuardianAddress" Content="Adress" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="364,284,0,0"/>
+        <Button x:Name="btnExit" Content="Avbryt" HorizontalAlignment="Left" VerticalAlignment="Top" Width="83" Margin="14,390,0,0" Height="24" Click="btnExit_Click"/>
+
+    </Grid>
+</Window>
