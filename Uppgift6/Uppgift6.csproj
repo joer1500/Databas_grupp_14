@@ -93,6 +93,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Guardian.cs" />
     <Compile Include="Guardian.xaml.cs">
       <DependentUpon>Guardian.xaml</DependentUpon>
     </Compile>
