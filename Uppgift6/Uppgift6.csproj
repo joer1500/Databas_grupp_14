@@ -94,8 +94,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Guardian.cs" />
-    <Compile Include="Guardian_win.xaml.cs">
-      <DependentUpon>Guardian.xaml</DependentUpon>
+    <Compile Include="Guardians.xaml.cs">
+      <DependentUpon>Guardians.xaml</DependentUpon>
     </Compile>
     <Compile Include="NewSchoolchild.xaml.cs">
       <DependentUpon>NewSchoolchild.xaml</DependentUpon>
@@ -115,7 +115,7 @@
     <Compile Include="UpdateStaff.xaml.cs">
       <DependentUpon>UpdateStaff.xaml</DependentUpon>
     </Compile>
-    <Page Include="Guardian.xaml">
+    <Page Include="Guardians.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -7,10 +7,7 @@
         mc:Ignorable="d"
         Title="Guardian" Height="450" Width="800">
     <Grid Margin="0,-3,-0.4,3">
-        <TextBox x:Name="textBoxID" HorizontalAlignment="Left" Height="23" Margin="23,115,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.5,0.5"/>
-        <Label x:Name="labelID" Content="Skriv in ditt vårdnadshavar-ID nummer" HorizontalAlignment="Left" Margin="23,91,0,0" VerticalAlignment="Top" Width="222"/>
-        <ListBox x:Name="listBoxChildName" HorizontalAlignment="Left" Height="135" Margin="23,189,0,0" VerticalAlignment="Top" Width="198" SelectionChanged="listBoxChildName_SelectionChanged"/>
-        <Button x:Name="btnSearchChild" Content="Sök" HorizontalAlignment="Left" Margin="23,143,0,0" VerticalAlignment="Top" Width="75" Click="BtnSearchChild_Click"/>
+        <ListBox x:Name="listBoxChildName" HorizontalAlignment="Left" Height="248" Margin="23,76,0,0" VerticalAlignment="Top" Width="198" SelectionChanged="listBoxChildName_SelectionChanged"/>
         <TextBox x:Name="textBoxDate" HorizontalAlignment="Left" Height="23" Margin="555,85,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="labelDate" Content="Datum: YYYY-MM-DD" HorizontalAlignment="Left" Margin="555,61,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="textBoxDay_of" HorizontalAlignment="Left" Height="23" Margin="555,229,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="72"/>
@@ -27,7 +24,7 @@
         <TextBox x:Name="textBoxHome_with_friend" HorizontalAlignment="Left" Height="23" Margin="660,319,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="73"/>
         <Button x:Name="btnSaveNewSchedule" Content="Lägg till nytt schema" HorizontalAlignment="Left" Margin="585,366,0,0" VerticalAlignment="Top" Width="123" Click="BtnSaveNewSchedule_Click"/>
         <TextBlock x:Name="textBlockChildName" HorizontalAlignment="Left" Margin="23,342,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="39" Width="206"><Run Text="Markera det barn i listan som du vill "/><Run Text="se eller "/><Run Text="lägga till ett schema för"/></TextBlock>
-        <Button x:Name="btnCloseStaff" Content="Tillbaka" HorizontalAlignment="Left" Margin="23,24,0,0" VerticalAlignment="Top" Width="75" Height="22" Click="btnCloseStaff_Click"/>
+        <Button x:Name="btnCloseGuardian" Content="Tillbaka" HorizontalAlignment="Left" Margin="23,24,0,0" VerticalAlignment="Top" Width="75" Height="22" Click="btnCloseGuardian_Click"/>
         <Label x:Name="label_child_schema" Content="" HorizontalAlignment="Left" Margin="286,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
         <Separator x:Name="separator_1" HorizontalAlignment="Left" Height="16" Margin="41,190,0,0" VerticalAlignment="Top" Width="442" RenderTransformOrigin="0.5,0.5">
             <Separator.RenderTransform>

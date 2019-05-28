@@ -8,8 +8,7 @@
         Title="Startsida" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Button x:Name="btnStaff" Content="Anställda" HorizontalAlignment="Left" Margin="503,164,0,0" VerticalAlignment="Top" Width="173" Height="44" Click="btnStaff_Click"/>
-        <Label x:Name="label" Content="Logga in som vårdnadshavare" HorizontalAlignment="Left" Margin="89,118,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnGuardian" Content="Vårdnadshavare" HorizontalAlignment="Left" Margin="89,164,0,0" VerticalAlignment="Top" Width="173" Height="44" Click="BtnGuardian_Click"/>
+        <Button x:Name="btnGuardian" Content="Logga in" HorizontalAlignment="Left" Margin="100,344,0,0" VerticalAlignment="Top" Width="173" Height="44" Click="BtnGuardian_Click"/>
         <Separator HorizontalAlignment="Left" Height="16" Margin="163,189,0,0" VerticalAlignment="Top" Width="444" RenderTransformOrigin="0.5,0.5">
             <Separator.RenderTransform>
                 <TransformGroup>
@@ -21,13 +20,15 @@
             </Separator.RenderTransform>
         </Separator>
         <Label x:Name="label_Copy" Content="Logga in som personal" HorizontalAlignment="Left" Margin="503,118,0,0" VerticalAlignment="Top"/>
-        <ListView x:Name="listView" HorizontalAlignment="Left" Height="144" Margin="45,244,0,0" VerticalAlignment="Top" Width="290">
+        <ListView x:Name="listViewGuardians" HorizontalAlignment="Left" Height="283" Margin="37,10,0,0" VerticalAlignment="Top" Width="310" IsSynchronizedWithCurrentItem="True" Foreground="#FF101011">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn/>
+                    <GridViewColumn Header="Förnamn" Width="155" DisplayMemberBinding="{Binding firstname}"/>
+                    <GridViewColumn Header="Lastnamn" Width="155" DisplayMemberBinding="{Binding lastname}"/>
                 </GridView>
             </ListView.View>
         </ListView>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="68,293,0,0" TextWrapping="Wrap" Text="Välj en vårdnadshavare för att kunna logga in. Klicka sedan på knappen nedan." VerticalAlignment="Top" Height="41" Width="246"/>
 
     </Grid>
 </Window>

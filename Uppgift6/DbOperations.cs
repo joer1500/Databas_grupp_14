@@ -480,7 +480,7 @@ namespace Uppgift6
             }
         }
 
-        public List<Guardian> GetAllGuaridna() //Hämtar alla vårdnadshavare
+        public List<Guardian> GetAllGuardians() //Hämtar alla vårdnadshavare
         {
             Guardian g;
             List<Guardian> guardians = new List<Guardian>();
