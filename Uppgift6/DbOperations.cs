@@ -39,7 +39,6 @@ namespace Uppgift6
                 }
                 return staffs; 
             }            
-
         }
 
         public void AddNewStaff(string fname, string lname, string proffesion, int section) //Lägger till ny staff
@@ -137,7 +136,6 @@ namespace Uppgift6
                 {
                     cmd.Connection = conn;
                     cmd.CommandText = stmt;
-
                     cmd.Parameters.AddWithValue("staff_id", id);
 
                     using (var reader = cmd.ExecuteReader())
@@ -176,7 +174,6 @@ namespace Uppgift6
             }
         }
 
-
         public void DeleteStaff (int id) //Ta bort staff baserat på ID
         {
 
@@ -194,6 +191,102 @@ namespace Uppgift6
                 }
             }
         }
+
+        public List<Staff> GetAllStaffOrderByFirstname() //Hämtar alla staffs och sorterar på förnamn
+        {
+            Staff s;
+            List<Staff> staffs = new List<Staff>();
+
+            string stmt = "SELECT staff_id, firstname, lastname, profession, section_name FROM staff INNER JOIN section on staff.section_id = section.section_id ORDER BY firstname;";
+
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand(stmt, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        s = new Staff()
+                        {
+                            staffID = (reader.GetInt32(0)),
+                            firstname = (reader.GetString(1)),
+                            lastname = (reader.GetString(2)),
+                            profession = (reader.GetString(3)),
+                            section = (reader.GetString(4))
+                        };
+                        staffs.Add(s);
+                    }
+                }
+                return staffs;
+            }
+        }
+
+        public List<Staff> GetAllStaffOrderByLastname() //Hämtar alla staffs och sorterar på efternamn
+        {
+            Staff s;
+            List<Staff> staffs = new List<Staff>();
+
+            string stmt = "SELECT staff_id, firstname, lastname, profession, section_name FROM staff INNER JOIN section on staff.section_id = section.section_id ORDER BY lastname;";
+
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand(stmt, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        s = new Staff()
+                        {
+                            staffID = (reader.GetInt32(0)),
+                            firstname = (reader.GetString(1)),
+                            lastname = (reader.GetString(2)),
+                            profession = (reader.GetString(3)),
+                            section = (reader.GetString(4))
+                        };
+                        staffs.Add(s);
+                    }
+                }
+                return staffs;
+            }
+        }
+
+        public List<Staff> GetAllStaffOrderBy(string orderby) //Under konstruktion
+        {
+            Staff s;
+            List<Staff> staffs = new List<Staff>();
+
+            string stmt = "SELECT staff_id, firstname, lastname, profession, section_name FROM staff INNER JOIN section on staff.section_id = section.section_id ORDER BY @order";
+
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand(stmt, conn))                   
+                using (var reader = cmd.ExecuteReader())
+                {
+                    
+                    while (reader.Read())
+                    {
+                        s = new Staff()
+                        {
+                            staffID = (reader.GetInt32(0)),
+                            firstname = (reader.GetString(1)),
+                            lastname = (reader.GetString(2)),
+                            profession = (reader.GetString(3)),
+                            section = (reader.GetString(4))
+                        };
+                        staffs.Add(s);
+                    }
+                }
+                return staffs;
+            }
+        }
+
+
+
+      
+
 
 
 

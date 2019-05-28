@@ -28,20 +28,52 @@ namespace Uppgift6
 
         Staff selectedStaff;
         public static int selectedStaffID;
+        string orderby = "";
 
         public void UpdateListView()
         {
             DbOperations db = new DbOperations();
 
-            try
+            if (radioButtonID.IsChecked == true)
             {
-                listViewStaffs.ItemsSource = null;
-                listViewStaffs.ItemsSource = db.GetAllStaff();
+                //orderby = "staff_id";
+                try
+                {
+                    listViewStaffs.ItemsSource = null;
+                    listViewStaffs.ItemsSource = db.GetAllStaff();
+                }
+                catch (PostgresException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            catch (PostgresException ex)
+            else if(radioButtonFname.IsChecked == true)
             {
-                MessageBox.Show(ex.Message);
+                //orderby = "firstname";
+                try
+                {
+                    listViewStaffs.ItemsSource = null;
+                    listViewStaffs.ItemsSource = db.GetAllStaffOrderByFirstname();
+                }
+                catch (PostgresException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }       
+            else if (radioButtonLname.IsChecked == true)
+            {
+                //orderby = "lastname";
+                try
+                {
+                    listViewStaffs.ItemsSource = null;
+                    listViewStaffs.ItemsSource = db.GetAllStaffOrderByLastname();
+                }
+                catch (PostgresException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
+            
         }
 
 
@@ -129,6 +161,26 @@ namespace Uppgift6
 
            
 
+        }
+
+        private void listViewStaffs_MouseDoubleClick(object sender, MouseButtonEventArgs e) //Dubbelklicka på en anställd för att få upp information
+        {
+            selectedStaff = (Staff)listViewStaffs.SelectedItem;
+
+            MessageBox.Show($"Förnamn: {selectedStaff.firstname}\rEfternamn: {selectedStaff.lastname}\rRoll: {selectedStaff.lastname}\r Avdelning: {selectedStaff.section}", "Information om personal");          
+        }
+
+        private void radioButtonLname_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateListView();
+        }
+        private void radioButtonID_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateListView();
+        }
+        private void radioButtonFname_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateListView();
         }
     }
 }

@@ -7,9 +7,20 @@
         mc:Ignorable="d"
         Title="Startsida" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Button x:Name="btnStaff" Content="Anställda" HorizontalAlignment="Left" Margin="644,46,0,0" VerticalAlignment="Top" Width="81" Height="23" Click="btnStaff_Click"/>
-        <Label x:Name="label" Content="hejhej" HorizontalAlignment="Left" Margin="221,142,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnGuardian" Content="Vårdnadshavare" HorizontalAlignment="Left" Margin="64,46,0,0" VerticalAlignment="Top" Width="112" Height="23" Click="BtnGuardian_Click"/>
+        <Button x:Name="btnStaff" Content="Anställda" HorizontalAlignment="Left" Margin="503,164,0,0" VerticalAlignment="Top" Width="173" Height="44" Click="btnStaff_Click"/>
+        <Label x:Name="label" Content="Logga in som vårdnadshavare" HorizontalAlignment="Left" Margin="89,118,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnGuardian" Content="Vårdnadshavare" HorizontalAlignment="Left" Margin="89,164,0,0" VerticalAlignment="Top" Width="173" Height="44" Click="BtnGuardian_Click"/>
+        <Separator HorizontalAlignment="Left" Height="100" Margin="176,160,0,0" VerticalAlignment="Top" Width="420" RenderTransformOrigin="0.5,0.5">
+            <Separator.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Separator.RenderTransform>
+        </Separator>
+        <Label x:Name="label_Copy" Content="Logga in som personal" HorizontalAlignment="Left" Margin="503,118,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
