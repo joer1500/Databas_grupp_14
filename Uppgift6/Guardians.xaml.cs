@@ -60,7 +60,7 @@ namespace Uppgift6
             }
         }
 
-        private void btnCloseStaff_Click(object sender, RoutedEventArgs e)
+        private void btnCloseGuardian_Click(object sender, RoutedEventArgs e)
         {
             MainWindow m = new MainWindow();
             m.Show();
