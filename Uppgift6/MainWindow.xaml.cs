@@ -28,15 +28,13 @@ namespace Uppgift6
             InitializeComponent();
 
             DbOperations db = new DbOperations();
-            List<Guardian> guardians = new List<Guardian>();
             guardians = db.GetAllGuardians();
 
-            public static List<Guardian> SetValueForList = Guardians;
-
-            Form2 frm2 = new Form2();
-            frm2.Show();
-            
+            listViewGuardians.ItemsSource = null;
+            listViewGuardians.ItemsSource = guardians;           
         }
+        List<Guardian> guardians = new List<Guardian>();
+        public static string SetValueForList = "";
 
         public void GetListValue()
          {
@@ -50,16 +48,14 @@ namespace Uppgift6
             this.Close();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void BtnGuardian_Click(object sender, RoutedEventArgs e)
         {
-            Guardians Guardiandwin = new Guardians();
-            Guardiandwin.Show();
-            this.Close();
+             Guardian guardian = (Guardian)listViewGuardians.SelectedItem;
+             SetValueForList = guardian.id.ToString();
+
+             Guardians Guardiandwin = new Guardians();
+             Guardiandwin.Show();
+             this.Close();           
         }
     }
 }

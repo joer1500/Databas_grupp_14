@@ -22,37 +22,42 @@ namespace Uppgift6
         public Guardians()
         {
             InitializeComponent();
-        }
 
-        DbOperations db = new DbOperations();
-        Schoolchild schoolchild;
+            List<Schoolchild> children = new List<Schoolchild>();
 
-        private void BtnSearchChild_Click(object sender, RoutedEventArgs e)
-        {
-            int id = int.Parse(textBoxID.Text);
-            List<Schoolchild> children = new List <Schoolchild>();
-
+            int id = int.Parse(MainWindow.SetValueForList);
             children = db.GetChildNameFromGuardianID(id);
 
             listBoxChildName.ItemsSource = null;
             listBoxChildName.ItemsSource = children;
         }
 
+        DbOperations db = new DbOperations();
+        Schoolchild schoolchild;
+
         private void BtnSaveNewSchedule_Click(object sender, RoutedEventArgs e)
         {
-            schoolchild = (Schoolchild)listBoxChildName.SelectedItem;
+            if (listBoxChildName.SelectedItem == null)
+            {
+                MessageBox.Show("Du måste välja ett barn i listan.");
+            }
 
-            DateTime date = DateTime.Parse(textBoxDate.Text);
-            string day_off = textBoxDay_of.Text.ToString();
-            string breakfast = textBoxBreakfast.Text.ToString();
-            DateTime should_drop = DateTime.Parse(textBoxShould_drop.Text);
-            DateTime should_pickup = DateTime.Parse(textBoxShould_pickup.Text);
-            string walk_home_alone = textBoxWalk_home_alone.Text.ToString();
-            string walk_with_friend = textBoxHome_with_friend.Text.ToString();
+            else
+            {
+                schoolchild = (Schoolchild)listBoxChildName.SelectedItem;
 
-            db.InsertSchedule(schoolchild, date, day_off, breakfast, should_drop, should_pickup, walk_home_alone, walk_with_friend);
+                DateTime date = DateTime.Parse(textBoxDate.Text);
+                string day_off = textBoxDay_of.Text.ToString();
+                string breakfast = textBoxBreakfast.Text.ToString();
+                DateTime should_drop = DateTime.Parse(textBoxShould_drop.Text);
+                DateTime should_pickup = DateTime.Parse(textBoxShould_pickup.Text);
+                string walk_home_alone = textBoxWalk_home_alone.Text.ToString();
+                string walk_with_friend = textBoxHome_with_friend.Text.ToString();
 
-            MessageBox.Show($"Ditt schema har lagts till för {schoolchild.firstname} den {textBoxDate.Text.ToString()}.");
+                db.InsertSchedule(schoolchild, date, day_off, breakfast, should_drop, should_pickup, walk_home_alone, walk_with_friend);
+
+                MessageBox.Show($"Ditt schema har lagts till för {schoolchild.firstname} den {textBoxDate.Text.ToString()}.");
+            }
         }
 
         private void btnCloseStaff_Click(object sender, RoutedEventArgs e)
@@ -68,5 +73,6 @@ namespace Uppgift6
 
             label_child_schema.Content = schoolchild + "  schema";
         }
+
     }
 }
