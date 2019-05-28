@@ -58,7 +58,20 @@ namespace Uppgift6
             this.Close();
         }
 
-        
+        private void rbtnSortByLastname_Checked(object sender, RoutedEventArgs e)
+        {
+            UpdateListView();
+        }
+
+        private void rbtnSortByFirstname_Checked(object sender, RoutedEventArgs e)
+        {
+            UpdateListView();
+        }
+
+        private void rbtnSortBySection_Checked(object sender, RoutedEventArgs e)
+        {
+            UpdateListView();
+        }
     }
 
 }
