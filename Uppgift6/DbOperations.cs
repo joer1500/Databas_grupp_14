@@ -372,10 +372,10 @@ namespace Uppgift6
             }
         }
 
-        public List<Guardians> GetAllGuaridna() //Hämtar alla vårdnadshavare
+        public List<Guardian> GetAllGuaridna() //Hämtar alla vårdnadshavare
         {
-            Guardians g;
-            List<Guardians> guardians = new List<Guardians>();
+            Guardian g;
+            List<Guardian> guardians = new List<Guardian>();
             string stmt = "SELECT guardian_id, firstname, lastname, phonenumber, address FROM guardian;";
 
             using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
@@ -386,7 +386,7 @@ namespace Uppgift6
                 {
                     while (reader.Read())
                     {
-                        g = new Guardians()
+                        g = new Guardian()
                         {
                             id = (reader.GetInt32(0)),
                             firstname = (reader.GetString(1)),
