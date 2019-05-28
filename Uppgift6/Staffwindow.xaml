@@ -31,8 +31,8 @@
         <RadioButton x:Name="radioButtonID" Content="ID" Grid.Column="1" HorizontalAlignment="Left" Margin="80.333,367,0,0" VerticalAlignment="Top" IsChecked="True" Click="radioButtonID_Click"/>
         <RadioButton x:Name="radioButtonFname" Content="Förnamn" Grid.Column="1" HorizontalAlignment="Left" Margin="120.333,367,0,0" VerticalAlignment="Top" Click="radioButtonFname_Click"/>
         <RadioButton x:Name="radioButtonLname" Content="Efternamn" Grid.Column="1" HorizontalAlignment="Left" Margin="191.333,367,0,0" VerticalAlignment="Top" Click="radioButtonLname_Click"/>
-        <RadioButton x:Name="radioButtonProfession" Content="Roll" Grid.Column="1" HorizontalAlignment="Left" Margin="270.333,367,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <RadioButton x:Name="radioButtonSection" Content="Avdelning" Grid.Column="1" HorizontalAlignment="Left" Margin="314.333,367,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <RadioButton x:Name="radioButtonProfession" Content="Roll" Grid.Column="1" HorizontalAlignment="Left" Margin="270.333,367,0,0" VerticalAlignment="Top" Click="radioButtonProfession_Click"/>
+        <RadioButton x:Name="radioButtonSection" Content="Avdelning" Grid.Column="1" HorizontalAlignment="Left" Margin="314.333,367,0,0" VerticalAlignment="Top" Click="radioButtonSection_Click"/>
         <Label x:Name="labelSortBy" Content="Sortera personallista:" HorizontalAlignment="Left" Margin="31,360,0,0" VerticalAlignment="Top" Height="32" Grid.ColumnSpan="2"/>
 
     </Grid>

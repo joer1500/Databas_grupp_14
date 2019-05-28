@@ -40,6 +40,11 @@ namespace Uppgift6
             string profession = textBoxProfession.Text;
             int section = int.Parse(textBoxSection.Text);
 
+            if (fname == null || lname == null || profession == null || section == 0)
+            {
+                MessageBox.Show("Vänligen ange ett förnamn, efternamn, roll samt en avdelning");
+                return;
+            }
 
             try
             {
@@ -50,11 +55,9 @@ namespace Uppgift6
             }
             catch (PostgresException ex)
             {
-
                 MessageBox.Show(ex.Message);
             }           
         }
-
 
         private void EmptyTextboxes()
         {
@@ -62,7 +65,6 @@ namespace Uppgift6
             textBoxLastname.Text = "";
             textBoxProfession.Text = "";
             textBoxSection.Text = "";
-
         }
 
         private void textBoxSection_GotFocus(object sender, RoutedEventArgs e)
