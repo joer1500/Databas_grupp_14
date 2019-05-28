@@ -81,8 +81,7 @@ namespace Uppgift6
 
         private void listViewStaffs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            selectedStaff = (Staff)listViewStaffs.SelectedItem;
-            
+            selectedStaff = (Staff)listViewStaffs.SelectedItem;         
         }
 
         private void btnCloseStaff_Click(object sender, RoutedEventArgs e)
@@ -106,6 +105,7 @@ namespace Uppgift6
 
             if (selectedStaff == null)
             {
+                MessageBox.Show("Vänligen markera en anställd i listan");
                 return;
             }
             else
@@ -155,11 +155,7 @@ namespace Uppgift6
 
                     MessageBox.Show(ex.Message);
                 }
-            }
-           
-
-           
-
+            }                      
         }
         private void listViewStaffs_MouseDoubleClick(object sender, MouseButtonEventArgs e) //Dubbelklicka på en anställd för att få upp information
         {
