@@ -41,7 +41,7 @@ namespace Uppgift6
 
         private void BtnGuardian_Click(object sender, RoutedEventArgs e)
         {
-            Guardian Guardiandwin = new Guardian();
+            Guardians Guardiandwin = new Guardians();
             Guardiandwin.Show();
             this.Close();
         }

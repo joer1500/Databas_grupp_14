@@ -17,9 +17,9 @@ namespace Uppgift6
     /// <summary>
     /// Interaction logic for Guardian.xaml
     /// </summary>
-    public partial class Guardian : Window
+    public partial class Guardians : Window
     {
-        public Guardian()
+        public Guardians()
         {
             InitializeComponent();
         }
