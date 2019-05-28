@@ -282,7 +282,7 @@ namespace Uppgift6
             }
         }
 
-        public List<Schoolchild> GetSchoolchildren()
+        public List<Schoolchild> GetSchoolchildrenOrderByLastname() // Hämtar alla barn och sorterar på efternamn
         {
             Schoolchild schoolchild;
             List<Schoolchild> schoolchildren = new List<Schoolchild>();
@@ -309,7 +309,59 @@ namespace Uppgift6
             }
         }
 
+        public List<Schoolchild> GetSchoolchildrenOrderByFirstname() // Hämtar barn och storterar efter förnamn
+        {
+            Schoolchild schoolchild;
+            List<Schoolchild> schoolchildren = new List<Schoolchild>();
 
+            string stmt = "SELECT lastname, firstname, section_name FROM schoolchild INNER JOIN section ON schoolchild.section_id = section.section_id ORDER BY firstname ASC";
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand(stmt, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        schoolchild = new Schoolchild
+                        {
+                            lastname = reader.GetString(0),
+                            firstname = reader.GetString(1),
+                            section = reader.GetString(2)
+                        };
+                        schoolchildren.Add(schoolchild);
+                    }
+                }
+                return schoolchildren;
+            }
+        }
+
+        public List<Schoolchild> GetSchoolchildrenOrderBySection() // Hämtar barn och sorterar efter avdelning
+        {
+            Schoolchild schoolchild;
+            List<Schoolchild> schoolchildren = new List<Schoolchild>();
+
+            string stmt = "SELECT lastname, firstname, section_name FROM schoolchild INNER JOIN section ON schoolchild.section_id = section.section_id ORDER BY section.section_id";
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand(stmt, conn))
+                    using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        schoolchild = new Schoolchild
+                        {
+                            lastname = reader.GetString(0),
+                            firstname = reader.GetString(1),
+                            section = reader.GetString(2)
+                        };
+                        schoolchildren.Add(schoolchild);
+                    }
+                }
+                return schoolchildren;
+            }
+        }
 
 
         public List<Staff> GetAllStaffOrderByProfession() //Hämtar alla staffs och sorterar på roll

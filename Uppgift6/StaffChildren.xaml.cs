@@ -30,7 +30,7 @@ namespace Uppgift6
         {
             DbOperations db = new DbOperations();
             listViewSC.ItemsSource = null;
-            listViewSC.ItemsSource = db.GetSchoolchildren();
+            listViewSC.ItemsSource = db.GetSchoolchildrenOrderByLastname();
         }
 
         private void btnHandleStaff_Click(object sender, RoutedEventArgs e)
