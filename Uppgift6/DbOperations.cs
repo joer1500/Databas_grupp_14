@@ -310,6 +310,8 @@ namespace Uppgift6
         }
 
 
+
+
         public List<Staff> GetAllStaffOrderByProfession() //Hämtar alla staffs och sorterar på roll
         {
             Staff s;
@@ -368,6 +370,36 @@ namespace Uppgift6
                 }
                 return staffs;
             }
+        }
+
+        public List<Guardian> GetAllGuaridna() //Hämtar alla vårdnadshavare
+        {
+            Guardian g;
+            List<Guardian> guardians = new List<Guardian>();
+            string stmt = "SELECT guardian_id, firstname, lastname, phonenumber, address FROM guardian;";
+
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand(stmt, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        g = new Guardian()
+                        {
+                            id = (reader.GetInt32(0)),
+                            firstname = (reader.GetString(1)),
+                            lastname = (reader.GetString(2)),
+                            phonenumber = (reader.GetString(3)),
+                            address = (reader.GetString(4))
+                        };
+                        guardians.Add(g);
+                    }
+                }
+                return guardians;
+            }
+
         }
 
     }
