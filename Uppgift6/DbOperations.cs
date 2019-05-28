@@ -15,7 +15,6 @@ namespace Uppgift6
         {
             Staff s;
             List<Staff> staffs = new List<Staff>();
-
             string stmt = "SELECT staff_id, firstname, lastname, profession, section_name FROM staff INNER JOIN section on staff.section_id = section.section_id ORDER BY staff_id;";
 
             using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
@@ -281,14 +280,6 @@ namespace Uppgift6
                 }
                 return staffs;
             }
-        }
-
-
-
-      
-
-
-
-
+        }   
     }
 }

@@ -28,7 +28,7 @@ namespace Uppgift6
 
         Staff selectedStaff;
         public static int selectedStaffID;
-        string orderby = "";
+        //string orderby = "";
 
         public void UpdateListView()
         {
@@ -124,7 +124,6 @@ namespace Uppgift6
                 }
             }                     
         }
-
         private void buttonDeleteStaff_Click(object sender, RoutedEventArgs e)
         {
             DbOperations db = new DbOperations();
@@ -162,14 +161,12 @@ namespace Uppgift6
            
 
         }
-
         private void listViewStaffs_MouseDoubleClick(object sender, MouseButtonEventArgs e) //Dubbelklicka på en anställd för att få upp information
         {
             selectedStaff = (Staff)listViewStaffs.SelectedItem;
 
             MessageBox.Show($"Förnamn: {selectedStaff.firstname}\rEfternamn: {selectedStaff.lastname}\rRoll: {selectedStaff.lastname}\r Avdelning: {selectedStaff.section}", "Information om personal");          
         }
-
         private void radioButtonLname_Click(object sender, RoutedEventArgs e)
         {
             UpdateListView();
