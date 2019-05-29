@@ -27,6 +27,7 @@ namespace Uppgift6
         }
 
         Guardian selectedGuardian;
+        public static int selectedGuardianID;
 
         public void UpdateListView()
         {
@@ -98,6 +99,34 @@ namespace Uppgift6
                     MessageBox.Show(ex.Message);
                 }
             }
-        }    
+        }
+
+        private void buttonUpdateGuardian_Click(object sender, RoutedEventArgs e)
+        {
+            DbOperations db = new DbOperations();
+            selectedGuardian = (Guardian)listViewGuardians.SelectedItem;
+
+            if (selectedGuardian == null)
+            {
+                MessageBox.Show("Vänligen markera en vårdnadshavare i listan.");
+                return;
+            }
+            else
+            {
+                try
+                {
+                    selectedGuardianID = selectedGuardian.id;
+                    UpdateGuardian win = new UpdateGuardian();
+                    win.Show();
+                    this.Close();
+                }
+                catch (PostgresException ex)
+                {
+
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+        }
     }
 }
