@@ -26,10 +26,20 @@ namespace Uppgift6
             UpdateListView();
         }
 
+        DbOperations db = new DbOperations();
+
+        private void SortBySection ()
+        {
+            if (rbtn_all.IsChecked == true)
+            {
+                listViewSC.ItemsSource = null;
+                listViewSC.ItemsSource = db.
+            }
+
+        }
+
         public void UpdateListView()
         {
-            DbOperations db = new DbOperations();
-
             if (rbtnSortByLastname.IsChecked == true)   // Sortera på efternamn
             {
                 listViewSC.ItemsSource = null;
@@ -51,12 +61,6 @@ namespace Uppgift6
            
         }
 
-        private void btnHandleStaff_Click(object sender, RoutedEventArgs e)
-        {
-            Staffwindow win = new Staffwindow();
-            win.Show();
-            this.Close();
-        }
 
         private void rbtnSortByLastname_Checked(object sender, RoutedEventArgs e)
         {
@@ -73,17 +77,14 @@ namespace Uppgift6
             UpdateListView();
         }
 
-        private void btnAddChild_Click(object sender, RoutedEventArgs e)
-        {
-            NewSchoolchild win = new NewSchoolchild();
-            win.Show();
-            this.Close();
-        }
        
 
-        private void btnCloseStaffChildren_Click(object sender, RoutedEventArgs e)
+
+        #region Knappar
+
+        private void btnAddGuardian_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow m = new MainWindow();
+            GuardianManage m = new GuardianManage();
             m.Show();
             this.Close();
         }
@@ -95,11 +96,32 @@ namespace Uppgift6
             this.Close();
         }
 
-        private void btnAddGuardian_Click(object sender, RoutedEventArgs e)
+        private void btnCloseStaffChildren_Click(object sender, RoutedEventArgs e)
         {
-            GuardianManage m = new GuardianManage();
+            MainWindow m = new MainWindow();
             m.Show();
             this.Close();
+        }
+
+        private void btnAddChild_Click(object sender, RoutedEventArgs e)
+        {
+            NewSchoolchild win = new NewSchoolchild();
+            win.Show();
+            this.Close();
+        }
+
+        private void btnHandleStaff_Click(object sender, RoutedEventArgs e)
+        {
+            Staffwindow win = new Staffwindow();
+            win.Show();
+            this.Close();
+        }
+
+        #endregion
+
+        private void button_Copy_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 
