@@ -75,17 +75,10 @@ namespace Uppgift6
 
         private void listBoxChildName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
             schoolchild = (Schoolchild)listBoxChildName.SelectedItem;
             label_child_schema.Content = schoolchild + "  schema";
 
             ScheduleList();
-
-                //List<Schedule> schedule = new List<Schedule>();
-                //schedule = db.GetChildScheduleDatesFromChildID(schoolchild.id);
-
-                //listBox_ChildSchedule.ItemsSource = null;
-                //listBox_ChildSchedule.ItemsSource = schedule;
         }
 
         private void listBox_ChildSchedule_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -124,5 +117,17 @@ namespace Uppgift6
             txt_home_with_friend.Text = null;
         }
 
+        private void Remove_schedule_Click(object sender, RoutedEventArgs e)
+        {
+            if (schedule == null)
+            {
+                MessageBox.Show("Du måste välja ett schema i listan.");
+            }
+            else
+            {
+                db.DeleteSchedule(schedule.id);
+                ScheduleList();
+            }
+        }
     }
 }

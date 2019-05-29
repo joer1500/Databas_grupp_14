@@ -62,6 +62,23 @@ namespace Uppgift6
             }
         }
 
+        public void DeleteSchedule(int id) //Ta bort schedule baserat på ID
+        {
+            string stmt = "DELETE FROM schedule WHERE schedule_id = @scheduleid";
+            using (var conn = new
+            NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("scheduleid", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
         public List<Schedule> GetChildScheduleDatesFromChildID(int ID)
         {
             Schedule sd;

@@ -60,6 +60,7 @@
         <TextBox x:Name="txt_home_alone" HorizontalAlignment="Left" Height="23" Margin="411,322,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48" IsEnabled="False"/>
         <Label x:Name="labelHome_with_friend_Copy" Content="Går hem med kompis:" HorizontalAlignment="Left" Margin="281,360,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txt_home_with_friend" HorizontalAlignment="Left" Height="23" Margin="411,363,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48" IsEnabled="False"/>
+        <Button x:Name="Remove_schedule" Content="Ta bort" HorizontalAlignment="Left" Margin="429,184,0,0" VerticalAlignment="Top" Width="75" Click="Remove_schedule_Click"/>
 
     </Grid>
 </Window>
