@@ -33,7 +33,7 @@ namespace Uppgift6
 
         Staff staff = new Staff();   
 
-        public void UpdateListView()
+        private void UpdateListView()
         {
             DbOperations db = new DbOperations();
 

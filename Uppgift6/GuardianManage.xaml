@@ -1,0 +1,26 @@
+﻿<Window x:Class="Uppgift6.GuardianManage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Uppgift6"
+        mc:Ignorable="d"
+        Title="Hantera vårdnadshavare" Height="450" Width="800">
+    <Grid>
+        <ListView x:Name="listViewGuardians" HorizontalAlignment="Left" Height="321" Margin="31,36,0,0" VerticalAlignment="Top" Width="615" SelectionChanged="listViewGuardians_SelectionChanged" MouseDoubleClick="listViewGuardians_MouseDoubleClick">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Förnamn" Width="100" DisplayMemberBinding="{Binding firstname}"/>
+                    <GridViewColumn Header="Efternamn" Width="150" DisplayMemberBinding="{Binding lastname}"/>
+                    <GridViewColumn Header="Telefonnummer" Width="140" DisplayMemberBinding="{Binding phonenumber}"/>
+                    <GridViewColumn Header="Adress" Width="220" DisplayMemberBinding="{Binding address}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="btnClose" Content="Tillbaka" HorizontalAlignment="Left" Margin="21,5,0,0" VerticalAlignment="Top" Width="75" Height="28" BorderBrush="White" Background="White" FontSize="14" Click="btnClose_Click"/>
+        <Button x:Name="buttonUpdateGuardian" Content="Uppdatera" HorizontalAlignment="Left" Height="35" Margin="672,240,0,0" VerticalAlignment="Top" Width="97"/>
+        <Button x:Name="buttonAddGuardian" Content="Lägg till" HorizontalAlignment="Left" Height="35" Margin="672,281,0,0" VerticalAlignment="Top" Width="97" Click="buttonAddGuardian_Click"/>
+        <Button x:Name="buttonDeleteGuardian" Content="Ta bort" HorizontalAlignment="Left" Margin="672,322,0,0" VerticalAlignment="Top" Width="97" Height="35" Click="buttonDeleteGuardian_Click"/>
+
+    </Grid>
+</Window>

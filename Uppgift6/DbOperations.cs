@@ -404,7 +404,7 @@ namespace Uppgift6
             }
         }
 
-        public void AddSchoolchild(string firstname, string lastname, int section)    // Lägger till skolbarn, funkar ej än
+        public void AddSchoolchild(string firstname, string lastname, int section)    // Lägger till skolbarn
         {
             string stmt = "INSERT INTO schoolchild(firstname, lastname, section_id) VALUES (@firstname, @lastname, @section_id)";
 
@@ -416,7 +416,7 @@ namespace Uppgift6
                     cmd.Connection = conn;
                     cmd.CommandText = stmt;
                     cmd.Parameters.AddWithValue("firstname", firstname);
-                    cmd.Parameters.AddWithValue("lastname", firstname);
+                    cmd.Parameters.AddWithValue("lastname", lastname);
                     cmd.Parameters.AddWithValue("section_id", section);
                     cmd.ExecuteNonQuery();
                 }
@@ -515,6 +515,46 @@ namespace Uppgift6
                 return guardians;
             }
 
+        }
+
+
+        public void AddNewGuardian(string fname, string lname, string phone, string address) //Lägger till ny Guardian
+        {
+            string stmt = "INSERT INTO guardian(firstname, lastname, phonenumber, address) VALUES (@firstname, @lastname, @pho, @addr)";
+
+            using (var conn = new
+            NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("firstname", fname);
+                    cmd.Parameters.AddWithValue("lastname", lname);
+                    cmd.Parameters.AddWithValue("pho", phone);
+                    cmd.Parameters.AddWithValue("addr", address);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void DeleteGuardian(int id) //Ta bort Guardian baserat på ID
+        {
+
+            string stmt = "DELETE FROM guardian WHERE guardian_id = @guardianid";
+            using (var conn = new
+            NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("guardianid", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
     }
