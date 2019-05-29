@@ -17,6 +17,8 @@ namespace Uppgift6
         public TimeSpan should_pickup { get; set; }
         public string walk_home_alone { get; set; }
         public string home_with_friend { get; set; }
+        public string firstname { get; set; }
+        public string lastname { get; set; }
 
         public override string ToString()
         {
