@@ -96,8 +96,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Guardian.cs" />
+    <Compile Include="GuardianManage.xaml.cs">
+      <DependentUpon>GuardianManage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Guardians.xaml.cs">
       <DependentUpon>Guardians.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewGuardian.xaml.cs">
+      <DependentUpon>NewGuardian.xaml</DependentUpon>
     </Compile>
     <Compile Include="NewSchoolchild.xaml.cs">
       <DependentUpon>NewSchoolchild.xaml</DependentUpon>
@@ -114,9 +120,16 @@
     <Compile Include="Staffwindow.xaml.cs">
       <DependentUpon>Staffwindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UpdateGuardian.xaml.cs">
+      <DependentUpon>UpdateGuardian.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UpdateStaff.xaml.cs">
       <DependentUpon>UpdateStaff.xaml</DependentUpon>
     </Compile>
+    <Page Include="GuardianManage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Guardians.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -133,6 +146,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="NewGuardian.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NewSchoolchild.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -146,6 +163,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Staffwindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateGuardian.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

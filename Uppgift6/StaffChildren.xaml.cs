@@ -94,6 +94,13 @@ namespace Uppgift6
             m.Show();
             this.Close();
         }
+
+        private void btnAddGuardian_Click(object sender, RoutedEventArgs e)
+        {
+            GuardianManage m = new GuardianManage();
+            m.Show();
+            this.Close();
+        }
     }
 
 }

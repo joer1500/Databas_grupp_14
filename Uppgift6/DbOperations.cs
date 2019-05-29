@@ -23,7 +23,7 @@ namespace Uppgift6
                 using (var cmd = new NpgsqlCommand(stmt, conn))
                 using (var reader = cmd.ExecuteReader())
                 {
-                    while(reader.Read())
+                    while (reader.Read())
                     {
                         s = new Staff()
                         {
@@ -37,8 +37,8 @@ namespace Uppgift6
                         staffs.Add(s);
                     }
                 }
-                return staffs; 
-            }            
+                return staffs;
+            }
         }
 
         public void AddNewStaff(string fname, string lname, string proffesion, int section) //Lägger till ny staff
@@ -62,13 +62,30 @@ namespace Uppgift6
             }
         }
 
+        public void DeleteSchedule(int id) //Ta bort schedule baserat på ID
+        {
+            string stmt = "DELETE FROM schedule WHERE schedule_id = @scheduleid";
+            using (var conn = new
+            NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("scheduleid", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
         public List<Schedule> GetChildScheduleDatesFromChildID(int ID)
         {
             Schedule sd;
             List<Schedule> schedule = new List<Schedule>();
 
-            string stmt = $"SELECT schedule.date, schedule.day_off, schedule.breakfast, schedule.should_drop, schedule.should_pickup, schedule.walk_home_alone, schedule.home_with_friend " +
-                $"FROM schedule WHERE schoolchild_id = {ID}";
+            string stmt = $"SELECT schedule_id, schoolchild_id, date, day_off, breakfast, should_drop, should_pickup, walk_home_alone, home_with_friend " +
+                $"FROM schedule WHERE schoolchild_id = {ID} ORDER BY date ASC";
 
             using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
             {
@@ -84,6 +101,11 @@ namespace Uppgift6
                             schoolchild_id = (reader.GetInt32(1)),
                             date = (reader.GetDateTime(2)),
                             day_off = (reader.GetString(3)),
+                            breakfast = (reader.GetString(4)),
+                            should_drop = (reader.GetTimeSpan(5)),
+                            should_pickup = (reader.GetTimeSpan(6)),
+                            walk_home_alone = (reader.GetString(7)),
+                            home_with_friend = (reader.GetString(8))
                         };
                         schedule.Add(sd);
                     }
@@ -92,7 +114,7 @@ namespace Uppgift6
             }
         }
 
-        public List<Schoolchild> GetChildNameFromGuardianID (int ID)
+        public List<Schoolchild> GetChildNameFromGuardianID(int ID)
         {
             Schoolchild sc;
             List<Schoolchild> children = new List<Schoolchild>();
@@ -123,9 +145,9 @@ namespace Uppgift6
 
         }
 
-        public void InsertSchedule(Schoolchild child, DateTime date, string day_off, string breakfast, 
-            DateTime should_drop, DateTime should_pickup, string walk_home_alone, string walk_with_friend)
-         {
+        public void InsertSchedule(Schoolchild child, DateTime date, string day_off, string breakfast,
+            TimeSpan should_drop, TimeSpan should_pickup, string walk_home_alone, string walk_with_friend)
+        {
             Schoolchild schoolchild;
             schoolchild = child;
 
@@ -207,7 +229,7 @@ namespace Uppgift6
             }
         }
 
-        public void DeleteStaff (int id) //Ta bort staff baserat på ID
+        public void DeleteStaff(int id) //Ta bort staff baserat på ID
         {
 
             string stmt = "DELETE FROM staff WHERE staff_id = @staffID";
@@ -297,10 +319,10 @@ namespace Uppgift6
             using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
             {
                 conn.Open();
-                using (var cmd = new NpgsqlCommand(stmt, conn))                   
+                using (var cmd = new NpgsqlCommand(stmt, conn))
                 using (var reader = cmd.ExecuteReader())
                 {
-                    
+
                     while (reader.Read())
                     {
                         s = new Staff()
@@ -382,7 +404,7 @@ namespace Uppgift6
             {
                 conn.Open();
                 using (var cmd = new NpgsqlCommand(stmt, conn))
-                    using (var reader = cmd.ExecuteReader())
+                using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -399,7 +421,7 @@ namespace Uppgift6
             }
         }
 
-        public void AddSchoolchild(string firstname, string lastname, int section)    // Lägger till skolbarn, funkar ej än
+        public void AddSchoolchild(string firstname, string lastname, int section)    // Lägger till skolbarn
         {
             string stmt = "INSERT INTO schoolchild(firstname, lastname, section_id) VALUES (@firstname, @lastname, @section_id)";
 
@@ -411,14 +433,14 @@ namespace Uppgift6
                     cmd.Connection = conn;
                     cmd.CommandText = stmt;
                     cmd.Parameters.AddWithValue("firstname", firstname);
-                    cmd.Parameters.AddWithValue("lastname", firstname);
+                    cmd.Parameters.AddWithValue("lastname", lastname);
                     cmd.Parameters.AddWithValue("section_id", section);
                     cmd.ExecuteNonQuery();
                 }
             }
         }
 
-        
+
 
         public List<Staff> GetAllStaffOrderByProfession() //Hämtar alla staffs och sorterar på roll
         {
@@ -510,6 +532,135 @@ namespace Uppgift6
                 return guardians;
             }
 
+        }
+
+
+        public void AddNewGuardian(string fname, string lname, string phone, string address) //Lägger till ny Guardian
+        {
+            string stmt = "INSERT INTO guardian(firstname, lastname, phonenumber, address) VALUES (@firstname, @lastname, @pho, @addr)";
+
+            using (var conn = new
+            NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("firstname", fname);
+                    cmd.Parameters.AddWithValue("lastname", lname);
+                    cmd.Parameters.AddWithValue("pho", phone);
+                    cmd.Parameters.AddWithValue("addr", address);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void DeleteGuardian(int id) //Ta bort Guardian baserat på ID
+        {
+
+            string stmt = "DELETE FROM guardian WHERE guardian_id = @guardianid";
+            using (var conn = new
+            NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("guardianid", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+        public Guardian GetGuardianById(int id) //Hämtar staff baserat på ID
+        {
+            Guardian g = new Guardian();
+            string stmt = "SELECT * FROM guardian WHERE guardian_id = @guardian_id";
+            using (var conn = new
+                NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("guardian_id", id);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            g.id = reader.GetInt32(0);
+                            g.firstname = reader.GetString(1);
+                            g.lastname = reader.GetString(2);
+                            g.phonenumber = reader.GetString(3);
+                            g.address = reader.GetString(4);
+                        }
+                    }
+                }
+                return g;
+            }
+
+        }
+
+
+        public void UpdateGuardian(int id, string firstname, string lastname, string phonenumber, string address) //Uppdaterar guardian
+        {
+            string stmt = "UPDATE guardian SET (firstname, lastname, phonenumber, address) = (@fname, @lname, @phone, @addr) WHERE guardian_id = @guardid";
+
+            using (var conn = new
+            NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("guardid", id);
+                    cmd.Parameters.AddWithValue("fname", firstname);
+                    cmd.Parameters.AddWithValue("lname", lastname);
+                    cmd.Parameters.AddWithValue("phone", phonenumber);
+                    cmd.Parameters.AddWithValue("addr", address);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+        public List<Schoolchild> GetSchoolchildsFromGuardian(int id)
+        {
+            Schoolchild sc;
+            List<Schoolchild> children = new List<Schoolchild>();
+
+            string stmt = $"SELECT schoolchild.firstname, schoolchild.lastname FROM guardian_schoolchild INNER JOIN schoolchild on guardian_schoolchild.schoolchild_id = schoolchild.schoolchild_id WHERE guardian_id = @gid";
+
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("gid", id);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            sc = new Schoolchild()
+                            {                               
+                                firstname = (reader.GetString(0)),
+                                lastname = (reader.GetString(1)),
+                            };
+                            children.Add(sc);
+                        }
+                    }
+                    return children;
+                }
+            }
         }
 
     }

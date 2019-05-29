@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Npgsql;
 
 namespace Uppgift6
 {
@@ -24,7 +25,15 @@ namespace Uppgift6
             InitializeComponent();
         }
 
-        private void buttonAdd_Click(object sender, RoutedEventArgs e)
+       
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            StaffChildren win = new StaffChildren();
+            win.Show();
+            this.Close();
+        }
+
+        private void btnAddChild_Click(object sender, RoutedEventArgs e)
         {
             DbOperations db = new DbOperations();
             string firstname = txtBoxFirstname.Text;
@@ -32,14 +41,6 @@ namespace Uppgift6
             int section = int.Parse(txtBoxSection.Text);
 
             db.AddSchoolchild(firstname, lastname, section);
-            
-        }
-
-        private void btnExit_Click(object sender, RoutedEventArgs e)
-        {
-            StaffChildren win = new StaffChildren();
-            win.Show();
-            this.Close();
         }
     }
 }

@@ -14,7 +14,7 @@
         <TextBox x:Name="txtBoxFirstname" HorizontalAlignment="Left" Height="25" Margin="23,125,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="txtBoxLastname" HorizontalAlignment="Left" Height="25" Margin="23,192,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="labelTitle" Content="Lägg till nytt barn" Margin="0,20,553,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Right" Width="245"/>
-        <Button x:Name="btnAddChild" Content="Lägg till" HorizontalAlignment="Left" Margin="434,390,0,0" VerticalAlignment="Top" Width="83" Height="24"/>
+        <Button x:Name="btnAddChild" Content="Lägg till" HorizontalAlignment="Left" Margin="434,390,0,0" VerticalAlignment="Top" Width="83" Height="24" Click="btnAddChild_Click"/>
         <Label x:Name="lblSection" Content="Avdelning" HorizontalAlignment="Left" Margin="23,289,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtBoxSection"  HorizontalAlignment="Left" Height="25" Margin="23,315,0,0" TextWrapping="Wrap" Text="Ange avdelnings-ID" VerticalAlignment="Top" Width="120" FontStyle="Italic"/>
         <TextBlock x:Name="txtBlckSectionInfo" HorizontalAlignment="Left" Margin="214,289,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="62" Width="109" FontSize="10" IsEnabled="False"><Run Text="Avdelning "/><Run Text="blå"/><Run Text="= id 1"/><LineBreak/><Run Text="Avdelning gul = id 2"/><LineBreak/><Run Text="Avdelning röd = id 3"/><LineBreak/><Run Text="Avdelning grön = id 4"/></TextBlock>
