@@ -18,5 +18,10 @@ namespace Uppgift6
         public string walk_home_alone { get; set; }
         public string home_with_friend { get; set; }
 
+        public override string ToString()
+        {
+            return date.ToString();
+        }
+
     }
 }
