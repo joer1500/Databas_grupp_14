@@ -48,10 +48,10 @@ namespace Uppgift6
 
             else
             {
-                string message = errorMessage(textBoxDate.Text, textBoxBreakfast.Text, textBoxShould_drop.Text, 
+                string message = errorMessage(textBoxDate.Text, textBoxBreakfast.Text, textBoxDay_of.Text, textBoxShould_drop.Text, 
                    textBoxShould_pickup.Text, textBoxWalk_home_alone.Text, textBoxHome_with_friend.Text);
 
-                if (message == " ")
+                if (message == "")
                 {
                     DateTime date = DateTime.Parse(textBoxDate.Text);
                     string day_off = textBoxDay_of.Text;
@@ -141,39 +141,46 @@ namespace Uppgift6
             }
         }
 
-        private string errorMessage(string date, string breakfast, string drop, string pickup,
+        private string errorMessage(string date, string breakfast, string day_off, string drop, string pickup,
             string walk_alone, string walk_friend)
         {
 
-            string message = "Vänligen fyll i dessa textrutor innan du sparar: ";
-            if (date == "")
+            string message = "";
+            if (day_off.ToLower() == "ja")
             {
-                message += "Datum, ";
+                
+                if (date == "")
+                {
+                    message = "Vänligen fyll i datum innan du sparar.";
+                }
             }
-            if (breakfast == "")
-            {
-                message += "Frukost, ";
-            }
-            if (drop == "")
-            {
-                message += "Lämna tid, ";
-            }
-            if (pickup == "")
-            {
-                message += "Hämta tid, ";
-            }
-            if (walk_alone == "")
-            {
-                message += "Får gå hem själv, ";
-            }
-            if (walk_friend == "")
-            {
-                message += "Får gå hem med kompis. ";
-            }
-
             else
             {
-                message = "";
+                message = "Vänligen fyll i dessa textrutor innan du sparar: ";
+                if (date == "")
+                {
+                    message += "Datum, ";
+                }
+                if (breakfast == "")
+                {
+                    message += "Frukost, ";
+                }
+                if (drop == "00:00")
+                {
+                    message += "Lämna tid, ";
+                }
+                if (pickup == "00:00")
+                {
+                    message += "Hämta tid, ";
+                }
+                if (walk_alone == "")
+                {
+                    message += "Får gå hem själv, ";
+                }
+                if (walk_friend == "")
+                {
+                    message += "Får gå hem med kompis. ";
+                }
             }
 
             return message;
