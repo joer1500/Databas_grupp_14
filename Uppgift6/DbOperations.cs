@@ -630,7 +630,7 @@ namespace Uppgift6
         }
 
 
-        public List<Schoolchild> GetSchoolchildsFromGuardian(int id)
+        public List<Schoolchild> GetSchoolchildsFromGuardian(int id) //används ej, ska tas bort
         {
             Schoolchild sc;
             List<Schoolchild> children = new List<Schoolchild>();

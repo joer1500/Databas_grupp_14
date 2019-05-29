@@ -136,7 +136,8 @@ namespace Uppgift6
             listViewChilds.ItemsSource = null;
             DbOperations db = new DbOperations();
 
-            listViewChilds.ItemsSource = db.GetSchoolchildsFromGuardian(selectedGuardian.id);
+            //listViewChilds.ItemsSource = db.GetSchoolchildsFromGuardian(selectedGuardian.id);
+            listViewChilds.ItemsSource = db.GetChildNameFromGuardianID(selectedGuardian.id);
 
         }
     }
