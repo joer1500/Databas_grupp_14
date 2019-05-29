@@ -440,7 +440,7 @@ namespace Uppgift6
             }
         }
 
-
+        
 
         public List<Staff> GetAllStaffOrderByProfession() //Hämtar alla staffs och sorterar på roll
         {
@@ -630,7 +630,7 @@ namespace Uppgift6
         }
 
 
-        public List<Schoolchild> GetSchoolchildsFromGuardian(int id)
+        public List<Schoolchild> GetSchoolchildsFromGuardian(int id) //används ej, ska tas bort
         {
             Schoolchild sc;
             List<Schoolchild> children = new List<Schoolchild>();
@@ -653,7 +653,8 @@ namespace Uppgift6
                             sc = new Schoolchild()
                             {                               
                                 firstname = (reader.GetString(0)),
-                                lastname = (reader.GetString(1)),
+                                lastname = (reader.GetString(1))
+                                
                             };
                             children.Add(sc);
                         }

@@ -23,15 +23,25 @@ namespace Uppgift6
         public NewSchoolchild()
         {
             InitializeComponent();
+            UpdateListview();
         }
 
-       
+        
+        public void UpdateListview()
+        {
+            DbOperations db = new DbOperations();
+
+            listViewGuardians.ItemsSource = null;
+            listViewGuardians.ItemsSource = db.GetAllGuardians();
+        }
+
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             StaffChildren win = new StaffChildren();
             win.Show();
             this.Close();
         }
+
 
         private void btnAddChild_Click(object sender, RoutedEventArgs e)
         {
@@ -41,6 +51,12 @@ namespace Uppgift6
             int section = int.Parse(txtBoxSection.Text);
 
             db.AddSchoolchild(firstname, lastname, section);
+        }
+
+        private void btnNewGuardian_Click(object sender, RoutedEventArgs e)
+        {
+            NewGuardian win = new NewGuardian();
+            win.Show();
         }
     }
 }
