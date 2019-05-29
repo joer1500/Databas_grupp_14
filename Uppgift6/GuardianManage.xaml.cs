@@ -35,6 +35,7 @@ namespace Uppgift6
 
             listViewGuardians.ItemsSource = null;
             listViewGuardians.ItemsSource = db.GetAllGuardians();
+    
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -47,6 +48,7 @@ namespace Uppgift6
         private void listViewGuardians_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectedGuardian = (Guardian)listViewGuardians.SelectedItem;
+            UpdateSchoolchilds();
         }
 
         private void listViewGuardians_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -126,6 +128,16 @@ namespace Uppgift6
                     MessageBox.Show(ex.Message);
                 }
             }
+
+        }
+
+        private void UpdateSchoolchilds()
+        {
+            listViewChilds.ItemsSource = null;
+            DbOperations db = new DbOperations();
+
+            //listViewChilds.ItemsSource = db.GetSchoolchildsFromGuardian(selectedGuardian.id);
+            listViewChilds.ItemsSource = db.GetChildNameFromGuardianID(selectedGuardian.id);
 
         }
     }

@@ -605,5 +605,64 @@ namespace Uppgift6
             }
 
         }
+
+
+        public void UpdateGuardian(int id, string firstname, string lastname, string phonenumber, string address) //Uppdaterar guardian
+        {
+            string stmt = "UPDATE guardian SET (firstname, lastname, phonenumber, address) = (@fname, @lname, @phone, @addr) WHERE guardian_id = @guardid";
+
+            using (var conn = new
+            NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("guardid", id);
+                    cmd.Parameters.AddWithValue("fname", firstname);
+                    cmd.Parameters.AddWithValue("lname", lastname);
+                    cmd.Parameters.AddWithValue("phone", phonenumber);
+                    cmd.Parameters.AddWithValue("addr", address);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+        public List<Schoolchild> GetSchoolchildsFromGuardian(int id) //används ej, ska tas bort
+        {
+            Schoolchild sc;
+            List<Schoolchild> children = new List<Schoolchild>();
+
+            string stmt = $"SELECT schoolchild.firstname, schoolchild.lastname FROM guardian_schoolchild INNER JOIN schoolchild on guardian_schoolchild.schoolchild_id = schoolchild.schoolchild_id WHERE guardian_id = @gid";
+
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("gid", id);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            sc = new Schoolchild()
+                            {                               
+                                firstname = (reader.GetString(0)),
+                                lastname = (reader.GetString(1))
+                                
+                            };
+                            children.Add(sc);
+                        }
+                    }
+                    return children;
+                }
+            }
+        }
+
     }
 }
