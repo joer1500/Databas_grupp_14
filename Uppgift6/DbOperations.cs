@@ -399,7 +399,7 @@ namespace Uppgift6
             }
         }
 
-        public void AddSchoolchild(string firstname, string lastname, int section)    // Lägger till skolbarn, funkar ej än
+        public void AddSchoolchild(string firstname, string lastname, int section)    // Lägger till skolbarn
         {
             string stmt = "INSERT INTO schoolchild(firstname, lastname, section_id) VALUES (@firstname, @lastname, @section_id)";
 
@@ -411,7 +411,7 @@ namespace Uppgift6
                     cmd.Connection = conn;
                     cmd.CommandText = stmt;
                     cmd.Parameters.AddWithValue("firstname", firstname);
-                    cmd.Parameters.AddWithValue("lastname", firstname);
+                    cmd.Parameters.AddWithValue("lastname", lastname);
                     cmd.Parameters.AddWithValue("section_id", section);
                     cmd.ExecuteNonQuery();
                 }
