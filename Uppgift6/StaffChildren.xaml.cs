@@ -23,22 +23,38 @@ namespace Uppgift6
         public StaffChildren()
         {
             InitializeComponent();
-            UpdateListView2();
+            GetSchedules();
+            SortSchedulesByDate();
+            EmptyListBoxAndFill();
+            UpdateLabelView();
         }
 
         DbOperations db = new DbOperations();
+        List<Schedule> schedule = new List<Schedule>();
+        DateTime choosenDate = DateTime.Today;
 
-       private void UpdateListView2 ()
+
+        private void SortSchedulesByDate()
         {
-            if (rbtn_all.IsChecked == true)
-            {
-                listViewSC.ItemsSource = null;
-                listViewSC.ItemsSource = db.GetSchoolchildrenOrderBySectionAll();
-            }
-
+            schedule = schedule.Where(x => x.date == choosenDate).ToList();
         }
-        
 
+        private void GetSchedules() {
+            schedule = db.GetSchoolchildrenSchedule();
+        }
+
+        private void EmptyListBoxAndFill()
+        {
+            listViewSC.ItemsSource = null;
+            listViewSC.ItemsSource = schedule;
+        }
+
+        private void UpdateLabelView() {
+            label_today.Content = choosenDate.ToString("dddd, dd MMMM yyyy");
+        }
+
+
+        #region Annas
         public void UpdateListView()
         {
             if (rbtnSortByLastname.IsChecked == true)   // Sortera på efternamn
@@ -59,9 +75,8 @@ namespace Uppgift6
                 listViewSC.ItemsSource = db.GetSchoolchildrenOrderBySection();
             }
 
-           
-        }
 
+        }
 
         private void rbtnSortByLastname_Checked(object sender, RoutedEventArgs e)
         {
@@ -77,11 +92,27 @@ namespace Uppgift6
         {
             UpdateListView();
         }
-
-       
+        #endregion
 
 
         #region Knappar
+        private void button_minus_Click(object sender, RoutedEventArgs e)
+        {
+            choosenDate = choosenDate.AddDays(-1);
+            UpdateLabelView();
+            GetSchedules();
+            SortSchedulesByDate();
+            EmptyListBoxAndFill();
+        }
+
+        private void button_plus_Click(object sender, RoutedEventArgs e)
+        {
+            choosenDate = choosenDate.AddDays(1);
+            UpdateLabelView();
+            GetSchedules();
+            SortSchedulesByDate();
+            EmptyListBoxAndFill();
+        }
 
         private void btnAddGuardian_Click(object sender, RoutedEventArgs e)
         {
@@ -120,10 +151,7 @@ namespace Uppgift6
 
         #endregion
 
-        private void button_Copy_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
     }
 
 }

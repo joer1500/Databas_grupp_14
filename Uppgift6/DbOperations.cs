@@ -79,13 +79,13 @@ namespace Uppgift6
             }
         }
 
-        public List<Schedule> GetSchoolchildrenOrderBySectionAll() 
+        public List<Schedule> GetSchoolchildrenSchedule() 
          // Hämtar alla aktuella dagens scheman för alla avdelningar  
         {
             Schedule sd;
             List<Schedule> schedule = new List<Schedule>();
 
-            string stmt = "SELECT schedule_id, schedule.schoolchild_id, date, day_off, breakfast, should_drop, should_pickup, walk_home_alone, home_with_friend, firstname, lastname FROM(schedule INNER JOIN schoolchild ON schedule.schoolchild_id = schoolchild.schoolchild_id) ORDER BY lastname ASC";
+            string stmt = "SELECT schedule_id, schedule.schoolchild_id, date, day_off, breakfast, should_drop, should_pickup, walk_home_alone, home_with_friend, firstname, lastname, section_id FROM(schedule INNER JOIN schoolchild ON schedule.schoolchild_id = schoolchild.schoolchild_id) ORDER BY lastname ASC";
             using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
             {
                 conn.Open();
@@ -98,15 +98,16 @@ namespace Uppgift6
                         {
                             id = (reader.GetInt32(0)),
                             schoolchild_id = (reader.GetInt32(1)),
-                            //date = (reader.GetDateTime(2)),
-                            //day_off = (reader.GetString(3)),
-                            //breakfast = (reader.GetString(4)),
-                            //should_drop = (reader.GetTimeSpan(5)),
-                            //should_pickup = (reader.GetTimeSpan(6)),
-                            //walk_home_alone = (reader.GetString(7)),
-                            //home_with_friend = (reader.GetString(8)),
-                            //firstname = (reader.GetString(9)),
-                            //lastname = (reader.GetString(10))
+                            date = (reader.GetDateTime(2)),
+                            day_off = (reader.GetString(3)),
+                            breakfast = (reader.GetString(4)),
+                            should_drop = (reader.GetTimeSpan(5)),
+                            should_pickup = (reader.GetTimeSpan(6)),
+                            walk_home_alone = (reader.GetString(7)),
+                            home_with_friend = (reader.GetString(8)),
+                            firstname = (reader.GetString(9)),
+                            lastname = (reader.GetString(10)),
+                            section_id = (reader.GetInt32(11))
                         };
                         schedule.Add(sd);
                     }

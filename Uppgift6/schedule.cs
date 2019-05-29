@@ -19,6 +19,8 @@ namespace Uppgift6
         public string home_with_friend { get; set; }
         public string firstname { get; set; }
         public string lastname { get; set; }
+        public int section_id { get; set; }
+
 
         public override string ToString()
         {
