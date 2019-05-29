@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Npgsql;
 
 namespace Uppgift6
 {
@@ -65,5 +66,38 @@ namespace Uppgift6
             NewGuardian n = new NewGuardian();
             n.Show();
         }
+
+        private void buttonDeleteGuardian_Click(object sender, RoutedEventArgs e)
+        {
+            DbOperations db = new DbOperations();
+            selectedGuardian = (Guardian)listViewGuardians.SelectedItem;
+
+            if (selectedGuardian == null)
+            {
+                return;
+            }
+            else
+            {
+                //int guardianID = selectedGuardian.id;
+
+                try
+                {
+                    if (MessageBox.Show($"Vill du verkligen ta bort: {selectedGuardian.firstname} {selectedGuardian.lastname} från registret?\rObservera att denna åtgärd inte kan ångras.", "Varning!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    {
+                        db.DeleteGuardian(selectedGuardian.id);
+                    }
+                    else
+                    {
+                        return;
+                    }
+                    UpdateListView();
+
+                }
+                catch (PostgresException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }    
     }
 }

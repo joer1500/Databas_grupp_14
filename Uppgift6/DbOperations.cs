@@ -534,5 +534,23 @@ namespace Uppgift6
             }
         }
 
+        public void DeleteGuardian(int id) //Ta bort Guardian baserat på ID
+        {
+
+            string stmt = "DELETE FROM guardian WHERE guardian_id = @guardianid";
+            using (var conn = new
+            NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("guardianid", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
     }
 }
