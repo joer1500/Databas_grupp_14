@@ -13,14 +13,14 @@ namespace Uppgift6
         public DateTime date { get; set; }
         public string day_off { get; set; }
         public string breakfast { get; set; }
-        public DateTime should_drop { get; set; }
-        public DateTime should_pickup { get; set; }
+        public TimeSpan should_drop { get; set; }
+        public TimeSpan should_pickup { get; set; }
         public string walk_home_alone { get; set; }
         public string home_with_friend { get; set; }
 
         public override string ToString()
         {
-            return date.ToString();
+            return date.ToString("dddd, dd MMMM yyyy");
         }
 
     }

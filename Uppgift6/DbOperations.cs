@@ -84,6 +84,11 @@ namespace Uppgift6
                             schoolchild_id = (reader.GetInt32(1)),
                             date = (reader.GetDateTime(2)),
                             day_off = (reader.GetString(3)),
+                            breakfast = (reader.GetString(4)),
+                            should_drop = (reader.GetTimeSpan(5)),
+                            should_pickup = (reader.GetTimeSpan(6)),
+                            walk_home_alone = (reader.GetString(7)),
+                            home_with_friend = (reader.GetString(8))
                         };
                         schedule.Add(sd);
                     }
@@ -124,7 +129,7 @@ namespace Uppgift6
         }
 
         public void InsertSchedule(Schoolchild child, DateTime date, string day_off, string breakfast, 
-            DateTime should_drop, DateTime should_pickup, string walk_home_alone, string walk_with_friend)
+            TimeSpan should_drop, TimeSpan should_pickup, string walk_home_alone, string walk_with_friend)
          {
             Schoolchild schoolchild;
             schoolchild = child;
