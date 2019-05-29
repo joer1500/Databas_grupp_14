@@ -27,7 +27,7 @@ namespace Uppgift6
 
         Guardian selectedGuardian;
 
-        private void UpdateListView()
+        public void UpdateListView()
         {
             DbOperations db = new DbOperations();
 
@@ -58,6 +58,12 @@ namespace Uppgift6
             {
                 MessageBox.Show($"Förnamn: {selectedGuardian.firstname}\rEfternamn: {selectedGuardian.lastname}\rTelefonnummer: {selectedGuardian.phonenumber}\rAdress: {selectedGuardian.address}\r", "Information om vårdnadshavare");
             }
+        }
+
+        private void buttonAddGuardian_Click(object sender, RoutedEventArgs e)
+        {
+            NewGuardian n = new NewGuardian();
+            n.Show();
         }
     }
 }

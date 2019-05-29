@@ -512,5 +512,27 @@ namespace Uppgift6
 
         }
 
+
+        public void AddNewGuardian(string fname, string lname, string phone, string address) //Lägger till ny Guardian
+        {
+            string stmt = "INSERT INTO guardian(firstname, lastname, phonenumber, address) VALUES (@firstname, @lastname, @pho, @addr)";
+
+            using (var conn = new
+            NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("firstname", fname);
+                    cmd.Parameters.AddWithValue("lastname", lname);
+                    cmd.Parameters.AddWithValue("pho", phone);
+                    cmd.Parameters.AddWithValue("addr", address);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
     }
 }
