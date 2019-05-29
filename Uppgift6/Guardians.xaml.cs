@@ -59,7 +59,7 @@ namespace Uppgift6
 
                 db.InsertSchedule(schoolchild, date, day_off, breakfast, should_drop, should_pickup, walk_home_alone, walk_with_friend);
 
-                MessageBox.Show($"Ditt schema har lagts till för {schoolchild.firstname} den {textBoxDate.Text.ToString()}.");
+                MessageBox.Show($"Ditt schema har lagts till för {schoolchild.firstname} den {textBoxDate.Text}.");
             }
         }
 
