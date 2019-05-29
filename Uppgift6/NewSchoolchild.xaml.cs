@@ -26,7 +26,9 @@ namespace Uppgift6
             UpdateListview();
         }
 
-        
+
+        Guardian selectedGuardian;
+
         public void UpdateListview()
         {
             DbOperations db = new DbOperations();
@@ -55,8 +57,14 @@ namespace Uppgift6
 
         private void btnNewGuardian_Click(object sender, RoutedEventArgs e)
         {
-            NewGuardian win = new NewGuardian();
+            NewSCGuardian win = new NewSCGuardian();
             win.Show();
+            this.Close();
+        }
+
+        private void listViewGuardians_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            selectedGuardian = (Guardian)listViewGuardians.SelectedItem;
         }
     }
 }
