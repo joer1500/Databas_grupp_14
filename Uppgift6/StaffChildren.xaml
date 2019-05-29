@@ -7,26 +7,42 @@
         mc:Ignorable="d"
         Title="StaffChildren" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
-        <ListView x:Name="listViewSC" HorizontalAlignment="Left" Height="247" VerticalAlignment="Top" Width="453" Margin="38,64,0,0">
+        <ListView x:Name="listViewSC" HorizontalAlignment="Left" Height="247" VerticalAlignment="Top" Width="631" Margin="139,48,0,0">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Efternamn" Width="150" DisplayMemberBinding="{Binding lastname}"/>
-                    <GridViewColumn Header="Förnamn" Width="150" DisplayMemberBinding="{Binding firstname}"/>
-                    <GridViewColumn Header="Avdelning" Width="100" DisplayMemberBinding="{Binding section}"/>
+                    <GridViewColumn Header="Förnamn" Width="100" DisplayMemberBinding="{Binding firstname}"/>
+                    <GridViewColumn Header="Efternamn" Width="100" DisplayMemberBinding="{Binding lastname}"/>
+                    <GridViewColumn Header="Avdelning" Width="60" DisplayMemberBinding="{Binding section}"/>
+                    <GridViewColumn Header="Lämnas" Width="60" DisplayMemberBinding="{Binding section}"/>
+                    <GridViewColumn Header="Hämtas" Width="60" DisplayMemberBinding="{Binding section}"/>
+                    <GridViewColumn Header="Frukost" Width="60" DisplayMemberBinding="{Binding section}"/>
+                    <GridViewColumn Header="Går hem själv" Width="80" DisplayMemberBinding="{Binding section}"/>
+                    <GridViewColumn Header="Går hem med kompis" Width="110" DisplayMemberBinding="{Binding section}"/>
                 </GridView>
             </ListView.View>
 
         </ListView>
-        <Button x:Name="btnHandleStaff" Content="Hantera personal" HorizontalAlignment="Left" Margin="640,232,0,0" VerticalAlignment="Top" Width="130" Click="btnHandleStaff_Click" Height="37"/>
-        <RadioButton x:Name="rbtnSortByLastname" Content="Efternamn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="156,325,0,0" IsChecked="True" Checked="rbtnSortByLastname_Checked"/>
-        <RadioButton x:Name="rbtnSortByFirstname" Content="Förnamn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="249,325,0,0" Checked="rbtnSortByFirstname_Checked"/>
-        <RadioButton x:Name="rbtnSortBySection" Content="Avdelning" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="336,325,0,0" Checked="rbtnSortBySection_Checked"/>
-        <Label x:Name="label" Content="Sortera elevlista:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="38,320,0,0"/>
-        <Button x:Name="btnAddChild" Content="Lägg till nytt barn" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Margin="640,190,0,0" Height="37" Click="btnAddChild_Click"/>
+        <Button x:Name="btnHandleStaff" Content="Hantera personal" HorizontalAlignment="Left" Margin="640,330,0,0" VerticalAlignment="Top" Width="142" Click="btnHandleStaff_Click" Height="37"/>
+        <RadioButton x:Name="rbtnSortByLastname" Content="Efternamn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="139,353,0,0" IsChecked="True" Checked="rbtnSortByLastname_Checked"/>
+        <RadioButton x:Name="rbtnSortByFirstname" Content="Förnamn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="225,353,0,0" Checked="rbtnSortByFirstname_Checked"/>
+        <RadioButton x:Name="rbtnSortBySection" Content="Avdelning" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="304,353,0,0" Checked="rbtnSortBySection_Checked"/>
+        <Label x:Name="label" Content="Sortera elevlista:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="38,345,0,0"/>
+        <Button x:Name="btnAddChild" Content="Hantera barn" HorizontalAlignment="Left" VerticalAlignment="Top" Width="142" Margin="640,288,0,0" Height="37" Click="btnAddChild_Click"/>
         <Button x:Name="btnCloseStaffChildren" Content="Tillbaka" HorizontalAlignment="Left" Margin="31,7,0,0" VerticalAlignment="Top" Width="75" Height="28" BorderBrush="White" Background="White" FontSize="14" Click="btnCloseStaffChildren_Click"/>
-        <Image x:Name="arrow_back_png" Margin="14,11,747.333,382.667" Source="arrow_back.png" Stretch="Fill" RenderTransformOrigin="1.282,0.515" MouseDown="arrow_back_png_MouseDown_1"/>
-        <Button x:Name="btnAddGuardian" Content="Vårdnadshavare" HorizontalAlignment="Left" Margin="640,274,0,0" VerticalAlignment="Top" Width="130" Height="37" Click="btnAddGuardian_Click"/>
-        <Label x:Name="label1" Content="Administration" HorizontalAlignment="Left" Height="33" Margin="640,152,0,0" VerticalAlignment="Top" Width="130" FontSize="14" FontWeight="Bold"/>
+        <Image x:Name="arrow_back_png" Margin="17,13,755,389" Source="arrow_back.png" Stretch="Fill" RenderTransformOrigin="1.282,0.515" MouseDown="arrow_back_png_MouseDown_1"/>
+        <Button x:Name="btnAddGuardian" Content="Hantera vårdnadshavare" HorizontalAlignment="Left" Margin="640,372,0,0" VerticalAlignment="Top" Width="142" Height="37" Click="btnAddGuardian_Click"/>
+        <Label x:Name="label1" Content="Administration" HorizontalAlignment="Left" Height="33" Margin="640,250,0,0" VerticalAlignment="Top" Width="130" FontSize="14" FontWeight="Bold"/>
+        <Label x:Name="label_Copy" Content="Välj avdelning:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,48,0,0"/>
+        <WrapPanel HorizontalAlignment="Left" Height="85" Margin="28,79,0,0" VerticalAlignment="Top" Width="78">
+            <RadioButton x:Name="rbtn_all" Margin="0,0,10,0" Content="Alla" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="True" Checked="rbtnSortByLastname_Checked"/>
+            <RadioButton x:Name="rbtn_blue" Margin="0,0,10,0" Content="Blå" HorizontalAlignment="Left" VerticalAlignment="Top" Checked="rbtnSortByFirstname_Checked"/>
+            <RadioButton x:Name="rbtn_yellow" Margin="0,0,10,0" Content="Gul" HorizontalAlignment="Left" VerticalAlignment="Top" Checked="rbtnSortBySection_Checked"/>
+            <RadioButton x:Name="rbtn_red" Margin="0,0,10,0" Content="Röd" HorizontalAlignment="Left" VerticalAlignment="Top" Checked="rbtnSortByFirstname_Checked"/>
+            <RadioButton x:Name="rbtn_green" Margin="0,0,10,0" Content="Grön" HorizontalAlignment="Left" VerticalAlignment="Top" Checked="rbtnSortBySection_Checked"/>
+        </WrapPanel>
+        <Label x:Name="label_Copy1" Content="Vald dag" HorizontalAlignment="Left" Margin="252,11,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18" Width="172"/>
+        <Button x:Name="button" Content="Nästa dag" HorizontalAlignment="Left" Margin="429,18,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="button_Copy" Content="Föregående dag" HorizontalAlignment="Left" Margin="140,18,0,0" VerticalAlignment="Top" Width="107" Click="button_Copy_Click"/>
 
     </Grid>
 </Window>

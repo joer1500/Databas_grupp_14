@@ -79,6 +79,33 @@ namespace Uppgift6
             }
         }
 
+        public List<Schoolchild> GetSchoolchildrenOrderBySectionAll() // Hämtar alla skolbarn och visar schema
+        {
+            Schoolchild schoolchild;
+            List<Schoolchild> schoolchildren = new List<Schoolchild>();
+
+            string stmt = "SELECT lastname, firstname, section_name FROM schoolchild INNER JOIN section ON schoolchild.section_id = section.section_id ORDER BY lastname ASC";
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand(stmt, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        schoolchild = new Schoolchild
+                        {
+                            lastname = reader.GetString(0),
+                            firstname = reader.GetString(1),
+                            section = reader.GetString(2)
+                        };
+                        schoolchildren.Add(schoolchild);
+                    }
+                }
+                return schoolchildren;
+            }
+        }
+
         public List<Schedule> GetChildScheduleDatesFromChildID(int ID)
         {
             Schedule sd;
