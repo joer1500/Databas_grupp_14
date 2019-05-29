@@ -36,6 +36,7 @@ namespace Uppgift6
 
         DbOperations db = new DbOperations();
         Schoolchild schoolchild;
+        Schedule schedule;
 
 
         private void BtnSaveNewSchedule_Click(object sender, RoutedEventArgs e)
@@ -75,14 +76,20 @@ namespace Uppgift6
                 schoolchild = (Schoolchild)listBoxChildName.SelectedItem;
                 label_child_schema.Content = schoolchild + "  schema";
 
-                int schoolchild_id = 1; // = Hämta vald schoolchild ID här
-
                 List<Schedule> schedule = new List<Schedule>();
-                schedule = db.GetChildScheduleDatesFromChildID(schoolchild_id);
+                schedule = db.GetChildScheduleDatesFromChildID(schoolchild.id);
 
                 listBox_ChildSchedule.ItemsSource = null;
                 listBox_ChildSchedule.ItemsSource = schedule;
         }
 
+        private void listBox_ChildSchedule_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            schedule = (Schedule)listBox_ChildSchedule.SelectedItem;
+
+            txt_day_off.Text = schedule.day_off;
+
+            
+        }
     }
 }

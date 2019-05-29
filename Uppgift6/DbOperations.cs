@@ -67,8 +67,8 @@ namespace Uppgift6
             Schedule sd;
             List<Schedule> schedule = new List<Schedule>();
 
-            string stmt = $"SELECT schedule.date, schedule.day_off, schedule.breakfast, schedule.should_drop, schedule.should_pickup, schedule.walk_home_alone, schedule.home_with_friend " +
-                $"FROM schedule WHERE schoolchild_id = {ID}";
+            string stmt = $"SELECT schedule_id, schoolchild_id, date, day_off, breakfast, should_drop, should_pickup, walk_home_alone, home_with_friend " +
+                $"FROM schedule WHERE schoolchild_id = {ID} ORDER BY date ASC";
 
             using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
             {
