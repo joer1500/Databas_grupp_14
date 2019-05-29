@@ -17,11 +17,15 @@ namespace Uppgift6
         public TimeSpan should_pickup { get; set; }
         public string walk_home_alone { get; set; }
         public string home_with_friend { get; set; }
+        public string firstname { get; set; }
+        public string lastname { get; set; }
+        public int section_id { get; set; }
+
 
         public override string ToString()
         {
             return date.ToString("dddd, dd MMMM yyyy");
         }
-
+        
     }
 }

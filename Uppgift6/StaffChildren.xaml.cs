@@ -23,67 +23,155 @@ namespace Uppgift6
         public StaffChildren()
         {
             InitializeComponent();
-            UpdateListView();
+            GetSchedules();
+            SortSchedulesByDate();
+            EmptyListBoxAndFill();
+            UpdateLabelView();
         }
 
-        public void UpdateListView()
-        {
-            DbOperations db = new DbOperations();
+        DbOperations db = new DbOperations();
+        List<Schedule> schedule = new List<Schedule>();
+        DateTime choosenDate = DateTime.Today;
 
-            if (rbtnSortByLastname.IsChecked == true)   // Sortera på efternamn
+
+        private void SortSchedulesByDate()
+        {
+            schedule = schedule.Where(x => x.date == choosenDate).ToList();
+        }
+
+        private void GetSchedules() {
+            schedule = db.GetSchoolchildrenSchedule();
+        }
+
+        private void EmptyListBoxAndFill()
+        {
+            listViewSC.ItemsSource = null;
+            listViewSC.ItemsSource = schedule;
+        }
+
+        private void UpdateLabelView() {
+            label_today.Content = choosenDate.ToString("dddd, dd MMMM yyyy");
+        }
+
+
+        #region Sortera på avdelning
+        private void SortSchedulesBySectionBlue()
+        {
+            schedule = schedule.Where(x => x.section_id == 1).ToList();
+        }
+
+        private void SortSchedulesBySectionGreen()
+        {
+            schedule = schedule.Where(x => x.section_id == 2).ToList();
+        }
+
+        private void SortSchedulesBySectionYellow()
+        {
+            schedule = schedule.Where(x => x.section_id == 3).ToList();
+        }
+
+        private void SortSchedulesBySectionRed()
+        {
+            schedule = schedule.Where(x => x.section_id == 4).ToList();
+        }
+
+        #endregion
+
+
+        #region Knappar
+        private void button_minus_Click(object sender, RoutedEventArgs e)
+        {
+            choosenDate = choosenDate.AddDays(-1);
+            UpdateLabelView();
+
+            if (rbtn_all.IsChecked == true)
             {
-                listViewSC.ItemsSource = null;
-                listViewSC.ItemsSource = db.GetSchoolchildrenOrderByLastname();
+                GetSchedules();
+                SortSchedulesByDate();
+                EmptyListBoxAndFill();
             }
 
-            else if (rbtnSortByFirstname.IsChecked == true)  // Sortera på förnamn
+            else if (rbtn_blue.IsChecked == true)
             {
-                listViewSC.ItemsSource = null;
-                listViewSC.ItemsSource = db.GetSchoolchildrenOrderByFirstname();
+                GetSchedules();
+                SortSchedulesByDate();
+                SortSchedulesBySectionBlue();
+                EmptyListBoxAndFill();
             }
 
-            else if (rbtnSortBySection.IsChecked == true)   // Sortera på avdelning
+            else if (rbtn_red.IsChecked == true)
             {
-                listViewSC.ItemsSource = null;
-                listViewSC.ItemsSource = db.GetSchoolchildrenOrderBySection();
+                GetSchedules();
+                SortSchedulesByDate();
+                SortSchedulesBySectionRed();
+                EmptyListBoxAndFill();
             }
 
-           
+            else if (rbtn_green.IsChecked == true)
+            {
+                GetSchedules();
+                SortSchedulesByDate();
+                SortSchedulesBySectionGreen();
+                EmptyListBoxAndFill();
+            }
+
+            else if (rbtn_yellow.IsChecked == true)
+            {
+                GetSchedules();
+                SortSchedulesByDate();
+                SortSchedulesBySectionYellow();
+                EmptyListBoxAndFill();
+            }
         }
 
-        private void btnHandleStaff_Click(object sender, RoutedEventArgs e)
+        private void button_plus_Click(object sender, RoutedEventArgs e)
         {
-            Staffwindow win = new Staffwindow();
-            win.Show();
-            this.Close();
+            choosenDate = choosenDate.AddDays(1);
+            UpdateLabelView();
+
+            if (rbtn_all.IsChecked == true)
+            {
+                GetSchedules();
+                SortSchedulesByDate();
+                EmptyListBoxAndFill();
+            }
+
+            else if (rbtn_blue.IsChecked == true)
+            {
+                GetSchedules();
+                SortSchedulesByDate();
+                SortSchedulesBySectionBlue();
+                EmptyListBoxAndFill();
+            }
+
+            else if (rbtn_red.IsChecked == true)
+            {
+                GetSchedules();
+                SortSchedulesByDate();
+                SortSchedulesBySectionRed();
+                EmptyListBoxAndFill();
+            }
+
+            else if (rbtn_green.IsChecked == true)
+            {
+                GetSchedules();
+                SortSchedulesByDate();
+                SortSchedulesBySectionGreen();
+                EmptyListBoxAndFill();
+            }
+
+            else if (rbtn_yellow.IsChecked == true)
+            {
+                GetSchedules();
+                SortSchedulesByDate();
+                SortSchedulesBySectionYellow();
+                EmptyListBoxAndFill();
+            }
         }
 
-        private void rbtnSortByLastname_Checked(object sender, RoutedEventArgs e)
+        private void btnAddGuardian_Click(object sender, RoutedEventArgs e)
         {
-            UpdateListView();
-        }
-
-        private void rbtnSortByFirstname_Checked(object sender, RoutedEventArgs e)
-        {
-            UpdateListView();
-        }
-
-        private void rbtnSortBySection_Checked(object sender, RoutedEventArgs e)
-        {
-            UpdateListView();
-        }
-
-        private void btnAddChild_Click(object sender, RoutedEventArgs e)
-        {
-            NewSchoolchild win = new NewSchoolchild();
-            win.Show();
-            this.Close();
-        }
-       
-
-        private void btnCloseStaffChildren_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow m = new MainWindow();
+            GuardianManage m = new GuardianManage();
             m.Show();
             this.Close();
         }
@@ -95,12 +183,71 @@ namespace Uppgift6
             this.Close();
         }
 
-        private void btnAddGuardian_Click(object sender, RoutedEventArgs e)
+        private void btnCloseStaffChildren_Click(object sender, RoutedEventArgs e)
         {
-            GuardianManage m = new GuardianManage();
+            MainWindow m = new MainWindow();
             m.Show();
             this.Close();
         }
+
+        private void btnAddChild_Click(object sender, RoutedEventArgs e)
+        {
+            NewSchoolchild win = new NewSchoolchild();
+            win.Show();
+            this.Close();
+        }
+
+        private void btnHandleStaff_Click(object sender, RoutedEventArgs e)
+        {
+            Staffwindow win = new Staffwindow();
+            win.Show();
+            this.Close();
+        }
+
+
+        #endregion
+
+
+        #region Radiobuttons
+        private void rbtn_all_Checked(object sender, RoutedEventArgs e)
+        {
+            GetSchedules();
+            SortSchedulesByDate();
+            EmptyListBoxAndFill();
+        }
+
+        private void rbtn_blue_Checked(object sender, RoutedEventArgs e)
+        {
+            GetSchedules();
+            SortSchedulesByDate();
+            SortSchedulesBySectionBlue();
+            EmptyListBoxAndFill();
+        }
+
+        private void rbtn_red_Checked(object sender, RoutedEventArgs e)
+        {
+            GetSchedules();
+            SortSchedulesByDate();
+            SortSchedulesBySectionRed();
+            EmptyListBoxAndFill();
+        }
+
+        private void rbtn_yellow_Checked(object sender, RoutedEventArgs e)
+        {
+            GetSchedules();
+            SortSchedulesByDate();
+            SortSchedulesBySectionYellow();
+            EmptyListBoxAndFill();
+        }
+
+        private void rbtn_green_Checked(object sender, RoutedEventArgs e)
+        {
+            GetSchedules();
+            SortSchedulesByDate();
+            SortSchedulesBySectionGreen();
+            EmptyListBoxAndFill();
+        }
+        #endregion
     }
 
 }
