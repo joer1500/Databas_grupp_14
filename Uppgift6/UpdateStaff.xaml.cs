@@ -27,6 +27,7 @@ namespace Uppgift6
             textBlockSectionInfo.Visibility = Visibility.Collapsed;
         }
 
+         
 
         public void UpdateStaffInfo()
         {

@@ -29,6 +29,8 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -94,9 +96,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Guardian.cs" />
-    <Page Include="Guardians.xaml.cs">
+    <Compile Include="Guardians.xaml.cs">
       <DependentUpon>Guardians.xaml</DependentUpon>
-    </Page>
+    </Compile>
     <Compile Include="NewSchoolchild.xaml.cs">
       <DependentUpon>NewSchoolchild.xaml</DependentUpon>
     </Compile>
@@ -109,14 +111,13 @@
     <Compile Include="StaffChildren.xaml.cs">
       <DependentUpon>StaffChildren.xaml</DependentUpon>
     </Compile>
-    <Page Include="Staffwindow.xaml.cs">
+    <Compile Include="Staffwindow.xaml.cs">
       <DependentUpon>Staffwindow.xaml</DependentUpon>
-    </Page>
+    </Compile>
     <Compile Include="UpdateStaff.xaml.cs">
       <DependentUpon>UpdateStaff.xaml</DependentUpon>
     </Compile>
     <Page Include="Guardians.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">

@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Npgsql;
+
 
 namespace Uppgift6
 {
@@ -34,6 +36,7 @@ namespace Uppgift6
 
         DbOperations db = new DbOperations();
         Schoolchild schoolchild;
+
 
         private void BtnSaveNewSchedule_Click(object sender, RoutedEventArgs e)
         {

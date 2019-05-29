@@ -30,6 +30,8 @@ namespace Uppgift6
         public static int selectedStaffID;
         //string orderby = "";
 
+        Staff staff = new Staff();   
+
         public void UpdateListView()
         {
             DbOperations db = new DbOperations();
@@ -194,8 +196,7 @@ namespace Uppgift6
             else
             {
                 MessageBox.Show($"Förnamn: {selectedStaff.firstname}\rEfternamn: {selectedStaff.lastname}\rRoll: {selectedStaff.profession}\rAvdelning: {selectedStaff.sectionname}\rAvdelnings-id: {selectedStaff.sectionid}", "Information om personal");
-            }
-                     
+            }                     
         }
         private void radioButtonLname_Click(object sender, RoutedEventArgs e)
         {
@@ -209,17 +210,14 @@ namespace Uppgift6
         {
             UpdateListView();
         }
-
         private void radioButtonProfession_Click(object sender, RoutedEventArgs e)
         {
             UpdateListView();
         }
-
         private void radioButtonSection_Click(object sender, RoutedEventArgs e)
         {
             UpdateListView();
         }
-
         private void arrow_back_png_MouseDown(object sender, MouseButtonEventArgs e)
         {
             MainWindow m = new MainWindow();
