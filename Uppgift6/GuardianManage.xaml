@@ -21,16 +21,19 @@
         <Button x:Name="buttonUpdateGuardian" Content="Uppdatera" HorizontalAlignment="Left" Height="35" Margin="531,261,0,0" VerticalAlignment="Top" Width="109" Click="buttonUpdateGuardian_Click"/>
         <Button x:Name="buttonAddGuardian" Content="Ny vårdnadshavare" HorizontalAlignment="Left" Height="35" Margin="531,302,0,0" VerticalAlignment="Top" Width="109" Click="buttonAddGuardian_Click"/>
         <Button x:Name="buttonDeleteGuardian" Content="Ta bort" HorizontalAlignment="Left" Margin="531,343,0,0" VerticalAlignment="Top" Width="109" Height="35" Click="buttonDeleteGuardian_Click"/>
-        <ListView x:Name="listViewSchoolchild" HorizontalAlignment="Left" Height="137" Margin="556,57,0,0" VerticalAlignment="Top" Width="176">
+        <Label x:Name="labelChild" Content="Barn:" HorizontalAlignment="Left" Height="26" Margin="531,32,0,0" VerticalAlignment="Top" Width="130" FontWeight="Bold"/>
+        <Label x:Name="labelGuardian" Content="Vårdnadshavare:" HorizontalAlignment="Left" Height="26" Margin="31,32,0,0" VerticalAlignment="Top" Width="130" FontWeight="Bold"/>
+        <RadioButton x:Name="radioButtonFname" Content="Förnamn" HorizontalAlignment="Left" Margin="133,394,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="radioButtonLname" Content="Efternamn" HorizontalAlignment="Left" Margin="214,394,0,0" VerticalAlignment="Top"/>
+        <ListView x:Name="listViewChilds" HorizontalAlignment="Left" Height="168" Margin="531,60,0,0" VerticalAlignment="Top" Width="200">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Förnamn" Width="70" DisplayMemberBinding="{Binding firstname}"/>
-                    <GridViewColumn Header="Efternamn" Width="100" DisplayMemberBinding="{Binding lastname}"/>
+                    <GridViewColumn Header="Förnamn" Width="80" DisplayMemberBinding="{Binding firstname}"/>
+                    <GridViewColumn Header="Efternamn" Width="115" DisplayMemberBinding="{Binding lastname}"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label x:Name="labelChild" Content="Barn:" HorizontalAlignment="Left" Height="26" Margin="553,29,0,0" VerticalAlignment="Top" Width="130" FontWeight="Bold"/>
-        <Label x:Name="labelGuardian" Content="Vårdnadshavare:" HorizontalAlignment="Left" Height="26" Margin="31,29,0,0" VerticalAlignment="Top" Width="130" FontWeight="Bold"/>
+        <Label x:Name="labelOrder" Content="Sortera efter:" HorizontalAlignment="Left" Height="26" Margin="49,387,0,0" VerticalAlignment="Top" Width="79"/>
 
     </Grid>
 </Window>

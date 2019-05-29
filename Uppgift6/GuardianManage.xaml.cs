@@ -35,15 +35,7 @@ namespace Uppgift6
 
             listViewGuardians.ItemsSource = null;
             listViewGuardians.ItemsSource = db.GetAllGuardians();
-
-            //if (selectedGuardian == null)
-            //{
-            //    return;
-            //}
-            //else
-            //{
-            //    UpdateSchoolchilds();
-            //}        
+    
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -141,9 +133,10 @@ namespace Uppgift6
 
         private void UpdateSchoolchilds()
         {
+            listViewChilds.ItemsSource = null;
             DbOperations db = new DbOperations();
-            listViewSchoolchild.ItemsSource = null;
-            listViewSchoolchild.ItemsSource = db.GetSchoolchildsFromGuardian(selectedGuardian.id);
+
+            listViewChilds.ItemsSource = db.GetSchoolchildsFromGuardian(selectedGuardian.id);
 
         }
     }

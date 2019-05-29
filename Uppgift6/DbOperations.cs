@@ -653,7 +653,8 @@ namespace Uppgift6
                             sc = new Schoolchild()
                             {                               
                                 firstname = (reader.GetString(0)),
-                                lastname = (reader.GetString(1)),
+                                lastname = (reader.GetString(1))
+                                
                             };
                             children.Add(sc);
                         }
