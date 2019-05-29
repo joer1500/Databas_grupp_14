@@ -23,7 +23,7 @@ namespace Uppgift6
                 using (var cmd = new NpgsqlCommand(stmt, conn))
                 using (var reader = cmd.ExecuteReader())
                 {
-                    while(reader.Read())
+                    while (reader.Read())
                     {
                         s = new Staff()
                         {
@@ -37,8 +37,8 @@ namespace Uppgift6
                         staffs.Add(s);
                     }
                 }
-                return staffs; 
-            }            
+                return staffs;
+            }
         }
 
         public void AddNewStaff(string fname, string lname, string proffesion, int section) //Lägger till ny staff
@@ -97,7 +97,7 @@ namespace Uppgift6
             }
         }
 
-        public List<Schoolchild> GetChildNameFromGuardianID (int ID)
+        public List<Schoolchild> GetChildNameFromGuardianID(int ID)
         {
             Schoolchild sc;
             List<Schoolchild> children = new List<Schoolchild>();
@@ -128,9 +128,9 @@ namespace Uppgift6
 
         }
 
-        public void InsertSchedule(Schoolchild child, DateTime date, string day_off, string breakfast, 
+        public void InsertSchedule(Schoolchild child, DateTime date, string day_off, string breakfast,
             TimeSpan should_drop, TimeSpan should_pickup, string walk_home_alone, string walk_with_friend)
-         {
+        {
             Schoolchild schoolchild;
             schoolchild = child;
 
@@ -212,7 +212,7 @@ namespace Uppgift6
             }
         }
 
-        public void DeleteStaff (int id) //Ta bort staff baserat på ID
+        public void DeleteStaff(int id) //Ta bort staff baserat på ID
         {
 
             string stmt = "DELETE FROM staff WHERE staff_id = @staffID";
@@ -302,10 +302,10 @@ namespace Uppgift6
             using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
             {
                 conn.Open();
-                using (var cmd = new NpgsqlCommand(stmt, conn))                   
+                using (var cmd = new NpgsqlCommand(stmt, conn))
                 using (var reader = cmd.ExecuteReader())
                 {
-                    
+
                     while (reader.Read())
                     {
                         s = new Staff()
@@ -387,7 +387,7 @@ namespace Uppgift6
             {
                 conn.Open();
                 using (var cmd = new NpgsqlCommand(stmt, conn))
-                    using (var reader = cmd.ExecuteReader())
+                using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -423,7 +423,7 @@ namespace Uppgift6
             }
         }
 
-        
+
 
         public List<Staff> GetAllStaffOrderByProfession() //Hämtar alla staffs och sorterar på roll
         {
@@ -557,5 +557,36 @@ namespace Uppgift6
             }
         }
 
+
+        public Guardian GetGuardianById(int id) //Hämtar staff baserat på ID
+        {
+            Guardian g = new Guardian();
+            string stmt = "SELECT * FROM guardian WHERE guardian_id = @guardian_id";
+            using (var conn = new
+                NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("guardian_id", id);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            g.id = reader.GetInt32(0);
+                            g.firstname = reader.GetString(1);
+                            g.lastname = reader.GetString(2);
+                            g.phonenumber = reader.GetString(3);
+                            g.address = reader.GetString(4);
+                        }
+                    }
+                }
+                return g;
+            }
+
+        }
     }
 }

@@ -18,7 +18,7 @@
             </ListView.View>
         </ListView>
         <Button x:Name="btnClose" Content="Tillbaka" HorizontalAlignment="Left" Margin="21,5,0,0" VerticalAlignment="Top" Width="75" Height="28" BorderBrush="White" Background="White" FontSize="14" Click="btnClose_Click"/>
-        <Button x:Name="buttonUpdateGuardian" Content="Uppdatera" HorizontalAlignment="Left" Height="35" Margin="672,240,0,0" VerticalAlignment="Top" Width="97"/>
+        <Button x:Name="buttonUpdateGuardian" Content="Uppdatera" HorizontalAlignment="Left" Height="35" Margin="672,240,0,0" VerticalAlignment="Top" Width="97" Click="buttonUpdateGuardian_Click"/>
         <Button x:Name="buttonAddGuardian" Content="Lägg till" HorizontalAlignment="Left" Height="35" Margin="672,281,0,0" VerticalAlignment="Top" Width="97" Click="buttonAddGuardian_Click"/>
         <Button x:Name="buttonDeleteGuardian" Content="Ta bort" HorizontalAlignment="Left" Margin="672,322,0,0" VerticalAlignment="Top" Width="97" Height="35" Click="buttonDeleteGuardian_Click"/>
 
