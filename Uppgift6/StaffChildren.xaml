@@ -23,6 +23,8 @@
         <RadioButton x:Name="rbtnSortBySection" Content="Avdelning" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="336,325,0,0" Checked="rbtnSortBySection_Checked"/>
         <Label x:Name="label" Content="Sortera elevlista:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="38,320,0,0"/>
         <Button x:Name="btnAddChild" Content="Lägg till nytt barn" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Margin="637,93,0,0" Height="37" Click="btnAddChild_Click"/>
+        <Button x:Name="btnCloseStaffChildren" Content="Tillbaka" HorizontalAlignment="Left" Margin="31,7,0,0" VerticalAlignment="Top" Width="75" Height="28" BorderBrush="White" Background="White" FontSize="14" Click="btnCloseStaffChildren_Click"/>
+        <Image x:Name="arrow_back_png" Margin="14,11,747.333,382.667" Source="arrow_back.png" Stretch="Fill" RenderTransformOrigin="1.282,0.515" MouseDown="arrow_back_png_MouseDown_1"/>
 
     </Grid>
 </Window>

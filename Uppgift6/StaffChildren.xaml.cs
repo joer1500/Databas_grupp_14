@@ -79,6 +79,21 @@ namespace Uppgift6
             win.Show();
             this.Close();
         }
+       
+
+        private void btnCloseStaffChildren_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow m = new MainWindow();
+            m.Show();
+            this.Close();
+        }
+
+        private void arrow_back_png_MouseDown_1(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow m = new MainWindow();
+            m.Show();
+            this.Close();
+        }
     }
 
 }

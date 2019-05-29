@@ -28,6 +28,7 @@ namespace Uppgift6
 
         Staff selectedStaff;
         public static int selectedStaffID;
+
         //string orderby = "";
 
         Staff staff = new Staff();   
@@ -104,10 +105,7 @@ namespace Uppgift6
             
             
         }
-
-
-       
-
+      
         private void listViewStaffs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectedStaff = (Staff)listViewStaffs.SelectedItem;         
@@ -115,7 +113,7 @@ namespace Uppgift6
 
         private void btnCloseStaff_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow m = new MainWindow();
+            StaffChildren m = new StaffChildren();
             m.Show();
             this.Close();
         }
@@ -220,7 +218,7 @@ namespace Uppgift6
         }
         private void arrow_back_png_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            MainWindow m = new MainWindow();
+            StaffChildren m = new StaffChildren();
             m.Show();
             this.Close();
         }
