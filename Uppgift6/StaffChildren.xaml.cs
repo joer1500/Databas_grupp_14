@@ -54,44 +54,27 @@ namespace Uppgift6
         }
 
 
-        #region Annas
-        public void UpdateListView()
+        #region Sortera på avdelning
+        private void SortSchedulesBySectionBlue()
         {
-            if (rbtnSortByLastname.IsChecked == true)   // Sortera på efternamn
-            {
-                listViewSC.ItemsSource = null;
-                listViewSC.ItemsSource = db.GetSchoolchildrenOrderByLastname();
-            }
-
-            else if (rbtnSortByFirstname.IsChecked == true)  // Sortera på förnamn
-            {
-                listViewSC.ItemsSource = null;
-                listViewSC.ItemsSource = db.GetSchoolchildrenOrderByFirstname();
-            }
-
-            else if (rbtnSortBySection.IsChecked == true)   // Sortera på avdelning
-            {
-                listViewSC.ItemsSource = null;
-                listViewSC.ItemsSource = db.GetSchoolchildrenOrderBySection();
-            }
-
-
+            schedule = schedule.Where(x => x.section_id == 1).ToList();
         }
 
-        private void rbtnSortByLastname_Checked(object sender, RoutedEventArgs e)
+        private void SortSchedulesBySectionGreen()
         {
-            UpdateListView();
+            schedule = schedule.Where(x => x.section_id == 2).ToList();
         }
 
-        private void rbtnSortByFirstname_Checked(object sender, RoutedEventArgs e)
+        private void SortSchedulesBySectionYellow()
         {
-            UpdateListView();
+            schedule = schedule.Where(x => x.section_id == 3).ToList();
         }
 
-        private void rbtnSortBySection_Checked(object sender, RoutedEventArgs e)
+        private void SortSchedulesBySectionRed()
         {
-            UpdateListView();
+            schedule = schedule.Where(x => x.section_id == 4).ToList();
         }
+
         #endregion
 
 
@@ -100,18 +83,90 @@ namespace Uppgift6
         {
             choosenDate = choosenDate.AddDays(-1);
             UpdateLabelView();
-            GetSchedules();
-            SortSchedulesByDate();
-            EmptyListBoxAndFill();
+
+            if (rbtn_all.IsChecked == true)
+            {
+                GetSchedules();
+                SortSchedulesByDate();
+                EmptyListBoxAndFill();
+            }
+
+            else if (rbtn_blue.IsChecked == true)
+            {
+                GetSchedules();
+                SortSchedulesByDate();
+                SortSchedulesBySectionBlue();
+                EmptyListBoxAndFill();
+            }
+
+            else if (rbtn_red.IsChecked == true)
+            {
+                GetSchedules();
+                SortSchedulesByDate();
+                SortSchedulesBySectionRed();
+                EmptyListBoxAndFill();
+            }
+
+            else if (rbtn_green.IsChecked == true)
+            {
+                GetSchedules();
+                SortSchedulesByDate();
+                SortSchedulesBySectionGreen();
+                EmptyListBoxAndFill();
+            }
+
+            else if (rbtn_yellow.IsChecked == true)
+            {
+                GetSchedules();
+                SortSchedulesByDate();
+                SortSchedulesBySectionYellow();
+                EmptyListBoxAndFill();
+            }
         }
 
         private void button_plus_Click(object sender, RoutedEventArgs e)
         {
             choosenDate = choosenDate.AddDays(1);
             UpdateLabelView();
-            GetSchedules();
-            SortSchedulesByDate();
-            EmptyListBoxAndFill();
+
+            if (rbtn_all.IsChecked == true)
+            {
+                GetSchedules();
+                SortSchedulesByDate();
+                EmptyListBoxAndFill();
+            }
+
+            else if (rbtn_blue.IsChecked == true)
+            {
+                GetSchedules();
+                SortSchedulesByDate();
+                SortSchedulesBySectionBlue();
+                EmptyListBoxAndFill();
+            }
+
+            else if (rbtn_red.IsChecked == true)
+            {
+                GetSchedules();
+                SortSchedulesByDate();
+                SortSchedulesBySectionRed();
+                EmptyListBoxAndFill();
+            }
+
+            else if (rbtn_green.IsChecked == true)
+            {
+                GetSchedules();
+                SortSchedulesByDate();
+                SortSchedulesBySectionGreen();
+                EmptyListBoxAndFill();
+            }
+
+            else if (rbtn_yellow.IsChecked == true)
+            {
+                GetSchedules();
+                SortSchedulesByDate();
+                SortSchedulesBySectionYellow();
+                EmptyListBoxAndFill();
+            }
         }
 
         private void btnAddGuardian_Click(object sender, RoutedEventArgs e)
@@ -149,9 +204,50 @@ namespace Uppgift6
             this.Close();
         }
 
+
         #endregion
 
-        
+
+        #region Radiobuttons
+        private void rbtn_all_Checked(object sender, RoutedEventArgs e)
+        {
+            GetSchedules();
+            SortSchedulesByDate();
+            EmptyListBoxAndFill();
+        }
+
+        private void rbtn_blue_Checked(object sender, RoutedEventArgs e)
+        {
+            GetSchedules();
+            SortSchedulesByDate();
+            SortSchedulesBySectionBlue();
+            EmptyListBoxAndFill();
+        }
+
+        private void rbtn_red_Checked(object sender, RoutedEventArgs e)
+        {
+            GetSchedules();
+            SortSchedulesByDate();
+            SortSchedulesBySectionRed();
+            EmptyListBoxAndFill();
+        }
+
+        private void rbtn_yellow_Checked(object sender, RoutedEventArgs e)
+        {
+            GetSchedules();
+            SortSchedulesByDate();
+            SortSchedulesBySectionYellow();
+            EmptyListBoxAndFill();
+        }
+
+        private void rbtn_green_Checked(object sender, RoutedEventArgs e)
+        {
+            GetSchedules();
+            SortSchedulesByDate();
+            SortSchedulesBySectionGreen();
+            EmptyListBoxAndFill();
+        }
+        #endregion
     }
 
 }
