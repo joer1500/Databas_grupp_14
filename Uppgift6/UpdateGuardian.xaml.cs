@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Npgsql;
 
 namespace Uppgift6
 {
@@ -51,7 +52,54 @@ namespace Uppgift6
 
         private void buttonUpdate_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Fungerar ej just nu");
+            DbOperations db = new DbOperations();
+            Guardian guardian = new Guardian();
+            guardian = db.GetGuardianById(GuardianManage.selectedGuardianID);
+
+            int guard = guardian.id;
+            string fname = textBoxFirstname.Text;
+            string lname = textBoxLastname.Text;
+            string phone = textBoxPhoneNumber.Text;
+            string address = textBoxAddress.Text;
+
+            try
+            {
+                if (fname == "" || lname == "")
+                {
+                    MessageBox.Show("Vänligen ange både förnamn och efternamn.");
+                    return;
+                }               
+                else
+                {
+                    db.UpdateGuardian(guard, fname, lname, phone, address);
+                    //EmptyTextBoxes();
+                    MessageBox.Show($"Vårdnadshavare uppdaterad", "Lyckad inmatning");
+                    //this.Close();
+                }
+            }
+            catch (PostgresException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private int GetGuardian()
+        {
+            Guardian guardian = new Guardian();
+            DbOperations db = new DbOperations();
+            //int guardID = GuardianManage.selectedGuardianID;
+            guardian = db.GetGuardianById(GuardianManage.selectedGuardianID);
+
+            return guardian.id;
+        }
+
+        private void EmptyTextBoxes()
+        {
+            textBoxID.Text = "";
+            textBoxFirstname.Text = "";
+            textBoxLastname.Text = "";
+            textBoxPhoneNumber.Text = "";
+            textBoxAddress.Text = "";
         }
     }
 }

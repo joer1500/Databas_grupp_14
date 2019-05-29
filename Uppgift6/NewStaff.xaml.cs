@@ -40,7 +40,7 @@ namespace Uppgift6
             string lname = textBoxLastname.Text;
             string profession = textBoxProfession.Text;
 
-            if (textBoxSection.Text == "")
+            if (textBoxSection.Text == "" || textBoxSection.Text == "Ange avdelnings-ID")
             {
                 MessageBox.Show("Vänligen ange ett avdelnings-id");
                 return;               
@@ -48,7 +48,7 @@ namespace Uppgift6
 
             int section = int.Parse(textBoxSection.Text); //Lägg till en check som kollar om inmatningen har bokstäver
 
-            if (fname == null || lname == null || profession == null)
+            if (fname == "" || lname == "" || profession == "")
             {
                 MessageBox.Show("Vänligen ange ett förnamn, efternamn, roll samt en avdelning");
                 return;
