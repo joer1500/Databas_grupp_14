@@ -23,20 +23,21 @@ namespace Uppgift6
         public StaffChildren()
         {
             InitializeComponent();
-            UpdateListView2();
+            UpdateListView();
         }
 
         DbOperations db = new DbOperations();
 
-        private void UpdateListView2 ()
+       /* private void SortBySection ()
         {
             if (rbtn_all.IsChecked == true)
             {
                 listViewSC.ItemsSource = null;
-                listViewSC.ItemsSource = db.GetSchoolchildrenOrderBySectionAll();
+                listViewSC.ItemsSource = db.
             }
 
         }
+        */
 
         public void UpdateListView()
         {

@@ -63,7 +63,19 @@ namespace Uppgift6
 
                     schoolchild = (Schoolchild)listBoxChildName.SelectedItem;
 
-                    db.InsertSchedule(schoolchild, date, day_off, breakfast, should_drop, should_pickup, walk_home_alone, walk_with_friend);
+                    bool dayOff;
+
+                    dayOff = CheckIfDayOffIsTrue(day_off);
+
+                    if (dayOff)
+                    {
+                        SetValuesForNullValues(schoolchild, date, day_off, breakfast, should_drop, should_pickup, walk_home_alone, walk_with_friend);
+                    }
+
+                    else
+                    {
+                        db.InsertSchedule(schoolchild, date, day_off, breakfast, should_drop, should_pickup, walk_home_alone, walk_with_friend);
+                    }
 
                     MessageBox.Show($"Ditt schema har lagts till för {schoolchild.firstname} den {textBoxDate.Text.ToString()}.");
                 }
@@ -167,24 +179,53 @@ namespace Uppgift6
                 }
                 if (drop == "00:00")
                 {
-                    message += "Lämna tid, ";
+                    message += "Lämnas, ";
                 }
                 if (pickup == "00:00")
                 {
-                    message += "Hämta tid, ";
+                    message += "Hämtas, ";
                 }
                 if (walk_alone == "")
                 {
-                    message += "Får gå hem själv, ";
+                    message += "Gå hem själv, ";
                 }
                 if (walk_friend == "")
                 {
-                    message += "Får gå hem med kompis. ";
+                    message += "Gå hem med kompis. ";
+                }
+
+                if (message == "Vänligen fyll i dessa textrutor innan du sparar: ")
+                {
+                    message = "";
                 }
             }
 
             return message;
         }
 
+         private bool CheckIfDayOffIsTrue(string day_off)
+        {
+            bool dayOff= false;
+
+            if (day_off.ToLower() == "ja")
+            {
+                dayOff = true;
+            }
+
+            return dayOff;
+        }
+
+        private void SetValuesForNullValues(Schoolchild schoolchild, DateTime date, string day_off, string breakfast, TimeSpan drop, TimeSpan pickup,
+            string walk_alone, string walk_friend)
+        {
+            string tid = "00:00";
+            breakfast = "Nej";
+            drop = TimeSpan.Parse(tid);
+            pickup = TimeSpan.Parse(tid);
+            walk_alone = "Nej";
+            walk_friend = "Nej";
+
+            db.InsertSchedule(schoolchild, date, day_off, breakfast, drop, pickup, walk_alone, walk_friend);
+        }
     }       
 }
