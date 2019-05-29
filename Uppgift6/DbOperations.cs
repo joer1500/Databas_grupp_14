@@ -440,7 +440,23 @@ namespace Uppgift6
             }
         }
 
-        
+        public void ConnectGuardianSchoolchild(int schoolchild_id, int guardian_id)       // koppla ihop barn med vårdnadshavare EJ TESTAD
+        {
+            string stmt = "INSERT INTO guardian_schoolchild(schoolchild_id, guardian_id) VALUES (@schoolchild_id, @guardian_id)";
+
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("schoolchild_id", schoolchild_id);
+                    cmd.Parameters.AddWithValue("guardian_id", guardian_id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
 
         public List<Staff> GetAllStaffOrderByProfession() //Hämtar alla staffs och sorterar på roll
         {

@@ -52,6 +52,11 @@ namespace Uppgift6
             string lastname = txtBoxLastname.Text;
             int section = int.Parse(txtBoxSection.Text);
 
+            if (selectedGuardian == null)
+            {
+                MessageBox.Show("Vänligen markera en vårdnadshavare i listan");
+            }
+
             db.AddSchoolchild(firstname, lastname, section);
         }
 
