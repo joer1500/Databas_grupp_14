@@ -22,6 +22,6 @@ namespace Uppgift6
         {
             return date.ToString("dddd, dd MMMM yyyy");
         }
-
+        
     }
 }

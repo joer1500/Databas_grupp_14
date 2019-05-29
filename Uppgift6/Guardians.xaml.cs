@@ -48,19 +48,30 @@ namespace Uppgift6
 
             else
             {
-                schoolchild = (Schoolchild)listBoxChildName.SelectedItem;
+                string message = errorMessage(textBoxDate.Text, textBoxBreakfast.Text, textBoxShould_drop.Text, 
+                   textBoxShould_pickup.Text, textBoxWalk_home_alone.Text, textBoxHome_with_friend.Text);
 
-                DateTime date = DateTime.Parse(textBoxDate.Text);
-                string day_off = textBoxDay_of.Text.ToString();
-                string breakfast = textBoxBreakfast.Text.ToString();
-                TimeSpan should_drop = TimeSpan.Parse(textBoxShould_drop.Text);
-                TimeSpan should_pickup = TimeSpan.Parse(textBoxShould_pickup.Text);
-                string walk_home_alone = textBoxWalk_home_alone.Text.ToString();
-                string walk_with_friend = textBoxHome_with_friend.Text.ToString();
+                if (message == " ")
+                {
+                    DateTime date = DateTime.Parse(textBoxDate.Text);
+                    string day_off = textBoxDay_of.Text;
+                    string breakfast = textBoxBreakfast.Text;
+                    TimeSpan should_drop = TimeSpan.Parse(textBoxShould_drop.Text);
+                    TimeSpan should_pickup = TimeSpan.Parse(textBoxShould_pickup.Text);
+                    string walk_home_alone = textBoxWalk_home_alone.Text;
+                    string walk_with_friend = textBoxHome_with_friend.Text;
 
-                db.InsertSchedule(schoolchild, date, day_off, breakfast, should_drop, should_pickup, walk_home_alone, walk_with_friend);
+                    schoolchild = (Schoolchild)listBoxChildName.SelectedItem;
 
-                MessageBox.Show($"Ditt schema har lagts till för {schoolchild.firstname} den {textBoxDate.Text.ToString()}.");
+                    db.InsertSchedule(schoolchild, date, day_off, breakfast, should_drop, should_pickup, walk_home_alone, walk_with_friend);
+
+                    MessageBox.Show($"Ditt schema har lagts till för {schoolchild.firstname} den {textBoxDate.Text.ToString()}.");
+                }
+
+                else
+                {
+                    MessageBox.Show($"{message}");
+                }          
 
                 ScheduleList();
             }
@@ -129,5 +140,44 @@ namespace Uppgift6
                 ScheduleList();
             }
         }
-    }
+
+        private string errorMessage(string date, string breakfast, string drop, string pickup,
+            string walk_alone, string walk_friend)
+        {
+
+            string message = "Vänligen fyll i dessa textrutor innan du sparar: ";
+            if (date == "")
+            {
+                message += "Datum, ";
+            }
+            if (breakfast == "")
+            {
+                message += "Frukost, ";
+            }
+            if (drop == "")
+            {
+                message += "Lämna tid, ";
+            }
+            if (pickup == "")
+            {
+                message += "Hämta tid, ";
+            }
+            if (walk_alone == "")
+            {
+                message += "Får gå hem själv, ";
+            }
+            if (walk_friend == "")
+            {
+                message += "Får gå hem med kompis. ";
+            }
+
+            else
+            {
+                message = "";
+            }
+
+            return message;
+        }
+
+    }       
 }
