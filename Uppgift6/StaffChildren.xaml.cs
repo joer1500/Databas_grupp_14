@@ -28,7 +28,7 @@ namespace Uppgift6
 
         DbOperations db = new DbOperations();
 
-       /* private void SortBySection ()
+        private void SortBySection ()
         {
             if (rbtn_all.IsChecked == true)
             {
@@ -37,7 +37,6 @@ namespace Uppgift6
             }
 
         }
-        */
 
         public void UpdateListView()
         {
