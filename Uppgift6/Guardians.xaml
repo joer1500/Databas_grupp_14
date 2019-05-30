@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Uppgift6"
         mc:Ignorable="d"
-        Title="Guardian" Height="450" Width="800">
+        Title="Guardian" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,-3,-0.4,3">
         <ListBox x:Name="listBoxChildName" HorizontalAlignment="Left" Height="248" Margin="23,76,0,0" VerticalAlignment="Top" Width="198" SelectionChanged="listBoxChildName_SelectionChanged"/>
         <TextBox x:Name="textBoxDate" HorizontalAlignment="Left" Height="23" Margin="555,85,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>

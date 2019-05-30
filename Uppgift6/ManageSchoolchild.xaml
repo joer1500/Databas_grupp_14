@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Uppgift6"
         mc:Ignorable="d"
-        Title="Hantera barn" Height="450" Width="750">
+        Title="Hantera barn" Height="450" Width="750" WindowStartupLocation="CenterScreen">
     <Grid>
         <Button x:Name="btnCloseManageSchoolchild" Content="Tillbaka" HorizontalAlignment="Left" Margin="31,7,0,0" VerticalAlignment="Top" Width="75" Height="28" BorderBrush="White" Background="White" FontSize="14" Click="btnCloseManageSchoolchild_Click" />
         <Button x:Name="btnAddChild" Content="Lägg till barn" HorizontalAlignment="Left" Margin="618,266,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="btnAddChild_Click"/>

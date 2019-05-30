@@ -33,9 +33,16 @@ namespace Uppgift6
         {
             DbOperations db = new DbOperations();
 
-            listViewGuardians.ItemsSource = null;
-            listViewGuardians.ItemsSource = db.GetAllGuardians();
-    
+            if (radioButtonFname.IsChecked == true)
+            {
+                listViewGuardians.ItemsSource = null;
+                listViewGuardians.ItemsSource = db.GetAllGuardiansOrderbyFirstname();
+            }
+            else if (radioButtonLname.IsChecked == true)
+            {
+                listViewGuardians.ItemsSource = null;
+                listViewGuardians.ItemsSource = db.GetAllGuardiansOrderbyLastname();
+            }    
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -48,7 +55,7 @@ namespace Uppgift6
         private void listViewGuardians_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectedGuardian = (Guardian)listViewGuardians.SelectedItem;
-            UpdateSchoolchilds();
+            UpdateSchoolchildsList();
         }
 
         private void listViewGuardians_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -68,6 +75,7 @@ namespace Uppgift6
         {
             NewGuardian n = new NewGuardian();
             n.Show();
+            this.Close();
         }
 
         private void buttonDeleteGuardian_Click(object sender, RoutedEventArgs e)
@@ -77,12 +85,11 @@ namespace Uppgift6
 
             if (selectedGuardian == null)
             {
+                MessageBox.Show("Vänligen markera en vårdnadshavare från lista.", "Varning", MessageBoxButton.OK);
                 return;
             }
             else
             {
-                //int guardianID = selectedGuardian.id;
-
                 try
                 {
                     if (MessageBox.Show($"Vill du verkligen ta bort: {selectedGuardian.firstname} {selectedGuardian.lastname} från registret?\rObservera att denna åtgärd inte kan ångras.", "Varning!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
@@ -94,7 +101,6 @@ namespace Uppgift6
                         return;
                     }
                     UpdateListView();
-
                 }
                 catch (PostgresException ex)
                 {
@@ -124,14 +130,12 @@ namespace Uppgift6
                 }
                 catch (PostgresException ex)
                 {
-
                     MessageBox.Show(ex.Message);
                 }
             }
-
         }
 
-        private void UpdateSchoolchilds()
+        private void UpdateSchoolchildsList()
         {
             listViewChilds.ItemsSource = null;
             DbOperations db = new DbOperations();
@@ -140,10 +144,20 @@ namespace Uppgift6
             {
                 return;
             }
+            else
+            {
+                listViewChilds.ItemsSource = db.GetChildNameFromGuardianID(selectedGuardian.id);
+            }
+        }
 
-            //listViewChilds.ItemsSource = db.GetSchoolchildsFromGuardian(selectedGuardian.id);
-            listViewChilds.ItemsSource = db.GetChildNameFromGuardianID(selectedGuardian.id);
+        private void radioButtonFname_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateListView();
+        }
 
+        private void radioButtonLname_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateListView();
         }
     }
 }

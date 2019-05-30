@@ -93,6 +93,7 @@ namespace Uppgift6
 
             else if (radioButtonSection.IsChecked == true)
             {
+                //orderby = "section.section_id";
                 try
                 {
                     listViewStaffs.ItemsSource = null;
@@ -167,7 +168,7 @@ namespace Uppgift6
                 
                 try
                 {
-                    if (MessageBox.Show($"Vill du verkligen ta bort: {selectedStaff.firstname} {selectedStaff.lastname} från personalregistret?\rObservera att denna åtgärd inte kan ångras.", "Varning!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    if (MessageBox.Show($"Vill du verkligen ta bort: {selectedStaff.firstname} {selectedStaff.lastname} från anställningsregistret?\rObservera att denna åtgärd inte kan ångras.", "Varning!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     {
                         db.DeleteStaff(selectedStaff.staffID);
                     }

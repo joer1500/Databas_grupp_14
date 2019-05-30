@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Npgsql;
 
 namespace Uppgift6
 {
@@ -97,13 +98,24 @@ namespace Uppgift6
             
             if (selectedSchoolchild == null)
             {
+                MessageBox.Show("Markera ett barn i listan");
                 return;
             }
-
             else
             {
-                DbOperations db = new DbOperations();
-                db.DeleteSchoolchild(selectedSchoolchild.id);
+                try
+                {
+                    if (MessageBox.Show($"Vill du verkligen ta bort: {selectedSchoolchild.firstname} {selectedSchoolchild.lastname} från registret?\rObservera att denna åtgärd inte kan ångras.", "Varning!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    {
+                        DbOperations db = new DbOperations();
+                        db.DeleteSchoolchild(selectedSchoolchild.id);
+                    }
+                    UpdateListview();
+                }
+                catch (PostgresException ex)
+                {
+                    MessageBox.Show(ex.Message);                 
+                }              
             }
         }
     }

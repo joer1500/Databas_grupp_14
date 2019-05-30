@@ -50,14 +50,24 @@ namespace Uppgift6
             DbOperations db = new DbOperations();
             string firstname = txtBoxFirstname.Text;
             string lastname = txtBoxLastname.Text;
+
             int section = int.Parse(txtBoxSection.Text);
 
             if (selectedGuardian == null)
             {
                 MessageBox.Show("Vänligen markera en vårdnadshavare i listan");
             }
+            try
+            {
+                db.AddSchoolchild(firstname, lastname, section);
+                MessageBox.Show($"{firstname} {lastname} är nu tillagd i registret", "Lyckad inmatning");
+            }
+            catch (PostgresException ex)
+            {
+                MessageBox.Show(ex.Message);               
+            }
+            
 
-            db.AddSchoolchild(firstname, lastname, section);
         }
 
         private void btnNewGuardian_Click(object sender, RoutedEventArgs e)

@@ -277,6 +277,7 @@ namespace Uppgift6
         public void UpdateStaff(int id, string firstname, string lastname, string profession, int sectionID) //Uppdaterar staff
         {
             string stmt = "UPDATE staff SET (firstname, lastname, profession, section_id) = (@fname, @lname, @profession, @section) WHERE staff_id = @id";
+            
 
             using (var conn = new
             NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
@@ -381,26 +382,31 @@ namespace Uppgift6
             Staff s;
             List<Staff> staffs = new List<Staff>();
 
+            //string stmtold = "$SELECT staff_id, firstname, lastname, profession, section_name FROM staff INNER JOIN section on staff.section_id = section.section_id ORDER BY {orderby}";
             string stmt = "SELECT staff_id, firstname, lastname, profession, section_name FROM staff INNER JOIN section on staff.section_id = section.section_id ORDER BY @order";
 
             using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
             {
                 conn.Open();
-                using (var cmd = new NpgsqlCommand(stmt, conn))
-                using (var reader = cmd.ExecuteReader())
+                using (var cmd = new NpgsqlCommand())
                 {
-
-                    while (reader.Read())
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("order", orderby);
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        s = new Staff()
+                        while (reader.Read())
                         {
-                            staffID = (reader.GetInt32(0)),
-                            firstname = (reader.GetString(1)),
-                            lastname = (reader.GetString(2)),
-                            profession = (reader.GetString(3)),
-                            sectionname = (reader.GetString(4))
-                        };
-                        staffs.Add(s);
+                            s = new Staff()
+                            {
+                                staffID = (reader.GetInt32(0)),
+                                firstname = (reader.GetString(1)),
+                                lastname = (reader.GetString(2)),
+                                profession = (reader.GetString(3)),
+                                sectionname = (reader.GetString(4))
+                            };
+                            staffs.Add(s);
+                        }
                     }
                 }
                 return staffs;
@@ -538,7 +544,7 @@ namespace Uppgift6
             }
         }
 
-        public void DeleteSchoolchild (int id)
+        public void DeleteSchoolchild (int id) //Tar bort skolbarn
         {
             string stmt = "DELETE FROM schoolchild WHERE schoolchild_id = @schoolchild_id";
 
@@ -792,6 +798,65 @@ namespace Uppgift6
                     }
                     return children;
                 }
+            }
+        }
+
+
+        public List<Guardian> GetAllGuardiansOrderbyFirstname() //Hämtar alla vårdnadshavare
+        {
+            Guardian g;
+            List<Guardian> guardians = new List<Guardian>();
+            string stmt = "SELECT guardian_id, firstname, lastname, phonenumber, address FROM guardian ORDER BY firstname;";
+
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand(stmt, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        g = new Guardian()
+                        {
+                            id = (reader.GetInt32(0)),
+                            firstname = (reader.GetString(1)),
+                            lastname = (reader.GetString(2)),
+                            phonenumber = (reader.GetString(3)),
+                            address = (reader.GetString(4))
+                        };
+                        guardians.Add(g);
+                    }
+                }
+                return guardians;
+            }
+        }
+
+        public List<Guardian> GetAllGuardiansOrderbyLastname() //Hämtar alla vårdnadshavare
+        {
+            Guardian g;
+            List<Guardian> guardians = new List<Guardian>();
+            string stmt = "SELECT guardian_id, firstname, lastname, phonenumber, address FROM guardian ORDER BY lastname;";
+
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand(stmt, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        g = new Guardian()
+                        {
+                            id = (reader.GetInt32(0)),
+                            firstname = (reader.GetString(1)),
+                            lastname = (reader.GetString(2)),
+                            phonenumber = (reader.GetString(3)),
+                            address = (reader.GetString(4))
+                        };
+                        guardians.Add(g);
+                    }
+                }
+                return guardians;
             }
         }
 

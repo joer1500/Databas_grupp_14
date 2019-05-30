@@ -5,21 +5,52 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Uppgift6"
         mc:Ignorable="d"
-        Title="UpdateGuardian" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Uppdatera vårdnadshavare" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Label x:Name="labelFname" Content="Förnamn" HorizontalAlignment="Left" Margin="23,113,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="labelLname" Content="Efternamn" HorizontalAlignment="Left" Margin="23,164,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="labelPhoneNumber" Content="Telefonnummer" HorizontalAlignment="Left" Margin="23,222,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBoxFirstname" HorizontalAlignment="Left" Height="25" Margin="23,139,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="textBoxLastname" HorizontalAlignment="Left" Height="25" Margin="23,190,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="textBoxPhoneNumber" HorizontalAlignment="Left" Height="25" Margin="23,249,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="labelAddress" Content="Adress" HorizontalAlignment="Left" Margin="23,279,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBoxAddress"  HorizontalAlignment="Left" Height="25" Margin="23,305,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="labelTitle" Content="Uppdatera vårdnadshavare" Margin="0,20,454.333,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Right" Width="316"/>
-        <Button x:Name="buttonExit" Content="Avbryt" HorizontalAlignment="Left" Margin="23,351,0,0" VerticalAlignment="Top" Width="83" Height="24" Click="buttonExit_Click"/>
-        <Button x:Name="buttonUpdate" Content="Spara" HorizontalAlignment="Left" Margin="130,351,0,0" VerticalAlignment="Top" Width="83" Height="24" Click="buttonUpdate_Click"/>
-        <TextBox x:Name="textBoxID" HorizontalAlignment="Left" Height="23" Margin="25,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="33" IsEnabled="False"/>
-        <Label x:Name="labelID" Content="ID" HorizontalAlignment="Left" Margin="23,62,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelFname" Content="Förnamn" HorizontalAlignment="Left" Margin="23,106,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelLname" Content="Efternamn" HorizontalAlignment="Left" Margin="23,157,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelPhoneNumber" Content="Telefonnummer" HorizontalAlignment="Left" Margin="23,215,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBoxFirstname" HorizontalAlignment="Left" Height="25" Margin="23,132,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBoxLastname" HorizontalAlignment="Left" Height="25" Margin="23,183,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBoxPhoneNumber" HorizontalAlignment="Left" Height="25" Margin="23,242,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="labelAddress" Content="Adress" HorizontalAlignment="Left" Margin="23,272,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBoxAddress"  HorizontalAlignment="Left" Height="25" Margin="23,298,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="labelTitle" Content="Uppdatera vårdnadshavare" Margin="0,20,570.333,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Right" Width="200" FontWeight="Bold"/>
+        <Button x:Name="buttonExit" Content="Avbryt" HorizontalAlignment="Left" Margin="23,344,0,0" VerticalAlignment="Top" Width="83" Height="29" Click="buttonExit_Click"/>
+        <Button x:Name="buttonUpdate" Content="Spara" HorizontalAlignment="Left" Margin="120,344,0,0" VerticalAlignment="Top" Width="83" Height="29" Click="buttonUpdate_Click"/>
+        <TextBox x:Name="textBoxID" HorizontalAlignment="Left" Height="23" Margin="25,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="33" IsEnabled="False"/>
+        <Label x:Name="labelID" Content="ID" HorizontalAlignment="Left" Margin="23,55,0,0" VerticalAlignment="Top"/>
+        <ListView x:Name="listViewChilds" HorizontalAlignment="Left" Height="130" Margin="294,80,0,0" VerticalAlignment="Top" Width="181" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Förnamn" Width="65" DisplayMemberBinding="{Binding firstname}"/>
+                    <GridViewColumn Header="Efternamn" Width="110" DisplayMemberBinding="{Binding lastname}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label x:Name="labelTitle2" Content="Nuvaranade barn" Margin="0,52,318.333,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Right" Width="181"/>
+        <Button x:Name="buttonNewChild" Content="Koppla nytt barn" HorizontalAlignment="Left" Height="31" Margin="375,215,0,0" VerticalAlignment="Top" Width="100" Click="buttonNewChild_Click"/>
+        <ListView x:Name="listViewAllChilds" HorizontalAlignment="Left" Height="295" Margin="526,80,0,0" VerticalAlignment="Top" Width="181" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Visibility="Hidden" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Förnamn" Width="65" DisplayMemberBinding="{Binding firstname}"/>
+                    <GridViewColumn Header="Efternamn" Width="110" DisplayMemberBinding="{Binding lastname}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label x:Name="labelTitleAllChilds" Content="Alla barn" Margin="0,52,86.333,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Right" Width="181" Visibility="Hidden"/>
+        <Button x:Name="buttonConnectChild" Content="Koppla" HorizontalAlignment="Left" Height="29" Margin="623,380,0,0" VerticalAlignment="Top" Width="85" Click="buttonConnectChild_Click" Visibility="Hidden"/>
+        <Button x:Name="buttonDeleteConnection" Content="Ta bort koppling" HorizontalAlignment="Left" Height="31" Margin="375,251,0,0" VerticalAlignment="Top" Width="100" IsEnabled="False"/>
+        <Separator HorizontalAlignment="Left" Height="11" Margin="66,203,0,0" VerticalAlignment="Top" Width="371" RenderTransformOrigin="0.5,0.5">
+            <Separator.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Separator.RenderTransform>
+        </Separator>
 
     </Grid>
 </Window>

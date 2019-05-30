@@ -58,6 +58,8 @@ namespace Uppgift6
 
         private void buttonExit_Click(object sender, RoutedEventArgs e)
         {
+            GuardianManage win = new GuardianManage();
+            win.Show();
             this.Close();
         }
 

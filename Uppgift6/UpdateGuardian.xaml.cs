@@ -24,16 +24,16 @@ namespace Uppgift6
         {
             InitializeComponent();
             UpdateStaffInfo();
+            UpdateSchoolchildsList();
         }
 
-
+        Schoolchild selectedSchoolchild;
 
         public void UpdateStaffInfo()
         {
             DbOperations db = new DbOperations();
             Guardian guardian = new Guardian();
 
-            //int guardID = GuardianManage.selectedGuardianID;
             guardian = db.GetGuardianById(GuardianManage.selectedGuardianID);
 
             textBoxID.Text = guardian.id.ToString();
@@ -93,6 +93,13 @@ namespace Uppgift6
             return guardian.id;
         }
 
+        private void UpdateSchoolchildsList()
+        {
+            listViewChilds.ItemsSource = null;
+            DbOperations db = new DbOperations();       
+            listViewChilds.ItemsSource = db.GetChildNameFromGuardianID(int.Parse(textBoxID.Text));        
+        }
+
         private void EmptyTextBoxes()
         {
             textBoxID.Text = "";
@@ -100,6 +107,36 @@ namespace Uppgift6
             textBoxLastname.Text = "";
             textBoxPhoneNumber.Text = "";
             textBoxAddress.Text = "";
+        }
+
+        private void buttonNewChild_Click(object sender, RoutedEventArgs e)
+        {
+            ShowAllChildsList();
+        }
+
+
+        private void ShowAllChildsList()
+        {
+            listViewAllChilds.Visibility = Visibility.Visible;
+            labelTitleAllChilds.Visibility = Visibility.Visible;
+            buttonConnectChild.Visibility = Visibility.Visible;
+
+            DbOperations db = new DbOperations();
+
+            listViewAllChilds.ItemsSource = null;
+            listViewAllChilds.ItemsSource = db.GetSchoolchildrenOrderByLastname();
+        }
+
+        private void buttonConnectChild_Click(object sender, RoutedEventArgs e)
+        {
+            selectedSchoolchild = (Schoolchild)listViewAllChilds.SelectedItem;
+            //int sid = selectedSchoolchild.id;
+            //int gid = int.Parse(textBoxID.Text);
+
+            DbOperations db = new DbOperations();
+
+            db.ConnectGuardianSchoolchild(selectedSchoolchild.id, int.Parse(textBoxID.Text));
+            UpdateSchoolchildsList();
         }
     }
 }
