@@ -434,6 +434,7 @@ namespace Uppgift6
             }
         }
 
+         
         public List<Schoolchild> GetSchoolchildrenOrderByFirstname() // Hämtar skolbarn och storterar efter förnamn
         {
             Schoolchild schoolchild;
