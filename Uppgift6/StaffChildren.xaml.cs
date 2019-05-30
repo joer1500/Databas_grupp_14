@@ -253,7 +253,9 @@ namespace Uppgift6
         #endregion
 
 
-        private void listViewSC_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        
+
+        private void listViewSC_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             sd = (Schedule)listViewSC.SelectedItem;
             List<Guardian> guardian = new List<Guardian>();
@@ -269,7 +271,6 @@ namespace Uppgift6
                 MessageBox.Show(message);
             }
         }
-
     }
 
 }
