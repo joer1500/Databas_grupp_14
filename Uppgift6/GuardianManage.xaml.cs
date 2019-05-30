@@ -159,5 +159,7 @@ namespace Uppgift6
         {
             UpdateListView();
         }
+
+       
     }
 }

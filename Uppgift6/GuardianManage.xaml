@@ -22,7 +22,7 @@
         <Button x:Name="buttonAddGuardian" Content="Lägg till ny" HorizontalAlignment="Left" Height="35" Margin="531,302,0,0" VerticalAlignment="Top" Width="120" Click="buttonAddGuardian_Click"/>
         <Button x:Name="buttonDeleteGuardian" Content="Ta bort" HorizontalAlignment="Left" Margin="531,343,0,0" VerticalAlignment="Top" Width="120" Height="35" Click="buttonDeleteGuardian_Click"/>
         <Label x:Name="labelChild" Content="Barn:" HorizontalAlignment="Left" Height="26" Margin="531,32,0,0" VerticalAlignment="Top" Width="130" FontWeight="Bold"/>
-        <Label x:Name="labelGuardian" Content="Vårdnadshavare:" HorizontalAlignment="Left" Height="26" Margin="31,32,0,0" VerticalAlignment="Top" Width="130" FontWeight="Bold"/>
+        <Label x:Name="labelGuardian" Content="Register för vårdnadshavare:" HorizontalAlignment="Left" Height="26" Margin="31,32,0,0" VerticalAlignment="Top" Width="180" FontWeight="Bold"/>
         <RadioButton x:Name="radioButtonFname" Content="Förnamn" HorizontalAlignment="Left" Margin="115,390,0,0" VerticalAlignment="Top" IsChecked="True" Click="radioButtonFname_Click"/>
         <RadioButton x:Name="radioButtonLname" Content="Efternamn" HorizontalAlignment="Left" Margin="195,390,0,0" VerticalAlignment="Top" Click="radioButtonLname_Click" IsChecked="True"/>
         <ListView x:Name="listViewChilds" HorizontalAlignment="Left" Height="130" Margin="531,57,0,0" VerticalAlignment="Top" Width="200" ScrollViewer.HorizontalScrollBarVisibility="Disabled">

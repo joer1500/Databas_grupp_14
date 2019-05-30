@@ -112,31 +112,76 @@ namespace Uppgift6
         private void buttonNewChild_Click(object sender, RoutedEventArgs e)
         {
             ShowAllChildsList();
+            UpdateAllChildsList();
         }
 
 
         private void ShowAllChildsList()
         {
+            comboBoxSections.Visibility = Visibility.Visible;
             listViewAllChilds.Visibility = Visibility.Visible;
             labelTitleAllChilds.Visibility = Visibility.Visible;
             buttonConnectChild.Visibility = Visibility.Visible;
 
+        }
+
+        private void UpdateAllChildsList()
+        {
             DbOperations db = new DbOperations();
 
-            listViewAllChilds.ItemsSource = null;
-            listViewAllChilds.ItemsSource = db.GetSchoolchildrenOrderByLastname();
+            try
+            {
+                listViewAllChilds.ItemsSource = null;
+                listViewAllChilds.ItemsSource = db.GetSchoolchildrenOrderByLastname();
+
+                //if (comboBoxSections.SelectedIndex == 0)
+                //{
+                //    listViewAllChilds.ItemsSource = null;
+                //    listViewAllChilds.ItemsSource = db.GetSchoolchildrenOrderByLastname();
+                //}
+                //else
+                //{
+                //    listViewAllChilds.ItemsSource = null;
+                //    listViewAllChilds.ItemsSource = db.GetSchoolchildrensFromSection(comboBoxSections.SelectedIndex);
+                //}
+
+            }
+            catch (PostgresException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         private void buttonConnectChild_Click(object sender, RoutedEventArgs e)
         {
             selectedSchoolchild = (Schoolchild)listViewAllChilds.SelectedItem;
-            //int sid = selectedSchoolchild.id;
-            //int gid = int.Parse(textBoxID.Text);
+            string fname = textBoxFirstname.Text;
+            string lname = textBoxLastname.Text;
 
             DbOperations db = new DbOperations();
 
-            db.ConnectGuardianSchoolchild(selectedSchoolchild.id, int.Parse(textBoxID.Text));
-            UpdateSchoolchildsList();
+            try
+            {
+                if (MessageBox.Show($"Vill du koppla barnet {selectedSchoolchild.firstname} {selectedSchoolchild.lastname} till vårdnadshavaren {fname} {lname}? ", "Bekräfta koppling", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    db.ConnectGuardianSchoolchild(selectedSchoolchild.id, int.Parse(textBoxID.Text));
+                    UpdateSchoolchildsList();
+                }
+                else
+                {
+                    return;
+                }
+            }
+            catch (PostgresException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void comboBoxSections_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //ShowAllChildsList();
         }
     }
 }
