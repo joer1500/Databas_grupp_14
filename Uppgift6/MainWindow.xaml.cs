@@ -57,5 +57,7 @@ namespace Uppgift6
              Guardiandwin.Show();
              this.Close();           
         }
+
+       
     }
 }
