@@ -434,7 +434,34 @@ namespace Uppgift6
             }
         }
 
-         
+        public List<Schoolchild> GetSchoolchildrenOrderByID()
+        {
+            Schoolchild schoolchild;
+            List<Schoolchild> schoolchildren = new List<Schoolchild>();
+
+            string stmt = "SELECT schoolchild_id, firstname, lastname, section_name FROM schoolchild INNER JOIN section ON schoolchild.section_id = section.section_id ORDER BY schoolchild_id";
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand(stmt, conn))
+                    using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        schoolchild = new Schoolchild
+                        {
+                            id = reader.GetInt32(0),
+                            firstname = reader.GetString(1),
+                            lastname = reader.GetString(2),
+                            section = reader.GetString(3)
+                        };
+                        schoolchildren.Add(schoolchild);
+                    }
+                }
+                return schoolchildren;
+            }
+        }
+
         public List<Schoolchild> GetSchoolchildrenOrderByFirstname() // Hämtar skolbarn och storterar efter förnamn
         {
             Schoolchild schoolchild;

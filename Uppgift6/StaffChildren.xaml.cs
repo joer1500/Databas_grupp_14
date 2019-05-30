@@ -195,7 +195,7 @@ namespace Uppgift6
 
         private void btnAddChild_Click(object sender, RoutedEventArgs e)
         {
-            NewSchoolchild win = new NewSchoolchild();
+            ManageSchoolchild win = new ManageSchoolchild();
             win.Show();
             this.Close();
         }

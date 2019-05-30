@@ -32,8 +32,8 @@ namespace Uppgift6
 
             if (rbtnSortByID.IsChecked == true)
             {
-                //listViewSchoolchildren.ItemsSource = null;
-                //listViewSchoolchildren.ItemsSource = db.getsch       GÖR METOD FÖR HÄMTA SKOLBARN SORTERAT PÅ ID!!!!
+                listViewSchoolchildren.ItemsSource = null;
+                listViewSchoolchildren.ItemsSource = db.GetSchoolchildrenOrderByID();
             }
 
             else if (rbtnSortByFirstname.IsChecked == true)
@@ -73,6 +73,20 @@ namespace Uppgift6
         private void rbtnSortBySection_Checked(object sender, RoutedEventArgs e)
         {
             UpdateListview();
+        }
+
+        private void btnAddChild_Click(object sender, RoutedEventArgs e)
+        {
+            NewSchoolchild win = new NewSchoolchild();
+            win.Show();
+            this.Close();
+        }
+
+        private void btnCloseManageSchoolchild_Click(object sender, RoutedEventArgs e)
+        {
+            StaffChildren win = new StaffChildren();
+            win.Show();
+            this.Close();
         }
     }
 }

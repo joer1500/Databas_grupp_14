@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="Hantera barn" Height="450" Width="750">
     <Grid>
-        <Button x:Name="btnAddChild" Content="Lägg till barn" HorizontalAlignment="Left" Margin="618,266,0,0" VerticalAlignment="Top" Width="100" Height="30"/>
+        <Button x:Name="btnCloseManageSchoolchild" Content="Tillbaka" HorizontalAlignment="Left" Margin="31,7,0,0" VerticalAlignment="Top" Width="75" Height="28" BorderBrush="White" Background="White" FontSize="14" Click="btnCloseManageSchoolchild_Click" />
+        <Button x:Name="btnAddChild" Content="Lägg till barn" HorizontalAlignment="Left" Margin="618,266,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="btnAddChild_Click"/>
         <Button x:Name="btnUpdateChild" Content="Uppdatera" HorizontalAlignment="Left" Margin="618,301,0,0" VerticalAlignment="Top" Width="100" Height="30"/>
         <Button x:Name="btnDeleteChild" Content="Ta bort" HorizontalAlignment="Left" Margin="618,336,0,0" VerticalAlignment="Top" Width="100" Height="30"/>
         <ListView x:Name="listViewSchoolchildren" HorizontalAlignment="Left" Height="288" VerticalAlignment="Top" Width="563" Margin="30,78,0,0">

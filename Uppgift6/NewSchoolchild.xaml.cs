@@ -39,7 +39,7 @@ namespace Uppgift6
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-            StaffChildren win = new StaffChildren();
+            ManageSchoolchild win = new ManageSchoolchild();
             win.Show();
             this.Close();
         }
