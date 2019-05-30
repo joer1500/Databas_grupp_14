@@ -14,5 +14,9 @@ namespace Uppgift6
         public string phonenumber { get; set; }
         public string  address { get; set; }
 
+        public override string ToString()
+        {
+            return firstname + " " + lastname +":  "+ phonenumber;
+        }
     }
 }

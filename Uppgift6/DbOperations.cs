@@ -151,6 +151,36 @@ namespace Uppgift6
             }
         }
 
+        public List<Guardian> GetGuardianFromSchoolchildID(int ID)
+        {
+            Guardian g;
+            List<Guardian> guardian = new List<Guardian>();
+
+            string stmt = $"SELECT guardian_schoolchild.guardian_id, guardian.firstname, guardian.lastname, guardian.phonenumber FROM(guardian_schoolchild INNER JOIN guardian ON guardian_schoolchild.guardian_id = guardian.guardian_id) WHERE guardian_schoolchild.schoolchild_id = {ID}";
+
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand(stmt, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        g = new Guardian()
+                        {
+                            id = (reader.GetInt32(0)),
+                            firstname = (reader.GetString(1)),
+                            lastname = (reader.GetString(2)),
+                            phonenumber = (reader.GetString(3))
+                        };
+                        guardian.Add(g);
+                    }
+                }
+                return guardian;
+            }
+
+        }
+
         public List<Schoolchild> GetChildNameFromGuardianID(int ID)
         {
             Schoolchild sc;

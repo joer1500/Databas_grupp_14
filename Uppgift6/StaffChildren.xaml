@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="StaffChildren" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
-        <ListView x:Name="listViewSC" HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="642" Margin="131,48,0,0">
+        <ListView x:Name="listViewSC" HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="642" Margin="131,48,0,0" SelectionChanged="listViewSC_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Förnamn" Width="90" DisplayMemberBinding="{Binding firstname}"/>

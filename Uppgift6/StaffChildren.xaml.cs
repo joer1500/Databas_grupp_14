@@ -30,6 +30,7 @@ namespace Uppgift6
         }
 
         DbOperations db = new DbOperations();
+        Schedule sd;
         List<Schedule> schedule = new List<Schedule>();
         DateTime choosenDate = DateTime.Today;
 
@@ -52,6 +53,8 @@ namespace Uppgift6
         private void UpdateLabelView() {
             label_today.Content = choosenDate.ToString("dddd, dd MMMM yyyy");
         }
+
+        
 
 
         #region Sortera på avdelning
@@ -248,6 +251,25 @@ namespace Uppgift6
             EmptyListBoxAndFill();
         }
         #endregion
+
+
+        private void listViewSC_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            sd = (Schedule)listViewSC.SelectedItem;
+            List<Guardian> guardian = new List<Guardian>();
+            guardian = db.GetGuardianFromSchoolchildID(sd.schoolchild_id);
+            var message = string.Join(Environment.NewLine, guardian);
+
+            if (guardian == null)
+            {
+                return;
+            }
+            else
+            {
+                MessageBox.Show(message);
+            }
+        }
+
     }
 
 }
