@@ -412,7 +412,7 @@ namespace Uppgift6
             Schoolchild schoolchild;
             List<Schoolchild> schoolchildren = new List<Schoolchild>();
 
-            string stmt = "SELECT lastname, firstname, section_name FROM schoolchild INNER JOIN section ON schoolchild.section_id = section.section_id ORDER BY lastname ASC";
+            string stmt = "SELECT schoolchild_id, lastname, firstname, section_name FROM schoolchild INNER JOIN section ON schoolchild.section_id = section.section_id ORDER BY lastname ASC";
             using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
             {
                 conn.Open();
@@ -423,9 +423,10 @@ namespace Uppgift6
                     {
                         schoolchild = new Schoolchild
                         {
-                            lastname = reader.GetString(0),
-                            firstname = reader.GetString(1),
-                            section = reader.GetString(2)
+                            id = reader.GetInt32(0),
+                            lastname = reader.GetString(1),
+                            firstname = reader.GetString(2),
+                            section = reader.GetString(3)
                         };
                         schoolchildren.Add(schoolchild);
                     }
@@ -434,7 +435,7 @@ namespace Uppgift6
             }
         }
 
-        public List<Schoolchild> GetSchoolchildrenOrderByID()
+        public List<Schoolchild> GetSchoolchildrenOrderByID()   // Hämtar skolbarn och sorterar efter ID
         {
             Schoolchild schoolchild;
             List<Schoolchild> schoolchildren = new List<Schoolchild>();
@@ -462,12 +463,12 @@ namespace Uppgift6
             }
         }
 
-        public List<Schoolchild> GetSchoolchildrenOrderByFirstname() // Hämtar skolbarn och storterar efter förnamn
+        public List<Schoolchild> GetSchoolchildrenOrderByFirstname() // Hämtar skolbarn och sorterar efter förnamn
         {
             Schoolchild schoolchild;
             List<Schoolchild> schoolchildren = new List<Schoolchild>();
 
-            string stmt = "SELECT lastname, firstname, section_name FROM schoolchild INNER JOIN section ON schoolchild.section_id = section.section_id ORDER BY firstname ASC";
+            string stmt = "SELECT schoolchild_id, lastname, firstname, section_name FROM schoolchild INNER JOIN section ON schoolchild.section_id = section.section_id ORDER BY firstname ASC";
             using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
             {
                 conn.Open();
@@ -478,9 +479,10 @@ namespace Uppgift6
                     {
                         schoolchild = new Schoolchild
                         {
-                            lastname = reader.GetString(0),
-                            firstname = reader.GetString(1),
-                            section = reader.GetString(2)
+                            id = reader.GetInt32(0),
+                            lastname = reader.GetString(1),
+                            firstname = reader.GetString(2),
+                            section = reader.GetString(3)
                         };
                         schoolchildren.Add(schoolchild);
                     }
@@ -494,7 +496,7 @@ namespace Uppgift6
             Schoolchild schoolchild;
             List<Schoolchild> schoolchildren = new List<Schoolchild>();
 
-            string stmt = "SELECT lastname, firstname, section_name FROM schoolchild INNER JOIN section ON schoolchild.section_id = section.section_id ORDER BY section.section_id";
+            string stmt = "SELECT schoolchild_id, lastname, firstname, section_name FROM schoolchild INNER JOIN section ON schoolchild.section_id = section.section_id ORDER BY section.section_id";
             using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
             {
                 conn.Open();
@@ -505,9 +507,10 @@ namespace Uppgift6
                     {
                         schoolchild = new Schoolchild
                         {
-                            lastname = reader.GetString(0),
-                            firstname = reader.GetString(1),
-                            section = reader.GetString(2)
+                            id = reader.GetInt32(0),
+                            lastname = reader.GetString(1),
+                            firstname = reader.GetString(2),
+                            section = reader.GetString(3)
                         };
                         schoolchildren.Add(schoolchild);
                     }
@@ -530,6 +533,23 @@ namespace Uppgift6
                     cmd.Parameters.AddWithValue("firstname", firstname);
                     cmd.Parameters.AddWithValue("lastname", lastname);
                     cmd.Parameters.AddWithValue("section_id", section);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void DeleteSchoolchild (int id)
+        {
+            string stmt = "DELETE FROM schoolchild WHERE schoolchild_id = @schoolchild_id";
+
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                    using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("schoolchild_id", id);
                     cmd.ExecuteNonQuery();
                 }
             }

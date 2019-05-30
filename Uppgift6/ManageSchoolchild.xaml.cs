@@ -26,6 +26,8 @@ namespace Uppgift6
         }
 
 
+        Schoolchild selectedSchoolchild;
+
         private void UpdateListview()
         {
             DbOperations db = new DbOperations();
@@ -87,6 +89,22 @@ namespace Uppgift6
             StaffChildren win = new StaffChildren();
             win.Show();
             this.Close();
+        }
+
+        private void btnDeleteChild_Click(object sender, RoutedEventArgs e)
+        {
+            selectedSchoolchild = (Schoolchild)listViewSchoolchildren.SelectedItem;
+            
+            if (selectedSchoolchild == null)
+            {
+                return;
+            }
+
+            else
+            {
+                DbOperations db = new DbOperations();
+                db.DeleteSchoolchild(selectedSchoolchild.id);
+            }
         }
     }
 }
