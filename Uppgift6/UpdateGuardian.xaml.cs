@@ -28,6 +28,7 @@ namespace Uppgift6
         }
 
         Schoolchild selectedSchoolchild;
+        int sectionid = 0;
 
         public void UpdateStaffInfo()
         {
@@ -122,6 +123,11 @@ namespace Uppgift6
             listViewAllChilds.Visibility = Visibility.Visible;
             labelTitleAllChilds.Visibility = Visibility.Visible;
             buttonConnectChild.Visibility = Visibility.Visible;
+            rbtn_allChilds.Visibility = Visibility.Visible;
+            rbtn_red.Visibility = Visibility.Visible;
+            rbtn_green.Visibility = Visibility.Visible;
+            rbtn_blue.Visibility = Visibility.Visible;
+            rbtn_yellow.Visibility = Visibility.Visible;
 
         }
 
@@ -131,20 +137,35 @@ namespace Uppgift6
 
             try
             {
-                listViewAllChilds.ItemsSource = null;
-                listViewAllChilds.ItemsSource = db.GetSchoolchildrenOrderByLastname();
-
-                //if (comboBoxSections.SelectedIndex == 0)
-                //{
-                //    listViewAllChilds.ItemsSource = null;
-                //    listViewAllChilds.ItemsSource = db.GetSchoolchildrenOrderByLastname();
-                //}
-                //else
-                //{
-                //    listViewAllChilds.ItemsSource = null;
-                //    listViewAllChilds.ItemsSource = db.GetSchoolchildrensFromSection(comboBoxSections.SelectedIndex);
-                //}
-
+                if (rbtn_allChilds.IsChecked == true)
+                {
+                    listViewAllChilds.ItemsSource = null;
+                    listViewAllChilds.ItemsSource = db.GetSchoolchildrenOrderByLastname();
+                }
+                else if (rbtn_blue.IsChecked == true)
+                {
+                    sectionid = 1;
+                    listViewAllChilds.ItemsSource = null;
+                    listViewAllChilds.ItemsSource = db.GetSchoolchildrenFromSelectedSection(sectionid);
+                }
+                else if (rbtn_yellow.IsChecked == true)
+                {
+                    sectionid = 2;
+                    listViewAllChilds.ItemsSource = null;
+                    listViewAllChilds.ItemsSource = db.GetSchoolchildrenFromSelectedSection(sectionid);
+                }
+                else if (rbtn_red.IsChecked == true)
+                {
+                    sectionid = 3;
+                    listViewAllChilds.ItemsSource = null;
+                    listViewAllChilds.ItemsSource = db.GetSchoolchildrenFromSelectedSection(sectionid);
+                }
+                else if (rbtn_green.IsChecked == true)
+                {
+                    sectionid = 4;
+                    listViewAllChilds.ItemsSource = null;
+                    listViewAllChilds.ItemsSource = db.GetSchoolchildrenFromSelectedSection(sectionid);
+                }
             }
             catch (PostgresException ex)
             {
@@ -163,7 +184,11 @@ namespace Uppgift6
 
             try
             {
-                if (MessageBox.Show($"Vill du koppla barnet {selectedSchoolchild.firstname} {selectedSchoolchild.lastname} till vårdnadshavaren {fname} {lname}? ", "Bekräfta koppling", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (selectedSchoolchild == null)
+                {
+                    return;
+                }
+                else if (MessageBox.Show($"Vill du koppla barnet {selectedSchoolchild.firstname} {selectedSchoolchild.lastname} till vårdnadshavaren {fname} {lname}? ", "Bekräfta koppling", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
                     db.ConnectGuardianSchoolchild(selectedSchoolchild.id, int.Parse(textBoxID.Text));
                     UpdateSchoolchildsList();
@@ -182,6 +207,31 @@ namespace Uppgift6
         private void comboBoxSections_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //ShowAllChildsList();
+        }
+
+        private void rbtn_allChilds_Checked(object sender, RoutedEventArgs e)
+        {
+            UpdateAllChildsList();
+        }
+
+        private void rbtn_blue_Checked(object sender, RoutedEventArgs e)
+        {
+            UpdateAllChildsList();
+        }
+
+        private void rbtn_red_Checked(object sender, RoutedEventArgs e)
+        {
+            UpdateAllChildsList();
+        }
+
+        private void rbtn_yellow_Checked(object sender, RoutedEventArgs e)
+        {
+            UpdateAllChildsList();
+        }
+
+        private void rbtn_green_Checked(object sender, RoutedEventArgs e)
+        {
+            UpdateAllChildsList();
         }
     }
 }
