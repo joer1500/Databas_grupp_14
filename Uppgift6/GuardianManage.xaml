@@ -17,7 +17,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="btnClose" Content="Tillbaka" HorizontalAlignment="Left" Margin="21,5,0,0" VerticalAlignment="Top" Width="75" Height="28" BorderBrush="White" Background="White" FontSize="14" Click="btnClose_Click"/>
+        <Button x:Name="btnClose" Content="Tillbaka" HorizontalAlignment="Left" Margin="21,5,0,0" VerticalAlignment="Top" Width="75" Height="28" BorderBrush="White" Background="White" FontSize="14" Click="btnClose_Click" />
         <Button x:Name="buttonUpdateGuardian" Content="Uppdatera" HorizontalAlignment="Left" Height="35" Margin="531,261,0,0" VerticalAlignment="Top" Width="120" Click="buttonUpdateGuardian_Click"/>
         <Button x:Name="buttonAddGuardian" Content="Lägg till ny" HorizontalAlignment="Left" Height="35" Margin="531,302,0,0" VerticalAlignment="Top" Width="120" Click="buttonAddGuardian_Click"/>
         <Button x:Name="buttonDeleteGuardian" Content="Ta bort" HorizontalAlignment="Left" Margin="531,343,0,0" VerticalAlignment="Top" Width="120" Height="35" Click="buttonDeleteGuardian_Click"/>
@@ -35,6 +35,6 @@
         </ListView>
         <Label x:Name="labelOrder" Content="Sortera efter:" HorizontalAlignment="Left" Height="26" Margin="31,383,0,0" VerticalAlignment="Top" Width="79"/>
         <Label x:Name="label1" Content="Administrera vårdnadshavare" HorizontalAlignment="Left" Height="31" Margin="531,225,0,0" VerticalAlignment="Top" Width="213" FontSize="14" FontWeight="Bold"/>
-
+        <Image x:Name="arrow_back_png" Margin="10,10,762.333,391.667" Source="arrow_back.png" Stretch="Fill" RenderTransformOrigin="1.282,0.515" MouseDown="arrow_back_png_MouseDown" MaxWidth="21" MaxHeight="18"/>
     </Grid>
 </Window>
