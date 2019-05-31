@@ -46,7 +46,7 @@ namespace Uppgift6
 
         private void BtnGuardian_Click(object sender, RoutedEventArgs e)
         {
-            //orginal
+            //Ursprunglig variant till listan:
             //Guardian guardian = (Guardian)listViewGuardians.SelectedItem;
             //SetValueForList = guardian.id.ToString();
 
@@ -68,11 +68,11 @@ namespace Uppgift6
             DbOperations db = new DbOperations();
             guardians = db.GetAllGuardians();
 
-            //Till listan
-            listViewGuardians.ItemsSource = null;
-            listViewGuardians.ItemsSource = guardians;
+            //Till listan:
+            //listViewGuardians.ItemsSource = null;
+            //listViewGuardians.ItemsSource = guardians;
             
-            //Till combobox
+            //Till combobox:
             comboBoxGuardians.ItemsSource = guardians;
         }
        

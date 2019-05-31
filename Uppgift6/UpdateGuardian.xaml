@@ -30,7 +30,8 @@
         </ListView>
         <Label x:Name="labelTitle2" Content="Nuvaranade barn" Margin="0,22,319.333,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Right" Width="181"/>
         <Button x:Name="buttonNewChild" Content="Koppla nytt barn" HorizontalAlignment="Left" Height="31" Margin="374,185,0,0" VerticalAlignment="Top" Width="100" Click="buttonNewChild_Click"/>
-        <ListView x:Name="listViewAllChilds" HorizontalAlignment="Left" Height="315" Margin="533,50,0,0" VerticalAlignment="Top" Width="181" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Visibility="Hidden" >
+
+        <ListView x:Name="listViewAllChilds" HorizontalAlignment="Left" Height="315" VerticalAlignment="Top" Width="181" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Canvas.Top="28" Margin="516,49,0,0" Visibility="Hidden" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Förnamn" Width="65" DisplayMemberBinding="{Binding firstname}"/>
@@ -38,8 +39,14 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label x:Name="labelTitleAllChilds" Content="Alla barn" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Right" Width="181" Margin="0,22,79.333,0" Visibility="Hidden"/>
-        <Button x:Name="buttonConnectChild" Content="Koppla" HorizontalAlignment="Left" Height="29" Margin="629,370,0,0" VerticalAlignment="Top" Width="85" Click="buttonConnectChild_Click" Visibility="Hidden"/>
+        <RadioButton x:Name="rbtn_allChilds" Content="Alla barn" HorizontalAlignment="Left" Margin="702,67,0,250.667" IsChecked="True" Checked="rbtn_allChilds_Checked" Visibility="Hidden"/>
+        <RadioButton x:Name="rbtn_blue" Content="Blå" HorizontalAlignment="Left" Margin="702,85,0,0" VerticalAlignment="Top" Checked="rbtn_blue_Checked" Visibility="Hidden" />
+        <RadioButton x:Name="rbtn_red" Content="Röd" HorizontalAlignment="Left" Margin="702,105,0,0" VerticalAlignment="Top" Checked="rbtn_red_Checked" Visibility="Hidden" />
+        <RadioButton x:Name="rbtn_yellow" Content="Gul" HorizontalAlignment="Left" Margin="702,125,0,0" VerticalAlignment="Top" Checked="rbtn_yellow_Checked" Visibility="Hidden" />
+        <RadioButton x:Name="rbtn_green" Content="Grön" HorizontalAlignment="Left" Margin="702,145,0,0" VerticalAlignment="Top" Checked="rbtn_green_Checked" Visibility="Hidden" />
+
+        <Button x:Name="buttonConnectChild" Content="Koppla" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="85" Click="buttonConnectChild_Click" Canvas.Left="96" Canvas.Top="348" Margin="612,369,0,0" Visibility="Hidden"/>
+
         <Button x:Name="buttonDeleteConnection" Content="Ta bort koppling" HorizontalAlignment="Left" Height="31" Margin="374,221,0,0" VerticalAlignment="Top" Width="100" IsEnabled="False"/>
         <Separator HorizontalAlignment="Left" Height="8" Margin="55,205,0,0" VerticalAlignment="Top" Width="388" RenderTransformOrigin="0.5,0.5">
             <Separator.RenderTransform>
@@ -59,6 +66,7 @@
             <ComboBoxItem Name="E" Content="Grön" HorizontalAlignment="Left" Width="146.666666666667"/>
 
         </ComboBox>
+        <Label x:Name="labelTitleAllChilds" Content="Alla barn" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Right" Width="181" Margin="0,21,96.333,0" Visibility="Hidden"/>
 
     </Grid>
 </Window>

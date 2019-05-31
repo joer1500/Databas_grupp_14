@@ -19,7 +19,7 @@ namespace Uppgift6
             return firstname + " " + lastname +":  "+ phonenumber;
         }
 
-        public string fullName
+        public string fullName //Använder denna för att visa namn i combobox på startsidan
         {
             get
             {

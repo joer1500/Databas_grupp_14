@@ -911,34 +911,37 @@ namespace Uppgift6
         }
 
 
-        public List<Schoolchild> GetSchoolchildrensFromSection(int section) // Hämtar skolbarn och sorterar efter avdelning
+        public List<Schoolchild> GetSchoolchildrenFromSelectedSection(int section) // Hämtar skolbarn utifrån avdelning
         {
             Schoolchild schoolchild;
             List<Schoolchild> schoolchildren = new List<Schoolchild>();
 
-            string stmt = "SELECT firstname, lastname FROM schoolchild WHERE section_id = @ID";
-            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            string stmt = "SELECT section_id, firstname, lastname FROM schoolchild WHERE section_id = @sectionid";
+            using (var conn = new
+                NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
             {
                 conn.Open();
-                using (var cmd = new NpgsqlCommand(stmt, conn))
-                   
-                using (var reader = cmd.ExecuteReader())
+                using (var cmd = new NpgsqlCommand())
                 {
-                    //cmd.Parameters.Add("@ID", SqlDbType.Int);
-                    cmd.Parameters["@ID"].Value = section;
-                    while (reader.Read())
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("sectionid", section);
+
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        schoolchild = new Schoolchild
+                        while (reader.Read())
                         {
-                            id = reader.GetInt32(0),
-                            lastname = reader.GetString(1),
-                            firstname = reader.GetString(2),
-                            section = reader.GetString(3)
-                        };
-                        schoolchildren.Add(schoolchild);
+                            schoolchild = new Schoolchild
+                            {
+                                id = reader.GetInt32(0),
+                                firstname = reader.GetString(1),
+                                lastname = reader.GetString(2),
+                            };
+                            schoolchildren.Add(schoolchild);
+                        }
                     }
+                    return schoolchildren;
                 }
-                return schoolchildren;
             }
         }
 
