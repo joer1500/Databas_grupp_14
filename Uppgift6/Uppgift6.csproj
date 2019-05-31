@@ -129,6 +129,9 @@
     <Compile Include="UpdateGuardian.xaml.cs">
       <DependentUpon>UpdateGuardian.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UpdateSchoolchild.xaml.cs">
+      <DependentUpon>UpdateSchoolchild.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UpdateStaff.xaml.cs">
       <DependentUpon>UpdateStaff.xaml</DependentUpon>
     </Compile>
@@ -181,6 +184,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UpdateGuardian.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateSchoolchild.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -28,6 +28,7 @@ namespace Uppgift6
 
 
         Schoolchild selectedSchoolchild;
+        public static int selectedSchooolchildID;
 
         private void UpdateListview()
         {
@@ -116,6 +117,25 @@ namespace Uppgift6
                 {
                     MessageBox.Show(ex.Message);                 
                 }              
+            }
+        }
+
+        private void btnUpdateChild_Click(object sender, RoutedEventArgs e)
+        {
+            selectedSchoolchild = (Schoolchild)listViewSchoolchildren.SelectedItem;
+            selectedSchooolchildID = selectedSchoolchild.id;
+
+            if (selectedSchoolchild == null)
+            {
+                MessageBox.Show("Markera ett barn i listan");
+                return;
+            }
+
+            else
+            {
+                UpdateSchoolchild win = new UpdateSchoolchild();
+                win.Show();
+                this.Close();
             }
         }
     }
