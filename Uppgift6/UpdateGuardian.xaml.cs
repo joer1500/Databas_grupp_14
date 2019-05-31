@@ -24,10 +24,11 @@ namespace Uppgift6
         {
             InitializeComponent();
             UpdateStaffInfo();
-            UpdateSchoolchildsList();
+            UpdateChildsList();
         }
 
         Schoolchild selectedSchoolchild;
+        Schoolchild selectedExistedSchoolchild;
         int sectionid = 0;
 
         public void UpdateStaffInfo()
@@ -76,6 +77,7 @@ namespace Uppgift6
                     //EmptyTextBoxes();
                     MessageBox.Show($"Vårdnadshavare uppdaterad", "Lyckad inmatning");
                     //this.Close();
+                    buttonExit.Content = "Tillbaka";
                 }
             }
             catch (PostgresException ex)
@@ -94,10 +96,10 @@ namespace Uppgift6
             return guardian.id;
         }
 
-        private void UpdateSchoolchildsList()
+        private void UpdateChildsList()
         {
-            listViewChilds.ItemsSource = null;
-            DbOperations db = new DbOperations();       
+            DbOperations db = new DbOperations();
+            listViewChilds.ItemsSource = null;                
             listViewChilds.ItemsSource = db.GetChildNameFromGuardianID(int.Parse(textBoxID.Text));        
         }
 
@@ -113,7 +115,7 @@ namespace Uppgift6
         private void buttonNewChild_Click(object sender, RoutedEventArgs e)
         {
             ShowAllChildsList();
-            UpdateAllChildsList();
+            //UpdateAllChildsList();
         }
 
 
@@ -176,32 +178,7 @@ namespace Uppgift6
 
         private void buttonConnectChild_Click(object sender, RoutedEventArgs e)
         {
-            selectedSchoolchild = (Schoolchild)listViewAllChilds.SelectedItem;
-            string fname = textBoxFirstname.Text;
-            string lname = textBoxLastname.Text;
-
-            DbOperations db = new DbOperations();
-
-            try
-            {
-                if (selectedSchoolchild == null)
-                {
-                    return;
-                }
-                else if (MessageBox.Show($"Vill du koppla barnet {selectedSchoolchild.firstname} {selectedSchoolchild.lastname} till vårdnadshavaren {fname} {lname}? ", "Bekräfta koppling", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                {
-                    db.ConnectGuardianSchoolchild(selectedSchoolchild.id, int.Parse(textBoxID.Text));
-                    UpdateSchoolchildsList();
-                }
-                else
-                {
-                    return;
-                }
-            }
-            catch (PostgresException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            ConnectChild();
         }
 
         private void comboBoxSections_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -216,7 +193,7 @@ namespace Uppgift6
 
         private void rbtn_blue_Checked(object sender, RoutedEventArgs e)
         {
-            UpdateAllChildsList();
+            UpdateAllChildsList();        
         }
 
         private void rbtn_red_Checked(object sender, RoutedEventArgs e)
@@ -232,6 +209,82 @@ namespace Uppgift6
         private void rbtn_green_Checked(object sender, RoutedEventArgs e)
         {
             UpdateAllChildsList();
+        }
+
+        private void buttonDeleteConnection_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteConnectedChild();        
+        }
+
+        private void ConnectChild()
+        {
+
+            selectedSchoolchild = (Schoolchild)listViewAllChilds.SelectedItem;
+            string fname = textBoxFirstname.Text;
+            string lname = textBoxLastname.Text;
+
+            DbOperations db = new DbOperations();
+
+            try
+            {
+                if (selectedSchoolchild == null)
+                {
+                    return;
+                }
+                else if (MessageBox.Show($"Vill du koppla barnet {selectedSchoolchild.firstname} {selectedSchoolchild.lastname} till vårdnadshavaren {fname} {lname}? ", "Bekräfta koppling", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    db.ConnectGuardianSchoolchild(selectedSchoolchild.id, int.Parse(textBoxID.Text));
+                    UpdateChildsList();
+                }
+                else
+                {
+                    return;
+                }
+            }
+            catch (PostgresException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void DeleteConnectedChild()
+        {
+            selectedExistedSchoolchild = (Schoolchild)listViewChilds.SelectedItem;
+            string fname = textBoxFirstname.Text;
+            string lname = textBoxLastname.Text;
+
+            DbOperations db = new DbOperations();
+
+            try
+            {
+                if (selectedExistedSchoolchild == null)
+                {
+                    return;
+                }
+                else if (MessageBox.Show($"Vill du ta bort kopplingen mellan barnet {selectedExistedSchoolchild.firstname} {selectedExistedSchoolchild.lastname} och vårdnadshavaren {fname} {lname}? ", "Bekräfta", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    db.DeleteConnectionGuardianSchoolchild(selectedExistedSchoolchild.id, int.Parse(textBoxID.Text));
+                    UpdateChildsList();
+                }
+                else
+                {
+                    return;
+                }
+            }
+            catch (PostgresException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void listViewChilds_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //selectedExistedSchoolchild = (Schoolchild)listViewChilds.SelectedItem;
+        }
+
+        private void listViewAllChilds_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //selectedSchoolchild = (Schoolchild)listViewAllChilds.SelectedItem;
         }
     }
 }

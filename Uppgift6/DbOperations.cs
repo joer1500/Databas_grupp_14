@@ -895,5 +895,25 @@ namespace Uppgift6
             }
         }
 
+        public void DeleteConnectionGuardianSchoolchild(int schoolchild_id, int guardian_id)//Ta bort koppling mellan barn och vårdnadshavare
+        {
+            string stmt = "DELETE FROM guardian_schoolchild WHERE guardian_id = @gid AND schoolchild_id = @sid";
+
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("gid", guardian_id);
+                    cmd.Parameters.AddWithValue("sid", schoolchild_id);
+                    cmd.Parameters.AddWithValue("guardian_id", guardian_id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+
     }
 }
