@@ -12,6 +12,7 @@ namespace Uppgift6
         public string firstname { get; set; }
         public string lastname { get; set; }
         public string section { get; set; }
+        public int sectionID { get; set; }
 
 
         public override string ToString()
