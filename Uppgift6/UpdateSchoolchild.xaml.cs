@@ -54,5 +54,12 @@ namespace Uppgift6
             this.Close();
 
         }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            ManageSchoolchild win = new ManageSchoolchild();
+            win.Show();
+            this.Close();
+        }
     }
 }
