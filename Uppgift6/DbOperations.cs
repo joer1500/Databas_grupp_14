@@ -574,9 +574,9 @@ namespace Uppgift6
             }
         }
 
-        public void UpdateSchoolchild(int id, string firstname, string lastname, int section)
+        public void UpdateSchoolchild(int id, string firstname, string lastname, int sectionID)
         {
-            string stmt = "UPDATE schoolchild SET (firstname, lastname, section_id) = (@firstname, @lastname, @section_id WHERE schoolchild_id = @id";
+            string stmt = "UPDATE schoolchild SET (firstname, lastname, section_id) = (@firstname, @lastname, @section_id) WHERE schoolchild_id = @id";
 
             using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
             {
@@ -588,7 +588,7 @@ namespace Uppgift6
                     cmd.Parameters.AddWithValue("id", id);
                     cmd.Parameters.AddWithValue("firstname", firstname);
                     cmd.Parameters.AddWithValue("lastname", lastname);
-                    cmd.Parameters.AddWithValue("section_id", section);
+                    cmd.Parameters.AddWithValue("section_id", sectionID);
                     cmd.ExecuteNonQuery();
                 }
             }

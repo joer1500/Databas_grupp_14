@@ -40,13 +40,19 @@ namespace Uppgift6
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            DbOperations db = new DbOperations();
+
             int id = int.Parse(txtID.Text);
             string firstname = txtFirstname.Text;
             string lastname = txtLastname.Text;
-            int section = int.Parse(txtSection.Text);
+            int sectionID = int.Parse(txtSection.Text);
 
-            DbOperations db = new DbOperations();
-            db.UpdateSchoolchild(id, firstname, lastname, section);
+            db.UpdateSchoolchild(id, firstname, lastname, sectionID);
+
+            ManageSchoolchild win = new ManageSchoolchild();
+            win.Show();
+            this.Close();
+
         }
     }
 }
