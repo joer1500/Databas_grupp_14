@@ -32,11 +32,29 @@ namespace Uppgift6
 
             listBoxChildName.ItemsSource = null;
             listBoxChildName.ItemsSource = children;
+
+            string allaVeckor, v21, v22, v23, v24, v25;
+            allaVeckor = "Alla veckor";
+            v21 = "Vecka 21";
+            v22 = "Vecka 22";
+            v23 = "Vecka 23";
+            v24 = "Vecka 24";
+            v25 = "Vecka 25";
+
+            comboBoxWeeks.Items.Add(allaVeckor);
+            comboBoxWeeks.Items.Add(v21);
+            comboBoxWeeks.Items.Add(v22);
+            comboBoxWeeks.Items.Add(v23);
+            comboBoxWeeks.Items.Add(v24);
+            comboBoxWeeks.Items.Add(v25);           
+
+            comboBoxWeeks.Text = "Alla veckor";
         }
 
         DbOperations db = new DbOperations();
         Schoolchild schoolchild;
         Schedule schedule;
+        List<Schedule> schedules = new List<Schedule>();
 
 
         private void BtnSaveNewSchedule_Click(object sender, RoutedEventArgs e)
@@ -85,7 +103,7 @@ namespace Uppgift6
                     MessageBox.Show($"{message}");
                 }          
 
-                ScheduleList();
+                GetScheduleList();
             }
         }
 
@@ -101,7 +119,7 @@ namespace Uppgift6
             schoolchild = (Schoolchild)listBoxChildName.SelectedItem;
             label_child_schema.Content = $"{schoolchild}s schema";
 
-            ScheduleList();
+            GetScheduleList();
         }
 
         private void listBox_ChildSchedule_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -123,12 +141,11 @@ namespace Uppgift6
             }
         }
 
-        private void ScheduleList() {
-            List<Schedule> schedule = new List<Schedule>();
-            schedule = db.GetChildScheduleDatesFromChildID(schoolchild.id);
+        private void GetScheduleList() {          
+            schedules = db.GetChildScheduleDatesFromChildID(schoolchild.id);
 
             listBox_ChildSchedule.ItemsSource = null;
-            listBox_ChildSchedule.ItemsSource = schedule;
+            listBox_ChildSchedule.ItemsSource = schedules;
         }
 
         private void ClearAllTxt() {
@@ -149,7 +166,7 @@ namespace Uppgift6
             else
             {
                 db.DeleteSchedule(schedule.id);
-                ScheduleList();
+                GetScheduleList();
             }
         }
 
@@ -227,5 +244,100 @@ namespace Uppgift6
 
             db.InsertSchedule(schoolchild, date, day_off, breakfast, drop, pickup, walk_alone, walk_friend);
         }
+
+        private List<Schedule> GetShceduleFromSelectedWeek(List<Schedule> schedules, string vecka)
+        {
+            List<Schedule> schedulesForSelectedWeek = new List<Schedule>();
+
+            string v21, v22, v23, v24, v25, allaVeckor;
+            v21 = "Vecka 21";
+            v22 = "Vecka 22";
+            v23 = "Vecka 23";
+            v24 = "Vecka 24";
+            v25 = "Vecka 25";
+            allaVeckor = "Alla veckor";
+
+            if (vecka == v21)
+            {
+                foreach (Schedule s in schedules)
+                {
+                    if (s.date > DateTime.Parse("2019-05-19") && s.date < DateTime.Parse("2019-05-27"))
+                    {
+                        schedulesForSelectedWeek.Add(s);
+
+                    }
+                }
+            }
+
+            if (vecka == v22) 
+            {
+                foreach (Schedule s in schedules)
+                {
+                    if (s.date > DateTime.Parse("2019-05-26") && s.date < DateTime.Parse("2019-06-03"))
+                    {
+                        schedulesForSelectedWeek.Add(s);
+
+                    }
+                }
+            }
+
+            if (vecka == v23) 
+            {
+                foreach (Schedule s in schedules)
+                {
+                    if (s.date > DateTime.Parse("2019-06-02") && s.date < DateTime.Parse("2019-06-10"))
+                    {
+                        schedulesForSelectedWeek.Add(s);
+
+                    }
+                }
+            }
+
+            if (vecka == v24)
+            {
+                foreach (Schedule s in schedules)
+                {
+                    if (s.date > DateTime.Parse("2019-06-09") && s.date < DateTime.Parse("2019-06-17"))
+                    {
+                        schedulesForSelectedWeek.Add(s);
+
+                    }
+                }
+            }
+
+            if (vecka == v25)
+            {
+                foreach (Schedule s in schedules)
+                {
+                    if (s.date > DateTime.Parse("2019-06-16") && s.date < DateTime.Parse("2019-06-24"))
+                    {
+                        schedulesForSelectedWeek.Add(s);
+
+                    }
+                }
+            }
+
+            if (vecka == allaVeckor)
+            {
+                foreach (Schedule s in schedules)
+                {
+                    schedulesForSelectedWeek.Add(s);
+                }
+
+            }
+
+            return schedulesForSelectedWeek;
+        }
+
+        private void ComboBoxWeeks_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string vecka = (string)comboBoxWeeks.SelectedItem;
+            List<Schedule> schedulesForSelectedWeek = new List<Schedule>();
+            schedulesForSelectedWeek = GetShceduleFromSelectedWeek(schedules, vecka);
+
+            listBox_ChildSchedule.ItemsSource = null;
+            listBox_ChildSchedule.ItemsSource = schedulesForSelectedWeek;
+        }
+
     }       
 }
