@@ -99,7 +99,7 @@ namespace Uppgift6
         private void listBoxChildName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             schoolchild = (Schoolchild)listBoxChildName.SelectedItem;
-            label_child_schema.Content = schoolchild + "  schema";
+            label_child_schema.Content = $"{schoolchild}s schema";
 
             ScheduleList();
         }

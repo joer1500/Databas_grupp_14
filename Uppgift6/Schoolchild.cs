@@ -16,7 +16,7 @@ namespace Uppgift6
 
         public override string ToString()
         {
-            return firstname + "  " + lastname;
+            return $"{firstname} {lastname}";
         }
     }
 }

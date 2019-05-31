@@ -18,5 +18,13 @@ namespace Uppgift6
         {
             return firstname + " " + lastname +":  "+ phonenumber;
         }
+
+        public string fullName
+        {
+            get
+            {
+                return $"{firstname} {lastname}";
+            }
+        }
     }
 }

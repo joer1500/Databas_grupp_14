@@ -26,12 +26,8 @@ namespace Uppgift6
 
         {
             InitializeComponent();
-
-            DbOperations db = new DbOperations();
-            guardians = db.GetAllGuardians();
-
-            listViewGuardians.ItemsSource = null;
-            listViewGuardians.ItemsSource = guardians;           
+            GetAllGuardians();
+           
         }
         List<Guardian> guardians = new List<Guardian>();
         public static string SetValueForList = "";
@@ -50,14 +46,35 @@ namespace Uppgift6
 
         private void BtnGuardian_Click(object sender, RoutedEventArgs e)
         {
-             Guardian guardian = (Guardian)listViewGuardians.SelectedItem;
-             SetValueForList = guardian.id.ToString();
+            //orginal
+            //Guardian guardian = (Guardian)listViewGuardians.SelectedItem;
+            //SetValueForList = guardian.id.ToString();
 
-             Guardians Guardiandwin = new Guardians();
-             Guardiandwin.Show();
-             this.Close();           
+
+            Guardian guardian = (Guardian)comboBoxGuardians.SelectedItem;
+            if (guardian == null)
+            {
+                return;
+            }
+            SetValueForList = guardian.id.ToString();
+
+            Guardians Guardiandwin = new Guardians();
+            Guardiandwin.Show();
+            this.Close();           
         }
 
+        private void GetAllGuardians()
+        {
+            DbOperations db = new DbOperations();
+            guardians = db.GetAllGuardians();
+
+            //Till listan
+            listViewGuardians.ItemsSource = null;
+            listViewGuardians.ItemsSource = guardians;
+            
+            //Till combobox
+            comboBoxGuardians.ItemsSource = guardians;
+        }
        
     }
 }
