@@ -525,6 +525,36 @@ namespace Uppgift6
             }
         }
 
+        public Schoolchild GetSchoolchildByID(int id)
+        {
+            string stmt = "SELECT * FROM schoolchild WHERE schoolchild_id = @schoolchild_id";
+            Schoolchild schoolchild = new Schoolchild();
+
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("schoolchild_id", id);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            schoolchild.id = reader.GetInt32(0);
+                            schoolchild.firstname = reader.GetString(1);
+                            schoolchild.lastname = reader.GetString(2);
+                            schoolchild.sectionID = reader.GetInt32(3);
+                        }
+                    }
+
+                }
+            }
+            return schoolchild;
+        }
+
         public void AddSchoolchild(string firstname, string lastname, int section)    // Lägger till skolbarn
         {
             string stmt = "INSERT INTO schoolchild(firstname, lastname, section_id) VALUES (@firstname, @lastname, @section_id)";
@@ -536,6 +566,26 @@ namespace Uppgift6
                 {
                     cmd.Connection = conn;
                     cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("firstname", firstname);
+                    cmd.Parameters.AddWithValue("lastname", lastname);
+                    cmd.Parameters.AddWithValue("section_id", section);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void UpdateSchoolchild(int id, string firstname, string lastname, int section)
+        {
+            string stmt = "UPDATE schoolchild SET (firstname, lastname, section_id) = (@firstname, @lastname, @section_id WHERE schoolchild_id = @id";
+
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("id", id);
                     cmd.Parameters.AddWithValue("firstname", firstname);
                     cmd.Parameters.AddWithValue("lastname", lastname);
                     cmd.Parameters.AddWithValue("section_id", section);
