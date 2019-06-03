@@ -19,14 +19,32 @@ namespace Uppgift6
     /// </summary>
     public partial class ChildProfile : Window
     {
+        DbOperations db = new DbOperations();
+
         public ChildProfile()
         {
             InitializeComponent();
+
+            //Läser in Guardians för valt barn
+            List<Guardian> guardian = new List<Guardian>();
+            guardian = db.GetGuardianFromSchoolchildID(1);
+            var vh = string.Join(Environment.NewLine, guardian);
+            label_vardnadshavare.Content = vh;
+
+            // Uppdatera barnets namn här label_childname.Content = 
+
+            //Läs in barnets schema
+            List<Schedule> schedule = new List<Schedule>();
+            schedule = db.GetChildScheduleDatesFromChildID(1);
+            listViewSC.ItemsSource = schedule;
+
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void btnCloseChildProfile_Click(object sender, RoutedEventArgs e)
         {
-
+            StaffChildren m = new StaffChildren();
+            m.Show();
+            this.Close();
         }
     }
 }
