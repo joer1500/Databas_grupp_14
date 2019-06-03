@@ -107,7 +107,9 @@ namespace Uppgift6
                             home_with_friend = (reader.GetString(8)),
                             firstname = (reader.GetString(9)),
                             lastname = (reader.GetString(10)),
-                            section_id = (reader.GetInt32(11))
+                            //section_id = (reader.GetInt32(11)),
+                            //attendance = (reader.GetString(12)),
+                            //sick = (reader.GetString(13))
                         };
                         schedule.Add(sd);
                     }
@@ -1007,7 +1009,7 @@ namespace Uppgift6
 
         public void AddNewAttendance(int schoolchild, DateTime date, string sick, string attendance, int staff)
         {
-            string stmt = "INSERT INTO attendance(schoolchild_id, date, sick, attendance, attendance_staff) VALUES (@sid, @date, @sick, @att @staff)";
+            string stmt = "INSERT INTO attendance(schoolchild_id, date, sick, attendance, attendance_staff) VALUES (@sid, @date, @sick, @att, @staff)";
 
             using (var conn = new
             NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
@@ -1047,6 +1049,7 @@ namespace Uppgift6
                 }
             }
         }
+        
 
     }
 }
