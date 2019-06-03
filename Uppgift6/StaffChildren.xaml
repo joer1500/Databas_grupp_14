@@ -5,28 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Uppgift6"
         mc:Ignorable="d"
-        Title="StaffChildren" Height="450" Width="800" WindowStartupLocation="CenterScreen">
-    <Grid>
-        <ListView x:Name="listViewSC" HorizontalAlignment="Left" Height="333" VerticalAlignment="Top" Width="614" Margin="168,42,0,0" MouseDoubleClick="listViewSC_MouseDoubleClick">
+        Title="StaffChildren" Height="450" Width="842.628" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,3,-0.333">
+        <ListView x:Name="listViewSC" HorizontalAlignment="Left" Height="338" VerticalAlignment="Top" Width="575" Margin="168,42,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Förnamn" Width="90" DisplayMemberBinding="{Binding firstname}"/>
-                    <GridViewColumn Header="Efternamn" Width="90" DisplayMemberBinding="{Binding lastname}"/>
+                    <GridViewColumn Header="Förnamn" Width="70" DisplayMemberBinding="{Binding firstname}"/>
+                    <GridViewColumn Header="Efternamn" Width="80" DisplayMemberBinding="{Binding lastname}"/>
                     <!--<GridViewColumn Header="Datum" Width="60" DisplayMemberBinding="{Binding date,StringFormat=yyyy\\-MM\\-dd}"/>-->
                     <GridViewColumn Header="Lämnas" Width="65" DisplayMemberBinding="{Binding should_drop,StringFormat=hh\\:mm}"/>
                     <GridViewColumn Header="Hämtas" Width="65" DisplayMemberBinding="{Binding should_pickup,StringFormat=hh\\:mm}"/>
                     <GridViewColumn Header="Frukost" Width="60" DisplayMemberBinding="{Binding breakfast}"/>
                     <GridViewColumn Header="Går hem med kompis" Width="130" DisplayMemberBinding="{Binding home_with_friend}"/>
                     <GridViewColumn Header="Går hem själv" Width="100" DisplayMemberBinding="{Binding walk_home_alone}"/>
-                    <!--<GridViewColumn Header="Section" Width="50" DisplayMemberBinding="{Binding section_id}"/>-->
+                    <!--<GridViewColumn Header="Section" Width="50" DisplayMemberBinding="{Binding section_id}"/>-->                 
                 </GridView>
             </ListView.View>
-
+            
         </ListView>
+
+
+        
         <Button x:Name="btnHandleStaff" Content="Hantera personal" HorizontalAlignment="Left" Margin="17,296,0,0" VerticalAlignment="Top" Width="137" Click="btnHandleStaff_Click" Height="37"/>
         <Button x:Name="btnAddChild" Content="Hantera barn" HorizontalAlignment="Left" VerticalAlignment="Top" Width="137" Margin="17,254,0,0" Height="37" Click="btnAddChild_Click"/>
         <Button x:Name="btnCloseStaffChildren" Content="Tillbaka" HorizontalAlignment="Left" Margin="31,7,0,0" VerticalAlignment="Top" Width="75" Height="28" BorderBrush="White" Background="White" FontSize="14" Click="btnCloseStaffChildren_Click"/>
-        <Image x:Name="arrow_back_png" Margin="17,13,755,389" Source="arrow_back.png" Stretch="Fill" RenderTransformOrigin="1.282,0.515" MouseDown="arrow_back_png_MouseDown_1"/>
+        <Image x:Name="arrow_back_png" Margin="17,13,792,389" Source="arrow_back.png" Stretch="Fill" RenderTransformOrigin="1.282,0.515" MouseDown="arrow_back_png_MouseDown_1" MaxHeight="18" MaxWidth="24"/>
         <Button x:Name="btnAddGuardian" Content="Hantera vårdnadshavare" HorizontalAlignment="Left" Margin="17,338,0,0" VerticalAlignment="Top" Width="137" Height="37" Click="btnAddGuardian_Click"/>
         <Label x:Name="label1" Content="Administration" HorizontalAlignment="Left" Height="33" Margin="17,221,0,0" VerticalAlignment="Top" Width="116" FontSize="14" FontWeight="Bold"/>
         <Label x:Name="label_Copy" Content="Välj avdelning:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,48,0,0"/>
@@ -39,6 +42,20 @@
         <RadioButton x:Name="rbtn_yellow" Content="Gul" HorizontalAlignment="Left" Margin="38,139,0,0" VerticalAlignment="Top" Checked="rbtn_yellow_Checked"/>
         <RadioButton x:Name="rbtn_green" Content="Grön" HorizontalAlignment="Left" Margin="38,159,0,0" VerticalAlignment="Top" Checked="rbtn_green_Checked"/>
         <Label x:Name="lblDoubleClickGuardianInfo" Content="Dubbelklicka för att få fram namn och telefonnummer till vårdnadshavare" HorizontalAlignment="Left" Margin="168,380,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="checkBox" Content="CheckBox" HorizontalAlignment="Left" Margin="62,188,0,0" VerticalAlignment="Top"/>
+        <ListView x:Name="listViewAttendance" HorizontalAlignment="Left" Height="338" Margin="742,42,0,0" VerticalAlignment="Top" Width="55" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Närvaro" Width="50">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding attendance}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
     </Grid>
 </Window>

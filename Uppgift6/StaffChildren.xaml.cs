@@ -24,6 +24,7 @@ namespace Uppgift6
         {
             InitializeComponent();
             GetSchedules();
+            GetAttendance();
             SortSchedulesByDate();
             EmptyListBoxAndFill();
             UpdateLabelView();
@@ -33,6 +34,8 @@ namespace Uppgift6
         Schedule sd;
         List<Schedule> schedule = new List<Schedule>();
         DateTime choosenDate = DateTime.Today;
+        DateTime dateTime = DateTime.Today;
+
 
 
         private void SortSchedulesByDate()
@@ -40,10 +43,36 @@ namespace Uppgift6
             schedule = schedule.Where(x => x.date == choosenDate).ToList();
         }
 
-        private void GetSchedules() {
-            schedule = db.GetSchoolchildrenSchedule();
+        private void GetSchedules()
+        {
+            schedule = db.GetSchoolchildrenSchedule();          
         }
 
+        private void GetAttendance()
+        {
+
+            string year = choosenDate.Year.ToString();
+            string month = choosenDate.Month.ToString();
+            string day = choosenDate.Day.ToString();
+
+            string date = choosenDate.ToShortDateString();
+            string myDate = $"{year}-0{month}-0{day}";
+
+
+            db.AddNewAttendance(1, choosenDate, "Nej", "Ja", 1);
+
+            //listViewAttendance.ItemsSource = null;
+            //listViewAttendance.ItemsSource = db.GetAttendanceByDate(date);
+
+            //List<Attendance> attendances = new List<Attendance>();
+            //attendances = db.GetAttendanceByDate(choosenDate);
+            //listViewAttendance.ItemsSource = attendances;
+
+
+
+            //listViewAttendance.ItemsSource = db.GetAttendanceByDate(choosenDate);
+
+        }
         private void EmptyListBoxAndFill()
         {
             listViewSC.ItemsSource = null;
@@ -53,8 +82,7 @@ namespace Uppgift6
         private void UpdateLabelView() {
             label_today.Content = choosenDate.ToString("dddd, dd MMMM yyyy");
         }
-
-        
+       
 
 
         #region Sortera på avdelning

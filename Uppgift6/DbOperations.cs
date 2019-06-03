@@ -964,6 +964,68 @@ namespace Uppgift6
             }
         }
 
+        public List<Attendance> GetAttendanceByDate(string date) //Hämtar närvaro-lista baserat på datum
+        {
+
+            //date.ToShortDateString();
+            Attendance att;
+            List<Attendance> attendances = new List<Attendance>();
+
+            string stmt = "SELECT attendance.attendance_id, attendance.schoolchild_id, attendance.date, attendance.attendance, attendance.sick, attendance.attendance_staff from attendance INNER JOIN schoolchild on attendance.schoolchild_id= schoolchild.schoolchild_id WHERE date = @dt";
+            using (var conn = new
+                NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    //cmd.Parameters.AddWithValue("dt", date.ToShortDateString());
+                    cmd.Parameters.AddWithValue("dt", date);
+                    //cmd.Parameters.AddWithValue(NpgsqlDateTime;
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            att = new Attendance
+                            {
+                                id = reader.GetInt32(0),
+                                schoolchild = reader.GetInt32(1),
+                                date = reader.GetString(2),
+                                attendance = reader.GetString(3),
+                                sick = reader.GetString(4),
+                                staff = reader.GetInt32(5),
+                            };
+                            attendances.Add(att);
+                        }
+                    }
+                    return attendances;
+                }
+            }
+        }
+
+        public void AddNewAttendance(int schoolchild, DateTime date, string sick, string attendance, int staff)
+        {
+            string stmt = "INSERT INTO attendance(schoolchild_id, date, sick, attendance, attendance_staff) VALUES (@sid, @date, @sick, @att @staff)";
+
+            using (var conn = new
+            NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("sid", schoolchild);
+                    cmd.Parameters.AddWithValue("date", date);
+                    cmd.Parameters.AddWithValue("sick", sick);
+                    cmd.Parameters.AddWithValue("att", attendance);
+                    cmd.Parameters.AddWithValue("staff", staff);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
 
     }
 }

@@ -45,9 +45,9 @@
         <RadioButton x:Name="rbtn_yellow" Content="Gul" HorizontalAlignment="Left" Margin="702,125,0,0" VerticalAlignment="Top" Checked="rbtn_yellow_Checked" Visibility="Hidden" IsEnabled="False" />
         <RadioButton x:Name="rbtn_green" Content="Grön" HorizontalAlignment="Left" Margin="702,145,0,0" VerticalAlignment="Top" Checked="rbtn_green_Checked" Visibility="Hidden" IsEnabled="False" />
 
-        <Button x:Name="buttonConnectChild" Content="Koppla" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="85" Click="buttonConnectChild_Click" Canvas.Left="96" Canvas.Top="348" Margin="612,369,0,0" Visibility="Hidden"/>
+        <Button x:Name="buttonConnectChild" Content="Koppla" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="85" Click="buttonConnectChild_Click" Canvas.Left="96" Canvas.Top="348" Margin="612,369,0,0" Visibility="Hidden" IsEnabled="False"/>
 
-        <Button x:Name="buttonDeleteConnection" Content="Ta bort koppling" HorizontalAlignment="Left" Height="31" Margin="374,221,0,0" VerticalAlignment="Top" Width="100" Click="buttonDeleteConnection_Click"/>
+        <Button x:Name="buttonDeleteConnection" Content="Ta bort koppling" HorizontalAlignment="Left" Height="31" Margin="374,221,0,0" VerticalAlignment="Top" Width="100" Click="buttonDeleteConnection_Click" IsEnabled="False"/>
         <Separator HorizontalAlignment="Left" Height="8" Margin="55,205,0,0" VerticalAlignment="Top" Width="388" RenderTransformOrigin="0.5,0.5">
             <Separator.RenderTransform>
                 <TransformGroup>
