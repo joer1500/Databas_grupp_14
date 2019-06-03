@@ -107,7 +107,9 @@ namespace Uppgift6
                             home_with_friend = (reader.GetString(8)),
                             firstname = (reader.GetString(9)),
                             lastname = (reader.GetString(10)),
-                            section_id = (reader.GetInt32(11))
+                            //section_id = (reader.GetInt32(11)),
+                            //attendance = (reader.GetString(12)),
+                            //sick = (reader.GetString(13))
                         };
                         schedule.Add(sd);
                     }
@@ -611,7 +613,7 @@ namespace Uppgift6
             }
         }
 
-        public void ConnectGuardianSchoolchild(int schoolchild_id, int guardian_id)       // koppla ihop barn med vårdnadshavare EJ TESTAD
+        public void ConnectGuardianSchoolchild(int schoolchild_id, int guardian_id)       // koppla ihop barn med vårdnadshavare
         {
             string stmt = "INSERT INTO guardian_schoolchild(schoolchild_id, guardian_id) VALUES (@schoolchild_id, @guardian_id)";
 
@@ -691,7 +693,7 @@ namespace Uppgift6
             }
         }
 
-        public List<Pickup> GetAllAllowedPickupBySchoolchildID(int schoolchildID)
+        public List<Pickup> GetAllAllowedPickupBySchoolchildID(int schoolchildID)    // Hämtar alla godkända hämtare för ett barn
         {
             Pickup pickup;
             List<Pickup> pickups = new List<Pickup>();
@@ -724,6 +726,27 @@ namespace Uppgift6
                 }
             }
         }
+
+        public void AddNewPickup(int schoolchildID, string firstname, string lastname, string relation)
+        {
+            string stmt = "INSERT INTO schoolchild_pickup(schoolchild_id, pickup_firstname, pickup_lastname, pickup_relation) VALUES (@schoolchild_id, @firstname, @lastname, @relation)";
+
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("schoolchild_id", schoolchildID);
+                    cmd.Parameters.AddWithValue("firstname", firstname);
+                    cmd.Parameters.AddWithValue("lastname", lastname);
+                    cmd.Parameters.AddWithValue("relation", relation);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
 
         public List<Guardian> GetAllGuardians() //Hämtar alla vårdnadshavare
         {
@@ -1041,7 +1064,7 @@ namespace Uppgift6
 
         public void AddNewAttendance(int schoolchild, DateTime date, string sick, string attendance, int staff)
         {
-            string stmt = "INSERT INTO attendance(schoolchild_id, date, sick, attendance, attendance_staff) VALUES (@sid, @date, @sick, @att @staff)";
+            string stmt = "INSERT INTO attendance(schoolchild_id, date, sick, attendance, attendance_staff) VALUES (@sid, @date, @sick, @att, @staff)";
 
             using (var conn = new
             NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
@@ -1081,6 +1104,7 @@ namespace Uppgift6
                 }
             }
         }
+        
 
     }
 }

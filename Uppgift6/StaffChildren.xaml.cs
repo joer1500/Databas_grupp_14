@@ -30,12 +30,15 @@ namespace Uppgift6
             FilterAttendancesByDate();
             UpdateAttendanceList();
             UpdateLabelView();
+            SetComboboxItems();
         }
 
         DbOperations db = new DbOperations();
         List<Schedule> schedule = new List<Schedule>();
         List<Attendance> attendances = new List<Attendance>();
         DateTime choosenDate = DateTime.Today;
+        Attendance selectedAttendance;
+        Schedule selectedSchedule;
 
 
 
@@ -72,13 +75,6 @@ namespace Uppgift6
                 return;
             }
 
-            foreach (var schoolchild in attendances)
-            {
-                if (schoolchild.attendance == "True")
-                {
-                    
-                }
-            }
             listViewAttendance.ItemsSource = null;
             listViewAttendance.ItemsSource = attendances;
         }
@@ -350,18 +346,14 @@ namespace Uppgift6
         }
         #endregion
 
-
+        private void SetComboboxItems()
+        {
+            comboBoxAttendance.Items.Add("Ja");
+            comboBoxAttendance.Items.Add("Nej");
+            comboBoxAttendance.Items.Add("");
+        }
         
-
-        //private void listViewSC_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        //{
-        //    ChildProfile m = new ChildProfile();
-        //    m.Show();
-        //    this.Close();
-        //}
-
        
-
         private void listViewSC_MouseDoubleClick_1(object sender, MouseButtonEventArgs e)
         {
             ChildProfile m = new ChildProfile();
@@ -371,25 +363,59 @@ namespace Uppgift6
 
         private void btnSaveAttendance_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var schoolchild in attendances)
+            if (selectedSchedule == null)
             {
-                if (schoolchild.attendance == "Ja")
-                {
-                    MessageBox.Show($"{schoolchild.firstname} {schoolchild.attendance}");
-                }
-            }   
+                return;
+            }
+            try
+            {
+                db.AddNewAttendance(selectedSchedule.schoolchild_id, choosenDate, "", comboBoxAttendance.Text, 2);
+                GetSchedules();
+                SortSchedulesByDate();
+                EmptyListBoxAndFill();
+                GetAttendance();
+                FilterAttendancesByDate();
+                UpdateAttendanceList();
+            }
+            catch (PostgresException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
 
-        private void cb_Checked(object sender, RoutedEventArgs e)
-        {
-            foreach (var schoolchild in attendances)
-            {
-                if (schoolchild.attendance == "True")
-                {
-                    MessageBox.Show("Meddelande");
-                }
-            }
+        
 
+        private void listViewAttendance_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            selectedAttendance = (Attendance)listViewAttendance.SelectedItem;
+            if (selectedAttendance == null)
+            {
+                return;
+            }
+            comboBoxAttendance.Text = selectedAttendance.attendance;
+
+        }
+
+
+
+        private void comboBoxAttendance_DropDownClosed(object sender, EventArgs e)
+        {
+            if (selectedAttendance == null)
+            {
+                return;
+            }
+            //selectedAttendance.attendance = comboBoxAttendance.Text;
+
+            db.UpdateAttendance(selectedAttendance.schoolchild, choosenDate, selectedAttendance.sick, comboBoxAttendance.Text);
+            GetAttendance();
+            FilterAttendancesByDate();
+            UpdateAttendanceList();
+        }
+
+        private void listViewSC_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            selectedSchedule = (Schedule)listViewSC.SelectedItem;
         }
     }
 

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="StaffChildren" Height="450" Width="956.073" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,13,-0.333">
-        <ListView x:Name="listViewSC" HorizontalAlignment="Left" Height="291" VerticalAlignment="Top" Width="575" Margin="168,42,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="listViewSC_MouseDoubleClick_1">
+        <ListView x:Name="listViewSC" HorizontalAlignment="Left" Height="291" VerticalAlignment="Top" Width="628" Margin="168,44,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="listViewSC_MouseDoubleClick_1" SelectionChanged="listViewSC_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Förnamn" Width="70" DisplayMemberBinding="{Binding firstname}"/>
@@ -18,46 +18,44 @@
                     <GridViewColumn Header="Frukost" Width="60" DisplayMemberBinding="{Binding breakfast}"/>
                     <GridViewColumn Header="Går hem med kompis" Width="130" DisplayMemberBinding="{Binding home_with_friend}"/>
                     <GridViewColumn Header="Går hem själv" Width="100" DisplayMemberBinding="{Binding walk_home_alone}"/>
-                    <!--<GridViewColumn Header="Section" Width="50" DisplayMemberBinding="{Binding section_id}"/>-->                 
+                    <!--<GridViewColumn Header="Närvaro" Width="55" DisplayMemberBinding="{Binding attendance}"/>-->
+                    <!--<GridViewColumn Header="Section" Width="50" DisplayMemberBinding="{Binding section_id}"/>-->
                 </GridView>
             </ListView.View>
-            
+
         </ListView>
 
 
-        
+
         <Button x:Name="btnHandleStaff" Content="Hantera personal" HorizontalAlignment="Left" Margin="17,296,0,0" VerticalAlignment="Top" Width="137" Click="btnHandleStaff_Click" Height="37"/>
         <Button x:Name="btnAddChild" Content="Hantera barn" HorizontalAlignment="Left" VerticalAlignment="Top" Width="137" Margin="17,254,0,0" Height="37" Click="btnAddChild_Click"/>
-        <Button x:Name="btnCloseStaffChildren" Content="Tillbaka" HorizontalAlignment="Left" Margin="31,7,0,0" VerticalAlignment="Top" Width="75" Height="28" BorderBrush="White" Background="White" FontSize="14" Click="btnCloseStaffChildren_Click"/>
-        <Image x:Name="arrow_back_png" Margin="-37,13,845.6,389.333" Source="arrow_back.png" Stretch="Fill" RenderTransformOrigin="1.282,0.515" MouseDown="arrow_back_png_MouseDown_1" MaxHeight="18" MaxWidth="24"/>
+        <Button x:Name="btnCloseStaffChildren" Content="Tillbaka" HorizontalAlignment="Left" Margin="31,12,0,0" VerticalAlignment="Top" Width="75" Height="28" BorderBrush="White" Background="White" FontSize="14" Click="btnCloseStaffChildren_Click"/>
+        <Image x:Name="arrow_back_png" Margin="15,17,890.333,385" Source="arrow_back.png" Stretch="Fill" RenderTransformOrigin="1.282,0.515" MouseDown="arrow_back_png_MouseDown_1" MaxHeight="18" MaxWidth="24"/>
         <Button x:Name="btnAddGuardian" Content="Hantera vårdnadshavare" HorizontalAlignment="Left" Margin="17,338,0,0" VerticalAlignment="Top" Width="137" Height="37" Click="btnAddGuardian_Click"/>
         <Label x:Name="label1" Content="Administration" HorizontalAlignment="Left" Height="33" Margin="17,221,0,0" VerticalAlignment="Top" Width="116" FontSize="14" FontWeight="Bold"/>
         <Label x:Name="label_Copy" Content="Välj avdelning:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,48,0,0"/>
-        <Label x:Name="label_today" Content="Vald dag" HorizontalAlignment="Left" Margin="281,4,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18" Width="210"/>
-        <Button x:Name="button_plus" Content="Nästa dag" HorizontalAlignment="Left" Margin="481,13,0,0" VerticalAlignment="Top" Width="75" Click="button_plus_Click"/>
-        <Button x:Name="button_minus" Content="Föregående dag" HorizontalAlignment="Left" Margin="168,13,0,0" VerticalAlignment="Top" Width="108" Click="button_minus_Click"/>
+        <Label x:Name="label_today" Content="Vald dag" HorizontalAlignment="Left" Margin="281,6,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18" Width="210"/>
+        <Button x:Name="button_plus" Content="Nästa dag" HorizontalAlignment="Left" Margin="481,15,0,0" VerticalAlignment="Top" Width="75" Click="button_plus_Click"/>
+        <Button x:Name="button_minus" Content="Föregående dag" HorizontalAlignment="Left" Margin="168,15,0,0" VerticalAlignment="Top" Width="108" Click="button_minus_Click"/>
         <RadioButton x:Name="rbtn_all" Content="Alla" HorizontalAlignment="Left" Margin="38,79,0,0" VerticalAlignment="Top" Checked="rbtn_all_Checked" IsChecked="True"/>
         <RadioButton x:Name="rbtn_blue" Content="Blå" HorizontalAlignment="Left" Margin="38,99,0,0" VerticalAlignment="Top" Checked="rbtn_blue_Checked"/>
         <RadioButton x:Name="rbtn_red" Content="Röd" HorizontalAlignment="Left" Margin="38,119,0,0" VerticalAlignment="Top" Checked="rbtn_red_Checked"/>
         <RadioButton x:Name="rbtn_yellow" Content="Gul" HorizontalAlignment="Left" Margin="38,139,0,0" VerticalAlignment="Top" Checked="rbtn_yellow_Checked"/>
         <RadioButton x:Name="rbtn_green" Content="Grön" HorizontalAlignment="Left" Margin="38,159,0,0" VerticalAlignment="Top" Checked="rbtn_green_Checked"/>
         <Label x:Name="lblDoubleClickGuardianInfo" Content="Dubbelklicka för att få fram namn och telefonnummer till vårdnadshavare" HorizontalAlignment="Left" Margin="168,380,0,0" VerticalAlignment="Top"/>
-        <ListView x:Name="listViewAttendance" HorizontalAlignment="Left" Height="164" Margin="748,42,0,0" VerticalAlignment="Top" Width="55" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="1">
+        <ListView x:Name="listViewAttendance" HorizontalAlignment="Left" Height="291" Margin="741,44,0,0" VerticalAlignment="Top" Width="55" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="1" SelectionChanged="listViewAttendance_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Närvaro" Width="50">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <CheckBox x:Name="cb" IsChecked= "{Binding attendance}" Checked="cb_Checked"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-
+                    <GridViewColumn Header="Närvaro" Width="50" DisplayMemberBinding="{Binding attendance}"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="btnSaveAttendance" Content="Spara närvaro" HorizontalAlignment="Left" Height="31" Margin="700,341,0,0" VerticalAlignment="Top" Width="96" Click="btnSaveAttendance_Click"/>
-        
+        <Button x:Name="btnSaveAttendance" Content="Närvaro" HorizontalAlignment="Left" Height="31" Margin="612,375,0,0" VerticalAlignment="Top" Width="96" Click="btnSaveAttendance_Click"/>
+        <ComboBox x:Name="comboBoxAttendance" HorizontalAlignment="Left" Height="24" Margin="801,69,0,0" VerticalAlignment="Top" Width="66" DropDownClosed="comboBoxAttendance_DropDownClosed"/>
+        <Button x:Name="btnNewAttendance" Content="Ny närvaro" HorizontalAlignment="Left" Height="31" Margin="713,375,0,0" VerticalAlignment="Top" Width="90" IsEnabled="False"/>
+        <Button x:Name="btnAttendanceYes" Content="Ja" HorizontalAlignment="Left" Height="25" Margin="801,109,0,0" VerticalAlignment="Top" Width="34" IsEnabled="False"/>
+        <Button x:Name="btnAttendanceNo" Content="Ja" HorizontalAlignment="Left" Height="25" Margin="840,109,0,0" VerticalAlignment="Top" Width="34" IsEnabled="False"/>
+
 
     </Grid>
 </Window>
