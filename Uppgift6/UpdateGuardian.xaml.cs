@@ -121,15 +121,15 @@ namespace Uppgift6
 
         private void ShowAllChildsList()
         {
-            comboBoxSections.Visibility = Visibility.Visible;
+            //comboBoxSections.Visibility = Visibility.Visible;
             listViewAllChilds.Visibility = Visibility.Visible;
             labelTitleAllChilds.Visibility = Visibility.Visible;
             buttonConnectChild.Visibility = Visibility.Visible;
-            rbtn_allChilds.Visibility = Visibility.Visible;
-            rbtn_red.Visibility = Visibility.Visible;
-            rbtn_green.Visibility = Visibility.Visible;
-            rbtn_blue.Visibility = Visibility.Visible;
-            rbtn_yellow.Visibility = Visibility.Visible;
+            //rbtn_allChilds.Visibility = Visibility.Visible;
+            //rbtn_red.Visibility = Visibility.Visible;
+            //rbtn_green.Visibility = Visibility.Visible;
+            //rbtn_blue.Visibility = Visibility.Visible;
+            //rbtn_yellow.Visibility = Visibility.Visible;
 
         }
 
@@ -178,7 +178,8 @@ namespace Uppgift6
 
         private void buttonConnectChild_Click(object sender, RoutedEventArgs e)
         {
-            ConnectChild();
+            selectedSchoolchild = (Schoolchild)listViewAllChilds.SelectedItem;
+            ConnectChild(selectedSchoolchild);
         }
 
         private void comboBoxSections_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -216,10 +217,10 @@ namespace Uppgift6
             DeleteConnectedChild();        
         }
 
-        private void ConnectChild()
+        private void ConnectChild(Schoolchild s)
         {
 
-            selectedSchoolchild = (Schoolchild)listViewAllChilds.SelectedItem;
+            
             string fname = textBoxFirstname.Text;
             string lname = textBoxLastname.Text;
 
@@ -231,9 +232,9 @@ namespace Uppgift6
                 {
                     return;
                 }
-                else if (MessageBox.Show($"Vill du koppla barnet {selectedSchoolchild.firstname} {selectedSchoolchild.lastname} till vårdnadshavaren {fname} {lname}? ", "Bekräfta koppling", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                else if (MessageBox.Show($"Vill du koppla barnet {s.firstname} {s.lastname} till vårdnadshavaren {fname} {lname}? ", "Bekräfta koppling", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    db.ConnectGuardianSchoolchild(selectedSchoolchild.id, int.Parse(textBoxID.Text));
+                    db.ConnectGuardianSchoolchild(s.id, int.Parse(textBoxID.Text));
                     UpdateChildsList();
                 }
                 else
@@ -279,12 +280,28 @@ namespace Uppgift6
 
         private void listViewChilds_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //selectedExistedSchoolchild = (Schoolchild)listViewChilds.SelectedItem;
+            selectedExistedSchoolchild = (Schoolchild)listViewChilds.SelectedItem;
+            if (selectedExistedSchoolchild == null)
+            {
+                buttonDeleteConnection.IsEnabled = false;
+            }
+            else
+            {
+                buttonDeleteConnection.IsEnabled = true;
+            }
         }
 
         private void listViewAllChilds_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //selectedSchoolchild = (Schoolchild)listViewAllChilds.SelectedItem;
+            selectedSchoolchild = (Schoolchild)listViewAllChilds.SelectedItem;
+            if (selectedSchoolchild == null)
+            {
+                buttonConnectChild.IsEnabled = false;
+            }
+            else
+            {
+                buttonConnectChild.IsEnabled = true;
+            }
         }
     }
 }

@@ -24,26 +24,60 @@ namespace Uppgift6
         {
             InitializeComponent();
             GetSchedules();
+            GetAttendance();
             SortSchedulesByDate();
             EmptyListBoxAndFill();
             UpdateLabelView();
         }
 
         DbOperations db = new DbOperations();
-        Schedule sd;
         List<Schedule> schedule = new List<Schedule>();
+        List<Attendance> attendances = new List<Attendance>();
         DateTime choosenDate = DateTime.Today;
+
 
 
         private void SortSchedulesByDate()
         {
             schedule = schedule.Where(x => x.date == choosenDate).ToList();
         }
-
-        private void GetSchedules() {
-            schedule = db.GetSchoolchildrenSchedule();
+        private void FilterAttendancesByDate()
+        {
+            schedule = schedule.Where(x => x.date == choosenDate).ToList();
         }
 
+        private void GetSchedules()
+        {
+            schedule = db.GetSchoolchildrenSchedule();          
+        }
+
+        private void GetAttendance()
+        {
+            attendances = db.GetAttendances();
+
+
+            string year = choosenDate.Year.ToString();
+            string month = choosenDate.Month.ToString();
+            string day = choosenDate.Day.ToString();
+
+            string date = choosenDate.ToShortDateString();
+            string myDate = $"{year}-0{month}-0{day}";
+
+
+            //db.AddNewAttendance(1, choosenDate, "Nej", "Ja", 1);
+
+            //listViewAttendance.ItemsSource = null;
+            //listViewAttendance.ItemsSource = db.GetAttendances();
+
+            //List<Attendance> attendances = new List<Attendance>();
+            //attendances = db.GetAttendanceByDate(choosenDate);
+            //listViewAttendance.ItemsSource = attendances;
+
+
+
+            //listViewAttendance.ItemsSource = db.GetAttendanceByDate(choosenDate);
+
+        }
         private void EmptyListBoxAndFill()
         {
             listViewSC.ItemsSource = null;
@@ -53,8 +87,7 @@ namespace Uppgift6
         private void UpdateLabelView() {
             label_today.Content = choosenDate.ToString("dddd, dd MMMM yyyy");
         }
-
-        
+       
 
 
         #region Sortera på avdelning
@@ -255,21 +288,20 @@ namespace Uppgift6
 
         
 
-        private void listViewSC_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            sd = (Schedule)listViewSC.SelectedItem;
-            List<Guardian> guardian = new List<Guardian>();
-            guardian = db.GetGuardianFromSchoolchildID(sd.schoolchild_id);
-            var message = string.Join(Environment.NewLine, guardian);
+        //private void listViewSC_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        //{
+        //    ChildProfile m = new ChildProfile();
+        //    m.Show();
+        //    this.Close();
+        //}
 
-            if (guardian == null)
-            {
-                return;
-            }
-            else
-            {
-                MessageBox.Show(message);
-            }
+       
+
+        private void listViewSC_MouseDoubleClick_1(object sender, MouseButtonEventArgs e)
+        {
+            ChildProfile m = new ChildProfile();
+            m.Show();
+            this.Close();
         }
     }
 
