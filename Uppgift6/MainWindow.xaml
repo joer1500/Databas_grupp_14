@@ -35,7 +35,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="65,307,0,0" TextWrapping="Wrap" Text="Välj en vårdnadshavare för att kunna logga in. Klicka sedan på knappen nedan." VerticalAlignment="Top" Height="41" Width="246"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="65,307,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="41" Width="246"><Run Text="Välj en vårdnadshavare för att kunna logga in. Klicka sedan på knappe"/><Run Text="n ovan."/></TextBlock>
         <Canvas Margin="101,96,519.333,127.667">
             <Button x:Name="btnGuardian" Content="Logga in" HorizontalAlignment="Left" VerticalAlignment="Top" Width="173" Height="44" Click="BtnGuardian_Click" FontSize="14" Canvas.Top="153"/>
             <ComboBox x:Name="comboBoxGuardians" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="155" Canvas.Left="9" Canvas.Top="27">
