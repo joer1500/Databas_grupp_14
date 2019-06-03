@@ -121,6 +121,7 @@
     <Compile Include="NewStaff.xaml.cs">
       <DependentUpon>NewStaff.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pickup.cs" />
     <Compile Include="Schedule.cs" />
     <Compile Include="Schoolchild.cs" />
     <Compile Include="Staff.cs" />

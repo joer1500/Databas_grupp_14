@@ -25,6 +25,7 @@ namespace Uppgift6
         {
             InitializeComponent();
 
+            ViewLoggedInGuardian();
             List<Schoolchild> children = new List<Schoolchild>();
 
             int id = int.Parse(MainWindow.SetValueForList);
@@ -56,6 +57,15 @@ namespace Uppgift6
         Schedule schedule;
         List<Schedule> schedules = new List<Schedule>();
 
+       private void ViewLoggedInGuardian()
+        {
+            DbOperations db = new DbOperations();
+            Guardian loggedInGuardian;
+            int id = int.Parse(MainWindow.SetValueForList);
+            loggedInGuardian = db.GetGuardianById(id);
+
+            lblLoggedInGuardian.Content = $"{loggedInGuardian.firstname} {loggedInGuardian.lastname}";
+        }
 
         private void BtnSaveNewSchedule_Click(object sender, RoutedEventArgs e)
         {

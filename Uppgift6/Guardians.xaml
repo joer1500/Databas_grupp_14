@@ -24,7 +24,7 @@
         <TextBox x:Name="textBoxHome_with_friend" HorizontalAlignment="Left" Height="23" Margin="660,319,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="73"/>
         <Button x:Name="btnSaveNewSchedule" Content="Lägg till nytt schema" HorizontalAlignment="Left" Margin="585,366,0,0" VerticalAlignment="Top" Width="123" Click="BtnSaveNewSchedule_Click"/>
         <TextBlock x:Name="textBlockChildName" HorizontalAlignment="Left" Margin="23,342,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="39" Width="206"><Run Text="Markera det barn i listan som du vill "/><Run Text="se eller "/><Run Text="lägga till ett schema för"/></TextBlock>
-        <Button x:Name="btnCloseGuardian" Content="Tillbaka" HorizontalAlignment="Left" Margin="23,24,0,0" VerticalAlignment="Top" Width="75" Height="22" Click="btnCloseGuardian_Click"/>
+        <Button x:Name="btnCloseGuardian" Content="Tillbaka" HorizontalAlignment="Left" Margin="23,12,0,0" VerticalAlignment="Top" Width="75" Height="22" Click="btnCloseGuardian_Click"/>
         <Label x:Name="label_child_schema" Content="" HorizontalAlignment="Left" Margin="286,0,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
         <Separator x:Name="separator_1" HorizontalAlignment="Left" Height="16" Margin="41,190,0,0" VerticalAlignment="Top" Width="442" RenderTransformOrigin="0.5,0.5">
             <Separator.RenderTransform>
@@ -62,6 +62,8 @@
         <TextBox x:Name="txt_home_with_friend" HorizontalAlignment="Left" Height="23" Margin="411,363,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48" IsEnabled="False"/>
         <Button x:Name="Remove_schedule" Content="Ta bort" HorizontalAlignment="Left" Margin="429,184,0,0" VerticalAlignment="Top" Width="75" Click="Remove_schedule_Click"/>
         <ComboBox x:Name="comboBoxWeeks" HorizontalAlignment="Left" Margin="399,34,0,0" VerticalAlignment="Top" Width="105" Height="22" SelectionChanged="ComboBoxWeeks_SelectionChanged"/>
+        <Label x:Name="lblLoggedInGuardian" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,37,0,0" Width="178" FontSize="18" FontWeight="Bold"/>
+        <Button x:Name="btnAddAllowedPickup" Content="Lägg till hämtare" HorizontalAlignment="Left" VerticalAlignment="Top" Width="113" Margin="116,389,0,0"/>
 
     </Grid>
 </Window>
