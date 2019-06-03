@@ -23,18 +23,26 @@ namespace Uppgift6
         public NewSchoolchild()
         {
             InitializeComponent();
-            UpdateListview();
+            UpdateGuardianListview();
+            UpdateSchoolchildListview();
         }
 
 
         Guardian selectedGuardian;
 
-        public void UpdateListview()
+        public void UpdateGuardianListview()
         {
             DbOperations db = new DbOperations();
 
             listViewGuardians.ItemsSource = null;
             listViewGuardians.ItemsSource = db.GetAllGuardians();
+        }
+
+        private void UpdateSchoolchildListview()
+        {
+            DbOperations db = new DbOperations();
+            listViewSchoolchild.ItemsSource = null;
+            listViewSchoolchild.ItemsSource = db.GetSchoolchildrenOrderByID();
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
@@ -47,19 +55,17 @@ namespace Uppgift6
 
         private void btnAddChild_Click(object sender, RoutedEventArgs e)
         {
+            
             DbOperations db = new DbOperations();
             string firstname = txtBoxFirstname.Text;
             string lastname = txtBoxLastname.Text;
 
             int section = int.Parse(txtBoxSection.Text);
-
-            if (selectedGuardian == null)
-            {
-                MessageBox.Show("Vänligen markera en vårdnadshavare i listan");
-            }
+                     
             try
             {
                 db.AddSchoolchild(firstname, lastname, section);
+                UpdateSchoolchildListview();
                 MessageBox.Show($"{firstname} {lastname} är nu tillagd i registret", "Lyckad inmatning");
             }
             catch (PostgresException ex)
@@ -80,6 +86,32 @@ namespace Uppgift6
         private void listViewGuardians_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectedGuardian = (Guardian)listViewGuardians.SelectedItem;
+        }
+
+        private void btnConnect_Click(object sender, RoutedEventArgs e)
+        {
+            DbOperations db = new DbOperations();
+            Schoolchild selectedSchoolchild = (Schoolchild)listViewSchoolchild.SelectedItem;
+            Guardian selectedGuardian = (Guardian)listViewGuardians.SelectedItem;
+
+            if (selectedSchoolchild == null)
+            {
+                MessageBox.Show($"Vänligen markera ett barn i listan");
+            }
+            else if (selectedGuardian == null)
+            {
+                MessageBox.Show($"Vänligen markera en vårdnadshavare i listan");
+            }
+            else if (MessageBox.Show($"Vill du koppla barnet {selectedSchoolchild.firstname} {selectedSchoolchild.lastname} till vårdnadshavaren {selectedGuardian.firstname} {selectedGuardian.lastname}? ", "Bekräfta koppling", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                db.ConnectGuardianSchoolchild(selectedSchoolchild.id, selectedGuardian.id);
+                
+            }
+        }
+
+        private void listViewSchoolchild_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Schoolchild selectedSchoolchild = (Schoolchild)listViewSchoolchild.SelectedItem;
         }
     }
 }
