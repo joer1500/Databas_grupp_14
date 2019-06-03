@@ -691,6 +691,40 @@ namespace Uppgift6
             }
         }
 
+        public List<Pickup> GetAllAllowedPickupBySchoolchildID(int schoolchildID)
+        {
+            Pickup pickup;
+            List<Pickup> pickups = new List<Pickup>();
+
+            string stmt = "SELECT pickup_firstname, pickup_lastname, pickup_relation FROM schoolchild_pickup WHERE schoolchild_id = @schoolchild_id";
+
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("schoolchild_id", schoolchildID);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            pickup = new Pickup()
+                            {
+                                Firstname = reader.GetString(0),
+                                Lastname = reader.GetString(1),
+                                Relation = reader.GetString(2)
+                            };
+                            pickups.Add(pickup);
+                        }
+                    }
+                    return pickups;
+                }
+            }
+        }
+
         public List<Guardian> GetAllGuardians() //Hämtar alla vårdnadshavare
         {
             Guardian g;
