@@ -611,7 +611,7 @@ namespace Uppgift6
             }
         }
 
-        public void ConnectGuardianSchoolchild(int schoolchild_id, int guardian_id)       // koppla ihop barn med vårdnadshavare EJ TESTAD
+        public void ConnectGuardianSchoolchild(int schoolchild_id, int guardian_id)       // koppla ihop barn med vårdnadshavare
         {
             string stmt = "INSERT INTO guardian_schoolchild(schoolchild_id, guardian_id) VALUES (@schoolchild_id, @guardian_id)";
 
@@ -691,7 +691,7 @@ namespace Uppgift6
             }
         }
 
-        public List<Pickup> GetAllAllowedPickupBySchoolchildID(int schoolchildID)
+        public List<Pickup> GetAllAllowedPickupBySchoolchildID(int schoolchildID)    // Hämtar alla godkända hämtare för ett barn
         {
             Pickup pickup;
             List<Pickup> pickups = new List<Pickup>();
@@ -724,6 +724,27 @@ namespace Uppgift6
                 }
             }
         }
+
+        public void AddNewPickup(int schoolchildID, string firstname, string lastname, string relation)
+        {
+            string stmt = "INSERT INTO schoolchild_pickup(schoolchild_id, pickup_firstname, pickup_lastname, pickup_relation) VALUES (@schoolchild_id, @firstname, @lastname, @relation)";
+
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("schoolchild_id", schoolchildID);
+                    cmd.Parameters.AddWithValue("firstname", firstname);
+                    cmd.Parameters.AddWithValue("lastname", lastname);
+                    cmd.Parameters.AddWithValue("relation", relation);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
 
         public List<Guardian> GetAllGuardians() //Hämtar alla vårdnadshavare
         {

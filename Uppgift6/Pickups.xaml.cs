@@ -56,7 +56,13 @@ namespace Uppgift6
 
         private void btnAddPickup_Click(object sender, RoutedEventArgs e)
         {
-            
+            string firstname = txtFirstname.Text;
+            string lastname = txtLastname.Text;
+            string relation = txtRelation.Text;
+            int schoolchildID = Guardians.selectedSchoolchildID;
+
+            DbOperations db = new DbOperations();                      
+            db.AddNewPickup(schoolchildID, firstname, lastname, relation);
             UpdateListviewPickups();
         }
     }
