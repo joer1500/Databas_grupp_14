@@ -122,6 +122,9 @@
       <DependentUpon>NewStaff.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pickup.cs" />
+    <Compile Include="Pickups.xaml.cs">
+      <DependentUpon>Pickups.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Schedule.cs" />
     <Compile Include="Schoolchild.cs" />
     <Compile Include="Staff.cs" />
@@ -181,6 +184,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="NewStaff.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pickups.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

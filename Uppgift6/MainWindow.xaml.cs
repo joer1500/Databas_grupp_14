@@ -55,13 +55,18 @@ namespace Uppgift6
             Guardian guardian = (Guardian)comboBoxGuardians.SelectedItem;
             if (guardian == null)
             {
-                return;
+                MessageBox.Show("Du måste välja en vårdnadshavare i listan för att kunna logga in.");
             }
-            SetValueForList = guardian.id.ToString();
 
-            Guardians Guardiandwin = new Guardians();
-            Guardiandwin.Show();
-            this.Close();           
+            else
+            {
+                SetValueForList = guardian.id.ToString();
+
+                Guardians Guardiandwin = new Guardians();
+                Guardiandwin.Show();
+                this.Close();
+            }
+                      
         }
 
         private void GetAllGuardians()

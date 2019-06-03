@@ -52,6 +52,7 @@ namespace Uppgift6
             comboBoxWeeks.Text = "Alla veckor";
         }
 
+        public static int selectedSchoolchildID;
         DbOperations db = new DbOperations();
         Schoolchild schoolchild;
         Schedule schedule;
@@ -127,6 +128,7 @@ namespace Uppgift6
         private void listBoxChildName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             schoolchild = (Schoolchild)listBoxChildName.SelectedItem;
+            selectedSchoolchildID = schoolchild.id;
             label_child_schema.Content = $"{schoolchild}s schema";
 
             GetScheduleList();
@@ -349,5 +351,12 @@ namespace Uppgift6
             listBox_ChildSchedule.ItemsSource = schedulesForSelectedWeek;
         }
 
+        private void btnPickup_Click(object sender, RoutedEventArgs e)
+        {
+                       
+            Pickups win = new Pickups();
+            win.Show();
+            this.Close();
+        }
     }       
 }
