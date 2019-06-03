@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="StaffChildren" Height="450" Width="842.628" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,3,-0.333">
-        <ListView x:Name="listViewSC" HorizontalAlignment="Left" Height="338" VerticalAlignment="Top" Width="575" Margin="168,42,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <ListView x:Name="listViewSC" HorizontalAlignment="Left" Height="338" VerticalAlignment="Top" Width="575" Margin="168,42,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="listViewSC_MouseDoubleClick_1">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Förnamn" Width="70" DisplayMemberBinding="{Binding firstname}"/>

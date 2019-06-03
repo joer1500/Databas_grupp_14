@@ -32,12 +32,16 @@ namespace Uppgift6
 
         DbOperations db = new DbOperations();
         List<Schedule> schedule = new List<Schedule>();
+        List<Attendance> attendances = new List<Attendance>();
         DateTime choosenDate = DateTime.Today;
-        DateTime dateTime = DateTime.Today;
 
 
 
         private void SortSchedulesByDate()
+        {
+            schedule = schedule.Where(x => x.date == choosenDate).ToList();
+        }
+        private void FilterAttendancesByDate()
         {
             schedule = schedule.Where(x => x.date == choosenDate).ToList();
         }
@@ -49,6 +53,8 @@ namespace Uppgift6
 
         private void GetAttendance()
         {
+            attendances = db.GetAttendances();
+
 
             string year = choosenDate.Year.ToString();
             string month = choosenDate.Month.ToString();
@@ -60,8 +66,8 @@ namespace Uppgift6
 
             //db.AddNewAttendance(1, choosenDate, "Nej", "Ja", 1);
 
-            listViewAttendance.ItemsSource = null;
-            listViewAttendance.ItemsSource = db.GetAttendances();
+            //listViewAttendance.ItemsSource = null;
+            //listViewAttendance.ItemsSource = db.GetAttendances();
 
             //List<Attendance> attendances = new List<Attendance>();
             //attendances = db.GetAttendanceByDate(choosenDate);
@@ -282,7 +288,16 @@ namespace Uppgift6
 
         
 
-        private void listViewSC_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        //private void listViewSC_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        //{
+        //    ChildProfile m = new ChildProfile();
+        //    m.Show();
+        //    this.Close();
+        //}
+
+       
+
+        private void listViewSC_MouseDoubleClick_1(object sender, MouseButtonEventArgs e)
         {
             ChildProfile m = new ChildProfile();
             m.Show();
