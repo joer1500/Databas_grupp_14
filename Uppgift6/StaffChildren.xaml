@@ -29,7 +29,7 @@
         <Button x:Name="btnHandleStaff" Content="Hantera personal" HorizontalAlignment="Left" Margin="17,296,0,0" VerticalAlignment="Top" Width="137" Click="btnHandleStaff_Click" Height="37"/>
         <Button x:Name="btnAddChild" Content="Hantera barn" HorizontalAlignment="Left" VerticalAlignment="Top" Width="137" Margin="17,254,0,0" Height="37" Click="btnAddChild_Click"/>
         <Button x:Name="btnCloseStaffChildren" Content="Tillbaka" HorizontalAlignment="Left" Margin="31,7,0,0" VerticalAlignment="Top" Width="75" Height="28" BorderBrush="White" Background="White" FontSize="14" Click="btnCloseStaffChildren_Click"/>
-        <Image x:Name="arrow_back_png" Margin="17,13,792,389" Source="arrow_back.png" Stretch="Fill" RenderTransformOrigin="1.282,0.515" MouseDown="arrow_back_png_MouseDown_1" MaxHeight="18" MaxWidth="24"/>
+        <Image x:Name="arrow_back_png" Margin="-37,13,845.6,389.333" Source="arrow_back.png" Stretch="Fill" RenderTransformOrigin="1.282,0.515" MouseDown="arrow_back_png_MouseDown_1" MaxHeight="18" MaxWidth="24"/>
         <Button x:Name="btnAddGuardian" Content="Hantera vårdnadshavare" HorizontalAlignment="Left" Margin="17,338,0,0" VerticalAlignment="Top" Width="137" Height="37" Click="btnAddGuardian_Click"/>
         <Label x:Name="label1" Content="Administration" HorizontalAlignment="Left" Height="33" Margin="17,221,0,0" VerticalAlignment="Top" Width="116" FontSize="14" FontWeight="Bold"/>
         <Label x:Name="label_Copy" Content="Välj avdelning:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,48,0,0"/>

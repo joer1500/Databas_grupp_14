@@ -34,22 +34,7 @@ namespace Uppgift6
             listBoxChildName.ItemsSource = null;
             listBoxChildName.ItemsSource = children;
 
-            string allaVeckor, v21, v22, v23, v24, v25;
-            allaVeckor = "Alla veckor";
-            v21 = "Vecka 21";
-            v22 = "Vecka 22";
-            v23 = "Vecka 23";
-            v24 = "Vecka 24";
-            v25 = "Vecka 25";
-
-            comboBoxWeeks.Items.Add(allaVeckor);
-            comboBoxWeeks.Items.Add(v21);
-            comboBoxWeeks.Items.Add(v22);
-            comboBoxWeeks.Items.Add(v23);
-            comboBoxWeeks.Items.Add(v24);
-            comboBoxWeeks.Items.Add(v25);           
-
-            comboBoxWeeks.Text = "Alla veckor";
+            CreateValuesForCombobox();
         }
 
         public static int selectedSchoolchildID;
@@ -261,15 +246,7 @@ namespace Uppgift6
         {
             List<Schedule> schedulesForSelectedWeek = new List<Schedule>();
 
-            string v21, v22, v23, v24, v25, allaVeckor;
-            v21 = "Vecka 21";
-            v22 = "Vecka 22";
-            v23 = "Vecka 23";
-            v24 = "Vecka 24";
-            v25 = "Vecka 25";
-            allaVeckor = "Alla veckor";
-
-            if (vecka == v21)
+            if (vecka == "Vecka 21")
             {
                 foreach (Schedule s in schedules)
                 {
@@ -281,7 +258,7 @@ namespace Uppgift6
                 }
             }
 
-            if (vecka == v22) 
+            if (vecka == "Vecka 22") 
             {
                 foreach (Schedule s in schedules)
                 {
@@ -293,7 +270,7 @@ namespace Uppgift6
                 }
             }
 
-            if (vecka == v23) 
+            if (vecka == "Vecka 23") 
             {
                 foreach (Schedule s in schedules)
                 {
@@ -305,7 +282,7 @@ namespace Uppgift6
                 }
             }
 
-            if (vecka == v24)
+            if (vecka == "Vecka 24")
             {
                 foreach (Schedule s in schedules)
                 {
@@ -317,7 +294,7 @@ namespace Uppgift6
                 }
             }
 
-            if (vecka == v25)
+            if (vecka == "Vecka 25")
             {
                 foreach (Schedule s in schedules)
                 {
@@ -329,7 +306,7 @@ namespace Uppgift6
                 }
             }
 
-            if (vecka == allaVeckor)
+            if (vecka == "Alla veckor")
             {
                 foreach (Schedule s in schedules)
                 {
@@ -357,6 +334,29 @@ namespace Uppgift6
             Pickups win = new Pickups();
             win.Show();
             this.Close();
+        }
+
+        private void CreateValuesForCombobox()
+        {
+            List<string> veckor = new List<string>();
+
+            string allaVeckor, v21, v22, v23, v24, v25;
+            allaVeckor = "Alla veckor";
+            v21 = "Vecka 21";
+            v22 = "Vecka 22";
+            v23 = "Vecka 23";
+            v24 = "Vecka 24";
+            v25 = "Vecka 25";
+
+            veckor.Add(allaVeckor);
+            veckor.Add(v21);
+            veckor.Add(v22);
+            veckor.Add(v23);
+            veckor.Add(v24);
+            veckor.Add(v25);
+
+            comboBoxWeeks.ItemsSource = veckor;
+            comboBoxWeeks.Text = allaVeckor.ToString();
         }
     }       
 }
