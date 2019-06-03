@@ -992,7 +992,7 @@ namespace Uppgift6
                             {
                                 id = reader.GetInt32(0),
                                 schoolchild = reader.GetInt32(1),
-                                date = reader.GetString(2),
+                                date = reader.GetDateTime(2),
                                 attendance = reader.GetString(3),
                                 sick = reader.GetString(4),
                                 staff = reader.GetInt32(5),

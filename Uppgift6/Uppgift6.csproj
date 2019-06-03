@@ -95,6 +95,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Attendance.cs" />
+    <Compile Include="ChildProfile.xaml.cs">
+      <DependentUpon>ChildProfile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Guardian.cs" />
     <Compile Include="GuardianManage.xaml.cs">
       <DependentUpon>GuardianManage.xaml</DependentUpon>

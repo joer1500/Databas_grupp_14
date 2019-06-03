@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Npgsql;
 
 namespace Uppgift6
 {
@@ -11,15 +10,11 @@ namespace Uppgift6
     {
         public int id { get; set; }
         public int schoolchild { get; set; }
-        public string date { get; set; }
-        public string attendance { get; set; }
+        public DateTime date { get; set; }
         public string sick { get; set; }
+        public string attendance { get; set; }
         public int staff { get; set; }
-        //public TimeSpan has_drop { get; set; }
-        //public TimeSpan has_pickup { get; set; }
-
-
-
-
+        public string has_drop { get; set; }
+        public int has_pickup { get; set; }
     }
 }
