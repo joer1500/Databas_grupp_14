@@ -109,6 +109,7 @@
     <Compile Include="ManageSchoolchild.xaml.cs">
       <DependentUpon>ManageSchoolchild.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Needs.cs" />
     <Compile Include="NewAttendance.xaml.cs">
       <DependentUpon>NewAttendance.xaml</DependentUpon>
     </Compile>

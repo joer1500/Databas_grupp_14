@@ -8,7 +8,7 @@
         Title="ChildProfile" Height="450" Width="800">
     <Grid>
         <Button x:Name="btnCloseChildProfile" Content="Tillbaka" HorizontalAlignment="Left" Margin="18,18,0,0" VerticalAlignment="Top" Width="75" Click="btnCloseChildProfile_Click"/>
-        <ListView x:Name="listViewSC" HorizontalAlignment="Left" Height="165" VerticalAlignment="Top" Width="572" Margin="202,42,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <ListView x:Name="listViewSC" HorizontalAlignment="Left" Height="334" VerticalAlignment="Top" Width="572" Margin="202,42,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.View>
                 <GridView>
                     <!--<GridViewColumn Header="Förnamn" Width="70" DisplayMemberBinding="{Binding firstname}"/>-->
@@ -27,5 +27,7 @@
         <Label x:Name="label_childname" Content="Barnets namn" HorizontalAlignment="Left" Margin="202,4,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18" Width="210"/>
         <Label x:Name="label" Content="Vårnadshavare" HorizontalAlignment="Left" Margin="18,63,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label x:Name="label_vardnadshavare" Content="namnen här" HorizontalAlignment="Left" Margin="18,84,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy" Content="Behov" HorizontalAlignment="Left" Margin="18,161,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="label_needs" Content="behov visas här" HorizontalAlignment="Left" Margin="18,181,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

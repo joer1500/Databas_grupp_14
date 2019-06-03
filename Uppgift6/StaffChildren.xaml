@@ -42,7 +42,7 @@
         <RadioButton x:Name="rbtn_red" Content="Röd" HorizontalAlignment="Left" Margin="38,119,0,0" VerticalAlignment="Top" Checked="rbtn_red_Checked"/>
         <RadioButton x:Name="rbtn_yellow" Content="Gul" HorizontalAlignment="Left" Margin="38,139,0,0" VerticalAlignment="Top" Checked="rbtn_yellow_Checked"/>
         <RadioButton x:Name="rbtn_green" Content="Grön" HorizontalAlignment="Left" Margin="38,159,0,0" VerticalAlignment="Top" Checked="rbtn_green_Checked"/>
-        <Label x:Name="lblDoubleClickGuardianInfo" Content="Dubbelklicka för att få fram namn och telefonnummer till vårdnadshavare" HorizontalAlignment="Left" Margin="168,380,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblDoubleClickGuardianInfo" Content="Dubbelklicka för att se barnets vårdnadshavare, behov och vem som får hämta." HorizontalAlignment="Left" Margin="168,380,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btnSaveAttendance" Content="Närvaro" HorizontalAlignment="Left" Height="31" Margin="612,375,0,0" VerticalAlignment="Top" Width="96" Click="btnSaveAttendance_Click"/>
         <ComboBox x:Name="comboBoxAttendance" HorizontalAlignment="Left" Height="24" Margin="809,69,0,0" VerticalAlignment="Top" Width="66" DropDownClosed="comboBoxAttendance_DropDownClosed"/>
         <Button x:Name="btnNewAttendance" Content="Ny närvaro" HorizontalAlignment="Left" Height="31" Margin="713,375,0,0" VerticalAlignment="Top" Width="90" IsEnabled="True" Click="btnNewAttendance_Click"/>

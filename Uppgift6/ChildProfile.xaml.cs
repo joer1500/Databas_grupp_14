@@ -20,6 +20,7 @@ namespace Uppgift6
     public partial class ChildProfile : Window
     {
         DbOperations db = new DbOperations();
+        //choosenChild int =
 
         public ChildProfile()
         {
@@ -33,11 +34,16 @@ namespace Uppgift6
 
             // Uppdatera barnets namn här label_childname.Content = 
 
-            //Läs in barnets schema
+            //Läs in barnets scheman
             List<Schedule> schedule = new List<Schedule>();
             schedule = db.GetChildScheduleDatesFromChildID(1);
             listViewSC.ItemsSource = schedule;
 
+            //Läs in barnets behov
+            List<Needs> needs = new List<Needs>();
+            needs = db.GetNeedsFromSchoolchildID(1);
+            var n = string.Join(Environment.NewLine, needs);
+            label_needs.Content = n;
         }
 
         private void btnCloseChildProfile_Click(object sender, RoutedEventArgs e)

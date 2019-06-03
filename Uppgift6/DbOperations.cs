@@ -62,6 +62,35 @@ namespace Uppgift6
             }
         }
 
+        public List<Needs> GetNeedsFromSchoolchildID(int ID)
+        {
+            Needs n;
+            List<Needs> needs = new List<Needs>();
+
+            string stmt = $"SELECT need_id, schoolchild_id, need FROM schoolchild_need WHERE schoolchild_id = {ID}";
+
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand(stmt, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        n = new Needs()
+                        {
+                            id = (reader.GetInt32(0)),
+                            child_id = (reader.GetInt32(1)),
+                            need = (reader.GetString(2))
+                        };
+                        needs.Add(n);
+                    }
+                }
+                return needs;
+            }
+
+        }
+
         public void DeleteSchedule(int id) //Ta bort schedule baserat på ID
         {
             string stmt = "DELETE FROM schedule WHERE schedule_id = @scheduleid";
