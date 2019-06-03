@@ -30,7 +30,6 @@ namespace Uppgift6
         }
 
         DbOperations db = new DbOperations();
-        Schedule sd;
         List<Schedule> schedule = new List<Schedule>();
         DateTime choosenDate = DateTime.Today;
 
@@ -257,19 +256,9 @@ namespace Uppgift6
 
         private void listViewSC_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            sd = (Schedule)listViewSC.SelectedItem;
-            List<Guardian> guardian = new List<Guardian>();
-            guardian = db.GetGuardianFromSchoolchildID(sd.schoolchild_id);
-            var message = string.Join(Environment.NewLine, guardian);
-
-            if (guardian == null)
-            {
-                return;
-            }
-            else
-            {
-                MessageBox.Show(message);
-            }
+            ChildProfile m = new ChildProfile();
+            m.Show();
+            this.Close();
         }
     }
 
