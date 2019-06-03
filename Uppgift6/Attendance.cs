@@ -16,5 +16,7 @@ namespace Uppgift6
         public int staff { get; set; }
         public string has_drop { get; set; }
         public int has_pickup { get; set; }
+        public string firstname { get; set; }
+        public string lastname { get; set; }
     }
 }

@@ -964,14 +964,14 @@ namespace Uppgift6
             }
         }
 
-        public List<Attendance> GetAttendanceByDate(string date) //Hämtar närvaro-lista baserat på datum
+        public List<Attendance> GetAttendances() //Hämtar närvaro-lista
         {
 
             //date.ToShortDateString();
             Attendance att;
             List<Attendance> attendances = new List<Attendance>();
 
-            string stmt = "SELECT attendance.attendance_id, attendance.schoolchild_id, attendance.date, attendance.attendance, attendance.sick, attendance.attendance_staff from attendance INNER JOIN schoolchild on attendance.schoolchild_id= schoolchild.schoolchild_id WHERE date = @dt";
+            string stmt = "SELECT attendance.attendance_id, attendance.schoolchild_id, attendance.date, attendance.attendance, attendance.sick, attendance.attendance_staff, schoolchild.firstname, schoolchild.lastname from attendance INNER JOIN schoolchild on attendance.schoolchild_id= schoolchild.schoolchild_id ORDER BY lastname";
             using (var conn = new
                 NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
             {
@@ -981,7 +981,7 @@ namespace Uppgift6
                     cmd.Connection = conn;
                     cmd.CommandText = stmt;
                     //cmd.Parameters.AddWithValue("dt", date.ToShortDateString());
-                    cmd.Parameters.AddWithValue("dt", date);
+                    //cmd.Parameters.AddWithValue("dt", date);
                     //cmd.Parameters.AddWithValue(NpgsqlDateTime;
 
                     using (var reader = cmd.ExecuteReader())
@@ -996,6 +996,8 @@ namespace Uppgift6
                                 attendance = reader.GetString(3),
                                 sick = reader.GetString(4),
                                 staff = reader.GetInt32(5),
+                                firstname = reader.GetString(6),
+                                lastname = reader.GetString(7)
                             };
                             attendances.Add(att);
                         }

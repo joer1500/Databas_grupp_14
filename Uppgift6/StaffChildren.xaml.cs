@@ -58,10 +58,10 @@ namespace Uppgift6
             string myDate = $"{year}-0{month}-0{day}";
 
 
-            db.AddNewAttendance(1, choosenDate, "Nej", "Ja", 1);
+            //db.AddNewAttendance(1, choosenDate, "Nej", "Ja", 1);
 
-            //listViewAttendance.ItemsSource = null;
-            //listViewAttendance.ItemsSource = db.GetAttendanceByDate(date);
+            listViewAttendance.ItemsSource = null;
+            listViewAttendance.ItemsSource = db.GetAttendances();
 
             //List<Attendance> attendances = new List<Attendance>();
             //attendances = db.GetAttendanceByDate(choosenDate);
