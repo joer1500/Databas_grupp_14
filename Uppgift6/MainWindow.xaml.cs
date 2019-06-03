@@ -30,6 +30,7 @@ namespace Uppgift6
            
         }
         List<Guardian> guardians = new List<Guardian>();
+        
         public static string SetValueForList = "";
 
         public void GetListValue()

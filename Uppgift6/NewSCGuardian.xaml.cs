@@ -38,5 +38,12 @@ namespace Uppgift6
             win.Show();
             this.Close();
         }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            NewSchoolchild win = new NewSchoolchild();
+            win.Show();
+            this.Close();
+        }
     }
 }

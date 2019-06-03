@@ -56,6 +56,7 @@ namespace Uppgift6
         Schedule schedule;
         List<Schedule> schedules = new List<Schedule>();
 
+       
 
         private void BtnSaveNewSchedule_Click(object sender, RoutedEventArgs e)
         {
