@@ -19,5 +19,13 @@ namespace Uppgift6
         {
             return $"{firstname} {lastname}";
         }
+
+        public string fullName //Använder denna för att visa namn i combobox 
+        {
+            get
+            {
+                return $"{firstname} {lastname}";
+            }
+        }
     }
 }

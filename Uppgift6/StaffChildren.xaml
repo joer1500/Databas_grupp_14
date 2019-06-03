@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="StaffChildren" Height="450" Width="956.073" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,13,-0.333">
-        <ListView x:Name="listViewSC" HorizontalAlignment="Left" Height="291" VerticalAlignment="Top" Width="628" Margin="168,44,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="listViewSC_MouseDoubleClick_1" SelectionChanged="listViewSC_SelectionChanged">
+        <ListView x:Name="listViewSC" HorizontalAlignment="Left" Height="291" VerticalAlignment="Top" Width="630" Margin="168,44,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="listViewSC_MouseDoubleClick_1" SelectionChanged="listViewSC_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Förnamn" Width="70" DisplayMemberBinding="{Binding firstname}"/>
@@ -43,18 +43,18 @@
         <RadioButton x:Name="rbtn_yellow" Content="Gul" HorizontalAlignment="Left" Margin="38,139,0,0" VerticalAlignment="Top" Checked="rbtn_yellow_Checked"/>
         <RadioButton x:Name="rbtn_green" Content="Grön" HorizontalAlignment="Left" Margin="38,159,0,0" VerticalAlignment="Top" Checked="rbtn_green_Checked"/>
         <Label x:Name="lblDoubleClickGuardianInfo" Content="Dubbelklicka för att få fram namn och telefonnummer till vårdnadshavare" HorizontalAlignment="Left" Margin="168,380,0,0" VerticalAlignment="Top"/>
-        <ListView x:Name="listViewAttendance" HorizontalAlignment="Left" Height="291" Margin="741,44,0,0" VerticalAlignment="Top" Width="55" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="1" SelectionChanged="listViewAttendance_SelectionChanged">
+        <Button x:Name="btnSaveAttendance" Content="Närvaro" HorizontalAlignment="Left" Height="31" Margin="612,375,0,0" VerticalAlignment="Top" Width="96" Click="btnSaveAttendance_Click"/>
+        <ComboBox x:Name="comboBoxAttendance" HorizontalAlignment="Left" Height="24" Margin="809,69,0,0" VerticalAlignment="Top" Width="66" DropDownClosed="comboBoxAttendance_DropDownClosed"/>
+        <Button x:Name="btnNewAttendance" Content="Ny närvaro" HorizontalAlignment="Left" Height="31" Margin="713,375,0,0" VerticalAlignment="Top" Width="90" IsEnabled="True" Click="btnNewAttendance_Click"/>
+        <Button x:Name="btnAttendanceYes" Content="Ja" HorizontalAlignment="Left" Height="25" Margin="809,109,0,0" VerticalAlignment="Top" Width="34" IsEnabled="False"/>
+        <Button x:Name="btnAttendanceNo" Content="Nej" HorizontalAlignment="Left" Height="25" Margin="848,109,0,0" VerticalAlignment="Top" Width="34" IsEnabled="False"/>
+        <ListView x:Name="listViewAttendance" HorizontalAlignment="Left" Height="287" Margin="741,46,0,0" VerticalAlignment="Top" Width="55" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0" SelectionChanged="listViewAttendance_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Närvaro" Width="50" DisplayMemberBinding="{Binding attendance}"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="btnSaveAttendance" Content="Närvaro" HorizontalAlignment="Left" Height="31" Margin="612,375,0,0" VerticalAlignment="Top" Width="96" Click="btnSaveAttendance_Click"/>
-        <ComboBox x:Name="comboBoxAttendance" HorizontalAlignment="Left" Height="24" Margin="801,69,0,0" VerticalAlignment="Top" Width="66" DropDownClosed="comboBoxAttendance_DropDownClosed"/>
-        <Button x:Name="btnNewAttendance" Content="Ny närvaro" HorizontalAlignment="Left" Height="31" Margin="713,375,0,0" VerticalAlignment="Top" Width="90" IsEnabled="False"/>
-        <Button x:Name="btnAttendanceYes" Content="Ja" HorizontalAlignment="Left" Height="25" Margin="801,109,0,0" VerticalAlignment="Top" Width="34" IsEnabled="False"/>
-        <Button x:Name="btnAttendanceNo" Content="Ja" HorizontalAlignment="Left" Height="25" Margin="840,109,0,0" VerticalAlignment="Top" Width="34" IsEnabled="False"/>
 
 
     </Grid>

@@ -417,6 +417,12 @@ namespace Uppgift6
         {
             selectedSchedule = (Schedule)listViewSC.SelectedItem;
         }
+
+        private void btnNewAttendance_Click(object sender, RoutedEventArgs e)
+        {
+            NewAttendance win = new NewAttendance();
+            win.Show();
+        }
     }
 
 }
