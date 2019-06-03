@@ -1005,7 +1005,7 @@ namespace Uppgift6
             Attendance att;
             List<Attendance> attendances = new List<Attendance>();
 
-            string stmt = "SELECT attendance.attendance_id, attendance.schoolchild_id, attendance.date, attendance.attendance, attendance.sick, attendance.attendance_staff, schoolchild.firstname, schoolchild.lastname from attendance INNER JOIN schoolchild on attendance.schoolchild_id= schoolchild.schoolchild_id ORDER BY lastname";
+            string stmt = "SELECT attendance.attendance_id, attendance.schoolchild_id, attendance.date, attendance.attendance, attendance.sick, attendance.attendance_staff, schoolchild.firstname, schoolchild.lastname, schoolchild.section_id FROM attendance INNER JOIN schoolchild on attendance.schoolchild_id = schoolchild.schoolchild_id ORDER BY lastname";
             using (var conn = new
                 NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
             {
@@ -1014,9 +1014,6 @@ namespace Uppgift6
                 {
                     cmd.Connection = conn;
                     cmd.CommandText = stmt;
-                    //cmd.Parameters.AddWithValue("dt", date.ToShortDateString());
-                    //cmd.Parameters.AddWithValue("dt", date);
-                    //cmd.Parameters.AddWithValue(NpgsqlDateTime;
 
                     using (var reader = cmd.ExecuteReader())
                     {
@@ -1024,14 +1021,15 @@ namespace Uppgift6
                         {
                             att = new Attendance
                             {
-                                id = reader.GetInt32(0),
-                                schoolchild = reader.GetInt32(1),
-                                date = reader.GetDateTime(2),
-                                attendance = reader.GetString(3),
-                                sick = reader.GetString(4),
-                                staff = reader.GetInt32(5),
-                                firstname = reader.GetString(6),
-                                lastname = reader.GetString(7)
+                                id = (reader.GetInt32(0)),
+                                schoolchild = (reader.GetInt32(1)),
+                                date = (reader.GetDateTime(2)),
+                                attendance = (reader.GetString(3)),
+                                sick = (reader.GetString(4)),
+                                staff = (reader.GetInt32(5)),
+                                firstname = (reader.GetString(6)),
+                                lastname = (reader.GetString(7)),
+                                section_id = (reader.GetInt32(8))
                             };
                             attendances.Add(att);
                         }
@@ -1058,6 +1056,27 @@ namespace Uppgift6
                     cmd.Parameters.AddWithValue("sick", sick);
                     cmd.Parameters.AddWithValue("att", attendance);
                     cmd.Parameters.AddWithValue("staff", staff);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void UpdateAttendance(int schoolchild, DateTime date, string sick, string attendance)
+        {
+            string stmt = "UPDATE attendance SET (schoolchild_id, date, sick, attendance) = (@id, @dt, @sick, @att) WHERE schoolchild_id = @id AND date = @dt;";
+
+            using (var conn = new
+            NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("id", schoolchild);
+                    cmd.Parameters.AddWithValue("dt", date);
+                    cmd.Parameters.AddWithValue("sick", sick);
+                    cmd.Parameters.AddWithValue("att", attendance);
                     cmd.ExecuteNonQuery();
                 }
             }

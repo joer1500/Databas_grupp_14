@@ -24,9 +24,11 @@ namespace Uppgift6
         {
             InitializeComponent();
             GetSchedules();
-            GetAttendance();
             SortSchedulesByDate();
             EmptyListBoxAndFill();
+            GetAttendance();
+            FilterAttendancesByDate();
+            UpdateAttendanceList();
             UpdateLabelView();
         }
 
@@ -41,9 +43,10 @@ namespace Uppgift6
         {
             schedule = schedule.Where(x => x.date == choosenDate).ToList();
         }
+
         private void FilterAttendancesByDate()
         {
-            schedule = schedule.Where(x => x.date == choosenDate).ToList();
+            attendances = attendances.Where(x => x.date == choosenDate).ToList();
         }
 
         private void GetSchedules()
@@ -54,34 +57,30 @@ namespace Uppgift6
         private void GetAttendance()
         {
             attendances = db.GetAttendances();
-
-
-            string year = choosenDate.Year.ToString();
-            string month = choosenDate.Month.ToString();
-            string day = choosenDate.Day.ToString();
-
-            string date = choosenDate.ToShortDateString();
-            string myDate = $"{year}-0{month}-0{day}";
-
-
-            //db.AddNewAttendance(1, choosenDate, "Nej", "Ja", 1);
-
-            //listViewAttendance.ItemsSource = null;
-            //listViewAttendance.ItemsSource = db.GetAttendances();
-
-            //List<Attendance> attendances = new List<Attendance>();
-            //attendances = db.GetAttendanceByDate(choosenDate);
-            //listViewAttendance.ItemsSource = attendances;
-
-
-
-            //listViewAttendance.ItemsSource = db.GetAttendanceByDate(choosenDate);
-
         }
+
         private void EmptyListBoxAndFill()
         {
             listViewSC.ItemsSource = null;
             listViewSC.ItemsSource = schedule;
+        }
+
+        private void UpdateAttendanceList()
+        {
+            if (listViewAttendance == null)
+            {
+                return;
+            }
+
+            foreach (var schoolchild in attendances)
+            {
+                if (schoolchild.attendance == "True")
+                {
+                    
+                }
+            }
+            listViewAttendance.ItemsSource = null;
+            listViewAttendance.ItemsSource = attendances;
         }
 
         private void UpdateLabelView() {
@@ -94,21 +93,25 @@ namespace Uppgift6
         private void SortSchedulesBySectionBlue()
         {
             schedule = schedule.Where(x => x.section_id == 1).ToList();
+            attendances = attendances.Where(x => x.section_id == 1).ToList();
         }
 
         private void SortSchedulesBySectionGreen()
         {
             schedule = schedule.Where(x => x.section_id == 2).ToList();
+            attendances = attendances.Where(x => x.section_id == 2).ToList();
         }
 
         private void SortSchedulesBySectionYellow()
         {
             schedule = schedule.Where(x => x.section_id == 3).ToList();
+            attendances = attendances.Where(x => x.section_id == 3).ToList();
         }
 
         private void SortSchedulesBySectionRed()
         {
             schedule = schedule.Where(x => x.section_id == 4).ToList();
+            attendances = attendances.Where(x => x.section_id == 4).ToList();
         }
 
         #endregion
@@ -125,6 +128,10 @@ namespace Uppgift6
                 GetSchedules();
                 SortSchedulesByDate();
                 EmptyListBoxAndFill();
+
+                GetAttendance();
+                FilterAttendancesByDate();
+                UpdateAttendanceList();
             }
 
             else if (rbtn_blue.IsChecked == true)
@@ -168,40 +175,69 @@ namespace Uppgift6
             if (rbtn_all.IsChecked == true)
             {
                 GetSchedules();
-                SortSchedulesByDate();
+                SortSchedulesByDate();               
+
+                GetAttendance();
+                FilterAttendancesByDate();
+
                 EmptyListBoxAndFill();
+                UpdateAttendanceList();
             }
 
             else if (rbtn_blue.IsChecked == true)
             {
                 GetSchedules();
                 SortSchedulesByDate();
+
+                GetAttendance();
+                FilterAttendancesByDate();
+
                 SortSchedulesBySectionBlue();
+
                 EmptyListBoxAndFill();
+                UpdateAttendanceList();
             }
 
             else if (rbtn_red.IsChecked == true)
             {
                 GetSchedules();
                 SortSchedulesByDate();
+
+                GetAttendance();
+                FilterAttendancesByDate();
+
                 SortSchedulesBySectionRed();
+
                 EmptyListBoxAndFill();
+                UpdateAttendanceList();
             }
 
             else if (rbtn_green.IsChecked == true)
             {
                 GetSchedules();
                 SortSchedulesByDate();
+
+                GetAttendance();
+                FilterAttendancesByDate();
+
                 SortSchedulesBySectionGreen();
+
                 EmptyListBoxAndFill();
+                UpdateAttendanceList();
             }
 
             else if (rbtn_yellow.IsChecked == true)
             {
                 GetSchedules();
                 SortSchedulesByDate();
+
+                GetAttendance();
+                FilterAttendancesByDate();
+
                 SortSchedulesBySectionYellow();
+
                 EmptyListBoxAndFill();
+                UpdateAttendanceList();
             }
         }
 
@@ -249,39 +285,68 @@ namespace Uppgift6
         {
             GetSchedules();
             SortSchedulesByDate();
+
+            GetAttendance();
+            FilterAttendancesByDate();
+
             EmptyListBoxAndFill();
+            UpdateAttendanceList();
         }
 
         private void rbtn_blue_Checked(object sender, RoutedEventArgs e)
         {
             GetSchedules();
             SortSchedulesByDate();
+
+            GetAttendance();
+            FilterAttendancesByDate();
+
             SortSchedulesBySectionBlue();
+
             EmptyListBoxAndFill();
+            UpdateAttendanceList();
         }
 
         private void rbtn_red_Checked(object sender, RoutedEventArgs e)
         {
             GetSchedules();
             SortSchedulesByDate();
+
+            GetAttendance();
+            FilterAttendancesByDate();
+
             SortSchedulesBySectionRed();
+
             EmptyListBoxAndFill();
+            UpdateAttendanceList();
         }
 
         private void rbtn_yellow_Checked(object sender, RoutedEventArgs e)
         {
             GetSchedules();
             SortSchedulesByDate();
+
+            GetAttendance();
+            FilterAttendancesByDate();
+
             SortSchedulesBySectionYellow();
+
             EmptyListBoxAndFill();
+            UpdateAttendanceList();
         }
 
         private void rbtn_green_Checked(object sender, RoutedEventArgs e)
         {
             GetSchedules();
             SortSchedulesByDate();
+
+            GetAttendance();
+            FilterAttendancesByDate();
+
             SortSchedulesBySectionGreen();
+
             EmptyListBoxAndFill();
+            UpdateAttendanceList();
         }
         #endregion
 
@@ -302,6 +367,29 @@ namespace Uppgift6
             ChildProfile m = new ChildProfile();
             m.Show();
             this.Close();
+        }
+
+        private void btnSaveAttendance_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var schoolchild in attendances)
+            {
+                if (schoolchild.attendance == "Ja")
+                {
+                    MessageBox.Show($"{schoolchild.firstname} {schoolchild.attendance}");
+                }
+            }   
+        }
+
+        private void cb_Checked(object sender, RoutedEventArgs e)
+        {
+            foreach (var schoolchild in attendances)
+            {
+                if (schoolchild.attendance == "True")
+                {
+                    MessageBox.Show("Meddelande");
+                }
+            }
+
         }
     }
 

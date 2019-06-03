@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Uppgift6"
         mc:Ignorable="d"
-        Title="StaffChildren" Height="450" Width="842.628" WindowStartupLocation="CenterScreen">
-    <Grid Margin="0,0,3,-0.333">
-        <ListView x:Name="listViewSC" HorizontalAlignment="Left" Height="338" VerticalAlignment="Top" Width="575" Margin="168,42,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="listViewSC_MouseDoubleClick_1">
+        Title="StaffChildren" Height="450" Width="956.073" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,13,-0.333">
+        <ListView x:Name="listViewSC" HorizontalAlignment="Left" Height="291" VerticalAlignment="Top" Width="575" Margin="168,42,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="listViewSC_MouseDoubleClick_1">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Förnamn" Width="70" DisplayMemberBinding="{Binding firstname}"/>
@@ -42,13 +42,13 @@
         <RadioButton x:Name="rbtn_yellow" Content="Gul" HorizontalAlignment="Left" Margin="38,139,0,0" VerticalAlignment="Top" Checked="rbtn_yellow_Checked"/>
         <RadioButton x:Name="rbtn_green" Content="Grön" HorizontalAlignment="Left" Margin="38,159,0,0" VerticalAlignment="Top" Checked="rbtn_green_Checked"/>
         <Label x:Name="lblDoubleClickGuardianInfo" Content="Dubbelklicka för att få fram namn och telefonnummer till vårdnadshavare" HorizontalAlignment="Left" Margin="168,380,0,0" VerticalAlignment="Top"/>
-        <ListView x:Name="listViewAttendance" HorizontalAlignment="Left" Height="338" Margin="743,42,0,0" VerticalAlignment="Top" Width="55">
+        <ListView x:Name="listViewAttendance" HorizontalAlignment="Left" Height="164" Margin="748,42,0,0" VerticalAlignment="Top" Width="55" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="1">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Närvaro" Width="50" >
+                    <GridViewColumn Header="Närvaro" Width="50">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <CheckBox IsChecked="{Binding attendance}"/>
+                                <CheckBox x:Name="cb" IsChecked= "{Binding attendance}" Checked="cb_Checked"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -56,6 +56,8 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <Button x:Name="btnSaveAttendance" Content="Spara närvaro" HorizontalAlignment="Left" Height="31" Margin="700,341,0,0" VerticalAlignment="Top" Width="96" Click="btnSaveAttendance_Click"/>
+        
 
     </Grid>
 </Window>
