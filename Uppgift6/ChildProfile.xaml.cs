@@ -20,31 +20,65 @@ namespace Uppgift6
     public partial class ChildProfile : Window
     {
         DbOperations db = new DbOperations();
-        //choosenChild int =
 
         public ChildProfile()
         {
             InitializeComponent();
 
+            GetGuardians();
+            GetChildName();
+            GetSchedule();
+            GetNeeds();
+            GetPickup();
+        }
+
+        //Sätter valt barn till variabeln id
+        int id = int.Parse(StaffChildren.SetValueForList);
+
+
+        #region Läser in vid öppning
+
+        public void GetGuardians(){
             //Läser in Guardians för valt barn
             List<Guardian> guardian = new List<Guardian>();
-            guardian = db.GetGuardianFromSchoolchildID(1);
+            guardian = db.GetGuardianFromSchoolchildID(id);
             var vh = string.Join(Environment.NewLine, guardian);
             label_vardnadshavare.Content = vh;
+        }
 
-            // Uppdatera barnets namn här label_childname.Content = 
+        public void GetChildName() {
+            //Läser in barnets namn här 
+            Schoolchild schoolchild = new Schoolchild();
+            schoolchild = db.GetSchoolchildByID(id);
+            string sc = schoolchild.firstname + " " + schoolchild.lastname;
+            label_childname.Content = sc;
+        }
 
+        public void GetSchedule() {
             //Läs in barnets scheman
             List<Schedule> schedule = new List<Schedule>();
-            schedule = db.GetChildScheduleDatesFromChildID(1);
+            schedule = db.GetChildScheduleDatesFromChildID(id);
             listViewSC.ItemsSource = schedule;
+        }
 
+        public void GetNeeds (){
             //Läs in barnets behov
             List<Needs> needs = new List<Needs>();
-            needs = db.GetNeedsFromSchoolchildID(1);
+            needs = db.GetNeedsFromSchoolchildID(id);
             var n = string.Join(Environment.NewLine, needs);
             label_needs.Content = n;
         }
+
+        private void GetPickup() {
+            //Läs in barnets godkända hämtare
+            List<Pickup> pickup = new List<Pickup>();
+            pickup = db.GetAllAllowedPickupBySchoolchildID(id);
+            var p = string.Join(Environment.NewLine, pickup);
+            label_pickup.Content = p;
+        }
+
+        #endregion
+
 
         private void btnCloseChildProfile_Click(object sender, RoutedEventArgs e)
         {

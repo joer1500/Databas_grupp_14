@@ -29,5 +29,7 @@
         <Label x:Name="label_vardnadshavare" Content="namnen här" HorizontalAlignment="Left" Margin="18,84,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label_Copy" Content="Behov" HorizontalAlignment="Left" Margin="18,161,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label x:Name="label_needs" Content="behov visas här" HorizontalAlignment="Left" Margin="18,181,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy1" Content="Godkända hämtare" HorizontalAlignment="Left" Margin="18,256,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="label_pickup" Content="hämtare visas här" HorizontalAlignment="Left" Margin="18,276,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

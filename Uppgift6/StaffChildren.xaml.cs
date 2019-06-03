@@ -33,6 +33,8 @@ namespace Uppgift6
             SetComboboxItems();
         }
 
+        public static string SetValueForList = "";
+
         DbOperations db = new DbOperations();
         List<Schedule> schedule = new List<Schedule>();
         List<Attendance> attendances = new List<Attendance>();
@@ -356,9 +358,12 @@ namespace Uppgift6
        
         private void listViewSC_MouseDoubleClick_1(object sender, MouseButtonEventArgs e)
         {
+            Schedule schedule = (Schedule)listViewSC.SelectedItem;
+            SetValueForList = schedule.schoolchild_id.ToString();
             ChildProfile m = new ChildProfile();
             m.Show();
             this.Close();
+
         }
 
         private void btnSaveAttendance_Click(object sender, RoutedEventArgs e)
