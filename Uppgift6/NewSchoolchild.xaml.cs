@@ -105,7 +105,9 @@ namespace Uppgift6
             else if (MessageBox.Show($"Vill du koppla barnet {selectedSchoolchild.firstname} {selectedSchoolchild.lastname} till vårdnadshavaren {selectedGuardian.firstname} {selectedGuardian.lastname}? ", "Bekräfta koppling", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 db.ConnectGuardianSchoolchild(selectedSchoolchild.id, selectedGuardian.id);
-                
+                ManageSchoolchild win = new ManageSchoolchild();
+                win.Show();
+                this.Close();
             }
         }
 
