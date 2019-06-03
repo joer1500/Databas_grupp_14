@@ -25,7 +25,7 @@
         <Button x:Name="btnSaveNewSchedule" Content="Lägg till nytt schema" HorizontalAlignment="Left" Margin="585,366,0,0" VerticalAlignment="Top" Width="123" Click="BtnSaveNewSchedule_Click"/>
         <TextBlock x:Name="textBlockChildName" HorizontalAlignment="Left" Margin="23,332,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="39" Width="206"><Run Text="Markera det barn i listan som du vill "/><Run Text="se eller "/><Run Text="lägga till ett schema för"/></TextBlock>
         <Button x:Name="btnCloseGuardian" Content="Tillbaka" HorizontalAlignment="Left" Margin="23,12,0,0" VerticalAlignment="Top" Width="75" Height="22" Click="btnCloseGuardian_Click"/>
-        <Label x:Name="label_child_schema" Content="" HorizontalAlignment="Left" Margin="278,23,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
+        <Label x:Name="label_child_schema" Content="" HorizontalAlignment="Left" Margin="278,0,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
         <Separator x:Name="separator_1" HorizontalAlignment="Left" Height="16" Margin="41,190,0,0" VerticalAlignment="Top" Width="442" RenderTransformOrigin="0.5,0.5">
             <Separator.RenderTransform>
                 <TransformGroup>
@@ -64,6 +64,7 @@
         <ComboBox x:Name="comboBoxWeeks" HorizontalAlignment="Left" Margin="399,34,0,0" VerticalAlignment="Top" Width="105" Height="22" SelectionChanged="ComboBoxWeeks_SelectionChanged"/>
         <Label x:Name="lblLoggedInGuardian" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,37,0,0" Width="178" FontSize="18" FontWeight="Bold"/>
         <Button x:Name="btnPickup" Content="Vem får hämta" HorizontalAlignment="Left" VerticalAlignment="Top" Width="113" Margin="23,376,0,0" Click="btnPickup_Click"/>
+        <Button x:Name="btnOpenNeeds" Content="Behov" HorizontalAlignment="Left" Margin="146,376,0,0" VerticalAlignment="Top" Width="75" Click="btnOpenNeeds_Click"/>
 
     </Grid>
 </Window>

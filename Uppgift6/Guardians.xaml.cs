@@ -358,5 +358,20 @@ namespace Uppgift6
             comboBoxWeeks.ItemsSource = veckor;
             comboBoxWeeks.Text = allaVeckor.ToString();
         }
+
+        private void btnOpenNeeds_Click(object sender, RoutedEventArgs e)
+        {
+            if (schoolchild == null)
+            {
+                MessageBox.Show("Du måste välja ett barn i listan.");
+            }
+            else
+            {
+                Needs m = new Needs();
+                m.Show();
+                this.Close();
+            }
+            
+        }
     }       
 }

@@ -110,6 +110,9 @@
       <DependentUpon>ManageSchoolchild.xaml</DependentUpon>
     </Compile>
     <Compile Include="Needs.cs" />
+    <Compile Include="Needs.xaml.cs">
+      <DependentUpon>Needs.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NewAttendance.xaml.cs">
       <DependentUpon>NewAttendance.xaml</DependentUpon>
     </Compile>
@@ -172,6 +175,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ManageSchoolchild.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Needs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
