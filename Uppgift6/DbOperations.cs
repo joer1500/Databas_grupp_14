@@ -72,21 +72,27 @@ namespace Uppgift6
             using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
             {
                 conn.Open();
-                using (var cmd = new NpgsqlCommand(stmt, conn))
-                using (var reader = cmd.ExecuteReader())
+                using (var cmd = new NpgsqlCommand())
                 {
-                    while (reader.Read())
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("schoolchild_ID", ID);
+
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        n = new Needs()
+                        while (reader.Read())
                         {
-                            id = (reader.GetInt32(0)),
-                            child_id = (reader.GetInt32(1)),
-                            need = (reader.GetString(2))
-                        };
-                        needs.Add(n);
+                            n = new Needs()
+                            {
+                                id = (reader.GetInt32(0)),
+                                child_id = (reader.GetInt32(1)),
+                                need = (reader.GetString(2))
+                            };
+                            needs.Add(n);
+                        }
                     }
+                    return needs;
                 }
-                return needs;
             }
 
         }
