@@ -330,10 +330,19 @@ namespace Uppgift6
 
         private void btnPickup_Click(object sender, RoutedEventArgs e)
         {
-                       
-            Pickups win = new Pickups();
-            win.Show();
-            this.Close();
+            schoolchild = (Schoolchild)listBoxChildName.SelectedItem;
+            if (schoolchild == null)
+            {
+                MessageBox.Show($"Vänligen välj ett barn i listan");
+            }
+
+            else
+            {
+                Pickups win = new Pickups();
+                win.Show();
+                this.Close();
+            }
+            
         }
 
         private void CreateValuesForCombobox()
@@ -363,7 +372,7 @@ namespace Uppgift6
         {
             if (schoolchild == null)
             {
-                MessageBox.Show("Du måste välja ett barn i listan.");
+                MessageBox.Show("Vänligen välj ett barn i listan");
             }
             else
             {

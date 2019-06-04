@@ -17,7 +17,7 @@
             </ListView.View>
             
         </ListView>
-        <Button x:Name="btnExit" Content="Tillbaka" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="10,10,0,0" Click="btnExit_Click"/>
+        <Button x:Name="btnExit" Content="Tillbaka" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="10,10,0,0" Click="btnExit_Click" Height="29" BorderBrush="White" Background="White" FontSize="14"/>
         <Label x:Name="lblAllowedPickups" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,44,0,0" FontSize="18" FontWeight="Bold"/>
         <Label x:Name="lblAddNewPickup" Content="Lägg till person" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="500,44,0,0" FontSize="18" FontWeight="Bold"/>
         <Label x:Name="lblFirstname" Content="Förnamn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="500,83,0,0"/>
