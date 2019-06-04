@@ -31,13 +31,7 @@ namespace Uppgift6
         Staff staff = new Staff();   
         List<Staff> staffList = new List<Staff>();
 
-
-        //string orderby = "";
-        //private void GetSchedules()
-        //{
-        //    schedule = db.GetSchoolchildrenSchedule();
-        //}
-
+        #region Metoder
         private void UpdateListView()
         {
             DbOperations db = new DbOperations();
@@ -118,26 +112,46 @@ namespace Uppgift6
             
             
         }
-      
+        #endregion
+
+        #region Selection Changed
         private void listViewStaffs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectedStaff = (Staff)listViewStaffs.SelectedItem;         
         }
+        private void listViewStaffs_MouseDoubleClick(object sender, MouseButtonEventArgs e) //Dubbelklicka på en anställd för att få upp information
+        {
+            selectedStaff = (Staff)listViewStaffs.SelectedItem;
+            if (selectedStaff == null)
+            {
+                return;
+            }
+            else
+            {
+                MessageBox.Show($"Förnamn: {selectedStaff.firstname}\rEfternamn: {selectedStaff.lastname}\rRoll: {selectedStaff.profession}\rAvdelning: {selectedStaff.sectionname}\rAvdelnings-id: {selectedStaff.sectionid}", "Information om personal");
+            }
+        }
+        #endregion
 
+        #region Buttons
         private void btnCloseStaff_Click(object sender, RoutedEventArgs e)
         {
             StaffChildren m = new StaffChildren();
             m.Show();
             this.Close();
         }
-
+        private void arrow_back_png_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            StaffChildren m = new StaffChildren();
+            m.Show();
+            this.Close();
+        }
         private void btnAddStaff_Click(object sender, RoutedEventArgs e)
         {
             NewStaff win = new NewStaff();
             win.Show();
             this.Close();
         }
-
         private void btnUpdateStaff_Click(object sender, RoutedEventArgs e)
         {
             DbOperations db = new DbOperations();
@@ -197,18 +211,9 @@ namespace Uppgift6
                 }
             }                      
         }
-        private void listViewStaffs_MouseDoubleClick(object sender, MouseButtonEventArgs e) //Dubbelklicka på en anställd för att få upp information
-        {
-            selectedStaff = (Staff)listViewStaffs.SelectedItem;
-            if (selectedStaff == null)
-            {
-                return;
-            }
-            else
-            {
-                MessageBox.Show($"Förnamn: {selectedStaff.firstname}\rEfternamn: {selectedStaff.lastname}\rRoll: {selectedStaff.profession}\rAvdelning: {selectedStaff.sectionname}\rAvdelnings-id: {selectedStaff.sectionid}", "Information om personal");
-            }                     
-        }
+        #endregion  
+
+        #region Radio buttons
         private void radioButtonLname_Click(object sender, RoutedEventArgs e)
         {
             UpdateListView();
@@ -229,13 +234,9 @@ namespace Uppgift6
         {
             UpdateListView();
         }
-        private void arrow_back_png_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            StaffChildren m = new StaffChildren();
-            m.Show();
-            this.Close();
-        }
+        #endregion
 
+        #region Sortera listan
         private List<Staff> OrderListById(List<Staff> staff)
         {
             return staffList = staffList.OrderBy(s => s.staffID).ToList();            
@@ -256,5 +257,6 @@ namespace Uppgift6
         {
             return staffList = staffList.OrderBy(s => s.sectionid).ToList();
         }
+        #endregion
     }
 }

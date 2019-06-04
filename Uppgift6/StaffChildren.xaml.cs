@@ -43,7 +43,7 @@ namespace Uppgift6
         Schedule selectedSchedule;
 
 
-
+        #region Metoder
         private void SortSchedulesByDate()
         {
             schedule = schedule.Where(x => x.date == choosenDate).ToList();
@@ -84,34 +84,37 @@ namespace Uppgift6
         private void UpdateLabelView() {
             label_today.Content = choosenDate.ToString("dddd, dd MMMM yyyy");
         }
-       
+        private void SetComboboxItems()
+        {
+            comboBoxAttendance.Items.Add("Ja");
+            comboBoxAttendance.Items.Add("Nej");
+            comboBoxAttendance.Items.Add("");
+        }
+
+        #endregion  
 
 
-        #region Sortera på avdelning
+        #region Sortera section 
         private void SortSchedulesBySectionBlue()
         {
             schedule = schedule.Where(x => x.section_id == 1).ToList();
             attendances = attendances.Where(x => x.section_id == 1).ToList();
         }
-
         private void SortSchedulesBySectionGreen()
         {
             schedule = schedule.Where(x => x.section_id == 2).ToList();
             attendances = attendances.Where(x => x.section_id == 2).ToList();
         }
-
         private void SortSchedulesBySectionYellow()
         {
             schedule = schedule.Where(x => x.section_id == 3).ToList();
             attendances = attendances.Where(x => x.section_id == 3).ToList();
         }
-
         private void SortSchedulesBySectionRed()
         {
             schedule = schedule.Where(x => x.section_id == 4).ToList();
             attendances = attendances.Where(x => x.section_id == 4).ToList();
         }
-
         #endregion
 
 
@@ -273,7 +276,12 @@ namespace Uppgift6
             win.Show();
             this.Close();
         }
-
+        private void btnNewAttendance_Click(object sender, RoutedEventArgs e)
+        {
+            NewAttendance win = new NewAttendance();
+            win.Show();
+            this.Close();
+        }
 
         #endregion
 
@@ -348,14 +356,8 @@ namespace Uppgift6
         }
         #endregion
 
-        private void SetComboboxItems()
-        {
-            comboBoxAttendance.Items.Add("Ja");
-            comboBoxAttendance.Items.Add("Nej");
-            comboBoxAttendance.Items.Add("");
-        }
-        
-       
+
+        #region Andra events      
         private void listViewSC_MouseDoubleClick_1(object sender, MouseButtonEventArgs e)
         {
             Schedule schedule = (Schedule)listViewSC.SelectedItem;
@@ -395,14 +397,7 @@ namespace Uppgift6
         {
             selectedSchedule = (Schedule)listViewSC.SelectedItem;
         }
-
-        private void btnNewAttendance_Click(object sender, RoutedEventArgs e)
-        {
-            NewAttendance win = new NewAttendance();
-            win.Show();
-            this.Close();
-        }
-
+       
         private void lblDoubleClickGuardianInfo_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (selectedSchedule == null)
@@ -424,6 +419,7 @@ namespace Uppgift6
                 MessageBox.Show(ex.Message);
             }
         }
+        #endregion
     }
 
 }

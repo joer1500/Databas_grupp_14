@@ -32,9 +32,12 @@ namespace Uppgift6
         Schoolchild s = new Schoolchild();
         Random slump = new Random();
 
+        #region Metoder
         private void GetAllSchoolchilds()
-        {          
-            sc = db.GetSchoolchildrenOrderByLastname();
+        {
+            sc = db.GetSchoolchildrenOrderByID();
+            sc = OrderListByLastname(sc);
+            //sc = db.GetSchoolchildrenOrderByLastname();
             comboBoxSchoolchilds.ItemsSource = sc;
         }
 
@@ -73,24 +76,10 @@ namespace Uppgift6
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private List<Schoolchild> OrderListByLastname(List<Schoolchild> childs)
         {
-            try
-            {
-                SaveAttendance();
-            }
-            catch (PostgresException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            return childs = childs.OrderBy(s => s.lastname).ToList();
         }
-
-        private void comboBoxBreakfast_DropDownClosed(object sender, EventArgs e)
-        {
-            CheckInput();
-        }
-
         private void CheckInput()
         {
             s = (Schoolchild)comboBoxSchoolchilds.SelectedItem;
@@ -103,19 +92,39 @@ namespace Uppgift6
                 btnSave.IsEnabled = false;
             }
         }
+        #endregion
 
-        private void comboBoxSchoolchilds_DropDownClosed(object sender, EventArgs e)
+        #region Buttons
+        private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            CheckInput();
+            try
+            {
+                SaveAttendance();
+            }
+            catch (PostgresException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
-
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             StaffChildren win = new StaffChildren();
             win.Show();
             this.Close();
         }
+        #endregion
 
+        #region Andra events
+        private void comboBoxBreakfast_DropDownClosed(object sender, EventArgs e)
+        {
+            CheckInput();
+        }
+       
+        private void comboBoxSchoolchilds_DropDownClosed(object sender, EventArgs e)
+        {
+            CheckInput();
+        }
+      
         private void textBoxDate_LostFocus(object sender, RoutedEventArgs e)
         {
             CheckInput();
@@ -127,6 +136,6 @@ namespace Uppgift6
             CheckInput();
         }
 
-       
+        #endregion
     }
 }
