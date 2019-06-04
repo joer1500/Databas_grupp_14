@@ -14,7 +14,7 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <TextBox x:Name="textBoxDate" HorizontalAlignment="Left" Height="29" Margin="62,103,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" LostFocus="textBoxDate_LostFocus"/>
+        <TextBox x:Name="textBoxDate" HorizontalAlignment="Left" Height="29" Margin="62,103,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" LostFocus="textBoxDate_LostFocus" IsReadOnly="True"/>
         <ComboBox x:Name="comboBoxBreakfast" HorizontalAlignment="Left" Height="29" Margin="62,159,0,0" VerticalAlignment="Top" Width="120" DropDownClosed="comboBoxBreakfast_DropDownClosed"/>
         <Label x:Name="label1" Content="*Skolbarn" HorizontalAlignment="Left" Height="23" Margin="62,13,0,0" VerticalAlignment="Top" Width="61"/>
         <Label x:Name="label2" Content="*Datum" HorizontalAlignment="Left" Height="23" Margin="62,80,0,0" VerticalAlignment="Top" Width="61" MouseDoubleClick="label2_MouseDoubleClick"/>
