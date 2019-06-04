@@ -23,9 +23,12 @@ namespace Uppgift6
         {
             InitializeComponent();
             UpdateNeeds();
+            ShowChildName();
         }
         DbOperations db = new DbOperations();
         List<Needs> lista = new List<Needs>();
+        Needs selectedNeed;
+
         private void UpdateNeeds()
         {
             
@@ -36,13 +39,36 @@ namespace Uppgift6
             label_needs.Content = lista;
         }
 
-        
+        private void ShowChildName()
+        {
+            Schoolchild schoolchild;
+            schoolchild = db.GetSchoolchildByID(Guardians.selectedSchoolchildID);
+            lblChildName.Content = $"{schoolchild.fullName}";
+        }
 
         private void btnCloseNeeds_Click(object sender, RoutedEventArgs e)
         {
             Guardians m = new Guardians();
             m.Show();
             this.Close();
+        }
+
+        private void btnAddNeed_Click(object sender, RoutedEventArgs e)
+        {
+            string need = txtNeed.Text;
+            db.AddNeed(need, Guardians.selectedSchoolchildID);
+            UpdateNeeds();
+        }
+
+        private void btnDeleteNeed_Click(object sender, RoutedEventArgs e)
+        {
+            db.DeleteNeed(selectedNeed.id);
+            UpdateNeeds();
+        }
+
+        private void listViewNeeds_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            selectedNeed = (Needs)listViewNeeds.SelectedItem;
         }
     }
 }

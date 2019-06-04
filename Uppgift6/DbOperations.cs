@@ -96,6 +96,40 @@ namespace Uppgift6
             }
         }
 
+        public void AddNeed(string need, int schoolchildID)
+        {
+            string stmt = "INSERT INTO schoolchild_need (schoolchild_id, need) VALUES (@schoolchild_id, @need)";
+
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("schoolchild_id", schoolchildID);
+                    cmd.Parameters.AddWithValue("need", need);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void DeleteNeed(int needID)
+        {
+            string stmt = "DELETE FROM schoolchild_need WHERE need_id = @need_id";
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("need_id", needID);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
         public void DeleteSchedule(int id) //Ta bort schedule baserat på ID
         {
             string stmt = "DELETE FROM schedule WHERE schedule_id = @scheduleid";
@@ -761,7 +795,7 @@ namespace Uppgift6
             }
         }
 
-        public void AddNewPickup(int schoolchildID, string firstname, string lastname, string relation)
+        public void AddNewPickup(int schoolchildID, string firstname, string lastname, string relation)   // Lägger till person som får hämta
         {
             string stmt = "INSERT INTO schoolchild_pickup(schoolchild_id, pickup_firstname, pickup_lastname, pickup_relation) VALUES (@schoolchild_id, @firstname, @lastname, @relation)";
 
@@ -781,7 +815,7 @@ namespace Uppgift6
             }
         }
 
-        public void DeletePickup (int pickupID)
+        public void DeletePickup (int pickupID)    // Tar bort person som får hämta
         {
             string stmt = "DELETE FROM schoolchild_pickup WHERE pickup_id = @pickup_id";
 
