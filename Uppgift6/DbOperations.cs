@@ -727,7 +727,7 @@ namespace Uppgift6
             Pickup pickup;
             List<Pickup> pickups = new List<Pickup>();
 
-            string stmt = "SELECT pickup_firstname, pickup_lastname, pickup_relation FROM schoolchild_pickup WHERE schoolchild_id = @schoolchild_id";
+            string stmt = "SELECT pickup_id, pickup_firstname, pickup_lastname, pickup_relation FROM schoolchild_pickup WHERE schoolchild_id = @schoolchild_id";
 
             using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
             {
@@ -744,9 +744,10 @@ namespace Uppgift6
                         {
                             pickup = new Pickup()
                             {
-                                Firstname = reader.GetString(0),
-                                Lastname = reader.GetString(1),
-                                Relation = reader.GetString(2)
+                                PickupID = reader.GetInt32(0),
+                                Firstname = reader.GetString(1),
+                                Lastname = reader.GetString(2),
+                                Relation = reader.GetString(3)
                             };
                             pickups.Add(pickup);
                         }
@@ -776,6 +777,22 @@ namespace Uppgift6
             }
         }
 
+        public void DeletePickup (int pickupID)
+        {
+            string stmt = "DELETE FROM schoolchild_pickup WHERE pickup_id = @pickup_id";
+
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("pickup_id", pickupID);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
 
         public List<Guardian> GetAllGuardians() //Hämtar alla vårdnadshavare
         {

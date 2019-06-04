@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Pickups" Height="450" Width="800">
     <Grid>
-        <ListView x:Name="listViewPickups" HorizontalAlignment="Left" Height="246" VerticalAlignment="Top" Width="385" Margin="20,78,0,0">
+        <ListView x:Name="listViewPickups" HorizontalAlignment="Left" Height="246" VerticalAlignment="Top" Width="385" Margin="20,78,0,0" SelectionChanged="listViewPickups_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Förnamn" Width="100" DisplayMemberBinding="{Binding Firstname}"/>
@@ -27,6 +27,7 @@
         <Label x:Name="lblRelation" Content="Relation" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="500,225,0,0"/>
         <TextBox x:Name="txtRelation" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Margin="500,256,0,0"/>
         <Button x:Name="btnAddPickup" Content="Lägg till" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="566,317,0,0" Click="btnAddPickup_Click"/>
+        <Button x:Name="btnDeletePickup" Content="Ta bort" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="330,329,0,0" Click="btnDeletePickup_Click"/>
 
     </Grid>
 </Window>
