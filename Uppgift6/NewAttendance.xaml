@@ -5,26 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Uppgift6"
         mc:Ignorable="d"
-        Title="NewAttendance" Height="450" Width="586.569">
-    <Grid Margin="0,0,3,-0.333">
-        <ComboBox x:Name="comboBoxSchoolchilds" HorizontalAlignment="Left" Height="29" Margin="62,38,0,0" VerticalAlignment="Top" Width="120">
+        Title="Ny närvaro" Height="450" Width="331.696" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,15,-0.333">
+        <ComboBox x:Name="comboBoxSchoolchilds" HorizontalAlignment="Left" Height="29" Margin="62,38,0,0" VerticalAlignment="Top" Width="120" DropDownClosed="comboBoxSchoolchilds_DropDownClosed">
             <ComboBox.ItemTemplate>
                 <DataTemplate x:Name="cb">
                     <TextBlock Text="{Binding fullName}"/>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="110" Margin="302,137,0,0" TextWrapping="Wrap" Text="Ej i bruk ännu" VerticalAlignment="Top" Width="123" FontSize="24"/>
-        <TextBox x:Name="textBoxDate" HorizontalAlignment="Left" Height="29" Margin="62,103,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="comboBoxBreakfast" HorizontalAlignment="Left" Height="29" Margin="62,159,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="label1" Content="Skolbarn" HorizontalAlignment="Left" Height="23" Margin="62,13,0,0" VerticalAlignment="Top" Width="61"/>
-        <Label x:Name="label2" Content="Datum" HorizontalAlignment="Left" Height="23" Margin="62,80,0,0" VerticalAlignment="Top" Width="61"/>
-        <Label x:Name="label3" Content="Frukost" HorizontalAlignment="Left" Height="23" Margin="62,137,0,0" VerticalAlignment="Top" Width="61"/>
+        <TextBox x:Name="textBoxDate" HorizontalAlignment="Left" Height="29" Margin="62,103,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" LostFocus="textBoxDate_LostFocus"/>
+        <ComboBox x:Name="comboBoxBreakfast" HorizontalAlignment="Left" Height="29" Margin="62,159,0,0" VerticalAlignment="Top" Width="120" DropDownClosed="comboBoxBreakfast_DropDownClosed"/>
+        <Label x:Name="label1" Content="*Skolbarn" HorizontalAlignment="Left" Height="23" Margin="62,13,0,0" VerticalAlignment="Top" Width="61"/>
+        <Label x:Name="label2" Content="*Datum" HorizontalAlignment="Left" Height="23" Margin="62,80,0,0" VerticalAlignment="Top" Width="61" MouseDoubleClick="label2_MouseDoubleClick"/>
+        <Label x:Name="label3" Content="*Frukost" HorizontalAlignment="Left" Height="23" Margin="62,137,0,0" VerticalAlignment="Top" Width="61"/>
         <TextBox x:Name="textBoxDate_Copy" HorizontalAlignment="Left" Height="29" Margin="62,233,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="label4" Content="Tid för lämning" HorizontalAlignment="Left" Height="23" Margin="62,205,0,0" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="textBoxDate_Copy1" HorizontalAlignment="Left" Height="29" Margin="62,295,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="label5" Content="Tid för hämtning" HorizontalAlignment="Left" Height="23" Margin="62,267,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnSave" Content="Spara närvaro" HorizontalAlignment="Left" Margin="133,355,0,0" VerticalAlignment="Top" Width="86" Height="28" IsEnabled="False"/>
+        <Button x:Name="btnSave" Content="Spara närvaro" HorizontalAlignment="Left" Margin="165,350,0,0" VerticalAlignment="Top" Width="86" Height="32" IsEnabled="False" Click="btnSave_Click"/>
+        <Button x:Name="btnExit" Content="Avbryt" HorizontalAlignment="Left" Height="32" Margin="62,350,0,0" VerticalAlignment="Top" Width="86" Click="btnExit_Click"/>
 
     </Grid>
 </Window>

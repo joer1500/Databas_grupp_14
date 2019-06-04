@@ -366,31 +366,6 @@ namespace Uppgift6
 
         }
 
-        private void btnSaveAttendance_Click(object sender, RoutedEventArgs e)
-        {
-            if (selectedSchedule == null)
-            {
-                return;
-            }
-            try
-            {
-                db.AddNewAttendance(selectedSchedule.schoolchild_id, choosenDate, "", comboBoxAttendance.Text, 2);
-                GetSchedules();
-                SortSchedulesByDate();
-                EmptyListBoxAndFill();
-                GetAttendance();
-                FilterAttendancesByDate();
-                UpdateAttendanceList();
-            }
-            catch (PostgresException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            
-        }
-
-        
-
         private void listViewAttendance_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectedAttendance = (Attendance)listViewAttendance.SelectedItem;
@@ -401,8 +376,6 @@ namespace Uppgift6
             comboBoxAttendance.Text = selectedAttendance.attendance;
 
         }
-
-
 
         private void comboBoxAttendance_DropDownClosed(object sender, EventArgs e)
         {
@@ -427,6 +400,29 @@ namespace Uppgift6
         {
             NewAttendance win = new NewAttendance();
             win.Show();
+            this.Close();
+        }
+
+        private void lblDoubleClickGuardianInfo_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (selectedSchedule == null)
+            {
+                return;
+            }
+            try
+            {
+                db.AddNewAttendance(selectedSchedule.schoolchild_id, choosenDate, "", comboBoxAttendance.Text, 2);
+                GetSchedules();
+                SortSchedulesByDate();
+                EmptyListBoxAndFill();
+                GetAttendance();
+                FilterAttendancesByDate();
+                UpdateAttendanceList();
+            }
+            catch (PostgresException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 

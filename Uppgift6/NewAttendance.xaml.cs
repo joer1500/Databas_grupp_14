@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Npgsql;
 
 namespace Uppgift6
 {
@@ -27,17 +28,13 @@ namespace Uppgift6
         }
         List<Schoolchild> sc = new List<Schoolchild>();
         DateTime choosenDate = DateTime.Today;
+        DbOperations db = new DbOperations();
+        Schoolchild s = new Schoolchild();
+        Random slump = new Random();
 
         private void GetAllSchoolchilds()
-        {
-            DbOperations db = new DbOperations();
+        {          
             sc = db.GetSchoolchildrenOrderByLastname();
-
-            //Till listan:
-            //listViewGuardians.ItemsSource = null;
-            //listViewGuardians.ItemsSource = guardians;
-
-            //Till combobox:
             comboBoxSchoolchilds.ItemsSource = sc;
         }
 
@@ -46,6 +43,90 @@ namespace Uppgift6
             textBoxDate.Text = choosenDate.ToShortDateString();
             comboBoxBreakfast.Items.Add("Ja");
             comboBoxBreakfast.Items.Add("Nej");
+            //btnSave.IsEnabled = false;
         }
+
+        private void SaveAttendance()
+        {
+            DateTime date = DateTime.Parse(textBoxDate.Text);
+            int staff = slump.Next(1, 6);
+            TimeSpan should_drop = TimeSpan.Parse("00:00");
+            TimeSpan should_pickup = TimeSpan.Parse("00:00");
+            s = (Schoolchild)comboBoxSchoolchilds.SelectedItem;
+            try
+            {
+                if (s == null || textBoxDate.Text == null)
+                {
+                    return;
+                }
+                else
+                {
+                    db.AddNewAttendance(s.id, choosenDate, "", "Ja", staff);
+                    db.InsertSchedule(s, choosenDate, "Nej", comboBoxBreakfast.Text, should_drop, should_pickup, "", "");
+                    StaffChildren win = new StaffChildren();
+                    win.Show();
+                    this.Close();
+                }              
+            }
+            catch (PostgresException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SaveAttendance();
+            }
+            catch (PostgresException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void comboBoxBreakfast_DropDownClosed(object sender, EventArgs e)
+        {
+            CheckInput();
+        }
+
+        private void CheckInput()
+        {
+            s = (Schoolchild)comboBoxSchoolchilds.SelectedItem;
+            if (s != null && textBoxDate.Text != "" && comboBoxBreakfast.Text != "")
+            {
+                btnSave.IsEnabled = true;
+            }
+            else
+            {
+                btnSave.IsEnabled = false;
+            }
+        }
+
+        private void comboBoxSchoolchilds_DropDownClosed(object sender, EventArgs e)
+        {
+            CheckInput();
+        }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            StaffChildren win = new StaffChildren();
+            win.Show();
+            this.Close();
+        }
+
+        private void textBoxDate_LostFocus(object sender, RoutedEventArgs e)
+        {
+            CheckInput();
+        }
+
+        private void label2_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            textBoxDate.Text = choosenDate.ToShortDateString();
+            CheckInput();
+        }
+
+       
     }
 }
