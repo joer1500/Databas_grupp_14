@@ -28,20 +28,24 @@ namespace Uppgift6
 
         Guardian selectedGuardian;
         public static int selectedGuardianID;
+        List<Guardian> guardians = new List<Guardian>();
+        DbOperations db = new DbOperations();
 
         public void UpdateListView()
         {
-            DbOperations db = new DbOperations();
+            guardians = db.GetAllGuardians();
 
             if (radioButtonFname.IsChecked == true)
             {
                 listViewGuardians.ItemsSource = null;
-                listViewGuardians.ItemsSource = db.GetAllGuardiansOrderbyFirstname();
+                listViewGuardians.ItemsSource = OrderListByFirstname(guardians);
+                //listViewGuardians.ItemsSource = db.GetAllGuardiansOrderbyFirstname();
             }
             else if (radioButtonLname.IsChecked == true)
             {
                 listViewGuardians.ItemsSource = null;
-                listViewGuardians.ItemsSource = db.GetAllGuardiansOrderbyLastname();
+                listViewGuardians.ItemsSource = OrderListByLastname(guardians);
+                //listViewGuardians.ItemsSource = db.GetAllGuardiansOrderbyLastname();
             }    
         }
 
@@ -165,6 +169,14 @@ namespace Uppgift6
             StaffChildren s = new StaffChildren();
             s.Show();
             this.Close();
+        }
+        private List<Guardian> OrderListByFirstname(List<Guardian> guardians)
+        {
+            return guardians = guardians.OrderBy(s => s.firstname).ToList();
+        }
+        private List<Guardian> OrderListByLastname(List<Guardian> guardians)
+        {
+            return guardians = guardians.OrderBy(s => s.lastname).ToList();
         }
     }
 }

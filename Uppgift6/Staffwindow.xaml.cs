@@ -28,23 +28,31 @@ namespace Uppgift6
 
         Staff selectedStaff;
         public static int selectedStaffID;
+        Staff staff = new Staff();   
+        List<Staff> staffList = new List<Staff>();
 
 
         //string orderby = "";
-
-        Staff staff = new Staff();   
+        //private void GetSchedules()
+        //{
+        //    schedule = db.GetSchoolchildrenSchedule();
+        //}
 
         private void UpdateListView()
         {
             DbOperations db = new DbOperations();
+            staffList = db.GetAllStaff();
 
             if (radioButtonID.IsChecked == true)
             {
-                //orderby = "staff_id";
+                
                 try
                 {
                     listViewStaffs.ItemsSource = null;
-                    listViewStaffs.ItemsSource = db.GetAllStaff();
+                    //staffList = OrderListById();
+                    //listViewStaffs.ItemsSource = db.GetAllStaff();
+                    //staffList = OrderListById(staffList);
+                    listViewStaffs.ItemsSource = OrderListById(staffList);
                 }
                 catch (PostgresException ex)
                 {
@@ -52,25 +60,26 @@ namespace Uppgift6
                 }
             }
             else if(radioButtonFname.IsChecked == true)
-            {
-                //orderby = "firstname";
+            {               
                 try
                 {
-                    listViewStaffs.ItemsSource = null;
-                    listViewStaffs.ItemsSource = db.GetAllStaffOrderByFirstname();
+                    listViewStaffs.ItemsSource = null;                  
+                    listViewStaffs.ItemsSource = OrderListByFirstname(staffList);
+                    //listViewStaffs.ItemsSource = db.GetAllStaffOrderByFirstname();
                 }
-                catch (PostgresException ex)
+                catch (PostgresException ex)    
                 {
                     MessageBox.Show(ex.Message);
                 }
             }       
             else if (radioButtonLname.IsChecked == true)
             {
-                //orderby = "lastname";
+               
                 try
                 {
                     listViewStaffs.ItemsSource = null;
-                    listViewStaffs.ItemsSource = db.GetAllStaffOrderByLastname();
+                    listViewStaffs.ItemsSource = OrderListByLastname(staffList);
+                    //listViewStaffs.ItemsSource = db.GetAllStaffOrderByLastname();
                 }
                 catch (PostgresException ex)
                 {
@@ -83,7 +92,8 @@ namespace Uppgift6
                 try
                 {
                     listViewStaffs.ItemsSource = null;
-                    listViewStaffs.ItemsSource = db.GetAllStaffOrderByProfession();
+                    listViewStaffs.ItemsSource = OrderListByProffession(staffList);
+                    //listViewStaffs.ItemsSource = db.GetAllStaffOrderByProfession();
                 }
                 catch (PostgresException ex)
                 {
@@ -97,7 +107,8 @@ namespace Uppgift6
                 try
                 {
                     listViewStaffs.ItemsSource = null;
-                    listViewStaffs.ItemsSource = db.GetAllStaffOrderBySection();
+                    listViewStaffs.ItemsSource = OrderListBySection(staffList);
+                    //listViewStaffs.ItemsSource = db.GetAllStaffOrderBySection();
                 }
                 catch (PostgresException ex)
                 {
@@ -223,6 +234,27 @@ namespace Uppgift6
             StaffChildren m = new StaffChildren();
             m.Show();
             this.Close();
+        }
+
+        private List<Staff> OrderListById(List<Staff> staff)
+        {
+            return staffList = staffList.OrderBy(s => s.staffID).ToList();            
+        }
+        private List<Staff> OrderListByFirstname(List<Staff> staff)
+        {
+            return staffList = staffList.OrderBy(s => s.firstname).ToList();
+        }
+        private List<Staff> OrderListByLastname(List<Staff> staff)
+        {
+            return staffList = staffList.OrderBy(s => s.lastname).ToList();
+        }
+        private List<Staff> OrderListByProffession(List<Staff> staff)
+        {
+            return staffList = staffList.OrderBy(s => s.profession).ToList();
+        }
+        private List<Staff> OrderListBySection(List<Staff> staff)
+        {
+            return staffList = staffList.OrderBy(s => s.sectionid).ToList();
         }
     }
 }
