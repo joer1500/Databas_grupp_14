@@ -938,7 +938,7 @@ namespace Uppgift6
         }
 
 
-        public List<Guardian> GetAllGuardiansOrderbyFirstname() //Hämtar alla vårdnadshavare
+        public List<Guardian> GetAllGuardiansOrderbyFirstname() // Används ej Hämtar alla vårdnadshavare
         {
             Guardian g;
             List<Guardian> guardians = new List<Guardian>();
@@ -967,7 +967,7 @@ namespace Uppgift6
             }
         }
 
-        public List<Guardian> GetAllGuardiansOrderbyLastname() //Hämtar alla vårdnadshavare
+        public List<Guardian> GetAllGuardiansOrderbyLastname() // Används ej Hämtar alla vårdnadshavare
         {
             Guardian g;
             List<Guardian> guardians = new List<Guardian>();
