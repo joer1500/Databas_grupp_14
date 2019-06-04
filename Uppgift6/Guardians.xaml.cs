@@ -414,7 +414,7 @@ namespace Uppgift6
                     sickDate = DateTime.Parse(textBoxDateSick.Text);
                     int staffSlump = slump.Next(1, 6);
 
-                    db.AddNewAttendance(schoolchild.id, sickDate, "Ja", "", staffSlump);
+                    db.AddNewAttendance(schoolchild.id, sickDate, "Ja", "Nej", staffSlump);
                     MessageBox.Show($"{schoolchild.firstname} är nu sjukanmäld för {textBoxDateSick.Text.ToString()}");
                 }
             }          
