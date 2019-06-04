@@ -18,7 +18,8 @@
         <Label x:Name="lblSection" Content="Avdelning" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,262,0,0"/>
         <Button x:Name="btnExit" Content="Avbryt" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="10,355,0,0" Click="btnExit_Click"/>
         <Button x:Name="btnSave" Content="Spara" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="128,355,0,0" Click="btnSave_Click"/>
-        <TextBlock x:Name="textBlockSectionInfo" HorizontalAlignment="Left" Margin="176,279,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="62" Width="109" FontSize="10" IsEnabled="False"><Run Text="Avdelning "/><Run Text="blå"/><Run Text=" "/><Run Text="= id 1"/><LineBreak/><Run Text="Avdelning gul = id 2"/><LineBreak/><Run Text="Avdelning röd = id 3"/><LineBreak/><Run Text="Avdelning grön = id 4"/></TextBlock>
+        <TextBlock x:Name="textBlockSectionInfo" HorizontalAlignment="Left" Margin="162,251,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="62" Width="109" FontSize="10" IsEnabled="False"><Run Text="Avdelning "/><Run Text="blå"/><Run Text=" "/><Run Text="= id 1"/><LineBreak/><Run Text="Avdelning gul = id 2"/><LineBreak/><Run Text="Avdelning röd = id 3"/><LineBreak/><Run Text="Avdelning grön = id 4"/></TextBlock>
+        <Label x:Name="labelSectionError" Content="" Foreground="Red" HorizontalAlignment="Left" Height="27" Margin="10,319,0,0" VerticalAlignment="Top" Width="234"/>
 
     </Grid>
 </Window>

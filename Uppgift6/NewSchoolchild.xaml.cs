@@ -62,7 +62,7 @@ namespace Uppgift6
 
             if (CheckInput(txtBoxSection.Text) == false) //För att kolla om "avdelning" innehåller annat än siffror
             {
-                labelSectionError.Content = "*Endast siffror 1-4 i avdelning";
+                labelSectionError.Content = "*Endast siffror mellan 1-4 i avdelning";
                 return;
             }
             else

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Npgsql;
 
 namespace Uppgift6
 {
@@ -45,14 +46,50 @@ namespace Uppgift6
             int id = int.Parse(txtID.Text);
             string firstname = txtFirstname.Text;
             string lastname = txtLastname.Text;
-            int sectionID = int.Parse(txtSection.Text);
 
-            db.UpdateSchoolchild(id, firstname, lastname, sectionID);
+            if (CheckInput(txtSection.Text) == false) //För att kolla om "avdelning" innehåller annat än siffror
+            {
+                labelSectionError.Content = "*Endast siffror mellan 1-4 i avdelning";
+                return;
+            }
+            else
+            {
+                int sectionID = int.Parse(txtSection.Text);
 
-            ManageSchoolchild win = new ManageSchoolchild();
-            win.Show();
-            this.Close();
+                if (sectionID > 4 || sectionID <= 0)
+                {
+                    labelSectionError.Content = "*Endast siffror mellan 1-4 i avdelning";
+                }
+                else
+                {
+                    try
+                    {
+                        db.UpdateSchoolchild(id, firstname, lastname, sectionID);
 
+                        ManageSchoolchild win = new ManageSchoolchild();
+                        win.Show();
+                        this.Close();
+                    }
+                    catch (PostgresException ex)
+                    {
+
+                        MessageBox.Show(ex.Message);
+                    }
+                }                
+                
+            }
+            
+
+        }
+
+        private bool CheckInput(string s)
+        {
+            foreach (char c in s)
+            {
+                if (Char.IsLetter(c))
+                    return false;
+            }
+            return true;
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
