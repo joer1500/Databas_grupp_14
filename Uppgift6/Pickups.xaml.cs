@@ -26,6 +26,8 @@ namespace Uppgift6
             UpdateListviewPickups();
         }
 
+        
+
         private void UpdateListviewPickups()
 
         {
@@ -64,6 +66,31 @@ namespace Uppgift6
             DbOperations db = new DbOperations();                      
             db.AddNewPickup(schoolchildID, firstname, lastname, relation);
             UpdateListviewPickups();
+        }
+
+        private void btnDeletePickup_Click(object sender, RoutedEventArgs e)
+        {
+            DbOperations db = new DbOperations();
+            Pickup selectedPickup = (Pickup)listViewPickups.SelectedItem;
+            int pickupID = selectedPickup.PickupID;
+
+            if (selectedPickup == null)
+            {
+                MessageBox.Show($"Vänligen välj en person i listan");
+            }
+            else if (MessageBox.Show($"Vill du verkligen ta bort: {selectedPickup.Firstname} {selectedPickup.Lastname} som godkänd hämtare?\rObservera att denna åtgärd inte kan ångras.", "Varning!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                db.DeletePickup(pickupID);
+                
+            }
+
+            UpdateListviewPickups();
+        }
+
+        private void listViewPickups_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Pickup selectedPickup = (Pickup)listViewPickups.SelectedItem;
+                                   
         }
     }
 }
