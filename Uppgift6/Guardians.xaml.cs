@@ -42,8 +42,9 @@ namespace Uppgift6
         Schoolchild schoolchild;
         Schedule schedule;
         List<Schedule> schedules = new List<Schedule>();
+        Random slump = new Random();
 
-       private void ViewLoggedInGuardian()
+        private void ViewLoggedInGuardian()
         {
             DbOperations db = new DbOperations();
             Guardian loggedInGuardian;
@@ -55,6 +56,7 @@ namespace Uppgift6
 
         private void BtnSaveNewSchedule_Click(object sender, RoutedEventArgs e)
         {
+            int staffSlump = slump.Next(1, 6);
             if (listBoxChildName.SelectedItem == null)
             {
                 MessageBox.Show("Du måste välja ett barn i listan.");
@@ -88,7 +90,16 @@ namespace Uppgift6
 
                     else
                     {
-                        db.InsertSchedule(schoolchild, date, day_off, breakfast, should_drop, should_pickup, walk_home_alone, walk_with_friend);
+                        try
+                        {
+                            db.InsertSchedule(schoolchild, date, day_off, breakfast, should_drop, should_pickup, walk_home_alone, walk_with_friend);
+                            db.AddNewAttendance(schoolchild.id, date, "Nej", "", staffSlump);
+                        }
+                        catch (PostgresException ex)
+                        {
+                            MessageBox.Show(ex.Message);                           
+                        }
+                        
                     }
 
                     MessageBox.Show($"Ditt schema har lagts till för {schoolchild.firstname} den {textBoxDate.Text.ToString()}.");

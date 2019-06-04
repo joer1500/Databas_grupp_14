@@ -16,9 +16,9 @@
                     <GridViewColumn Header="Lämnas" Width="65" DisplayMemberBinding="{Binding should_drop,StringFormat=hh\\:mm}"/>
                     <GridViewColumn Header="Hämtas" Width="65" DisplayMemberBinding="{Binding should_pickup,StringFormat=hh\\:mm}"/>
                     <GridViewColumn Header="Frukost" Width="60" DisplayMemberBinding="{Binding breakfast}"/>
-                    <GridViewColumn Header="Går hem med kompis" Width="130" DisplayMemberBinding="{Binding home_with_friend}"/>
-                    <GridViewColumn Header="Går hem själv" Width="100" DisplayMemberBinding="{Binding walk_home_alone}"/>
-                    <!--<GridViewColumn Header="Närvaro" Width="55" DisplayMemberBinding="{Binding attendance}"/>-->
+                    <GridViewColumn Header="Hem med kompis" Width="100" DisplayMemberBinding="{Binding home_with_friend}"/>
+                    <GridViewColumn Header="Hem själv" Width="70" DisplayMemberBinding="{Binding walk_home_alone}"/>
+                    <GridViewColumn Header="Ledig" Width="55" DisplayMemberBinding="{Binding day_off}"/>
                     <!--<GridViewColumn Header="Section" Width="50" DisplayMemberBinding="{Binding section_id}"/>-->
                 </GridView>
             </ListView.View>
