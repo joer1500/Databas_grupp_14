@@ -60,20 +60,25 @@ namespace Uppgift6
             string firstname = txtBoxFirstname.Text;
             string lastname = txtBoxLastname.Text;
 
-            int section = int.Parse(txtBoxSection.Text);
-                     
-            try
+            if (CheckInput(txtBoxSection.Text) == false) //För att kolla om "avdelning" innehåller annat än siffror
             {
-                db.AddSchoolchild(firstname, lastname, section);
-                UpdateSchoolchildListview();
-                MessageBox.Show($"{firstname} {lastname} är nu tillagd i registret", "Lyckad inmatning");
+                labelSectionError.Content = "*Endast siffror 1-4 i avdelning";
+                return;
             }
-            catch (PostgresException ex)
+            else
             {
-                MessageBox.Show(ex.Message);               
+                int section = int.Parse(txtBoxSection.Text);
+                try
+                {
+                    db.AddSchoolchild(firstname, lastname, section);
+                    UpdateSchoolchildListview();
+                    MessageBox.Show($"{firstname} {lastname} är nu tillagd i registret", "Lyckad inmatning");
+                }
+                catch (PostgresException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            
-
         }
 
         private void btnNewGuardian_Click(object sender, RoutedEventArgs e)
@@ -114,6 +119,21 @@ namespace Uppgift6
         private void listViewSchoolchild_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Schoolchild selectedSchoolchild = (Schoolchild)listViewSchoolchild.SelectedItem;
+        }
+
+        private bool CheckInput(string s)
+        {
+            foreach (char c in s)
+            {
+                if (Char.IsLetter(c))
+                    return false;
+            }
+            return true;
+        }
+
+        private void txtBoxSection_GotFocus(object sender, RoutedEventArgs e)
+        {
+            txtBoxSection.Text = "";
         }
     }
 }

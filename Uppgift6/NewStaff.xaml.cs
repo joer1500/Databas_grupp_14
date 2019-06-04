@@ -45,29 +45,35 @@ namespace Uppgift6
                 MessageBox.Show("Vänligen ange ett avdelnings-id");
                 return;               
             }
-
-            int section = int.Parse(textBoxSection.Text); //Lägg till en check som kollar om inmatningen har bokstäver
-
             if (fname == "" || lname == "" || profession == "")
             {
                 MessageBox.Show("Vänligen ange ett förnamn, efternamn, roll samt en avdelning");
                 return;
             }
-
-            try
-            {
-                db.AddNewStaff(fname, lname, profession, section);
-                MessageBox.Show($"{fname} {lname} är nu tillagd i personalregistret", "Titel");
-                EmptyTextboxes();
-
-                Staffwindow win = new Staffwindow();
-                win.Show();
-                this.Close();
+            if (CheckInput(textBoxSection.Text) == false) //För att kolla om "avdelning" innehåller annat än siffror
+            {                
+                labelSectionError.Content = "*Endast siffror 1-4 i avdelning";
+                return;
             }
-            catch (PostgresException ex)
+            else
             {
-                MessageBox.Show(ex.Message);
-            }           
+                int section = int.Parse(textBoxSection.Text); 
+                try
+                {
+                    db.AddNewStaff(fname, lname, profession, section);
+                    MessageBox.Show($"{fname} {lname} är nu tillagd i personalregistret", "Titel");
+                    EmptyTextboxes();
+
+                    Staffwindow win = new Staffwindow();
+                    win.Show();
+                    this.Close();
+                }
+                catch (PostgresException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }          
+                       
         }
 
         private void EmptyTextboxes()
@@ -102,5 +108,19 @@ namespace Uppgift6
         {
             textBlockSectionInfo.Visibility = Visibility.Collapsed;
         }
+
+        private bool CheckInput(string s)
+        {
+            foreach (char c in s)
+            {
+                if (Char.IsLetter(c))
+                    return false;
+            }
+            return true;
+        }
+
+
     }
+
+       
 }

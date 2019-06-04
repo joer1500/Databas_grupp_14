@@ -122,8 +122,7 @@ namespace Uppgift6
 
         private void btnUpdateChild_Click(object sender, RoutedEventArgs e)
         {
-            selectedSchoolchild = (Schoolchild)listViewSchoolchildren.SelectedItem;
-            selectedSchooolchildID = selectedSchoolchild.id;
+            selectedSchoolchild = (Schoolchild)listViewSchoolchildren.SelectedItem;           
 
             if (selectedSchoolchild == null)
             {
@@ -133,6 +132,7 @@ namespace Uppgift6
 
             else
             {
+                selectedSchooolchildID = selectedSchoolchild.id;
                 UpdateSchoolchild win = new UpdateSchoolchild();
                 win.Show();
                 this.Close();

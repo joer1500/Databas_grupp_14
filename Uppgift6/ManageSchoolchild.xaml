@@ -8,25 +8,27 @@
         Title="Hantera barn" Height="450" Width="750" WindowStartupLocation="CenterScreen">
     <Grid>
         <Button x:Name="btnCloseManageSchoolchild" Content="Tillbaka" HorizontalAlignment="Left" Margin="31,7,0,0" VerticalAlignment="Top" Width="75" Height="28" BorderBrush="White" Background="White" FontSize="14" Click="btnCloseManageSchoolchild_Click" />
-        <Button x:Name="btnAddChild" Content="Lägg till barn" HorizontalAlignment="Left" Margin="618,266,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="btnAddChild_Click"/>
-        <Button x:Name="btnUpdateChild" Content="Uppdatera" HorizontalAlignment="Left" Margin="618,301,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="btnUpdateChild_Click"/>
-        <Button x:Name="btnDeleteChild" Content="Ta bort" HorizontalAlignment="Left" Margin="618,336,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="btnDeleteChild_Click"/>
-        <ListView x:Name="listViewSchoolchildren" HorizontalAlignment="Left" Height="288" VerticalAlignment="Top" Width="553" Margin="30,78,0,0">
+        <Button x:Name="btnAddChild" Content="Lägg till barn" HorizontalAlignment="Left" Margin="587,266,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="btnAddChild_Click"/>
+        <Button x:Name="btnUpdateChild" Content="Uppdatera" HorizontalAlignment="Left" Margin="587,301,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="btnUpdateChild_Click"/>
+        <Button x:Name="btnDeleteChild" Content="Ta bort" HorizontalAlignment="Left" Margin="587,336,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="btnDeleteChild_Click"/>
+        <ListView x:Name="listViewSchoolchildren" HorizontalAlignment="Left" Height="288" VerticalAlignment="Top" Width="536" Margin="30,78,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" Width="30" DisplayMemberBinding="{Binding id}"/>
                     <GridViewColumn Header="Förnamn" Width="200" DisplayMemberBinding="{Binding firstname}"/>
                     <GridViewColumn Header="Efternamn" Width="200" DisplayMemberBinding="{Binding lastname}"/>
-                    
+
                     <GridViewColumn Header="Avdelning" Width="100" DisplayMemberBinding="{Binding section}"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <RadioButton x:Name="rbtnSortByLastname" Content="Efternamn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="301,371,0,0" Checked="rbtnSortByLastname_Checked"/>
-        <RadioButton x:Name="rbtnSortByFirstname" Content="Förnamn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="207,371,0,0" Checked="rbtnSortByFirstname_Checked"/>
-        <RadioButton x:Name="rbtnSortByID" Content="ID" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="148,371,0,0" Checked="rbtnSortByID_Checked" IsChecked="True"/>
-        <RadioButton x:Name="rbtnSortBySection" Content="Avdelning" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="408,371,0,0" Checked="rbtnSortBySection_Checked"/>
-        <Label x:Name="lblSortBy" Content="Sortera elevregister:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,365,0,0"/>
+        <RadioButton x:Name="rbtnSortByLastname" Content="Efternamn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="262,372,0,0" Checked="rbtnSortByLastname_Checked"/>
+        <RadioButton x:Name="rbtnSortByFirstname" Content="Förnamn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="187,372,0,0" Checked="rbtnSortByFirstname_Checked"/>
+        <RadioButton x:Name="rbtnSortByID" Content="ID" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="147,372,0,0" Checked="rbtnSortByID_Checked" IsChecked="True"/>
+        <RadioButton x:Name="rbtnSortBySection" Content="Avdelning" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="345,372,0,0" Checked="rbtnSortBySection_Checked"/>
+        <Label x:Name="lblSortBy" Content="Sortera elevregister:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,366,0,0"/>
+        <Label x:Name="labelTitle" Content="Elevregister" HorizontalAlignment="Left" Margin="28,47,0,0" VerticalAlignment="Top" Width="169" FontWeight="Bold" FontSize="16"/>
+        <Label x:Name="labelAdmin" Content="Administration" HorizontalAlignment="Left" Margin="574,230,0,0" VerticalAlignment="Top" Width="144" FontWeight="Bold" FontSize="16"/>
 
     </Grid>
 </Window>

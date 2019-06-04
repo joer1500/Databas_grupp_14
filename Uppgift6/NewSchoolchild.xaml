@@ -21,13 +21,13 @@
         <Label x:Name="labelTitle" Content="Lägg till nytt barn" Margin="0,20,141.71,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Right" Width="245"/>
         <Button x:Name="btnAddChild" Content="Lägg till" HorizontalAlignment="Left" Margin="190,390,0,0" VerticalAlignment="Top" Width="83" Height="24" Click="btnAddChild_Click"/>
         <Label x:Name="lblSection" Content="Avdelning" HorizontalAlignment="Left" Margin="23,249,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtBoxSection"  HorizontalAlignment="Left" Height="25" Margin="23,275,0,0" TextWrapping="Wrap" Text="Ange avdelnings-ID" VerticalAlignment="Top" Width="120" FontStyle="Italic"/>
-        <TextBlock x:Name="txtBlckSectionInfo" HorizontalAlignment="Left" Margin="164,278,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="62" Width="109" FontSize="10" IsEnabled="False"><Run Text="Avdelning "/><Run Text="blå"/><Run Text="= id 1"/><LineBreak/><Run Text="Avdelning gul = id 2"/><LineBreak/><Run Text="Avdelning röd = id 3"/><LineBreak/><Run Text="Avdelning grön = id 4"/></TextBlock>
+        <TextBox x:Name="txtBoxSection"  HorizontalAlignment="Left" Height="25" Margin="23,275,0,0" TextWrapping="Wrap" Text="Ange avdelnings-ID" VerticalAlignment="Top" Width="120" FontStyle="Italic" GotFocus="txtBoxSection_GotFocus"/>
+        <TextBlock x:Name="txtBlckSectionInfo" HorizontalAlignment="Left" Margin="164,238,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="62" Width="109" FontSize="10" IsEnabled="False"><Run Text="Avdelning "/><Run Text="blå"/><Run Text="= id 1"/><LineBreak/><Run Text="Avdelning gul = id 2"/><LineBreak/><Run Text="Avdelning röd = id 3"/><LineBreak/><Run Text="Avdelning grön = id 4"/></TextBlock>
         <GroupBox x:Name="groupBoxGuardian" Header="Koppla vårdnadshavare" HorizontalAlignment="Left" Height="299" VerticalAlignment="Top" Width="223" Margin="145,71,0,0" Grid.Column="1">
             <TextBlock x:Name="txtBlNewGuardianInfo" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="10,211,0,0" Width="182" Height="60" Text="Finns inte vårdnadshavaren? Lägg till ny vårdnadshavare här:"/>
         </GroupBox>
         <Button x:Name="btnExit" Content="Avbryt" HorizontalAlignment="Left" VerticalAlignment="Top" Width="83" Margin="14,390,0,0" Height="24" Click="btnExit_Click"/>
-        <ListView x:Name="listViewGuardians" HorizontalAlignment="Left" Height="197" VerticalAlignment="Top" Width="187" Margin="159,96,0,0" SelectionChanged="listViewGuardians_SelectionChanged" Grid.Column="1">
+        <ListView x:Name="listViewGuardians" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left" Height="197" VerticalAlignment="Top" Width="187" Margin="159,96,0,0" SelectionChanged="listViewGuardians_SelectionChanged" Grid.Column="1">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Förnamn" Width="65" DisplayMemberBinding="{Binding firstname}"/>
@@ -37,7 +37,7 @@
         </ListView>
         <Button x:Name="btnNewGuardian" Content="Ny vårdnadshavare" HorizontalAlignment="Left" VerticalAlignment="Top" Width="119" Margin="228,336,0,0" Height="24" Click="btnNewGuardian_Click" Grid.Column="1"/>
         <Button x:Name="btnConnect" Content="Koppla vårdnadshavare" HorizontalAlignment="Left" VerticalAlignment="Top" Width="141" Margin="227,390,0,0" Height="24" Grid.Column="1" Click="btnConnect_Click"/>
-        <ListView x:Name="listViewSchoolchild" HorizontalAlignment="Left" Height="253" VerticalAlignment="Top" Width="197" Margin="303,97,0,0" Grid.ColumnSpan="2" SelectionChanged="listViewSchoolchild_SelectionChanged">
+        <ListView x:Name="listViewSchoolchild" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left" Height="253" VerticalAlignment="Top" Width="197" Margin="303,97,0,0" Grid.ColumnSpan="2" SelectionChanged="listViewSchoolchild_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Förnamn" Width="65" DisplayMemberBinding="{Binding firstname}"/>
@@ -46,5 +46,6 @@
             </ListView.View>
 
         </ListView>
+        <Label x:Name="labelSectionError" Content="" Foreground="Red" HorizontalAlignment="Left" Height="27" Margin="16,305,0,0" VerticalAlignment="Top" Width="234"/>
     </Grid>
 </Window>
