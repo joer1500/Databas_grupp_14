@@ -346,103 +346,103 @@ namespace Uppgift6
             }
         }
 
-        public List<Staff> GetAllStaffOrderByFirstname() // Används ej Hämtar alla staffs och sorterar på förnamn
-        {
-            Staff s;
-            List<Staff> staffs = new List<Staff>();
+        //public List<Staff> GetAllStaffOrderByFirstname() // Används ej Hämtar alla staffs och sorterar på förnamn
+        //{
+        //    Staff s;
+        //    List<Staff> staffs = new List<Staff>();
 
-            string stmt = "SELECT staff_id, firstname, lastname, profession, section_name, staff.section_id FROM staff INNER JOIN section on staff.section_id = section.section_id ORDER BY firstname;";
+        //    string stmt = "SELECT staff_id, firstname, lastname, profession, section_name, staff.section_id FROM staff INNER JOIN section on staff.section_id = section.section_id ORDER BY firstname;";
 
-            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
-            {
-                conn.Open();
-                using (var cmd = new NpgsqlCommand(stmt, conn))
-                using (var reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        s = new Staff()
-                        {
-                            staffID = (reader.GetInt32(0)),
-                            firstname = (reader.GetString(1)),
-                            lastname = (reader.GetString(2)),
-                            profession = (reader.GetString(3)),
-                            sectionname = (reader.GetString(4)),
-                            sectionid = (reader.GetInt32(5))
-                        };
-                        staffs.Add(s);
-                    }
-                }
-                return staffs;
-            }
-        }
+        //    using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+        //    {
+        //        conn.Open();
+        //        using (var cmd = new NpgsqlCommand(stmt, conn))
+        //        using (var reader = cmd.ExecuteReader())
+        //        {
+        //            while (reader.Read())
+        //            {
+        //                s = new Staff()
+        //                {
+        //                    staffID = (reader.GetInt32(0)),
+        //                    firstname = (reader.GetString(1)),
+        //                    lastname = (reader.GetString(2)),
+        //                    profession = (reader.GetString(3)),
+        //                    sectionname = (reader.GetString(4)),
+        //                    sectionid = (reader.GetInt32(5))
+        //                };
+        //                staffs.Add(s);
+        //            }
+        //        }
+        //        return staffs;
+        //    }
+        //}
 
-        public List<Staff> GetAllStaffOrderByLastname() // Används ej Hämtar alla staffs och sorterar på efternamn
-        {
-            Staff s;
-            List<Staff> staffs = new List<Staff>();
+        //public List<Staff> GetAllStaffOrderByLastname() // Används ej Hämtar alla staffs och sorterar på efternamn
+        //{
+        //    Staff s;
+        //    List<Staff> staffs = new List<Staff>();
 
-            string stmt = "SELECT staff_id, firstname, lastname, profession, section_name, staff.section_id FROM staff INNER JOIN section on staff.section_id = section.section_id ORDER BY lastname;";
+        //    string stmt = "SELECT staff_id, firstname, lastname, profession, section_name, staff.section_id FROM staff INNER JOIN section on staff.section_id = section.section_id ORDER BY lastname;";
 
-            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
-            {
-                conn.Open();
-                using (var cmd = new NpgsqlCommand(stmt, conn))
-                using (var reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        s = new Staff()
-                        {
-                            staffID = (reader.GetInt32(0)),
-                            firstname = (reader.GetString(1)),
-                            lastname = (reader.GetString(2)),
-                            profession = (reader.GetString(3)),
-                            sectionname = (reader.GetString(4)),
-                            sectionid = (reader.GetInt32(5))
-                        };
-                        staffs.Add(s);
-                    }
-                }
-                return staffs;
-            }
-        }
+        //    using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+        //    {
+        //        conn.Open();
+        //        using (var cmd = new NpgsqlCommand(stmt, conn))
+        //        using (var reader = cmd.ExecuteReader())
+        //        {
+        //            while (reader.Read())
+        //            {
+        //                s = new Staff()
+        //                {
+        //                    staffID = (reader.GetInt32(0)),
+        //                    firstname = (reader.GetString(1)),
+        //                    lastname = (reader.GetString(2)),
+        //                    profession = (reader.GetString(3)),
+        //                    sectionname = (reader.GetString(4)),
+        //                    sectionid = (reader.GetInt32(5))
+        //                };
+        //                staffs.Add(s);
+        //            }
+        //        }
+        //        return staffs;
+        //    }
+        //}
 
-        public List<Staff> GetAllStaffOrderBy(string orderby) // Används ej. Under konstruktion
-        {
-            Staff s;
-            List<Staff> staffs = new List<Staff>();
+        //public List<Staff> GetAllStaffOrderBy(string orderby) // Används ej. Under konstruktion
+        //{
+        //    Staff s;
+        //    List<Staff> staffs = new List<Staff>();
 
-            //string stmtold = "$SELECT staff_id, firstname, lastname, profession, section_name FROM staff INNER JOIN section on staff.section_id = section.section_id ORDER BY {orderby}";
-            string stmt = "SELECT staff_id, firstname, lastname, profession, section_name FROM staff INNER JOIN section on staff.section_id = section.section_id ORDER BY @order";
+        //    //string stmtold = "$SELECT staff_id, firstname, lastname, profession, section_name FROM staff INNER JOIN section on staff.section_id = section.section_id ORDER BY {orderby}";
+        //    string stmt = "SELECT staff_id, firstname, lastname, profession, section_name FROM staff INNER JOIN section on staff.section_id = section.section_id ORDER BY @order";
 
-            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
-            {
-                conn.Open();
-                using (var cmd = new NpgsqlCommand())
-                {
-                    cmd.Connection = conn;
-                    cmd.CommandText = stmt;
-                    cmd.Parameters.AddWithValue("order", orderby);
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            s = new Staff()
-                            {
-                                staffID = (reader.GetInt32(0)),
-                                firstname = (reader.GetString(1)),
-                                lastname = (reader.GetString(2)),
-                                profession = (reader.GetString(3)),
-                                sectionname = (reader.GetString(4))
-                            };
-                            staffs.Add(s);
-                        }
-                    }
-                }
-                return staffs;
-            }
-        }
+        //    using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+        //    {
+        //        conn.Open();
+        //        using (var cmd = new NpgsqlCommand())
+        //        {
+        //            cmd.Connection = conn;
+        //            cmd.CommandText = stmt;
+        //            cmd.Parameters.AddWithValue("order", orderby);
+        //            using (var reader = cmd.ExecuteReader())
+        //            {
+        //                while (reader.Read())
+        //                {
+        //                    s = new Staff()
+        //                    {
+        //                        staffID = (reader.GetInt32(0)),
+        //                        firstname = (reader.GetString(1)),
+        //                        lastname = (reader.GetString(2)),
+        //                        profession = (reader.GetString(3)),
+        //                        sectionname = (reader.GetString(4))
+        //                    };
+        //                    staffs.Add(s);
+        //                }
+        //            }
+        //        }
+        //        return staffs;
+        //    }
+        //}
 
         public List<Schoolchild> GetSchoolchildrenOrderByLastname() // Hämtar alla skolbarn och sorterar på efternamn
         {
@@ -660,67 +660,67 @@ namespace Uppgift6
             }
         }
 
-        public List<Staff> GetAllStaffOrderByProfession() //Används ej, kan tas bort. Hämtar alla staffs och sorterar på roll
-        {
-            Staff s;
-            List<Staff> staffs = new List<Staff>();
+        //public List<Staff> GetAllStaffOrderByProfession() //Används ej, kan tas bort. Hämtar alla staffs och sorterar på roll
+        //{
+        //    Staff s;
+        //    List<Staff> staffs = new List<Staff>();
 
-            string stmt = "SELECT staff_id, firstname, lastname, profession, section_name, staff.section_id FROM staff INNER JOIN section on staff.section_id = section.section_id ORDER BY profession ASC;";
+        //    string stmt = "SELECT staff_id, firstname, lastname, profession, section_name, staff.section_id FROM staff INNER JOIN section on staff.section_id = section.section_id ORDER BY profession ASC;";
 
-            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
-            {
-                conn.Open();
-                using (var cmd = new NpgsqlCommand(stmt, conn))
-                using (var reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        s = new Staff()
-                        {
-                            staffID = (reader.GetInt32(0)),
-                            firstname = (reader.GetString(1)),
-                            lastname = (reader.GetString(2)),
-                            profession = (reader.GetString(3)),
-                            sectionname = (reader.GetString(4)),
-                            sectionid = (reader.GetInt32(5))
-                        };
-                        staffs.Add(s);
-                    }
-                }
-                return staffs;
-            }
-        }
+        //    using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+        //    {
+        //        conn.Open();
+        //        using (var cmd = new NpgsqlCommand(stmt, conn))
+        //        using (var reader = cmd.ExecuteReader())
+        //        {
+        //            while (reader.Read())
+        //            {
+        //                s = new Staff()
+        //                {
+        //                    staffID = (reader.GetInt32(0)),
+        //                    firstname = (reader.GetString(1)),
+        //                    lastname = (reader.GetString(2)),
+        //                    profession = (reader.GetString(3)),
+        //                    sectionname = (reader.GetString(4)),
+        //                    sectionid = (reader.GetInt32(5))
+        //                };
+        //                staffs.Add(s);
+        //            }
+        //        }
+        //        return staffs;
+        //    }
+        //}
 
-        public List<Staff> GetAllStaffOrderBySection() //Används ej, Hämtar alla staffs och sorterar på avdelning
-        {
-            Staff s;
-            List<Staff> staffs = new List<Staff>();
+        //public List<Staff> GetAllStaffOrderBySection() //Används ej, Hämtar alla staffs och sorterar på avdelning
+        //{
+        //    Staff s;
+        //    List<Staff> staffs = new List<Staff>();
 
-            string stmt = "SELECT staff_id, firstname, lastname, profession, section_name, staff.section_id FROM staff INNER JOIN section on staff.section_id = section.section_id ORDER BY section.section_id;";
+        //    string stmt = "SELECT staff_id, firstname, lastname, profession, section_name, staff.section_id FROM staff INNER JOIN section on staff.section_id = section.section_id ORDER BY section.section_id;";
 
-            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
-            {
-                conn.Open();
-                using (var cmd = new NpgsqlCommand(stmt, conn))
-                using (var reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        s = new Staff()
-                        {
-                            staffID = (reader.GetInt32(0)),
-                            firstname = (reader.GetString(1)),
-                            lastname = (reader.GetString(2)),
-                            profession = (reader.GetString(3)),
-                            sectionname = (reader.GetString(4)),
-                            sectionid = (reader.GetInt32(5))
-                        };
-                        staffs.Add(s);
-                    }
-                }
-                return staffs;
-            }
-        }
+        //    using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+        //    {
+        //        conn.Open();
+        //        using (var cmd = new NpgsqlCommand(stmt, conn))
+        //        using (var reader = cmd.ExecuteReader())
+        //        {
+        //            while (reader.Read())
+        //            {
+        //                s = new Staff()
+        //                {
+        //                    staffID = (reader.GetInt32(0)),
+        //                    firstname = (reader.GetString(1)),
+        //                    lastname = (reader.GetString(2)),
+        //                    profession = (reader.GetString(3)),
+        //                    sectionname = (reader.GetString(4)),
+        //                    sectionid = (reader.GetInt32(5))
+        //                };
+        //                staffs.Add(s);
+        //            }
+        //        }
+        //        return staffs;
+        //    }
+        //}
 
         public List<Pickup> GetAllAllowedPickupBySchoolchildID(int schoolchildID)    // Hämtar alla godkända hämtare för ett barn
         {
@@ -903,98 +903,98 @@ namespace Uppgift6
         }
 
 
-        public List<Schoolchild> GetSchoolchildsFromGuardian(int id) //används ej, ska tas bort
-        {
-            Schoolchild sc;
-            List<Schoolchild> children = new List<Schoolchild>();
+        //public List<Schoolchild> GetSchoolchildsFromGuardian(int id) //används ej, ska tas bort
+        //{
+        //    Schoolchild sc;
+        //    List<Schoolchild> children = new List<Schoolchild>();
 
-            string stmt = $"SELECT schoolchild.firstname, schoolchild.lastname FROM guardian_schoolchild INNER JOIN schoolchild on guardian_schoolchild.schoolchild_id = schoolchild.schoolchild_id WHERE guardian_id = @gid";
+        //    string stmt = $"SELECT schoolchild.firstname, schoolchild.lastname FROM guardian_schoolchild INNER JOIN schoolchild on guardian_schoolchild.schoolchild_id = schoolchild.schoolchild_id WHERE guardian_id = @gid";
 
-            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
-            {
-                conn.Open();
-                using (var cmd = new NpgsqlCommand())
-                {
-                    cmd.Connection = conn;
-                    cmd.CommandText = stmt;
-                    cmd.Parameters.AddWithValue("gid", id);
+        //    using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+        //    {
+        //        conn.Open();
+        //        using (var cmd = new NpgsqlCommand())
+        //        {
+        //            cmd.Connection = conn;
+        //            cmd.CommandText = stmt;
+        //            cmd.Parameters.AddWithValue("gid", id);
 
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            sc = new Schoolchild()
-                            {                               
-                                firstname = (reader.GetString(0)),
-                                lastname = (reader.GetString(1))
+        //            using (var reader = cmd.ExecuteReader())
+        //            {
+        //                while (reader.Read())
+        //                {
+        //                    sc = new Schoolchild()
+        //                    {                               
+        //                        firstname = (reader.GetString(0)),
+        //                        lastname = (reader.GetString(1))
                                 
-                            };
-                            children.Add(sc);
-                        }
-                    }
-                    return children;
-                }
-            }
-        }
+        //                    };
+        //                    children.Add(sc);
+        //                }
+        //            }
+        //            return children;
+        //        }
+        //    }
+        //}
 
 
-        public List<Guardian> GetAllGuardiansOrderbyFirstname() // Används ej Hämtar alla vårdnadshavare
-        {
-            Guardian g;
-            List<Guardian> guardians = new List<Guardian>();
-            string stmt = "SELECT guardian_id, firstname, lastname, phonenumber, address FROM guardian ORDER BY firstname;";
+        //public List<Guardian> GetAllGuardiansOrderbyFirstname() // Används ej Hämtar alla vårdnadshavare
+        //{
+        //    Guardian g;
+        //    List<Guardian> guardians = new List<Guardian>();
+        //    string stmt = "SELECT guardian_id, firstname, lastname, phonenumber, address FROM guardian ORDER BY firstname;";
 
-            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
-            {
-                conn.Open();
-                using (var cmd = new NpgsqlCommand(stmt, conn))
-                using (var reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        g = new Guardian()
-                        {
-                            id = (reader.GetInt32(0)),
-                            firstname = (reader.GetString(1)),
-                            lastname = (reader.GetString(2)),
-                            phonenumber = (reader.GetString(3)),
-                            address = (reader.GetString(4))
-                        };
-                        guardians.Add(g);
-                    }
-                }
-                return guardians;
-            }
-        }
+        //    using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+        //    {
+        //        conn.Open();
+        //        using (var cmd = new NpgsqlCommand(stmt, conn))
+        //        using (var reader = cmd.ExecuteReader())
+        //        {
+        //            while (reader.Read())
+        //            {
+        //                g = new Guardian()
+        //                {
+        //                    id = (reader.GetInt32(0)),
+        //                    firstname = (reader.GetString(1)),
+        //                    lastname = (reader.GetString(2)),
+        //                    phonenumber = (reader.GetString(3)),
+        //                    address = (reader.GetString(4))
+        //                };
+        //                guardians.Add(g);
+        //            }
+        //        }
+        //        return guardians;
+        //    }
+        //}
 
-        public List<Guardian> GetAllGuardiansOrderbyLastname() // Används ej Hämtar alla vårdnadshavare
-        {
-            Guardian g;
-            List<Guardian> guardians = new List<Guardian>();
-            string stmt = "SELECT guardian_id, firstname, lastname, phonenumber, address FROM guardian ORDER BY lastname;";
+        //public List<Guardian> GetAllGuardiansOrderbyLastname() // Används ej Hämtar alla vårdnadshavare
+        //{
+        //    Guardian g;
+        //    List<Guardian> guardians = new List<Guardian>();
+        //    string stmt = "SELECT guardian_id, firstname, lastname, phonenumber, address FROM guardian ORDER BY lastname;";
 
-            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
-            {
-                conn.Open();
-                using (var cmd = new NpgsqlCommand(stmt, conn))
-                using (var reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        g = new Guardian()
-                        {
-                            id = (reader.GetInt32(0)),
-                            firstname = (reader.GetString(1)),
-                            lastname = (reader.GetString(2)),
-                            phonenumber = (reader.GetString(3)),
-                            address = (reader.GetString(4))
-                        };
-                        guardians.Add(g);
-                    }
-                }
-                return guardians;
-            }
-        }
+        //    using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+        //    {
+        //        conn.Open();
+        //        using (var cmd = new NpgsqlCommand(stmt, conn))
+        //        using (var reader = cmd.ExecuteReader())
+        //        {
+        //            while (reader.Read())
+        //            {
+        //                g = new Guardian()
+        //                {
+        //                    id = (reader.GetInt32(0)),
+        //                    firstname = (reader.GetString(1)),
+        //                    lastname = (reader.GetString(2)),
+        //                    phonenumber = (reader.GetString(3)),
+        //                    address = (reader.GetString(4))
+        //                };
+        //                guardians.Add(g);
+        //            }
+        //        }
+        //        return guardians;
+        //    }
+        //}
 
 
         public List<Schoolchild> GetSchoolchildrenFromSelectedSection(int section) // Hämtar skolbarn utifrån avdelning

@@ -31,6 +31,13 @@ namespace Uppgift6
         List<Guardian> guardians = new List<Guardian>();
         DbOperations db = new DbOperations();
 
+        private void listViewGuardians_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            selectedGuardian = (Guardian)listViewGuardians.SelectedItem;
+            UpdateSchoolchildsList();
+        }
+
+        #region Metoder
         public void UpdateListView()
         {
             guardians = db.GetAllGuardians();
@@ -48,18 +55,29 @@ namespace Uppgift6
                 //listViewGuardians.ItemsSource = db.GetAllGuardiansOrderbyLastname();
             }    
         }
+        private void UpdateSchoolchildsList()
+        {
+            listViewChilds.ItemsSource = null;
+            DbOperations db = new DbOperations();
 
+            if (selectedGuardian == null)
+            {
+                return;
+            }
+            else
+            {
+                listViewChilds.ItemsSource = db.GetChildNameFromGuardianID(selectedGuardian.id);
+            }
+        }
+
+        #endregion
+
+        #region Buttons
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             StaffChildren s = new StaffChildren();
             s.Show();
             this.Close();
-        }
-
-        private void listViewGuardians_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            selectedGuardian = (Guardian)listViewGuardians.SelectedItem;
-            UpdateSchoolchildsList();
         }
 
         private void listViewGuardians_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -138,22 +156,15 @@ namespace Uppgift6
                 }
             }
         }
-
-        private void UpdateSchoolchildsList()
+        private void arrow_back_png_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            listViewChilds.ItemsSource = null;
-            DbOperations db = new DbOperations();
-
-            if (selectedGuardian == null)
-            {
-                return;
-            }
-            else
-            {
-                listViewChilds.ItemsSource = db.GetChildNameFromGuardianID(selectedGuardian.id);
-            }
+            StaffChildren s = new StaffChildren();
+            s.Show();
+            this.Close();
         }
+        #endregion
 
+        #region Radio buttons
         private void radioButtonFname_Click(object sender, RoutedEventArgs e)
         {
             UpdateListView();
@@ -163,13 +174,9 @@ namespace Uppgift6
         {
             UpdateListView();
         }
+        #endregion
 
-        private void arrow_back_png_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            StaffChildren s = new StaffChildren();
-            s.Show();
-            this.Close();
-        }
+        #region Sortera listan
         private List<Guardian> OrderListByFirstname(List<Guardian> guardians)
         {
             return guardians = guardians.OrderBy(s => s.firstname).ToList();
@@ -178,5 +185,7 @@ namespace Uppgift6
         {
             return guardians = guardians.OrderBy(s => s.lastname).ToList();
         }
+
+        #endregion
     }
 }
