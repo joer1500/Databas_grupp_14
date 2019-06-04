@@ -346,7 +346,7 @@ namespace Uppgift6
             }
         }
 
-        public List<Staff> GetAllStaffOrderByFirstname() //Hämtar alla staffs och sorterar på förnamn
+        public List<Staff> GetAllStaffOrderByFirstname() // Används ej Hämtar alla staffs och sorterar på förnamn
         {
             Staff s;
             List<Staff> staffs = new List<Staff>();
@@ -377,7 +377,7 @@ namespace Uppgift6
             }
         }
 
-        public List<Staff> GetAllStaffOrderByLastname() //Hämtar alla staffs och sorterar på efternamn
+        public List<Staff> GetAllStaffOrderByLastname() // Används ej Hämtar alla staffs och sorterar på efternamn
         {
             Staff s;
             List<Staff> staffs = new List<Staff>();
@@ -408,7 +408,7 @@ namespace Uppgift6
             }
         }
 
-        public List<Staff> GetAllStaffOrderBy(string orderby) //Under konstruktion
+        public List<Staff> GetAllStaffOrderBy(string orderby) // Används ej. Under konstruktion
         {
             Staff s;
             List<Staff> staffs = new List<Staff>();
@@ -660,7 +660,7 @@ namespace Uppgift6
             }
         }
 
-        public List<Staff> GetAllStaffOrderByProfession() //Hämtar alla staffs och sorterar på roll
+        public List<Staff> GetAllStaffOrderByProfession() //Används ej, kan tas bort. Hämtar alla staffs och sorterar på roll
         {
             Staff s;
             List<Staff> staffs = new List<Staff>();
@@ -691,7 +691,7 @@ namespace Uppgift6
             }
         }
 
-        public List<Staff> GetAllStaffOrderBySection() //Hämtar alla staffs och sorterar på avdelning
+        public List<Staff> GetAllStaffOrderBySection() //Används ej, Hämtar alla staffs och sorterar på avdelning
         {
             Staff s;
             List<Staff> staffs = new List<Staff>();
