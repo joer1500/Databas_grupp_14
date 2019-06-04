@@ -1145,6 +1145,6 @@ namespace Uppgift6
                     cmd.ExecuteNonQuery();
                 }
             }
-        }        
+        }   
     }
 }

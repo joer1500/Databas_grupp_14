@@ -59,7 +59,7 @@ namespace Uppgift6
             int staffSlump = slump.Next(1, 6);
             if (listBoxChildName.SelectedItem == null)
             {
-                MessageBox.Show("Du måste välja ett barn i listan.");
+                ErrorMessageSelectChildInList();
             }
 
             else
@@ -344,7 +344,7 @@ namespace Uppgift6
             schoolchild = (Schoolchild)listBoxChildName.SelectedItem;
             if (schoolchild == null)
             {
-                MessageBox.Show($"Vänligen välj ett barn i listan");
+                ErrorMessageSelectChildInList();
             }
 
             else
@@ -383,7 +383,7 @@ namespace Uppgift6
         {
             if (schoolchild == null)
             {
-                MessageBox.Show("Vänligen välj ett barn i listan");
+                ErrorMessageSelectChildInList();
             }
             else
             {
@@ -392,6 +392,38 @@ namespace Uppgift6
                 this.Close();
             }
             
+        }
+
+        private void ButtonSick_Click(object sender, RoutedEventArgs e)
+        {
+          schoolchild = (Schoolchild)listBoxChildName.SelectedItem;
+
+            if (schoolchild == null)
+            {
+                ErrorMessageSelectChildInList();
+            }
+            else
+            {
+                if (textBoxDateSick.Text == "")
+                {
+                    MessageBox.Show("Vänligen fyll i ett datum för sjukanmälan.");
+                }
+                else
+                {
+                    DateTime sickDate;
+                    sickDate = DateTime.Parse(textBoxDateSick.Text);
+                    int staffSlump = slump.Next(1, 6);
+
+                    db.AddNewAttendance(schoolchild.id, sickDate, "Ja", "", staffSlump);
+                    MessageBox.Show($"{schoolchild.firstname} är nu sjukanmäld för {textBoxDateSick.Text.ToString()}");
+                }
+            }          
+
+        }
+
+        private void ErrorMessageSelectChildInList()
+        {
+            MessageBox.Show("Vänligen välj ett barn i listan.");
         }
     }       
 }
