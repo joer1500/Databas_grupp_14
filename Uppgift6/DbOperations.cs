@@ -88,7 +88,6 @@ namespace Uppgift6
                 }
                 return needs;
             }
-
         }
 
         public void DeleteSchedule(int id) //Ta bort schedule baserat på ID
@@ -209,7 +208,6 @@ namespace Uppgift6
                 }
                 return guardian;
             }
-
         }
 
         public List<Schoolchild> GetChildNameFromGuardianID(int ID)
@@ -444,33 +442,33 @@ namespace Uppgift6
         //    }
         //}
 
-        public List<Schoolchild> GetSchoolchildrenOrderByLastname() // Hämtar alla skolbarn och sorterar på efternamn
-        {
-            Schoolchild schoolchild;
-            List<Schoolchild> schoolchildren = new List<Schoolchild>();
+        //public List<Schoolchild> GetSchoolchildrenOrderByLastname() // Används ej Hämtar alla skolbarn och sorterar på efternamn
+        //{
+        //    Schoolchild schoolchild;
+        //    List<Schoolchild> schoolchildren = new List<Schoolchild>();
 
-            string stmt = "SELECT schoolchild_id, lastname, firstname, section_name FROM schoolchild INNER JOIN section ON schoolchild.section_id = section.section_id ORDER BY lastname ASC";
-            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
-            {
-                conn.Open();
-                using (var cmd = new NpgsqlCommand(stmt, conn))
-                using (var reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        schoolchild = new Schoolchild
-                        {
-                            id = reader.GetInt32(0),
-                            lastname = reader.GetString(1),
-                            firstname = reader.GetString(2),
-                            section = reader.GetString(3)
-                        };
-                        schoolchildren.Add(schoolchild);
-                    }
-                }
-                return schoolchildren;
-            }
-        }
+        //    string stmt = "SELECT schoolchild_id, lastname, firstname, section_name FROM schoolchild INNER JOIN section ON schoolchild.section_id = section.section_id ORDER BY lastname ASC";
+        //    using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+        //    {
+        //        conn.Open();
+        //        using (var cmd = new NpgsqlCommand(stmt, conn))
+        //        using (var reader = cmd.ExecuteReader())
+        //        {
+        //            while (reader.Read())
+        //            {
+        //                schoolchild = new Schoolchild
+        //                {
+        //                    id = reader.GetInt32(0),
+        //                    lastname = reader.GetString(1),
+        //                    firstname = reader.GetString(2),
+        //                    section = reader.GetString(3)
+        //                };
+        //                schoolchildren.Add(schoolchild);
+        //            }
+        //        }
+        //        return schoolchildren;
+        //    }
+        //}
 
         public List<Schoolchild> GetSchoolchildrenOrderByID()   // Hämtar skolbarn och sorterar efter ID
         {
@@ -500,61 +498,61 @@ namespace Uppgift6
             }
         }
 
-        public List<Schoolchild> GetSchoolchildrenOrderByFirstname() // Hämtar skolbarn och sorterar efter förnamn
-        {
-            Schoolchild schoolchild;
-            List<Schoolchild> schoolchildren = new List<Schoolchild>();
+        //public List<Schoolchild> GetSchoolchildrenOrderByFirstname() // Används ej Hämtar skolbarn och sorterar efter förnamn
+        //{
+        //    Schoolchild schoolchild;
+        //    List<Schoolchild> schoolchildren = new List<Schoolchild>();
 
-            string stmt = "SELECT schoolchild_id, lastname, firstname, section_name FROM schoolchild INNER JOIN section ON schoolchild.section_id = section.section_id ORDER BY firstname ASC";
-            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
-            {
-                conn.Open();
-                using (var cmd = new NpgsqlCommand(stmt, conn))
-                using (var reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        schoolchild = new Schoolchild
-                        {
-                            id = reader.GetInt32(0),
-                            lastname = reader.GetString(1),
-                            firstname = reader.GetString(2),
-                            section = reader.GetString(3)
-                        };
-                        schoolchildren.Add(schoolchild);
-                    }
-                }
-                return schoolchildren;
-            }
-        }
+        //    string stmt = "SELECT schoolchild_id, lastname, firstname, section_name FROM schoolchild INNER JOIN section ON schoolchild.section_id = section.section_id ORDER BY firstname ASC";
+        //    using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+        //    {
+        //        conn.Open();
+        //        using (var cmd = new NpgsqlCommand(stmt, conn))
+        //        using (var reader = cmd.ExecuteReader())
+        //        {
+        //            while (reader.Read())
+        //            {
+        //                schoolchild = new Schoolchild
+        //                {
+        //                    id = reader.GetInt32(0),
+        //                    lastname = reader.GetString(1),
+        //                    firstname = reader.GetString(2),
+        //                    section = reader.GetString(3)
+        //                };
+        //                schoolchildren.Add(schoolchild);
+        //            }
+        //        }
+        //        return schoolchildren;
+        //    }
+        //}
 
-        public List<Schoolchild> GetSchoolchildrenOrderBySection() // Hämtar skolbarn och sorterar efter avdelning
-        {
-            Schoolchild schoolchild;
-            List<Schoolchild> schoolchildren = new List<Schoolchild>();
+        //public List<Schoolchild> GetSchoolchildrenOrderBySection() // Används ej Hämtar skolbarn och sorterar efter avdelning
+        //{
+        //    Schoolchild schoolchild;
+        //    List<Schoolchild> schoolchildren = new List<Schoolchild>();
 
-            string stmt = "SELECT schoolchild_id, lastname, firstname, section_name FROM schoolchild INNER JOIN section ON schoolchild.section_id = section.section_id ORDER BY section.section_id";
-            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
-            {
-                conn.Open();
-                using (var cmd = new NpgsqlCommand(stmt, conn))
-                using (var reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        schoolchild = new Schoolchild
-                        {
-                            id = reader.GetInt32(0),
-                            lastname = reader.GetString(1),
-                            firstname = reader.GetString(2),
-                            section = reader.GetString(3)
-                        };
-                        schoolchildren.Add(schoolchild);
-                    }
-                }
-                return schoolchildren;
-            }
-        }
+        //    string stmt = "SELECT schoolchild_id, lastname, firstname, section_name FROM schoolchild INNER JOIN section ON schoolchild.section_id = section.section_id ORDER BY section.section_id";
+        //    using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+        //    {
+        //        conn.Open();
+        //        using (var cmd = new NpgsqlCommand(stmt, conn))
+        //        using (var reader = cmd.ExecuteReader())
+        //        {
+        //            while (reader.Read())
+        //            {
+        //                schoolchild = new Schoolchild
+        //                {
+        //                    id = reader.GetInt32(0),
+        //                    lastname = reader.GetString(1),
+        //                    firstname = reader.GetString(2),
+        //                    section = reader.GetString(3)
+        //                };
+        //                schoolchildren.Add(schoolchild);
+        //            }
+        //        }
+        //        return schoolchildren;
+        //    }
+        //}
 
         public Schoolchild GetSchoolchildByID(int id)
         {
@@ -821,9 +819,7 @@ namespace Uppgift6
                 }
                 return guardians;
             }
-
         }
-
 
         public void AddNewGuardian(string fname, string lname, string phone, string address) //Lägger till ny Guardian
         {
@@ -864,7 +860,6 @@ namespace Uppgift6
             }
         }
 
-
         public Guardian GetGuardianById(int id) //Hämtar staff baserat på ID
         {
             Guardian g = new Guardian();
@@ -893,9 +888,7 @@ namespace Uppgift6
                 }
                 return g;
             }
-
         }
-
 
         public void UpdateGuardian(int id, string firstname, string lastname, string phonenumber, string address) //Uppdaterar guardian
         {
@@ -1070,7 +1063,6 @@ namespace Uppgift6
         public List<Attendance> GetAttendances() //Hämtar närvaro-lista
         {
 
-            //date.ToShortDateString();
             Attendance att;
             List<Attendance> attendances = new List<Attendance>();
 
@@ -1107,7 +1099,6 @@ namespace Uppgift6
                 }
             }
         }
-
         public void AddNewAttendance(int schoolchild, DateTime date, string sick, string attendance, int staff)
         {
             string stmt = "INSERT INTO attendance(schoolchild_id, date, sick, attendance, attendance_staff) VALUES (@sid, @date, @sick, @att, @staff)";
@@ -1129,7 +1120,6 @@ namespace Uppgift6
                 }
             }
         }
-
         public void UpdateAttendance(int schoolchild, DateTime date, string sick, string attendance)
         {
             string stmt = "UPDATE attendance SET (schoolchild_id, date, sick, attendance) = (@id, @dt, @sick, @att) WHERE schoolchild_id = @id AND date = @dt;";
@@ -1149,8 +1139,6 @@ namespace Uppgift6
                     cmd.ExecuteNonQuery();
                 }
             }
-        }
-        
-
+        }        
     }
 }

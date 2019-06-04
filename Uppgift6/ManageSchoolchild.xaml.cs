@@ -29,36 +29,43 @@ namespace Uppgift6
 
         Schoolchild selectedSchoolchild;
         public static int selectedSchooolchildID;
+        List<Schoolchild> childs = new List<Schoolchild>();
+        DbOperations db = new DbOperations();
 
         private void UpdateListview()
         {
-            DbOperations db = new DbOperations();
+            childs = db.GetSchoolchildrenOrderByID();
 
             if (rbtnSortByID.IsChecked == true)
             {
                 listViewSchoolchildren.ItemsSource = null;
-                listViewSchoolchildren.ItemsSource = db.GetSchoolchildrenOrderByID();
+                listViewSchoolchildren.ItemsSource = OrderListById(childs);
+                //listViewSchoolchildren.ItemsSource = db.GetSchoolchildrenOrderByID();
             }
 
             else if (rbtnSortByFirstname.IsChecked == true)
             {
                 listViewSchoolchildren.ItemsSource = null;
-                listViewSchoolchildren.ItemsSource = db.GetSchoolchildrenOrderByFirstname();
+                listViewSchoolchildren.ItemsSource = OrderListFirstname(childs);
+                //listViewSchoolchildren.ItemsSource = db.GetSchoolchildrenOrderByFirstname();
             }
 
             else if (rbtnSortByLastname.IsChecked == true)
             {
                 listViewSchoolchildren.ItemsSource = null;
-                listViewSchoolchildren.ItemsSource = db.GetSchoolchildrenOrderByLastname();
+                listViewSchoolchildren.ItemsSource = OrderListByLastname(childs);
+                //listViewSchoolchildren.ItemsSource = db.GetSchoolchildrenOrderByLastname();
             }
 
             else if (rbtnSortBySection.IsChecked == true)
             {
                 listViewSchoolchildren.ItemsSource = null;
-                listViewSchoolchildren.ItemsSource = db.GetSchoolchildrenOrderBySection();
+                listViewSchoolchildren.ItemsSource = OrderListBySection(childs);
+                //listViewSchoolchildren.ItemsSource = db.GetSchoolchildrenOrderBySection();
             }
         }
 
+        #region Radio buttons
         private void rbtnSortByID_Checked(object sender, RoutedEventArgs e)
         {
             UpdateListview();
@@ -78,7 +85,9 @@ namespace Uppgift6
         {
             UpdateListview();
         }
+        #endregion
 
+        #region Buttons
         private void btnAddChild_Click(object sender, RoutedEventArgs e)
         {
             NewSchoolchild win = new NewSchoolchild();
@@ -138,5 +147,25 @@ namespace Uppgift6
                 this.Close();
             }
         }
+        #endregion
+
+        #region Sortera listan
+        private List<Schoolchild> OrderListById(List<Schoolchild> childs)
+        {
+            return childs = childs.OrderBy(s => s.id).ToList();
+        }
+        private List<Schoolchild> OrderListFirstname(List<Schoolchild> childs)
+        {
+            return childs = childs.OrderBy(s => s.firstname).ToList();
+        }
+        private List<Schoolchild> OrderListByLastname(List<Schoolchild> childs)
+        {
+            return childs = childs.OrderBy(s => s.lastname).ToList();
+        }
+        private List<Schoolchild> OrderListBySection(List<Schoolchild> childs)
+        {
+            return childs = childs.OrderBy(s => s.section).ToList();
+        }
+        #endregion
     }
 }

@@ -29,6 +29,8 @@ namespace Uppgift6
 
         Schoolchild selectedSchoolchild;
         Schoolchild selectedExistedSchoolchild;
+        DbOperations db = new DbOperations();
+        List<Schoolchild> childsList = new List<Schoolchild>();
         int sectionid = 0;
 
         public void UpdateStaffInfo()
@@ -89,7 +91,7 @@ namespace Uppgift6
         private int GetGuardian()
         {
             Guardian guardian = new Guardian();
-            DbOperations db = new DbOperations();
+            
             //int guardID = GuardianManage.selectedGuardianID;
             guardian = db.GetGuardianById(GuardianManage.selectedGuardianID);
 
@@ -98,7 +100,7 @@ namespace Uppgift6
 
         private void UpdateChildsList()
         {
-            DbOperations db = new DbOperations();
+            //DbOperations db = new DbOperations();
             listViewChilds.ItemsSource = null;                
             listViewChilds.ItemsSource = db.GetChildNameFromGuardianID(int.Parse(textBoxID.Text));        
         }
@@ -136,13 +138,14 @@ namespace Uppgift6
         private void UpdateAllChildsList()
         {
             DbOperations db = new DbOperations();
+            childsList = db.GetSchoolchildrenOrderByID();
 
             try
             {
                 if (rbtn_allChilds.IsChecked == true)
                 {
                     listViewAllChilds.ItemsSource = null;
-                    listViewAllChilds.ItemsSource = db.GetSchoolchildrenOrderByLastname();
+                    listViewAllChilds.ItemsSource = childsList;
                 }
                 else if (rbtn_blue.IsChecked == true)
                 {
@@ -187,6 +190,7 @@ namespace Uppgift6
             //ShowAllChildsList();
         }
 
+        #region Radio buttons
         private void rbtn_allChilds_Checked(object sender, RoutedEventArgs e)
         {
             UpdateAllChildsList();
@@ -211,6 +215,7 @@ namespace Uppgift6
         {
             UpdateAllChildsList();
         }
+        #endregion
 
         private void buttonDeleteConnection_Click(object sender, RoutedEventArgs e)
         {
@@ -303,5 +308,7 @@ namespace Uppgift6
                 buttonConnectChild.IsEnabled = true;
             }
         }
+
+
     }
 }
