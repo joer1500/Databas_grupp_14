@@ -15,27 +15,28 @@ using System.Windows.Shapes;
 namespace Uppgift6
 {
     /// <summary>
-    /// Interaction logic for Needs.xaml
+    /// Interaction logic for NeedBySchoolchild.xaml
     /// </summary>
-    public partial class Needs : Window
+    public partial class NeedBySchoolchild : Window
     {
-        public Needs()
+        public NeedBySchoolchild()
         {
             InitializeComponent();
             UpdateNeeds();
         }
-
         DbOperations db = new DbOperations();
-
-
-
-        private void UpdateNeeds() {
-
-            List<Needs> needs = new List<Needs>();
-            needs = db.GetNeedsFromSchoolchildID(Guardians.selectedSchoolchildID);
-            var n = string.Join(Environment.NewLine, needs);
-            label_needs.Content = n;
+        List<Needs> lista = new List<Needs>();
+        private void UpdateNeeds()
+        {
+            
+            lista = db.GetNeedsFromSchoolchildID(Guardians.selectedSchoolchildID);
+            listViewNeeds.ItemsSource = null;
+            listViewNeeds.ItemsSource = lista;
+            var n = string.Join(Environment.NewLine, lista);
+            label_needs.Content = lista;
         }
+
+        
 
         private void btnCloseNeeds_Click(object sender, RoutedEventArgs e)
         {

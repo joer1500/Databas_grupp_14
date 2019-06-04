@@ -109,10 +109,10 @@
     <Compile Include="ManageSchoolchild.xaml.cs">
       <DependentUpon>ManageSchoolchild.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Needs.cs" />
-    <Compile Include="Needs.xaml.cs">
-      <DependentUpon>Needs.xaml</DependentUpon>
+    <Compile Include="NeedBySchoolchild.xaml.cs">
+      <DependentUpon>NeedBySchoolchild.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Needs.cs" />
     <Compile Include="NewAttendance.xaml.cs">
       <DependentUpon>NewAttendance.xaml</DependentUpon>
     </Compile>
@@ -178,7 +178,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Needs.xaml">
+    <Page Include="NeedBySchoolchild.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

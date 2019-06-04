@@ -387,7 +387,7 @@ namespace Uppgift6
             }
             else
             {
-                Needs m = new Needs();
+                NeedBySchoolchild m = new NeedBySchoolchild();
                 m.Show();
                 this.Close();
             }

@@ -420,6 +420,18 @@ namespace Uppgift6
             }
         }
         #endregion
+
+        private void label_today_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            choosenDate = DateTime.Today;
+            GetSchedules();
+            SortSchedulesByDate();
+            EmptyListBoxAndFill();
+            GetAttendance();
+            FilterAttendancesByDate();
+            UpdateAttendanceList();
+            UpdateLabelView();
+        }
     }
 
 }

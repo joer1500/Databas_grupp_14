@@ -64,29 +64,35 @@ namespace Uppgift6
 
         public List<Needs> GetNeedsFromSchoolchildID(int ID)
         {
-            Needs n;
-            List<Needs> needs = new List<Needs>();
+            Needs needs;
+            List<Needs> needsList = new List<Needs>();
 
-            string stmt = $"SELECT need_id, schoolchild_id, need FROM schoolchild_need WHERE schoolchild_id = {ID}";
+            string stmt = "SELECT need_id, schoolchild_id, need FROM schoolchild_need WHERE schoolchild_id = @id";
 
             using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
             {
                 conn.Open();
-                using (var cmd = new NpgsqlCommand(stmt, conn))
-                using (var reader = cmd.ExecuteReader())
+                using (var cmd = new NpgsqlCommand())
                 {
-                    while (reader.Read())
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("id", ID);
+
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        n = new Needs()
+                        while (reader.Read())
                         {
-                            id = (reader.GetInt32(0)),
-                            child_id = (reader.GetInt32(1)),
-                            need = (reader.GetString(2))
-                        };
-                        needs.Add(n);
+                            needs = new Needs()
+                            {
+                                id = reader.GetInt32(0),
+                                child_id = reader.GetInt32(1),
+                                need = reader.GetString(2),
+                            };
+                            needsList.Add(needs);
+                        }
                     }
+                    return needsList;
                 }
-                return needs;
             }
         }
 
