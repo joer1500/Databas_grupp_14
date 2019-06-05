@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Uppgift6"
         mc:Ignorable="d"
-        Title="Pickups" Height="450" Width="800">
+        Title="Pickups" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <ListView x:Name="listViewPickups" HorizontalAlignment="Left" Height="246" VerticalAlignment="Top" Width="385" Margin="20,78,0,0" SelectionChanged="listViewPickups_SelectionChanged">
             <ListView.View>
