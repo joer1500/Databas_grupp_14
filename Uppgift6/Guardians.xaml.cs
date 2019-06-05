@@ -441,5 +441,15 @@ namespace Uppgift6
             listBox_ChildSchedule.ItemsSource = null;
             listBox_ChildSchedule.ItemsSource = schedulesForSelectedWeek;
         }
+
+        private void TextBoxShould_drop_GotFocus(object sender, RoutedEventArgs e)
+        {
+            textBoxShould_drop.Clear();
+        }
+
+        private void TextBoxShould_pickup_GotFocus(object sender, RoutedEventArgs e)
+        {
+            textBoxShould_pickup.Clear();
+        }
     }       
 }

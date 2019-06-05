@@ -15,9 +15,9 @@
         <Label x:Name="labelBreakfast" Content="Frukost: Ja/Nej" HorizontalAlignment="Left" Margin="660,203,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="textBoxBreakfast" HorizontalAlignment="Left" Height="23" Margin="660,229,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="73" TabIndex="5"/>
         <Label x:Name="labelShould_drop" Content="Lämnas:" HorizontalAlignment="Left" Margin="555,127,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBoxShould_drop" HorizontalAlignment="Left" Height="23" Margin="555,153,0,0" TextWrapping="Wrap" Text="00:00" VerticalAlignment="Top" Width="72" TabIndex="2"/>
+        <TextBox x:Name="textBoxShould_drop" HorizontalAlignment="Left" Height="23" Margin="555,153,0,0" TextWrapping="Wrap" Text="00:00" VerticalAlignment="Top" Width="72" TabIndex="2" GotFocus="TextBoxShould_drop_GotFocus"/>
         <Label x:Name="labelShould_pickup" Content="Hämtas:" HorizontalAlignment="Left" Margin="660,127,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBoxShould_pickup" HorizontalAlignment="Left" Height="23" Margin="660,153,0,0" TextWrapping="Wrap" Text="00:00" VerticalAlignment="Top" Width="73" TabIndex="3"/>
+        <TextBox x:Name="textBoxShould_pickup" HorizontalAlignment="Left" Height="23" Margin="660,153,0,0" TextWrapping="Wrap" Text="00:00" VerticalAlignment="Top" Width="73" GotFocus="TextBoxShould_pickup_GotFocus"/>
         <Label x:Name="labelWalk_home_alone" Content="Går hem själv:&#xD;&#xA;Ja/Nej" HorizontalAlignment="Left" Margin="555,277,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="textBoxWalk_home_alone" HorizontalAlignment="Left" Height="23" Margin="555,319,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="72" TabIndex="6"/>
         <Label x:Name="labelHome_with_friend" Content="Går hem med &#xD;&#xA;kompis: Ja/Nej" HorizontalAlignment="Left" Margin="660,277,0,0" VerticalAlignment="Top"/>
