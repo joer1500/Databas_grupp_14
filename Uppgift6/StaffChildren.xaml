@@ -10,14 +10,14 @@
         <ListView x:Name="listViewSC" HorizontalAlignment="Left" Height="316" VerticalAlignment="Top" Width="675" Margin="168,44,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="listViewSC_MouseDoubleClick_1" SelectionChanged="listViewSC_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Förnamn" Width="70" DisplayMemberBinding="{Binding firstname}"/>
-                    <GridViewColumn Header="Efternamn" Width="80" DisplayMemberBinding="{Binding lastname}"/>
+                    <GridViewColumn Header="Förnamn" Width="60" DisplayMemberBinding="{Binding firstname}"/>
+                    <GridViewColumn Header="Efternamn" Width="70" DisplayMemberBinding="{Binding lastname}"/>
                     <!--<GridViewColumn Header="Datum" Width="60" DisplayMemberBinding="{Binding date,StringFormat=yyyy\\-MM\\-dd}"/>-->
-                    <GridViewColumn Header="Lämnas" Width="65" DisplayMemberBinding="{Binding should_drop,StringFormat=hh\\:mm}"/>
-                    <GridViewColumn Header="Hämtas" Width="65" DisplayMemberBinding="{Binding should_pickup,StringFormat=hh\\:mm}"/>
-                    <GridViewColumn Header="Frukost" Width="60" DisplayMemberBinding="{Binding breakfast}"/>
+                    <GridViewColumn Header="Lämnas" Width="55" DisplayMemberBinding="{Binding should_drop,StringFormat=hh\\:mm}"/>
+                    <GridViewColumn Header="Hämtas" Width="55" DisplayMemberBinding="{Binding should_pickup,StringFormat=hh\\:mm}"/>
+                    <GridViewColumn Header="Frukost" Width="55" DisplayMemberBinding="{Binding breakfast}"/>
                     <GridViewColumn Header="Hem med kompis" Width="100" DisplayMemberBinding="{Binding home_with_friend}"/>
-                    <GridViewColumn Header="Hem själv" Width="70" DisplayMemberBinding="{Binding walk_home_alone}"/>
+                    <GridViewColumn Header="Hem själv" Width="65" DisplayMemberBinding="{Binding walk_home_alone}"/>
                     <GridViewColumn Header="Ledig" Width="55" DisplayMemberBinding="{Binding day_off}"/>
                     <!--<GridViewColumn Header="Section" Width="50" DisplayMemberBinding="{Binding section_id}"/>-->
                 </GridView>
@@ -47,14 +47,18 @@
         <Button x:Name="btnNewAttendance" Content="Ny närvaro" HorizontalAlignment="Left" Height="31" Margin="752,362,0,0" VerticalAlignment="Top" Width="90" IsEnabled="True" Click="btnNewAttendance_Click"/>
         <Button x:Name="btnAttendanceYes" Content="Ja" HorizontalAlignment="Left" Height="25" Margin="857,109,0,0" VerticalAlignment="Top" Width="34" IsEnabled="False"/>
         <Button x:Name="btnAttendanceNo" Content="Nej" HorizontalAlignment="Left" Height="25" Margin="896,109,0,0" VerticalAlignment="Top" Width="34" IsEnabled="False"/>
-        <ListView x:Name="listViewAttendance" HorizontalAlignment="Left" Height="311" Margin="736,46,0,0" VerticalAlignment="Top" Width="106" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0" SelectionChanged="listViewAttendance_SelectionChanged">
+        <ListView x:Name="listViewAttendance" HorizontalAlignment="Left" Height="311" Margin="687,46,0,0" VerticalAlignment="Top" Width="155" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0" SelectionChanged="listViewAttendance_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Sjuk" Width="50" DisplayMemberBinding="{Binding sick}"/>
-                    <GridViewColumn Header="Närvaro" Width="50" DisplayMemberBinding="{Binding attendance}"/>
+                    <GridViewColumn Header="Lämnad" Width="50" DisplayMemberBinding="{Binding has_drop}"/>
+                    <GridViewColumn Header="Hämtad" Width="50" DisplayMemberBinding="{Binding has_pickup}"/>
+                    <!--<GridViewColumn Header="Närvaro" Width="50" DisplayMemberBinding="{Binding attendance}"/>-->
                 </GridView>
             </ListView.View>
         </ListView>
+        <Button x:Name="btnHasDrop" Content="Lämnad" HorizontalAlignment="Left" Height="33" Margin="857,154,0,0" VerticalAlignment="Top" Width="65" Click="btnHasDrop_Click"/>
+        <Button x:Name="btnHasPickup" Content="Hämtad" HorizontalAlignment="Left" Height="33" Margin="857,203,0,0" VerticalAlignment="Top" Width="65" Click="btnHasPickup_Click"/>
 
 
     </Grid>
