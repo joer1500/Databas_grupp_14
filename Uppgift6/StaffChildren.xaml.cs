@@ -435,13 +435,14 @@ namespace Uppgift6
 
         private void btnHasDrop_Click(object sender, RoutedEventArgs e)
         {
-            db.UpdateAttendance(selectedAttendance.schoolchild, choosenDate, selectedAttendance.sick, comboBoxAttendance.Text);
-            TimeSpan timeDrop = choosenDate.TimeOfDay;
-            
+            //db.UpdateAttendance(selectedAttendance.schoolchild, choosenDate, selectedAttendance.sick, comboBoxAttendance.Text);
+            string timeDrop = choosenDate.ToShortTimeString();
+            TimeSpan todayTime = DateTime.Now.TimeOfDay;
+            db.UpdateAttendanceDrop(selectedAttendance.schoolchild, choosenDate, selectedAttendance.sick, comboBoxAttendance.Text, todayTime);
 
-            //GetAttendance();
-            //FilterAttendancesByDate();
-            //UpdateAttendanceList();
+            GetAttendance();
+            FilterAttendancesByDate();
+            UpdateAttendanceList();
         }
 
         private void btnHasPickup_Click(object sender, RoutedEventArgs e)

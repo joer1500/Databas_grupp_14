@@ -777,7 +777,7 @@ namespace Uppgift6
             Attendance att;
             List<Attendance> attendances = new List<Attendance>();
 
-            string stmt = "SELECT attendance.attendance_id, attendance.schoolchild_id, attendance.date, attendance.attendance, attendance.sick, attendance.attendance_staff, schoolchild.firstname, schoolchild.lastname, schoolchild.section_id FROM attendance INNER JOIN schoolchild on attendance.schoolchild_id = schoolchild.schoolchild_id ORDER BY lastname";
+            string stmt = "SELECT attendance.attendance_id, attendance.schoolchild_id, attendance.date, attendance.attendance, attendance.sick, attendance.attendance_staff, schoolchild.firstname, schoolchild.lastname, schoolchild.section_id, has_drop, has_pickup FROM attendance INNER JOIN schoolchild on attendance.schoolchild_id = schoolchild.schoolchild_id ORDER BY lastname";
             using (var conn = new
                 NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
             {
@@ -801,7 +801,9 @@ namespace Uppgift6
                                 staff = (reader.GetInt32(5)),
                                 firstname = (reader.GetString(6)),
                                 lastname = (reader.GetString(7)),
-                                section_id = (reader.GetInt32(8))
+                                section_id = (reader.GetInt32(8)),
+                                has_drop = (reader.GetTimeSpan(9)),
+                                has_pickup = (reader.GetTimeSpan(10))
                             };
                             attendances.Add(att);
                         }
