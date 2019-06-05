@@ -15,7 +15,7 @@
         <TextBox x:Name="textBoxProfession" HorizontalAlignment="Left" Height="25" Margin="23,249,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="labelSection" Content="Avdelning" HorizontalAlignment="Left" Margin="23,279,0,0" VerticalAlignment="Top" MouseEnter="labelSection_MouseEnter" MouseLeave="labelSection_MouseLeave"/>
         <TextBox x:Name="textBoxSection" HorizontalAlignment="Left" Height="25" Margin="23,305,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="labelTitle" Content="Uppdatera befintlig anställd i personalregistret" Margin="0,20,4.333,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Right" Width="316"/>
+        <Label x:Name="labelTitle" Content="Uppdatera befintlig anställd i personalregistret" Margin="0,28,10,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Right" Width="322" FontWeight="Bold"/>
         <Button x:Name="buttonExit" Content="Avbryt" HorizontalAlignment="Left" Margin="23,367,0,0" VerticalAlignment="Top" Width="83" Height="24" Click="buttonExit_Click"/>
         <Button x:Name="buttonUpdate" Content="Spara" HorizontalAlignment="Left" Margin="130,367,0,0" VerticalAlignment="Top" Width="83" Height="24" Click="buttonUpdate_Click"/>
         <TextBox x:Name="textBoxID" HorizontalAlignment="Left" Height="23" Margin="25,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="33" IsEnabled="False"/>

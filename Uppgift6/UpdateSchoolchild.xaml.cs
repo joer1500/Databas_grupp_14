@@ -24,6 +24,7 @@ namespace Uppgift6
         {
             InitializeComponent();
             UpdateSchoolchildInfo();
+            textBlockSectionInfo.Visibility = Visibility.Collapsed;
         }
 
         public void UpdateSchoolchildInfo()
@@ -97,6 +98,16 @@ namespace Uppgift6
             ManageSchoolchild win = new ManageSchoolchild();
             win.Show();
             this.Close();
+        }
+
+        private void Icon_Question_mark_svg_png_MouseEnter(object sender, MouseEventArgs e)
+        {
+            textBlockSectionInfo.Visibility = Visibility.Visible;
+        }
+
+        private void Icon_Question_mark_svg_png_MouseLeave(object sender, MouseEventArgs e)
+        {
+            textBlockSectionInfo.Visibility = Visibility.Collapsed;
         }
     }
 }

@@ -26,8 +26,8 @@
         <RadioButton x:Name="rbtnSortByFirstname" Content="Förnamn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="187,372,0,0" Checked="rbtnSortByFirstname_Checked"/>
         <RadioButton x:Name="rbtnSortByID" Content="ID" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="147,372,0,0" Checked="rbtnSortByID_Checked" IsChecked="True"/>
         <RadioButton x:Name="rbtnSortBySection" Content="Avdelning" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="345,372,0,0" Checked="rbtnSortBySection_Checked"/>
-        <Label x:Name="lblSortBy" Content="Sortera elevregister:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,366,0,0"/>
-        <Label x:Name="labelTitle" Content="Elevregister" HorizontalAlignment="Left" Margin="28,47,0,0" VerticalAlignment="Top" Width="169" FontWeight="Bold" FontSize="16"/>
+        <Label x:Name="lblSortBy" Content="Sortera barnregister:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="27,366,0,0"/>
+        <Label x:Name="labelTitle" Content="Barnregister" HorizontalAlignment="Left" Margin="28,47,0,0" VerticalAlignment="Top" Width="169" FontWeight="Bold" FontSize="16"/>
         <Label x:Name="labelAdmin" Content="Administration" HorizontalAlignment="Left" Margin="574,230,0,0" VerticalAlignment="Top" Width="144" FontWeight="Bold" FontSize="16"/>
 
     </Grid>

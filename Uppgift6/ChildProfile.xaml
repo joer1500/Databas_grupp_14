@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Profil" Height="450" Width="800">
     <Grid>
-        <Button x:Name="btnCloseChildProfile" Content="Tillbaka" HorizontalAlignment="Left" Margin="18,18,0,0" VerticalAlignment="Top" Width="75" Click="btnCloseChildProfile_Click"/>
+        <Button x:Name="btnCloseChildProfile" Content="Tillbaka" HorizontalAlignment="Left" Margin="18,18,0,0" VerticalAlignment="Top" Width="75" Height="28" BorderBrush="White" Background="White" FontSize="14" Click="btnCloseChildProfile_Click"/>
         <ListView x:Name="listViewSC" HorizontalAlignment="Left" Height="334" VerticalAlignment="Top" Width="572" Margin="202,42,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.View>
                 <GridView>
