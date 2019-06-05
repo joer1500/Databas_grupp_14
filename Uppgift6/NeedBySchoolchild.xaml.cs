@@ -35,8 +35,8 @@ namespace Uppgift6
             lista = db.GetNeedsFromSchoolchildID(Guardians.selectedSchoolchildID);
             listViewNeeds.ItemsSource = null;
             listViewNeeds.ItemsSource = lista;
-            var n = string.Join(Environment.NewLine, lista);
-            label_needs.Content = lista;
+            //var n = string.Join(Environment.NewLine, lista);
+            //label_needs.Content = lista;
         }
 
         private void ShowChildName()

@@ -18,7 +18,7 @@
         <Label x:Name="lblLastname" Content="Efternamn" HorizontalAlignment="Left" Margin="23,160,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtBoxFirstname" HorizontalAlignment="Left" Height="25" Margin="23,125,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="txtBoxLastname" HorizontalAlignment="Left" Height="25" Margin="23,192,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="labelTitle" Content="Lägg till nytt barn" Margin="0,20,141.71,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Right" Width="245"/>
+        <Label x:Name="labelTitle" Content="Lägg till nytt barn" Margin="0,20,141.71,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Right" Width="245" FontWeight="Bold"/>
         <Button x:Name="btnAddChild" Content="Lägg till" HorizontalAlignment="Left" Margin="190,390,0,0" VerticalAlignment="Top" Width="83" Height="24" Click="btnAddChild_Click"/>
         <Label x:Name="lblSection" Content="Avdelning" HorizontalAlignment="Left" Margin="23,249,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtBoxSection"  HorizontalAlignment="Left" Height="25" Margin="23,275,0,0" TextWrapping="Wrap" Text="Ange avdelnings-ID" VerticalAlignment="Top" Width="120" FontStyle="Italic" GotFocus="txtBoxSection_GotFocus"/>
