@@ -62,8 +62,16 @@ namespace Uppgift6
 
         private void btnDeleteNeed_Click(object sender, RoutedEventArgs e)
         {
+            if (selectedNeed == null)
+            {
+                return;
+            }
+            else
+            {
             db.DeleteNeed(selectedNeed.id);
             UpdateNeeds();
+
+            }
         }
 
         private void listViewNeeds_SelectionChanged(object sender, SelectionChangedEventArgs e)

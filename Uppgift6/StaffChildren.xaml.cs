@@ -432,6 +432,22 @@ namespace Uppgift6
             UpdateAttendanceList();
             UpdateLabelView();
         }
+
+        private void btnHasDrop_Click(object sender, RoutedEventArgs e)
+        {
+            db.UpdateAttendance(selectedAttendance.schoolchild, choosenDate, selectedAttendance.sick, comboBoxAttendance.Text);
+            TimeSpan timeDrop = choosenDate.TimeOfDay;
+            
+
+            //GetAttendance();
+            //FilterAttendancesByDate();
+            //UpdateAttendanceList();
+        }
+
+        private void btnHasPickup_Click(object sender, RoutedEventArgs e)
+        {
+            TimeSpan timePickup = choosenDate.TimeOfDay;
+        }   
     }
 
 }
