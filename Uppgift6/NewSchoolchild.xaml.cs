@@ -25,6 +25,7 @@ namespace Uppgift6
             InitializeComponent();
             UpdateGuardianListview();
             UpdateSchoolchildListview();
+            txtBlckSectionInfo.Visibility = Visibility.Collapsed;
         }
 
 
@@ -134,6 +135,26 @@ namespace Uppgift6
         private void txtBoxSection_GotFocus(object sender, RoutedEventArgs e)
         {
             txtBoxSection.Text = "";
+        }
+
+        private void Icon_Question_mark_svg_png_MouseEnter(object sender, MouseEventArgs e)
+        {
+            txtBlckSectionInfo.Visibility = Visibility.Visible;
+        }
+
+        private void Icon_Question_mark_svg_png_MouseLeave(object sender, MouseEventArgs e)
+        {
+            txtBlckSectionInfo.Visibility = Visibility.Collapsed;
+        }
+
+        private void txtBlckSectionInfo_MouseEnter(object sender, MouseEventArgs e)
+        {
+            txtBlckSectionInfo.Visibility = Visibility.Visible;
+        }
+
+        private void txtBlckSectionInfo_MouseLeave(object sender, MouseEventArgs e)
+        {
+            txtBlckSectionInfo.Visibility = Visibility.Collapsed;
         }
     }
 }
