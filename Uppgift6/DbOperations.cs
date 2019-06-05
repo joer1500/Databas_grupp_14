@@ -870,8 +870,28 @@ namespace Uppgift6
             }
         }
 
+        public void UpdateAttendanceDrop(int schoolchild, DateTime date, string sick, string attendance, TimeSpan timeDrop)
+        {
+            string stmt = "UPDATE attendance SET (schoolchild_id, date, sick, attendance, has_drop) = (@id, @dt, @sick, @att, @drop) WHERE schoolchild_id = @id AND date = @dt;";
 
-       
+            using (var conn = new
+            NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("id", schoolchild);
+                    cmd.Parameters.AddWithValue("dt", date);
+                    cmd.Parameters.AddWithValue("sick", sick);
+                    cmd.Parameters.AddWithValue("att", attendance);
+                    cmd.Parameters.AddWithValue("drop", timeDrop);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
     }
 
 
