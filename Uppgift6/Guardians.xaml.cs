@@ -108,9 +108,10 @@ namespace Uppgift6
                 else
                 {
                     MessageBox.Show($"{message}");
-                }          
+                }
 
                 GetScheduleList();
+                ShowScheduleForSelectedWeek();
             }
         }
 
@@ -128,6 +129,10 @@ namespace Uppgift6
             label_child_schema.Content = $"{schoolchild}s schema";
 
             GetScheduleList();
+            comboBoxWeeks.Text = "Alla veckor";
+
+            listBox_ChildSchedule.ItemsSource = null;
+            listBox_ChildSchedule.ItemsSource = schedules;
         }
 
         private void listBox_ChildSchedule_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -149,11 +154,9 @@ namespace Uppgift6
             }
         }
 
-        private void GetScheduleList() {          
+        private void GetScheduleList()
+        {          
             schedules = db.GetChildScheduleDatesFromChildID(schoolchild.id);
-
-            listBox_ChildSchedule.ItemsSource = null;
-            listBox_ChildSchedule.ItemsSource = schedules;
         }
 
         private void ClearAllTxt() {
@@ -175,6 +178,7 @@ namespace Uppgift6
             {
                 db.DeleteSchedule(schedule.id);
                 GetScheduleList();
+                ShowScheduleForSelectedWeek();
             }
         }
 
@@ -253,8 +257,9 @@ namespace Uppgift6
             db.InsertSchedule(schoolchild, date, day_off, breakfast, drop, pickup, walk_alone, walk_friend);
         }
 
-        private List<Schedule> GetShceduleFromSelectedWeek(List<Schedule> schedules, string vecka)
+        private List<Schedule> GetShceduleFromSelectedWeek()
         {
+            string vecka = (string)comboBoxWeeks.SelectedItem;
             List<Schedule> schedulesForSelectedWeek = new List<Schedule>();
 
             if (vecka == "Vecka 21")
@@ -331,12 +336,13 @@ namespace Uppgift6
 
         private void ComboBoxWeeks_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string vecka = (string)comboBoxWeeks.SelectedItem;
-            List<Schedule> schedulesForSelectedWeek = new List<Schedule>();
-            schedulesForSelectedWeek = GetShceduleFromSelectedWeek(schedules, vecka);
+            /*List<Schedule> schedulesForSelectedWeek = new List<Schedule>();
+            schedulesForSelectedWeek = GetShceduleFromSelectedWeek();
 
             listBox_ChildSchedule.ItemsSource = null;
-            listBox_ChildSchedule.ItemsSource = schedulesForSelectedWeek;
+            listBox_ChildSchedule.ItemsSource = schedulesForSelectedWeek;*/
+
+            ShowScheduleForSelectedWeek();
         }
 
         private void btnPickup_Click(object sender, RoutedEventArgs e)
@@ -425,6 +431,25 @@ namespace Uppgift6
         private void ErrorMessageSelectChildInList()
         {
             MessageBox.Show("Vänligen välj ett barn i listan.");
+        }
+
+        private void ShowScheduleForSelectedWeek()
+        {
+            List<Schedule> schedulesForSelectedWeek = new List<Schedule>();
+            schedulesForSelectedWeek = GetShceduleFromSelectedWeek();
+
+            listBox_ChildSchedule.ItemsSource = null;
+            listBox_ChildSchedule.ItemsSource = schedulesForSelectedWeek;
+        }
+
+        private void TextBoxShould_drop_GotFocus(object sender, RoutedEventArgs e)
+        {
+            textBoxShould_drop.Clear();
+        }
+
+        private void TextBoxShould_pickup_GotFocus(object sender, RoutedEventArgs e)
+        {
+            textBoxShould_pickup.Clear();
         }
     }       
 }

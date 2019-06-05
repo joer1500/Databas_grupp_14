@@ -192,29 +192,35 @@ namespace Uppgift6
             List<Schedule> schedule = new List<Schedule>();
 
             string stmt = $"SELECT schedule_id, schoolchild_id, date, day_off, breakfast, should_drop, should_pickup, walk_home_alone, home_with_friend " +
-                $"FROM schedule WHERE schoolchild_id = {ID} ORDER BY date ASC";
+                $"FROM schedule WHERE schoolchild_id = @schoolchild_id ORDER BY date ASC";
 
             using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
             {
                 conn.Open();
-                using (var cmd = new NpgsqlCommand(stmt, conn))
-                using (var reader = cmd.ExecuteReader())
+                using (var cmd = new NpgsqlCommand())
                 {
-                    while (reader.Read())
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("schoolchild_id", ID);
+
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        sd = new Schedule()
+                        while (reader.Read())
                         {
-                            id = (reader.GetInt32(0)),
-                            schoolchild_id = (reader.GetInt32(1)),
-                            date = (reader.GetDateTime(2)),
-                            day_off = (reader.GetString(3)),
-                            breakfast = (reader.GetString(4)),
-                            should_drop = (reader.GetTimeSpan(5)),
-                            should_pickup = (reader.GetTimeSpan(6)),
-                            walk_home_alone = (reader.GetString(7)),
-                            home_with_friend = (reader.GetString(8))
-                        };
-                        schedule.Add(sd);
+                            sd = new Schedule()
+                            {
+                                id = (reader.GetInt32(0)),
+                                schoolchild_id = (reader.GetInt32(1)),
+                                date = (reader.GetDateTime(2)),
+                                day_off = (reader.GetString(3)),
+                                breakfast = (reader.GetString(4)),
+                                should_drop = (reader.GetTimeSpan(5)),
+                                should_pickup = (reader.GetTimeSpan(6)),
+                                walk_home_alone = (reader.GetString(7)),
+                                home_with_friend = (reader.GetString(8))
+                            };
+                            schedule.Add(sd);
+                        }
                     }
                 }
                 return schedule;
@@ -226,24 +232,30 @@ namespace Uppgift6
             Guardian g;
             List<Guardian> guardian = new List<Guardian>();
 
-            string stmt = $"SELECT guardian_schoolchild.guardian_id, guardian.firstname, guardian.lastname, guardian.phonenumber FROM(guardian_schoolchild INNER JOIN guardian ON guardian_schoolchild.guardian_id = guardian.guardian_id) WHERE guardian_schoolchild.schoolchild_id = {ID}";
+            string stmt = $"SELECT guardian_schoolchild.guardian_id, guardian.firstname, guardian.lastname, guardian.phonenumber FROM(guardian_schoolchild INNER JOIN guardian ON guardian_schoolchild.guardian_id = guardian.guardian_id) WHERE guardian_schoolchild.schoolchild_id = @guardian_schoolchild.schoolchild_id";
 
             using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
             {
                 conn.Open();
-                using (var cmd = new NpgsqlCommand(stmt, conn))
-                using (var reader = cmd.ExecuteReader())
+                using (var cmd = new NpgsqlCommand())
                 {
-                    while (reader.Read())
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("guardian_schoolchild.schoolchild_id", ID);
+
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        g = new Guardian()
+                        while (reader.Read())
                         {
-                            id = (reader.GetInt32(0)),
-                            firstname = (reader.GetString(1)),
-                            lastname = (reader.GetString(2)),
-                            phonenumber = (reader.GetString(3))
-                        };
-                        guardian.Add(g);
+                            g = new Guardian()
+                            {
+                                id = (reader.GetInt32(0)),
+                                firstname = (reader.GetString(1)),
+                                lastname = (reader.GetString(2)),
+                                phonenumber = (reader.GetString(3))
+                            };
+                            guardian.Add(g);
+                        }
                     }
                 }
                 return guardian;
@@ -257,23 +269,29 @@ namespace Uppgift6
 
             string stmt = $"SELECT guardian_schoolchild.guardian_id, guardian_schoolchild.schoolchild_id, schoolchild.firstname, schoolchild.lastname " +
                 $"          FROM(guardian_schoolchild INNER JOIN schoolchild ON guardian_schoolchild.schoolchild_id = schoolchild.schoolchild_id) " +
-                $"          WHERE guardian_id = {ID}";
+                $"          WHERE guardian_id = @guardian_id";
 
             using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
             {
                 conn.Open();
-                using (var cmd = new NpgsqlCommand(stmt, conn))
-                using (var reader = cmd.ExecuteReader())
+                using (var cmd = new NpgsqlCommand())
                 {
-                    while (reader.Read())
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("guardian_id", ID);
+
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        sc = new Schoolchild()
+                        while (reader.Read())
                         {
-                            id = (reader.GetInt32(1)),
-                            firstname = (reader.GetString(2)),
-                            lastname = (reader.GetString(3)),
-                        };
-                        children.Add(sc);
+                            sc = new Schoolchild()
+                            {
+                                id = (reader.GetInt32(1)),
+                                firstname = (reader.GetString(2)),
+                                lastname = (reader.GetString(3)),
+                            };
+                            children.Add(sc);
+                        }
                     }
                 }
                 return children;
