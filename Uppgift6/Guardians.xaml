@@ -24,7 +24,7 @@
         <TextBox x:Name="textBoxHome_with_friend" HorizontalAlignment="Left" Height="23" Margin="660,319,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="73"/>
         <Button x:Name="btnSaveNewSchedule" Content="Lägg till nytt schema" HorizontalAlignment="Left" Margin="585,366,0,0" VerticalAlignment="Top" Width="123" Click="BtnSaveNewSchedule_Click"/>
         <TextBlock x:Name="textBlockChildName" HorizontalAlignment="Left" Margin="23,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="39" Width="206"><Run Text="Markera det barn i listan som du vill "/><Run Text="se eller"/><Run Text=" ändra något på."/></TextBlock>
-        <Button x:Name="btnCloseGuardian" Content="Tillbaka" HorizontalAlignment="Left" Margin="23,5,0,0" VerticalAlignment="Top" Width="75" Height="22" Click="btnCloseGuardian_Click"/>
+        <Button x:Name="btnCloseGuardian" Content="Tillbaka" HorizontalAlignment="Left" Margin="23,5,0,0" VerticalAlignment="Top" Width="75" Height="28" BorderBrush="White" Background="White" FontSize="14" Click="btnCloseGuardian_Click"/>
         <Label x:Name="label_child_schema" Content="" HorizontalAlignment="Left" Margin="278,0,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
         <Separator x:Name="separator_1" HorizontalAlignment="Left" Height="16" Margin="41,190,0,0" VerticalAlignment="Top" Width="442" RenderTransformOrigin="0.5,0.5">
             <Separator.RenderTransform>

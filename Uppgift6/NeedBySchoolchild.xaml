@@ -14,7 +14,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="btnCloseNeeds" Content="Tillbaka" HorizontalAlignment="Left" Margin="19,20,0,0" VerticalAlignment="Top" Width="75" Click="btnCloseNeeds_Click"/>
+        <Button x:Name="btnCloseNeeds" Content="Tillbaka" HorizontalAlignment="Left" Margin="19,20,0,0" VerticalAlignment="Top" Width="75" Height="28" BorderBrush="White" Background="White" FontSize="14" Click="btnCloseNeeds_Click"/>
         <Label x:Name="label_needs" Content="Label" HorizontalAlignment="Left" Height="33" Margin="19,334,0,0" VerticalAlignment="Top" Width="157"/>
         <Label x:Name="lblAddNeed" Content="Lägg till särskilt behov" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="429,72,0,0" FontSize="14" FontWeight="Bold"/>
         <Label x:Name="lblNeed" Content="Behov" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="430,115,0,0" RenderTransformOrigin="0.529,-0.116"/>
