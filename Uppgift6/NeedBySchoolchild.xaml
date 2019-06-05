@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Behov" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
-        <ListView x:Name="listViewNeeds" HorizontalAlignment="Left" Height="169" Margin="19,99,0,0" VerticalAlignment="Top" Width="250" SelectionChanged="listViewNeeds_SelectionChanged">
+        <ListView x:Name="listViewNeeds" HorizontalAlignment="Left" Height="169" Margin="19,99,0,0" VerticalAlignment="Top" Width="250" SelectionChanged="listViewNeeds_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Behov" Width="250" DisplayMemberBinding="{Binding need}" ScrollViewer.VerticalScrollBarVisibility="Disabled" />
@@ -15,12 +15,11 @@
             </ListView.View>
         </ListView>
         <Button x:Name="btnCloseNeeds" Content="Tillbaka" HorizontalAlignment="Left" Margin="19,20,0,0" VerticalAlignment="Top" Width="75" Height="28" BorderBrush="White" Background="White" FontSize="14" Click="btnCloseNeeds_Click"/>
-        <Label x:Name="label_needs" Content="Label" HorizontalAlignment="Left" Height="33" Margin="19,334,0,0" VerticalAlignment="Top" Width="157"/>
         <Label x:Name="lblAddNeed" Content="Lägg till särskilt behov" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="429,72,0,0" FontSize="14" FontWeight="Bold"/>
         <Label x:Name="lblNeed" Content="Behov" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="430,115,0,0" RenderTransformOrigin="0.529,-0.116"/>
         <TextBox x:Name="txtNeed" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="159" Margin="430,146,0,0"/>
         <Button x:Name="btnAddNeed" Content="Lägg till" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="513,174,0,0" Click="btnAddNeed_Click"/>
-        <Button x:Name="btnDeleteNeed" Content="Ta bort" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="194,273,0,0" Click="btnDeleteNeed_Click"/>
+        <Button x:Name="btnDeleteNeed" Content="Ta bort" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="194,273,0,0" Click="btnDeleteNeed_Click" Height="25"/>
         <Label x:Name="lblChildName" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="19,63,0,0" FontSize="14" FontWeight="Bold"/>
     </Grid>
 </Window>
