@@ -20,8 +20,7 @@ namespace Uppgift6
         public string firstname { get; set; }
         public string lastname { get; set; }
         public int section_id { get; set; }
-        public string attendance { get; set; }
-        public string sick { get; set; }
+   
 
 
         public override string ToString()   

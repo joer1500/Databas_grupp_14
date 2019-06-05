@@ -14,8 +14,8 @@ namespace Uppgift6
         public string sick { get; set; }
         public string attendance { get; set; }
         public int staff { get; set; }
-        public string has_drop { get; set; }
-        public int has_pickup { get; set; }
+        public DateTime has_drop { get; set; }
+        public DateTime has_pickup { get; set; }
         public string firstname { get; set; }
         public string lastname { get; set; }
         public int section_id { get; set; }
