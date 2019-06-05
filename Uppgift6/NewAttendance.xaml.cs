@@ -53,8 +53,8 @@ namespace Uppgift6
         {
             DateTime date = DateTime.Parse(textBoxDate.Text);
             int staff = slump.Next(1, 6);
-            TimeSpan should_drop = TimeSpan.Parse("00:00");
-            TimeSpan should_pickup = TimeSpan.Parse("00:00");
+            TimeSpan should_drop = TimeSpan.Parse(txtShouldDrop.Text);
+            TimeSpan should_pickup = TimeSpan.Parse(txtShouldPickup.Text);
             s = (Schoolchild)comboBoxSchoolchilds.SelectedItem;
             try
             {
