@@ -679,7 +679,6 @@ namespace Uppgift6
                 }
             }
         }
-
         public Guardian GetGuardianById(int id) //Hämtar staff baserat på ID
         {
             Guardian g = new Guardian();
@@ -709,7 +708,6 @@ namespace Uppgift6
                 return g;
             }
         }
-
         public void UpdateGuardian(int id, string firstname, string lastname, string phonenumber, string address) //Uppdaterar guardian
         {
             string stmt = "UPDATE guardian SET (firstname, lastname, phonenumber, address) = (@fname, @lname, @phone, @addr) WHERE guardian_id = @guardid";
@@ -731,10 +729,6 @@ namespace Uppgift6
                 }
             }
         }
-
-
-        
-
 
         public List<Schoolchild> GetSchoolchildrenFromSelectedSection(int section) // Hämtar skolbarn utifrån avdelning
         {
@@ -791,7 +785,6 @@ namespace Uppgift6
 
         public List<Attendance> GetAttendances() //Hämtar närvaro-lista
         {
-
             Attendance att;
             List<Attendance> attendances = new List<Attendance>();
 
@@ -830,9 +823,9 @@ namespace Uppgift6
                 }
             }
         }
-        public void AddNewAttendance(int schoolchild, DateTime date, string sick, string attendance, int staff)
+        public void AddNewAttendance(int schoolchild, DateTime date, string sick, string attendance, int staff, TimeSpan drop, TimeSpan pickup)
         {
-            string stmt = "INSERT INTO attendance(schoolchild_id, date, sick, attendance, attendance_staff) VALUES (@sid, @date, @sick, @att, @staff)";
+            string stmt = "INSERT INTO attendance(schoolchild_id, date, sick, attendance, attendance_staff, has_drop, has_pickup) VALUES (@sid, @date, @sick, @att, @staff, @drop, @pick)";
 
             using (var conn = new
             NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
@@ -847,6 +840,8 @@ namespace Uppgift6
                     cmd.Parameters.AddWithValue("sick", sick);
                     cmd.Parameters.AddWithValue("att", attendance);
                     cmd.Parameters.AddWithValue("staff", staff);
+                    cmd.Parameters.AddWithValue("drop", drop);
+                    cmd.Parameters.AddWithValue("pick", pickup);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -893,6 +888,45 @@ namespace Uppgift6
                 }
             }
         }
+        public void UpdateAttendancePickup(int schoolchild, DateTime date, string sick, string attendance, TimeSpan timePickup)
+        {
+            string stmt = "UPDATE attendance SET (schoolchild_id, date, sick, attendance, has_pickup) = (@id, @dt, @sick, @att, @pick) WHERE schoolchild_id = @id AND date = @dt;";
+
+            using (var conn = new
+            NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("id", schoolchild);
+                    cmd.Parameters.AddWithValue("dt", date);
+                    cmd.Parameters.AddWithValue("sick", sick);
+                    cmd.Parameters.AddWithValue("att", attendance);
+                    cmd.Parameters.AddWithValue("pick", timePickup);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public void DeleteAttendance(DateTime date, int schoolchild_id)//Ta bort koppling mellan barn och vårdnadshavare
+        {
+            string stmt = "DELETE FROM attendance WHERE date = @dt AND schoolchild_id = @sid";
+
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("dt", date);
+                    cmd.Parameters.AddWithValue("sid", schoolchild_id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
 
     }
 

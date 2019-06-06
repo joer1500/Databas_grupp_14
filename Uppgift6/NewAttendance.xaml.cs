@@ -37,7 +37,6 @@ namespace Uppgift6
         {
             sc = db.GetSchoolchildrenOrderByID();
             sc = OrderListByLastname(sc);
-            //sc = db.GetSchoolchildrenOrderByLastname();
             comboBoxSchoolchilds.ItemsSource = sc;
         }
 
@@ -55,6 +54,11 @@ namespace Uppgift6
             int staff = slump.Next(1, 6);
             TimeSpan should_drop = TimeSpan.Parse(txtShouldDrop.Text);
             TimeSpan should_pickup = TimeSpan.Parse(txtShouldPickup.Text);
+            //string drop = "00:00:00";
+            //string pickup = "00:00:00";
+            //TimeSpan has_drop = TimeSpan.Parse(drop);
+            //TimeSpan has_pickup = TimeSpan.Parse(pickup);
+
             s = (Schoolchild)comboBoxSchoolchilds.SelectedItem;
             try
             {
@@ -64,7 +68,7 @@ namespace Uppgift6
                 }
                 else
                 {
-                    db.AddNewAttendance(s.id, choosenDate, "", "Ja", staff);
+                    db.AddNewAttendance(s.id, choosenDate, "", "Ja", staff, should_drop, should_pickup);
                     db.InsertSchedule(s, choosenDate, "Nej", comboBoxBreakfast.Text, should_drop, should_pickup, "", "");
                     StaffChildren win = new StaffChildren();
                     win.Show();
@@ -83,7 +87,7 @@ namespace Uppgift6
         private void CheckInput()
         {
             s = (Schoolchild)comboBoxSchoolchilds.SelectedItem;
-            if (s != null && textBoxDate.Text != "" && comboBoxBreakfast.Text != "")
+            if (s != null && textBoxDate.Text != "" && comboBoxBreakfast.Text != "" && txtShouldDrop.Text != "" && txtShouldPickup.Text != "")
             {
                 btnSave.IsEnabled = true;
             }
@@ -137,5 +141,15 @@ namespace Uppgift6
         }
 
         #endregion
+
+        private void txtShouldDrop_LostFocus(object sender, RoutedEventArgs e)
+        {
+            CheckInput();
+        }
+
+        private void txtShouldPickup_TextInput(object sender, TextCompositionEventArgs e)
+        {
+            CheckInput();
+        }
     }
 }

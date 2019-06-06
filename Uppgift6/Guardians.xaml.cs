@@ -77,6 +77,14 @@ namespace Uppgift6
                     string walk_home_alone = textBoxWalk_home_alone.Text;
                     string walk_with_friend = textBoxHome_with_friend.Text;
 
+                    string drop = "00:00:00";
+                    string pickup = "00:00:00";
+
+
+                    TimeSpan has_drop = TimeSpan.Parse(drop);
+                    TimeSpan has_pickup = TimeSpan.Parse(pickup);
+
+
                     schoolchild = (Schoolchild)listBoxChildName.SelectedItem;
 
                     bool dayOff;
@@ -93,7 +101,7 @@ namespace Uppgift6
                         try
                         {
                             db.InsertSchedule(schoolchild, date, day_off, breakfast, should_drop, should_pickup, walk_home_alone, walk_with_friend);
-                            db.AddNewAttendance(schoolchild.id, date, "Nej", "", staffSlump);
+                            db.AddNewAttendance(schoolchild.id, date, "Nej", "", staffSlump, has_drop, has_pickup);
                         }
                         catch (PostgresException ex)
                         {
@@ -170,6 +178,9 @@ namespace Uppgift6
 
         private void Remove_schedule_Click(object sender, RoutedEventArgs e)
         {
+            DateTime attDate = schedule.date;
+            int attID = schedule.schoolchild_id;
+
             if (schedule == null)
             {
                 MessageBox.Show("Du måste välja ett schema i listan.");
@@ -177,6 +188,7 @@ namespace Uppgift6
             else
             {
                 db.DeleteSchedule(schedule.id);
+                db.DeleteAttendance(attDate, attID);
                 GetScheduleList();
                 ShowScheduleForSelectedWeek();
             }

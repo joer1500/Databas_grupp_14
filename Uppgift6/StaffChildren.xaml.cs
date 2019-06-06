@@ -41,6 +41,7 @@ namespace Uppgift6
         DateTime choosenDate = DateTime.Today;
         Attendance selectedAttendance;
         Schedule selectedSchedule;
+        TimeSpan currentTime = DateTime.Now.TimeOfDay;
 
 
         #region Metoder
@@ -118,7 +119,7 @@ namespace Uppgift6
         #endregion
 
 
-        #region Knappar
+        #region Buttons
         private void button_minus_Click(object sender, RoutedEventArgs e)
         {
             choosenDate = choosenDate.AddDays(-1);
@@ -282,7 +283,35 @@ namespace Uppgift6
             win.Show();
             this.Close();
         }
+        private void btnHasDrop_Click(object sender, RoutedEventArgs e)
+        {
+            if (selectedAttendance == null)
+            {
+                return;
+            }
+            else
+            {
+                db.UpdateAttendanceDrop(selectedAttendance.schoolchild, choosenDate, selectedAttendance.sick, comboBoxAttendance.Text, currentTime);
 
+                GetAttendance();
+                FilterAttendancesByDate();
+                UpdateAttendanceList();
+            }
+        } //För att spara ner tiden när ett barn anländer till fritids
+        private void btnHasPickup_Click(object sender, RoutedEventArgs e)
+        {
+            if (selectedAttendance == null)
+            {
+                return;
+            }
+            else
+            {
+                db.UpdateAttendancePickup(selectedAttendance.schoolchild, choosenDate, selectedAttendance.sick, comboBoxAttendance.Text, currentTime);
+                GetAttendance();
+                FilterAttendancesByDate();
+                UpdateAttendanceList();
+            }
+        } //För att spara ner tiden när ett barn går hem från frititds
         #endregion
 
 
@@ -397,30 +426,6 @@ namespace Uppgift6
         {
             selectedSchedule = (Schedule)listViewSC.SelectedItem;
         }
-       
-        private void lblDoubleClickGuardianInfo_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            if (selectedSchedule == null)
-            {
-                return;
-            }
-            try
-            {
-                db.AddNewAttendance(selectedSchedule.schoolchild_id, choosenDate, "", comboBoxAttendance.Text, 2);
-                GetSchedules();
-                SortSchedulesByDate();
-                EmptyListBoxAndFill();
-                GetAttendance();
-                FilterAttendancesByDate();
-                UpdateAttendanceList();
-            }
-            catch (PostgresException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-        #endregion
-
         private void label_today_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             choosenDate = DateTime.Today;
@@ -433,22 +438,11 @@ namespace Uppgift6
             UpdateLabelView();
         }
 
-        private void btnHasDrop_Click(object sender, RoutedEventArgs e)
-        {
-            //db.UpdateAttendance(selectedAttendance.schoolchild, choosenDate, selectedAttendance.sick, comboBoxAttendance.Text);
-            string timeDrop = choosenDate.ToShortTimeString();
-            TimeSpan todayTime = DateTime.Now.TimeOfDay;
-            db.UpdateAttendanceDrop(selectedAttendance.schoolchild, choosenDate, selectedAttendance.sick, comboBoxAttendance.Text, todayTime);
+        #endregion
 
-            GetAttendance();
-            FilterAttendancesByDate();
-            UpdateAttendanceList();
-        }
 
-        private void btnHasPickup_Click(object sender, RoutedEventArgs e)
-        {
-            TimeSpan timePickup = choosenDate.TimeOfDay;
-        }   
+
+        
     }
 
 }
