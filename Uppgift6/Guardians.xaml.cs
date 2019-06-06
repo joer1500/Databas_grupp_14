@@ -40,7 +40,7 @@ namespace Uppgift6
         public static int selectedSchoolchildID;
         DbOperations db = new DbOperations();
         Schoolchild schoolchild;
-        Schedule schedule;
+        Schedule selectedSchedule;
         List<Schedule> schedules = new List<Schedule>();
         Random slump = new Random();
 
@@ -148,20 +148,24 @@ namespace Uppgift6
 
         private void listBox_ChildSchedule_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            schedule = (Schedule)listBox_ChildSchedule.SelectedItem;
+            selectedSchedule = (Schedule)listBox_ChildSchedule.SelectedItem;
 
-            if (schedule == null)
+            if (selectedSchedule == null)
             {
                 ClearAllTxt();
+                buttonCopySchedule.IsEnabled = false;
+                Remove_schedule.IsEnabled = false;
             }
             else
             {
-                txt_day_off.Text = schedule.day_off;
-                txt_breakfast.Text = schedule.breakfast;
-                txt_drop.Text = schedule.should_drop.ToString("hh\\:mm");
-                txt_pickup.Text = schedule.should_pickup.ToString("hh\\:mm");
-                txt_home_alone.Text = schedule.walk_home_alone.ToString();
-                txt_home_with_friend.Text = schedule.home_with_friend.ToString();
+                txt_day_off.Text = selectedSchedule.day_off;
+                txt_breakfast.Text = selectedSchedule.breakfast;
+                txt_drop.Text = selectedSchedule.should_drop.ToString("hh\\:mm");
+                txt_pickup.Text = selectedSchedule.should_pickup.ToString("hh\\:mm");
+                txt_home_alone.Text = selectedSchedule.walk_home_alone.ToString();
+                txt_home_with_friend.Text = selectedSchedule.home_with_friend.ToString();
+                buttonCopySchedule.IsEnabled = true;
+                Remove_schedule.IsEnabled = true;
             }
         }
 
@@ -181,17 +185,17 @@ namespace Uppgift6
 
         private void Remove_schedule_Click(object sender, RoutedEventArgs e)
         {
-            DateTime attDate = schedule.date;
+            DateTime attDate = selectedSchedule.date;
             
 
-            if (schedule == null)
+            if (selectedSchedule == null)
             {
                 MessageBox.Show("Du måste välja ett schema i listan.");
             }
             else
             {
-                int attID = schedule.schoolchild_id;
-                db.DeleteSchedule(schedule.id);
+                int attID = selectedSchedule.schoolchild_id;
+                db.DeleteSchedule(selectedSchedule.id);
                 db.DeleteAttendance(attDate, attID);
                 GetScheduleList();
                 ShowScheduleForSelectedWeek();
@@ -273,7 +277,7 @@ namespace Uppgift6
             db.InsertSchedule(schoolchild, date, day_off, breakfast, drop, pickup, walk_alone, walk_friend);
         }
 
-        private List<Schedule> GetShceduleFromSelectedWeek()
+        private List<Schedule> GetScheduleFromSelectedWeek()
         {
             string vecka = (string)comboBoxWeeks.SelectedItem;
             List<Schedule> schedulesForSelectedWeek = new List<Schedule>();
@@ -285,11 +289,9 @@ namespace Uppgift6
                     if (s.date > DateTime.Parse("2019-05-19") && s.date < DateTime.Parse("2019-05-27"))
                     {
                         schedulesForSelectedWeek.Add(s);
-
                     }
                 }
             }
-
             if (vecka == "Vecka 22") 
             {
                 foreach (Schedule s in schedules)
@@ -297,11 +299,9 @@ namespace Uppgift6
                     if (s.date > DateTime.Parse("2019-05-26") && s.date < DateTime.Parse("2019-06-03"))
                     {
                         schedulesForSelectedWeek.Add(s);
-
                     }
                 }
             }
-
             if (vecka == "Vecka 23") 
             {
                 foreach (Schedule s in schedules)
@@ -309,11 +309,9 @@ namespace Uppgift6
                     if (s.date > DateTime.Parse("2019-06-02") && s.date < DateTime.Parse("2019-06-10"))
                     {
                         schedulesForSelectedWeek.Add(s);
-
                     }
                 }
             }
-
             if (vecka == "Vecka 24")
             {
                 foreach (Schedule s in schedules)
@@ -321,11 +319,9 @@ namespace Uppgift6
                     if (s.date > DateTime.Parse("2019-06-09") && s.date < DateTime.Parse("2019-06-17"))
                     {
                         schedulesForSelectedWeek.Add(s);
-
                     }
                 }
             }
-
             if (vecka == "Vecka 25")
             {
                 foreach (Schedule s in schedules)
@@ -333,11 +329,9 @@ namespace Uppgift6
                     if (s.date > DateTime.Parse("2019-06-16") && s.date < DateTime.Parse("2019-06-24"))
                     {
                         schedulesForSelectedWeek.Add(s);
-
                     }
                 }
             }
-
             if (vecka == "Alla veckor")
             {
                 foreach (Schedule s in schedules)
@@ -346,7 +340,6 @@ namespace Uppgift6
                 }
 
             }
-
             return schedulesForSelectedWeek;
         }
 
@@ -473,7 +466,7 @@ namespace Uppgift6
         private void ShowScheduleForSelectedWeek()
         {
             List<Schedule> schedulesForSelectedWeek = new List<Schedule>();
-            schedulesForSelectedWeek = GetShceduleFromSelectedWeek();
+            schedulesForSelectedWeek = GetScheduleFromSelectedWeek();
 
             listBox_ChildSchedule.ItemsSource = null;
             listBox_ChildSchedule.ItemsSource = schedulesForSelectedWeek;
@@ -504,6 +497,17 @@ namespace Uppgift6
             win.Show();
             this.Close();
             }
+        }
+
+        private void buttonCopySchedule_Click(object sender, RoutedEventArgs e)
+        {
+            textBoxDate.Text = selectedSchedule.date.ToShortDateString();
+            textBoxShould_drop.Text = selectedSchedule.should_drop.ToString("hh\\:mm");
+            textBoxShould_pickup.Text = selectedSchedule.should_pickup.ToString("hh\\:mm");
+            comboBoxDayOff.Text = selectedSchedule.day_off;
+            comboBoxBreakFast.Text = selectedSchedule.breakfast;
+            comboBoxWalkHomeAlone.Text = selectedSchedule.walk_home_alone;
+            comboBoxHomeWithFriend.Text = selectedSchedule.home_with_friend;
         }
     }       
 }

@@ -47,21 +47,21 @@
             </Separator.RenderTransform>
         </Separator>
         <Label x:Name="label_Copy" Content="Lägg till nytt schema" HorizontalAlignment="Left" Margin="555,22,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
-        <ListBox x:Name="listBox_ChildSchedule" HorizontalAlignment="Left" Height="179" Margin="286,61,0,0" VerticalAlignment="Top" Width="218" SelectionChanged="listBox_ChildSchedule_SelectionChanged"/>
-        <TextBox x:Name="txt_day_off" HorizontalAlignment="Left" Height="23" Margin="339,315,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="47" IsEnabled="False"/>
-        <Label x:Name="labelDay_of_Copy" Content="Ledig:" HorizontalAlignment="Left" Margin="292,312,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.591,-1.026"/>
-        <Label x:Name="labelBreakfast_Copy" Content="Frukost:" HorizontalAlignment="Left" Margin="400,312,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txt_breakfast" HorizontalAlignment="Left" Height="23" Margin="457,315,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="47" IsEnabled="False"/>
-        <Label x:Name="labelShould_drop_Copy" Content="Lämnas:" HorizontalAlignment="Left" Margin="281,263,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txt_drop" HorizontalAlignment="Left" Height="23" Margin="339,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="47" IsEnabled="False"/>
-        <Label x:Name="labelShould_pickup_Copy" Content="Hämtas:" HorizontalAlignment="Left" Margin="399,263,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txt_pickup" HorizontalAlignment="Left" Height="23" Margin="457,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="47" IsEnabled="False"/>
-        <Label x:Name="labelWalk_home_alone_Copy" Content="Går hem själv:" HorizontalAlignment="Left" Margin="322,354,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txt_home_alone" HorizontalAlignment="Left" Height="23" Margin="411,357,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48" IsEnabled="False"/>
-        <Label x:Name="labelHome_with_friend_Copy" Content="Går hem med kompis:" HorizontalAlignment="Left" Margin="281,390,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txt_home_with_friend" HorizontalAlignment="Left" Height="23" Margin="411,393,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48" IsEnabled="False"/>
-        <Button x:Name="Remove_schedule" Content="Ta bort" HorizontalAlignment="Left" Margin="429,220,0,0" VerticalAlignment="Top" Width="75" Click="Remove_schedule_Click"/>
-        <ComboBox x:Name="comboBoxWeeks" HorizontalAlignment="Left" Margin="399,34,0,0" VerticalAlignment="Top" Width="105" Height="22" SelectionChanged="ComboBoxWeeks_SelectionChanged"/>
+        <ListBox x:Name="listBox_ChildSchedule" HorizontalAlignment="Left" Height="173" Margin="286,61,0,0" VerticalAlignment="Top" Width="218" SelectionChanged="listBox_ChildSchedule_SelectionChanged"/>
+        <TextBox x:Name="txt_day_off" HorizontalAlignment="Left" Height="23" Margin="342,315,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="47" IsEnabled="False"/>
+        <Label x:Name="labelDay_of_Copy" Content="Ledig:" HorizontalAlignment="Left" Margin="295,312,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.591,-1.026"/>
+        <Label x:Name="labelBreakfast_Copy" Content="Frukost:" HorizontalAlignment="Left" Margin="403,312,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txt_breakfast" HorizontalAlignment="Left" Height="23" Margin="459,315,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="47" IsEnabled="False"/>
+        <Label x:Name="labelShould_drop_Copy" Content="Lämnas:" HorizontalAlignment="Left" Margin="284,263,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txt_drop" HorizontalAlignment="Left" Height="23" Margin="342,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="47" IsEnabled="False"/>
+        <Label x:Name="labelShould_pickup_Copy" Content="Hämtas:" HorizontalAlignment="Left" Margin="402,263,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txt_pickup" HorizontalAlignment="Left" Height="23" Margin="459,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="47" IsEnabled="False"/>
+        <Label x:Name="labelWalk_home_alone_Copy" Content="Går hem själv:" HorizontalAlignment="Left" Margin="325,354,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txt_home_alone" HorizontalAlignment="Left" Height="23" Margin="414,357,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48" IsEnabled="False"/>
+        <Label x:Name="labelHome_with_friend_Copy" Content="Går hem med kompis:" HorizontalAlignment="Left" Margin="284,390,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txt_home_with_friend" HorizontalAlignment="Left" Height="23" Margin="414,393,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48" IsEnabled="False"/>
+        <Button x:Name="Remove_schedule" Content="Ta bort" HorizontalAlignment="Left" Margin="429,233,0,0" VerticalAlignment="Top" Width="75" Height="25" Click="Remove_schedule_Click" IsEnabled="False"/>
+        <ComboBox x:Name="comboBoxWeeks" HorizontalAlignment="Left" Margin="399,34,0,0" VerticalAlignment="Top" Width="105" Height="25" SelectionChanged="ComboBoxWeeks_SelectionChanged"/>
         <Label x:Name="lblLoggedInGuardian" Content="Inloggad VH" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,27,0,0" Width="178" FontSize="18" FontWeight="Bold"/>
         <Button x:Name="btnPickup" Content="Vem får hämta" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Margin="157,391,0,0" Click="btnPickup_Click" Height="25"/>
         <Button x:Name="btnOpenNeeds" Content="Behov" HorizontalAlignment="Left" Margin="157,350,0,0" VerticalAlignment="Top" Width="95" Click="btnOpenNeeds_Click" Height="25"/>
@@ -77,6 +77,7 @@
         <Label x:Name="labelSickDateHistorical" Content="Tidigare sjukanmälningar" HorizontalAlignment="Left" Margin="10,309,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.675,0.617"/>
         <Label x:Name="labelSickDateHistorical_Copy" Content="Hantera behov" HorizontalAlignment="Left" Margin="9,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.675,0.617"/>
         <Label x:Name="labelSickDateHistorical_Copy1" Content="Hantera hämtningar" HorizontalAlignment="Left" Margin="9,390,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.675,0.617"/>
+        <Button x:Name="buttonCopySchedule" Content="Kopiera" HorizontalAlignment="Left" Height="25" Margin="286,234,0,0" VerticalAlignment="Top" Width="75" Click="buttonCopySchedule_Click" IsEnabled="False"/>
 
     </Grid>
 </Window>

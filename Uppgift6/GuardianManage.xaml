@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Uppgift6"
         mc:Ignorable="d"
-        Title="Hantera vårdnadshavare" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Hantera vårdnadshavare" Height="450" Width="753.722" WindowStartupLocation="CenterScreen">
     <Grid>
         <ListView x:Name="listViewGuardians" HorizontalAlignment="Left" Height="321" Margin="31,57,0,0" VerticalAlignment="Top" Width="486" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="listViewGuardians_SelectionChanged" MouseDoubleClick="listViewGuardians_MouseDoubleClick">
             <ListView.View>
@@ -18,9 +18,9 @@
             </ListView.View>
         </ListView>
         <Button x:Name="btnClose" Content="Tillbaka" HorizontalAlignment="Left" Margin="21,5,0,0" VerticalAlignment="Top" Width="75" Height="28" BorderBrush="White" Background="White" FontSize="14" Click="btnClose_Click" />
-        <Button x:Name="buttonUpdateGuardian" Content="Uppdatera" HorizontalAlignment="Left" Height="35" Margin="531,261,0,0" VerticalAlignment="Top" Width="120" Click="buttonUpdateGuardian_Click"/>
-        <Button x:Name="buttonAddGuardian" Content="Lägg till ny" HorizontalAlignment="Left" Height="35" Margin="531,302,0,0" VerticalAlignment="Top" Width="120" Click="buttonAddGuardian_Click"/>
-        <Button x:Name="buttonDeleteGuardian" Content="Ta bort" HorizontalAlignment="Left" Margin="531,343,0,0" VerticalAlignment="Top" Width="120" Height="35" Click="buttonDeleteGuardian_Click"/>
+        <Button x:Name="buttonUpdateGuardian" Content="Uppdatera" HorizontalAlignment="Left" Height="30" Margin="531,313,0,0" VerticalAlignment="Top" Width="100" Click="buttonUpdateGuardian_Click"/>
+        <Button x:Name="buttonAddGuardian" Content="Lägg till ny" HorizontalAlignment="Left" Height="30" Margin="531,278,0,0" VerticalAlignment="Top" Width="100" Click="buttonAddGuardian_Click"/>
+        <Button x:Name="buttonDeleteGuardian" Content="Ta bort" HorizontalAlignment="Left" Margin="531,348,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="buttonDeleteGuardian_Click"/>
         <Label x:Name="labelChild" Content="Barn:" HorizontalAlignment="Left" Height="26" Margin="531,32,0,0" VerticalAlignment="Top" Width="130" FontWeight="Bold"/>
         <Label x:Name="labelGuardian" Content="Register för vårdnadshavare:" HorizontalAlignment="Left" Height="26" Margin="31,32,0,0" VerticalAlignment="Top" Width="180" FontWeight="Bold"/>
         <RadioButton x:Name="radioButtonFname" Content="Förnamn" HorizontalAlignment="Left" Margin="115,390,0,0" VerticalAlignment="Top" IsChecked="True" Click="radioButtonFname_Click"/>
@@ -34,6 +34,6 @@
             </ListView.View>
         </ListView>
         <Label x:Name="labelOrder" Content="Sortera efter:" HorizontalAlignment="Left" Height="26" Margin="31,383,0,0" VerticalAlignment="Top" Width="79"/>
-        <Label x:Name="label1" Content="Administrera vårdnadshavare" HorizontalAlignment="Left" Height="31" Margin="531,225,0,0" VerticalAlignment="Top" Width="213" FontSize="14" FontWeight="Bold"/>
+        <Label x:Name="label1" Content="Administration" HorizontalAlignment="Left" Height="31" Margin="531,242,0,0" VerticalAlignment="Top" Width="114" FontSize="14" FontWeight="Bold"/>
     </Grid>
 </Window>

@@ -8,13 +8,13 @@
         Title="Startsida" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Canvas Name="LoggInStaff" Margin="497,55,123.333,127.667">
-            <Button x:Name="btnStaff" Content="Logga in" HorizontalAlignment="Left" VerticalAlignment="Top" Width="173" Height="44" Click="btnStaff_Click" Canvas.Top="194" FontSize="14"/>
+            <Button x:Name="btnStaff" Content="Logga in" HorizontalAlignment="Left" VerticalAlignment="Top" Width="173" Height="44" Click="btnStaff_Click" Canvas.Top="193" FontSize="14"/>
             <Label x:Name="label_Copy" Content="Logga in som personal" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Canvas.Left="2"/>
-            <TextBox x:Name="textBoxUser" HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="155" IsEnabled="False" Canvas.Left="10" Canvas.Top="68"/>
-            <TextBox x:Name="textBoxPassword" HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="155" IsEnabled="False" Canvas.Left="10" Canvas.Top="122"/>
+            <TextBox x:Name="textBoxUser" HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="155" IsEnabled="False" Canvas.Left="10" Canvas.Top="68"/>
             <Label x:Name="labelUser" Content="Användarnamn" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top" Width="95" Canvas.Left="10" Canvas.Top="41"/>
-            <Label x:Name="labelPassword" Content="Lösenord" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top" Width="95" Canvas.Left="10" Canvas.Top="94"/>
+            <Label x:Name="labelPassword" Content="Lösenord" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top" Width="95" Canvas.Left="10" Canvas.Top="105"/>
             <Label x:Name="labelTitleGuardian" Content="Logga in som vårdnadshavare" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Canvas.Left="-415"/>
+            <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="155" Canvas.Left="10" Canvas.Top="130" Height="30"/>
 
         </Canvas>
         <Separator HorizontalAlignment="Left" Height="16" Margin="186,194,0,0" VerticalAlignment="Top" Width="398" RenderTransformOrigin="0.5,0.5">
@@ -35,9 +35,9 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="65,307,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="41" Width="246"><Run Text="Välj en vårdnadshavare för att kunna logga in. Klicka sedan på knappe"/><Run Text="n ovan."/></TextBlock>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="79,307,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="44" Width="209" FontStyle="Italic"><Run Text="Välj en vårdnadshavare för att simulera inloggning. Klicka sedan på Logga in."/></TextBlock>
         <Canvas Margin="101,96,519.333,127.667">
-            <Button x:Name="btnGuardian" Content="Logga in" HorizontalAlignment="Left" VerticalAlignment="Top" Width="173" Height="44" Click="BtnGuardian_Click" FontSize="14" Canvas.Top="153"/>
+            <Button x:Name="btnGuardian" Content="Logga in" HorizontalAlignment="Left" VerticalAlignment="Top" Width="173" Height="44" Click="BtnGuardian_Click" FontSize="14" Canvas.Top="152"/>
             <ComboBox x:Name="comboBoxGuardians" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="155" Canvas.Left="9" Canvas.Top="27">
                 <ComboBox.ItemTemplate>
                     <DataTemplate x:Name="TesT">
@@ -45,9 +45,9 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <TextBox x:Name="textBoxPassword_Copy" HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="155" IsEnabled="False" Canvas.Left="9" Canvas.Top="87"/>
-            <Label x:Name="labelPassword_Copy" Content="Lösenord" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top" Width="95" Canvas.Left="9" Canvas.Top="59"/>
+            <Label x:Name="labelPassword_Copy" Content="Lösenord" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top" Width="95" Canvas.Left="9" Canvas.Top="64"/>
             <Label x:Name="labelUser_Copy" Content="Användarnamn" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top" Width="95" Canvas.Left="9"/>
+            <PasswordBox x:Name="passwordBox_Copy" HorizontalAlignment="Left" VerticalAlignment="Top" Width="155" Canvas.Left="10" Canvas.Top="91" Height="30"/>
 
         </Canvas>
 
