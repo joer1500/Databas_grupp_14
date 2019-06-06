@@ -26,15 +26,14 @@ namespace Uppgift6
             ShowChildName();
         }
         DbOperations db = new DbOperations();
-        List<Needs> lista = new List<Needs>();
+        List<Needs> needsList = new List<Needs>();
         Needs selectedNeed;
 
         private void UpdateNeeds()
-        {
-            
-            lista = db.GetNeedsFromSchoolchildID(Guardians.selectedSchoolchildID);
+        {           
+            needsList = db.GetNeedsFromSchoolchildID(Guardians.selectedSchoolchildID);
             listViewNeeds.ItemsSource = null;
-            listViewNeeds.ItemsSource = lista;
+            listViewNeeds.ItemsSource = needsList;
             //var n = string.Join(Environment.NewLine, lista);
             //label_needs.Content = lista;
         }

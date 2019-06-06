@@ -64,22 +64,25 @@ namespace Uppgift6
 
             else
             {
-                string message = errorMessage(textBoxDate.Text, textBoxBreakfast.Text, textBoxDay_of.Text, textBoxShould_drop.Text, 
+                string messageOLD = errorMessage(textBoxDate.Text, textBoxBreakfast.Text, textBoxDay_of.Text, textBoxShould_drop.Text, 
                    textBoxShould_pickup.Text, textBoxWalk_home_alone.Text, textBoxHome_with_friend.Text);
+
+
+                string message = errorMessage(textBoxDate.Text, comboBoxBreakFast.Text, comboBoxDayOff.Text, textBoxShould_drop.Text,
+                   textBoxShould_pickup.Text, comboBoxWalkHomeAlone.Text, comboBoxHomeWithFriend.Text);
 
                 if (message == "")
                 {
                     DateTime date = DateTime.Parse(textBoxDate.Text);
-                    string day_off = textBoxDay_of.Text;
-                    string breakfast = textBoxBreakfast.Text;
+                    string day_off = comboBoxDayOff.Text;
+                    string breakfast = comboBoxBreakFast.Text;
                     TimeSpan should_drop = TimeSpan.Parse(textBoxShould_drop.Text);
                     TimeSpan should_pickup = TimeSpan.Parse(textBoxShould_pickup.Text);
-                    string walk_home_alone = textBoxWalk_home_alone.Text;
-                    string walk_with_friend = textBoxHome_with_friend.Text;
+                    string walk_home_alone = comboBoxWalkHomeAlone.Text;
+                    string walk_with_friend = comboBoxHomeWithFriend.Text;
 
                     string drop = "00:00:00";
                     string pickup = "00:00:00";
-
 
                     TimeSpan has_drop = TimeSpan.Parse(drop);
                     TimeSpan has_pickup = TimeSpan.Parse(pickup);
@@ -115,7 +118,7 @@ namespace Uppgift6
 
                 else
                 {
-                    MessageBox.Show($"{message}");
+                    MessageBox.Show($"{messageOLD}");
                 }
 
                 GetScheduleList();
@@ -179,7 +182,7 @@ namespace Uppgift6
         private void Remove_schedule_Click(object sender, RoutedEventArgs e)
         {
             DateTime attDate = schedule.date;
-            int attID = schedule.schoolchild_id;
+            
 
             if (schedule == null)
             {
@@ -187,6 +190,7 @@ namespace Uppgift6
             }
             else
             {
+                int attID = schedule.schoolchild_id;
                 db.DeleteSchedule(schedule.id);
                 db.DeleteAttendance(attDate, attID);
                 GetScheduleList();
@@ -377,6 +381,7 @@ namespace Uppgift6
         private void CreateValuesForCombobox()
         {
             List<string> veckor = new List<string>();
+            List<string> yesno = new List<string>();
 
             string allaVeckor, v21, v22, v23, v24, v25;
             allaVeckor = "Alla veckor";
@@ -393,8 +398,22 @@ namespace Uppgift6
             veckor.Add(v24);
             veckor.Add(v25);
 
+            string yes = "Ja";
+            string no = "Nej";
+            yesno.Add(yes);
+            yesno.Add(no);
+
+
             comboBoxWeeks.ItemsSource = veckor;
             comboBoxWeeks.Text = allaVeckor.ToString();
+
+            comboBoxDayOff.ItemsSource = yesno;
+            comboBoxBreakFast.ItemsSource = yesno;
+            comboBoxWalkHomeAlone.ItemsSource = yesno;
+            comboBoxHomeWithFriend.ItemsSource = yesno;
+            comboBoxDayOff.Text = no;
+
+
         }
 
         private void btnOpenNeeds_Click(object sender, RoutedEventArgs e)
@@ -466,6 +485,23 @@ namespace Uppgift6
         private void TextBoxShould_pickup_GotFocus(object sender, RoutedEventArgs e)
         {
             textBoxShould_pickup.Clear();
+        }
+
+        private void buttonHistoricalSick_Click(object sender, RoutedEventArgs e)
+        {
+            if (schoolchild == null)
+            {
+                return;
+            }
+            else
+            {
+            schoolchild = (Schoolchild)listBoxChildName.SelectedItem;
+            selectedSchoolchildID = schoolchild.id;
+
+            HistoricalSickness win = new HistoricalSickness();
+            win.Show();
+            this.Close();
+            }
         }
     }       
 }
