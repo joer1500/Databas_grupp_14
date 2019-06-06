@@ -118,6 +118,7 @@ namespace Uppgift6
                     if (MessageBox.Show($"Vill du verkligen ta bort: {selectedSchoolchild.firstname} {selectedSchoolchild.lastname} från registret?\rObservera att denna åtgärd inte kan ångras.", "Varning!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     {
                         DbOperations db = new DbOperations();
+                        db.DeleteConnectionBySchoolchildID(selectedSchoolchild.id);
                         db.DeleteSchoolchild(selectedSchoolchild.id);
                     }
                     UpdateListview();
@@ -166,8 +167,19 @@ namespace Uppgift6
         {
             return childs = childs.OrderBy(s => s.section).ToList();
         }
+
         #endregion
 
-       
+        private void listViewSchoolchildren_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            selectedSchoolchild = (Schoolchild)listViewSchoolchildren.SelectedItem;
+        }
+
+        private void listViewSchoolchildren_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ChildProfile win = new ChildProfile();
+            win.Show();
+            
+        }
     }
 }

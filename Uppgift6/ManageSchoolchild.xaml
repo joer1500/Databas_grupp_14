@@ -11,7 +11,7 @@
         <Button x:Name="btnAddChild" Content="Lägg till barn" HorizontalAlignment="Left" Margin="587,266,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="btnAddChild_Click"/>
         <Button x:Name="btnUpdateChild" Content="Uppdatera" HorizontalAlignment="Left" Margin="587,301,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="btnUpdateChild_Click"/>
         <Button x:Name="btnDeleteChild" Content="Ta bort" HorizontalAlignment="Left" Margin="587,336,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="btnDeleteChild_Click"/>
-        <ListView x:Name="listViewSchoolchildren" HorizontalAlignment="Left" Height="288" VerticalAlignment="Top" Width="536" Margin="30,78,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <ListView x:Name="listViewSchoolchildren" HorizontalAlignment="Left" Height="288" VerticalAlignment="Top" Width="536" Margin="30,78,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="listViewSchoolchildren_SelectionChanged" MouseDoubleClick="listViewSchoolchildren_MouseDoubleClick">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" Width="30" DisplayMemberBinding="{Binding id}"/>

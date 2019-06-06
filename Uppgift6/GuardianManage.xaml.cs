@@ -116,6 +116,7 @@ namespace Uppgift6
                 {
                     if (MessageBox.Show($"Vill du verkligen ta bort: {selectedGuardian.firstname} {selectedGuardian.lastname} från registret?\rObservera att denna åtgärd inte kan ångras.", "Varning!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     {
+                        db.DeleteConnectionByGuardianID(selectedGuardian.id);
                         db.DeleteGuardian(selectedGuardian.id);
                     }
                     else

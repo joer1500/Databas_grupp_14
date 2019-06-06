@@ -34,7 +34,7 @@ namespace Uppgift6
 
         //Sätter valt barn till variabeln id
         int id = int.Parse(StaffChildren.SetValueForList);
-
+        
 
         #region Läser in vid öppning
 

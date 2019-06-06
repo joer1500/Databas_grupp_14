@@ -780,6 +780,40 @@ namespace Uppgift6
             }
         }
 
+        public void DeleteConnectionBySchoolchildID(int schoolchildID)
+        {
+            string stmt = "DELETE FROM guardian_schoolchild WHERE schoolchild_id = @schoolchild_id";
+
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("schoolchild_id", schoolchildID);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void DeleteConnectionByGuardianID(int guardianID)
+        {
+            string stmt = "DELETE FROM guardian_schoolchild WHERE guardian_id = @guardian_id";
+
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("guardian_id", guardianID);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
         public List<Attendance> GetAttendances() //Hämtar närvaro-lista
         {
             Attendance att;
