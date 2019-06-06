@@ -32,6 +32,8 @@ namespace Uppgift6
         List<Schoolchild> childs = new List<Schoolchild>();
         DbOperations db = new DbOperations();
 
+
+
         private void UpdateListview()
         {
             childs = db.GetSchoolchildrenOrderByID();
@@ -66,8 +68,11 @@ namespace Uppgift6
         }
         private void listViewSchoolchildren_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            ChildProfile win = new ChildProfile();
+            selectedSchoolchild = (Schoolchild)listViewSchoolchildren.SelectedItem;
+            selectedSchooolchildID = selectedSchoolchild.id;
+            SchoolchildInfo win = new SchoolchildInfo();
             win.Show();
+            this.Close();
         }
 
         #region Radio buttons

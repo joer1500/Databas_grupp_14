@@ -1,0 +1,32 @@
+﻿<Window x:Class="Uppgift6.SchoolchildInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Uppgift6"
+        mc:Ignorable="d"
+        Title="Profil" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <ListView x:Name="listViewSchoolchild" HorizontalAlignment="Left" Height="334" VerticalAlignment="Top" Width="572" Margin="202,42,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Datum" Width="100" DisplayMemberBinding="{Binding date,StringFormat=dd\\-MMMM\\-yyyy}"/>
+                    <GridViewColumn Header="Lämnas" Width="65" DisplayMemberBinding="{Binding should_drop, StringFormat=hh\\:mm}"/>
+                    <GridViewColumn Header="Hämtas" Width="65" DisplayMemberBinding="{Binding should_pickup, StringFormat=hh\\:mm}"/>
+                    <GridViewColumn Header="Frukost" Width="60" DisplayMemberBinding="{Binding breakfast}"/>
+                    <GridViewColumn Header="Går hem med kompis" Width="130" DisplayMemberBinding="{Binding home_with_friend}"/>
+                    <GridViewColumn Header="Går hem själv" Width="100" DisplayMemberBinding="{Binding walk_home_alone}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="btnExit" Content="Tillbaka" HorizontalAlignment="Left" Margin="18,18,0,0" VerticalAlignment="Top" Width="75" Height="28" BorderBrush="White" Background="White" FontSize="14" Click="btnExit_Click"/>
+        <Label x:Name="lblSCName" Content="Barnets namn" HorizontalAlignment="Left" Margin="202,4,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18" Width="210"/>
+        <Label x:Name="lblGuardian" Content="Vårdnadshavare" HorizontalAlignment="Left" Margin="18,63,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="lblSeeGuardians" Content="namnen här" HorizontalAlignment="Left" Margin="18,84,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblNeeds" Content="Behov" HorizontalAlignment="Left" Margin="18,161,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="lblSeeNeeds" Content="behov visas här" HorizontalAlignment="Left" Margin="18,181,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblAllowedPickups" Content="Godkända hämtare" HorizontalAlignment="Left" Margin="18,256,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="lblSeePickups" Content="hämtare visas här" HorizontalAlignment="Left" Margin="18,276,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

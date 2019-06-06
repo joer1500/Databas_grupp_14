@@ -137,6 +137,9 @@
     </Compile>
     <Compile Include="Schedule.cs" />
     <Compile Include="Schoolchild.cs" />
+    <Compile Include="SchoolchildInfo.xaml.cs">
+      <DependentUpon>SchoolchildInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Staff.cs" />
     <Compile Include="StaffChildren.xaml.cs">
       <DependentUpon>StaffChildren.xaml</DependentUpon>
@@ -210,6 +213,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pickups.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SchoolchildInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
