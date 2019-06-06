@@ -29,6 +29,7 @@ namespace Uppgift6
         List<Attendance> attList = new List<Attendance>();
         Attendance selectedAttendance;
         Schoolchild child = new Schoolchild();
+        Random slump = new Random();
 
         private void GetSchoolchild()
         {
@@ -70,11 +71,6 @@ namespace Uppgift6
             Guardians win = new Guardians();
             win.Show();
             this.Close();
-        }
-
-        private void btnAddSick_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

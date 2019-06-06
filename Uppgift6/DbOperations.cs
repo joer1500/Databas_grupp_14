@@ -174,6 +174,7 @@ namespace Uppgift6
                             home_with_friend = (reader.GetString(8)),
                             firstname = (reader.GetString(9)),
                             lastname = (reader.GetString(10)),
+                            section_id = (reader.GetInt32(11)),
                         };
                         schedule.Add(sd);
                     }

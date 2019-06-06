@@ -40,29 +40,34 @@ namespace Uppgift6
             {
                 listViewSchoolchildren.ItemsSource = null;
                 listViewSchoolchildren.ItemsSource = OrderListById(childs);
-                //listViewSchoolchildren.ItemsSource = db.GetSchoolchildrenOrderByID();
             }
 
             else if (rbtnSortByFirstname.IsChecked == true)
             {
                 listViewSchoolchildren.ItemsSource = null;
                 listViewSchoolchildren.ItemsSource = OrderListFirstname(childs);
-                //listViewSchoolchildren.ItemsSource = db.GetSchoolchildrenOrderByFirstname();
             }
 
             else if (rbtnSortByLastname.IsChecked == true)
             {
                 listViewSchoolchildren.ItemsSource = null;
                 listViewSchoolchildren.ItemsSource = OrderListByLastname(childs);
-                //listViewSchoolchildren.ItemsSource = db.GetSchoolchildrenOrderByLastname();
             }
 
             else if (rbtnSortBySection.IsChecked == true)
             {
                 listViewSchoolchildren.ItemsSource = null;
                 listViewSchoolchildren.ItemsSource = OrderListBySection(childs);
-                //listViewSchoolchildren.ItemsSource = db.GetSchoolchildrenOrderBySection();
             }
+        }
+        private void listViewSchoolchildren_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            selectedSchoolchild = (Schoolchild)listViewSchoolchildren.SelectedItem;
+        }
+        private void listViewSchoolchildren_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ChildProfile win = new ChildProfile();
+            win.Show();
         }
 
         #region Radio buttons
@@ -117,7 +122,6 @@ namespace Uppgift6
                 {
                     if (MessageBox.Show($"Vill du verkligen ta bort: {selectedSchoolchild.firstname} {selectedSchoolchild.lastname} från registret?\rObservera att denna åtgärd inte kan ångras.", "Varning!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     {
-                        DbOperations db = new DbOperations();
                         db.DeleteConnectionBySchoolchildID(selectedSchoolchild.id);
                         db.DeleteSchoolchild(selectedSchoolchild.id);
                     }
@@ -170,16 +174,6 @@ namespace Uppgift6
 
         #endregion
 
-        private void listViewSchoolchildren_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            selectedSchoolchild = (Schoolchild)listViewSchoolchildren.SelectedItem;
-        }
-
-        private void listViewSchoolchildren_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            ChildProfile win = new ChildProfile();
-            win.Show();
-            
-        }
+        
     }
 }

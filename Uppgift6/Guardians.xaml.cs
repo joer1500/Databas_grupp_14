@@ -413,7 +413,8 @@ namespace Uppgift6
             comboBoxHomeWithFriend.ItemsSource = yesno;
             comboBoxDayOff.Text = no;
 
-
+            textBoxDateSick.Text = DateTime.Today.ToShortDateString();
+            textBoxDate.Text = DateTime.Today.ToShortDateString();
         }
 
         private void btnOpenNeeds_Click(object sender, RoutedEventArgs e)
@@ -427,8 +428,7 @@ namespace Uppgift6
                 NeedBySchoolchild m = new NeedBySchoolchild();
                 m.Show();
                 this.Close();
-            }
-            
+            }          
         }
 
         private void ButtonSick_Click(object sender, RoutedEventArgs e)
@@ -438,6 +438,7 @@ namespace Uppgift6
           string pickup = "00:00:00";
           TimeSpan has_drop = TimeSpan.Parse(drop);
           TimeSpan has_pickup = TimeSpan.Parse(pickup);
+          TimeSpan nullValue = TimeSpan.Parse(pickup);
 
             if (schoolchild == null)
             {
@@ -455,6 +456,7 @@ namespace Uppgift6
                     sickDate = DateTime.Parse(textBoxDateSick.Text);
                     int staffSlump = slump.Next(1, 6);
 
+                    //db.InsertSchedule(schoolchild, sickDate, "", "", nullValue, nullValue, "", "");
                     db.UpdateAttendance(schoolchild.id, sickDate, "Ja", "Nej", has_drop, has_pickup);
                     MessageBox.Show($"{schoolchild.firstname} är nu sjukanmäld för {textBoxDateSick.Text.ToString()}");
                     textBoxDateSick.Clear();

@@ -45,6 +45,73 @@ namespace Uppgift6
 
 
         #region Metoder
+        private void UpdateUI()
+        {
+            if (rbtn_all.IsChecked == true)
+            {
+                GetSchedules();
+                SortSchedulesByDate();
+
+                GetAttendance();
+                FilterAttendancesByDate();
+
+                EmptyListBoxAndFill();
+                UpdateAttendanceList();
+            }
+            else if (rbtn_blue.IsChecked == true)
+            {
+                GetSchedules();
+                SortSchedulesByDate();
+
+                GetAttendance();
+                FilterAttendancesByDate();
+
+                SortSchedulesBySectionBlue();
+
+                EmptyListBoxAndFill();
+                UpdateAttendanceList();
+            }
+            else if (rbtn_red.IsChecked == true)
+            {
+                GetSchedules();
+                SortSchedulesByDate();
+
+                GetAttendance();
+                FilterAttendancesByDate();
+
+                SortSchedulesBySectionRed();
+
+                EmptyListBoxAndFill();
+                UpdateAttendanceList();
+            }
+            else if(rbtn_yellow.IsChecked == true)
+            {
+                GetSchedules();
+                SortSchedulesByDate();
+
+                GetAttendance();
+                FilterAttendancesByDate();
+
+                SortSchedulesBySectionYellow();
+
+                EmptyListBoxAndFill();
+                UpdateAttendanceList();
+            }
+            else if (rbtn_green.IsChecked == true)
+            {
+                GetSchedules();
+                SortSchedulesByDate();
+
+                GetAttendance();
+                FilterAttendancesByDate();
+
+                SortSchedulesBySectionGreen();
+
+                EmptyListBoxAndFill();
+                UpdateAttendanceList();
+            }
+            
+        }
         private void SortSchedulesByDate()
         {
             schedule = schedule.Where(x => x.date == choosenDate).ToList();
@@ -103,18 +170,18 @@ namespace Uppgift6
         }
         private void SortSchedulesBySectionGreen()
         {
-            schedule = schedule.Where(x => x.section_id == 2).ToList();
-            attendances = attendances.Where(x => x.section_id == 2).ToList();
+            schedule = schedule.Where(x => x.section_id == 4).ToList();
+            attendances = attendances.Where(x => x.section_id == 4).ToList();
         }
         private void SortSchedulesBySectionYellow()
         {
-            schedule = schedule.Where(x => x.section_id == 3).ToList();
-            attendances = attendances.Where(x => x.section_id == 3).ToList();
+            schedule = schedule.Where(x => x.section_id == 2).ToList();
+            attendances = attendances.Where(x => x.section_id == 2).ToList();
         }
         private void SortSchedulesBySectionRed()
         {
-            schedule = schedule.Where(x => x.section_id == 4).ToList();
-            attendances = attendances.Where(x => x.section_id == 4).ToList();
+            schedule = schedule.Where(x => x.section_id == 3).ToList();
+            attendances = attendances.Where(x => x.section_id == 3).ToList();
         }
         #endregion
 
@@ -293,9 +360,10 @@ namespace Uppgift6
             else
             {
                 db.UpdateAttendanceDrop(selectedAttendance.schoolchild, choosenDate, selectedAttendance.sick, "Ja", currentTime);
-                GetAttendance();
-                FilterAttendancesByDate();
-                UpdateAttendanceList();
+                UpdateUI();
+                //GetAttendance();
+                //FilterAttendancesByDate();
+                //UpdateAttendanceList();
             }
         } //För att spara ner tiden när ett barn anländer till fritids
         private void btnHasPickup_Click(object sender, RoutedEventArgs e)
@@ -308,9 +376,10 @@ namespace Uppgift6
             else
             {
                 db.UpdateAttendancePickup(selectedAttendance.schoolchild, choosenDate, selectedAttendance.sick, "Ja", currentTime);
-                GetAttendance();
-                FilterAttendancesByDate();
-                UpdateAttendanceList();
+                UpdateUI();
+                //GetAttendance();
+                //FilterAttendancesByDate();
+                //UpdateAttendanceList();
             }
         } //För att spara ner tiden när ett barn går hem från frititds
         #endregion
@@ -470,7 +539,7 @@ namespace Uppgift6
                
             }
 
-        }
+        } //För att nolla markerad närvaro
     }
 
 }

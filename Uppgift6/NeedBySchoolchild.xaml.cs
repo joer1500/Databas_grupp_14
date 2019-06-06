@@ -56,6 +56,7 @@ namespace Uppgift6
         {
             string need = txtNeed.Text;
             db.AddNeed(need, Guardians.selectedSchoolchildID);
+            txtNeed.Clear();
             UpdateNeeds();
         }
 
@@ -69,7 +70,6 @@ namespace Uppgift6
             {
             db.DeleteNeed(selectedNeed.id);
             UpdateNeeds();
-
             }
         }
 

@@ -5,22 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Uppgift6"
         mc:Ignorable="d"
-        Title="Sjukanmälningar" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Sjukanmälningar" Height="450" Width="403.53" WindowStartupLocation="CenterScreen">
     <Grid>
-        <ListView x:Name="listViewSickness" HorizontalAlignment="Left" Height="195" Margin="33,100,0,0" VerticalAlignment="Top" Width="200" ScrollViewer.VerticalScrollBarVisibility="Disabled" SelectionChanged="listViewSickness_SelectionChanged">
+        <ListView x:Name="listViewSickness" HorizontalAlignment="Left" Height="195" Margin="75,101,0,0" VerticalAlignment="Top" Width="200" ScrollViewer.VerticalScrollBarVisibility="Disabled" SelectionChanged="listViewSickness_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Datum" Width="200"  DisplayMemberBinding="{Binding date, StringFormat=  dd\\-MMMM\\-yyyy}"/>
+                    <GridViewColumn Header="Datum" Width="200"  DisplayMemberBinding="{Binding date, StringFormat=  dd\\-MMMM\\-yyyy}" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="btnDeleteNeed" Content="Ta bort" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="158,300,0,0" Height="25" Click="btnDeleteNeed_Click"/>
+        <Button x:Name="btnDeleteNeed" Content="Ta bort" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="200,301,0,0" Height="25" Click="btnDeleteNeed_Click"/>
         <Button x:Name="btnCloseSickness" Content="Tillbaka" HorizontalAlignment="Left" Margin="19,20,0,0" VerticalAlignment="Top" Width="75" Height="28" BorderBrush="White" Background="White" FontSize="14" Click="btnCloseSickness_Click"/>
-        <Label x:Name="labelChildName" Content="Barnets namn" HorizontalAlignment="Left" Height="33" Margin="33,62,0,0" VerticalAlignment="Top" Width="200" FontSize="18" FontWeight="Bold"/>
-        <Label x:Name="lblAddSickness" Content="Ny sjukanmälan" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="295,99,0,0" FontSize="14" FontWeight="Bold"/>
-        <Label x:Name="lblsick" Content="Datum (YYYY-MM-DD)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="295,134,0,0" RenderTransformOrigin="0.529,-0.116"/>
-        <TextBox x:Name="txtboxSick" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="159" Margin="295,165,0,0" IsEnabled="False"/>
-        <Button x:Name="btnAddSick" Content="Lägg till" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="378,193,0,0" Click="btnAddSick_Click" IsEnabled="False"/>
+        <Label x:Name="labelChildName" Content="Barnets namn" HorizontalAlignment="Left" Height="33" Margin="75,63,0,0" VerticalAlignment="Top" Width="200" FontSize="18" FontWeight="Bold"/>
 
     </Grid>
 </Window>
