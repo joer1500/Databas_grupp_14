@@ -61,7 +61,6 @@ namespace Uppgift6
                 }
             }
         }
-
         public List<Needs> GetNeedsFromSchoolchildID(int ID)
         {
             Needs needs;
@@ -925,7 +924,37 @@ namespace Uppgift6
                 }
             }
         }
+        public List<Attendance> GetSicknessFromSchoolchildID(int id)
+        {
+            Attendance sick;
+            List<Attendance> attList = new List<Attendance>();
 
+            string stmt = "SELECT date FROM attendance WHERE schoolchild_id = @id AND sick = 'Ja';";
+
+            using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("id", id);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            sick = new Attendance()
+                            {
+                                date = reader.GetDateTime(0),
+                            };
+                            attList.Add(sick);
+                        }
+                    }
+                    return attList;
+                }
+            }
+        }
 
     }
 

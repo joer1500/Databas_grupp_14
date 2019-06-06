@@ -182,7 +182,7 @@ namespace Uppgift6
         private void Remove_schedule_Click(object sender, RoutedEventArgs e)
         {
             DateTime attDate = schedule.date;
-            int attID = schedule.schoolchild_id;
+            
 
             if (schedule == null)
             {
@@ -190,6 +190,7 @@ namespace Uppgift6
             }
             else
             {
+                int attID = schedule.schoolchild_id;
                 db.DeleteSchedule(schedule.id);
                 db.DeleteAttendance(attDate, attID);
                 GetScheduleList();
@@ -484,6 +485,23 @@ namespace Uppgift6
         private void TextBoxShould_pickup_GotFocus(object sender, RoutedEventArgs e)
         {
             textBoxShould_pickup.Clear();
+        }
+
+        private void buttonHistoricalSick_Click(object sender, RoutedEventArgs e)
+        {
+            if (schoolchild == null)
+            {
+                return;
+            }
+            else
+            {
+            schoolchild = (Schoolchild)listBoxChildName.SelectedItem;
+            selectedSchoolchildID = schoolchild.id;
+
+            HistoricalSickness win = new HistoricalSickness();
+            win.Show();
+            this.Close();
+            }
         }
     }       
 }

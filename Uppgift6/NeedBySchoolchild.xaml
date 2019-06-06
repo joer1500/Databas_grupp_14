@@ -10,7 +10,7 @@
         <ListView x:Name="listViewNeeds" HorizontalAlignment="Left" Height="169" Margin="19,99,0,0" VerticalAlignment="Top" Width="250" SelectionChanged="listViewNeeds_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Behov" Width="250" DisplayMemberBinding="{Binding need}" ScrollViewer.VerticalScrollBarVisibility="Disabled" />
+                    <GridViewColumn Header="Behov" Width="250" DisplayMemberBinding="{Binding need}"/>
                 </GridView>
             </ListView.View>
         </ListView>

@@ -65,14 +65,15 @@
         <Label x:Name="lblLoggedInGuardian" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,27,0,0" Width="178" FontSize="18" FontWeight="Bold"/>
         <Button x:Name="btnPickup" Content="Vem får hämta" HorizontalAlignment="Left" VerticalAlignment="Top" Width="113" Margin="23,387,0,0" Click="btnPickup_Click"/>
         <Button x:Name="btnOpenNeeds" Content="Behov" HorizontalAlignment="Left" Margin="146,387,0,0" VerticalAlignment="Top" Width="75" Click="btnOpenNeeds_Click"/>
-        <TextBox x:Name="textBoxDateSick" HorizontalAlignment="Left" Height="23" Margin="23,304,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBoxDateSick" HorizontalAlignment="Left" Height="23" Margin="23,304,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="113"/>
         <Label x:Name="labelSickDate" Content="Datum:" HorizontalAlignment="Left" Margin="23,278,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.675,0.617"/>
         <Label x:Name="labelSick" Content="Sjukanmäl ditt barn" HorizontalAlignment="Left" Margin="23,257,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
-        <Button x:Name="buttonSick" Content="Sjukanmäl" HorizontalAlignment="Left" Margin="23,333,0,0" VerticalAlignment="Top" Width="75" Height="22" Click="ButtonSick_Click"/>
+        <Button x:Name="buttonSick" Content="Sjukanmäl" HorizontalAlignment="Left" Margin="141,304,0,0" VerticalAlignment="Top" Width="88" Height="23" Click="ButtonSick_Click"/>
         <ComboBox x:Name="comboBoxDayOff" HorizontalAlignment="Left" Height="25" Margin="555,224,0,0" VerticalAlignment="Top" Width="72"/>
         <ComboBox x:Name="comboBoxBreakFast" HorizontalAlignment="Left" Height="25" Margin="661,224,0,0" VerticalAlignment="Top" Width="72"/>
         <ComboBox x:Name="comboBoxWalkHomeAlone" HorizontalAlignment="Left" Height="25" Margin="554,302,0,0" VerticalAlignment="Top" Width="72"/>
         <ComboBox x:Name="comboBoxHomeWithFriend" HorizontalAlignment="Left" Height="25" Margin="660,302,0,0" VerticalAlignment="Top" Width="72"/>
+        <Button x:Name="buttonHistoricalSick" Content="Sjukanmälningar" HorizontalAlignment="Left" Height="25" Margin="140,342,0,0" VerticalAlignment="Top" Width="89" Click="buttonHistoricalSick_Click"/>
 
     </Grid>
 </Window>

@@ -106,6 +106,9 @@
     <Compile Include="Guardians.xaml.cs">
       <DependentUpon>Guardians.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HistoricalSickness.xaml.cs">
+      <DependentUpon>HistoricalSickness.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ManageSchoolchild.xaml.cs">
       <DependentUpon>ManageSchoolchild.xaml</DependentUpon>
     </Compile>
@@ -159,6 +162,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Guardians.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HistoricalSickness.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
