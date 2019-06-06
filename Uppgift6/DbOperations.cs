@@ -153,7 +153,7 @@ namespace Uppgift6
             Schedule sd;
             List<Schedule> schedule = new List<Schedule>();
 
-            string stmt = "SELECT schedule_id, schedule.schoolchild_id, date, day_off, breakfast, should_drop, should_pickup, walk_home_alone, home_with_friend, firstname, lastname, section_id FROM(schedule INNER JOIN schoolchild ON schedule.schoolchild_id = schoolchild.schoolchild_id) ORDER BY lastname ASC";
+            string stmt = "SELECT schedule_id, schedule.schoolchild_id, date, day_off, breakfast, should_drop, should_pickup, walk_home_alone, home_with_friend, firstname, lastname, section_id FROM(schedule INNER JOIN schoolchild ON schedule.schoolchild_id = schoolchild.schoolchild_id) ORDER BY lastname";
             using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
             {
                 conn.Open();
@@ -175,9 +175,6 @@ namespace Uppgift6
                             home_with_friend = (reader.GetString(8)),
                             firstname = (reader.GetString(9)),
                             lastname = (reader.GetString(10)),
-                            //section_id = (reader.GetInt32(11)),
-                            //attendance = (reader.GetString(12)),
-                            //sick = (reader.GetString(13))
                         };
                         schedule.Add(sd);
                     }
@@ -788,7 +785,7 @@ namespace Uppgift6
             Attendance att;
             List<Attendance> attendances = new List<Attendance>();
 
-            string stmt = "SELECT attendance.attendance_id, attendance.schoolchild_id, attendance.date, attendance.attendance, attendance.sick, attendance.attendance_staff, schoolchild.firstname, schoolchild.lastname, schoolchild.section_id, has_drop, has_pickup FROM attendance INNER JOIN schoolchild on attendance.schoolchild_id = schoolchild.schoolchild_id ORDER BY lastname";
+            string stmt = "SELECT attendance.attendance_id, attendance.schoolchild_id, attendance.date, attendance.attendance, attendance.sick, attendance.attendance_staff, schoolchild.firstname, schoolchild.lastname, schoolchild.section_id, has_drop, has_pickup FROM attendance INNER JOIN schoolchild on attendance.schoolchild_id = schoolchild.schoolchild_id ORDER BY lastname, firstname";
             using (var conn = new
                 NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
             {
@@ -846,9 +843,9 @@ namespace Uppgift6
                 }
             }
         }
-        public void UpdateAttendance(int schoolchild, DateTime date, string sick, string attendance)
+        public void UpdateAttendance(int schoolchild, DateTime date, string sick, string attendance, TimeSpan drop, TimeSpan pickup)
         {
-            string stmt = "UPDATE attendance SET (schoolchild_id, date, sick, attendance) = (@id, @dt, @sick, @att) WHERE schoolchild_id = @id AND date = @dt;";
+            string stmt = "UPDATE attendance SET (schoolchild_id, date, sick, attendance, has_drop, has_pickup) = (@id, @dt, @sick, @att, @drop, @pick) WHERE schoolchild_id = @id AND date = @dt;";
 
             using (var conn = new
             NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
@@ -862,6 +859,8 @@ namespace Uppgift6
                     cmd.Parameters.AddWithValue("dt", date);
                     cmd.Parameters.AddWithValue("sick", sick);
                     cmd.Parameters.AddWithValue("att", attendance);
+                    cmd.Parameters.AddWithValue("drop", drop);
+                    cmd.Parameters.AddWithValue("pick", pickup);
                     cmd.ExecuteNonQuery();
                 }
             }

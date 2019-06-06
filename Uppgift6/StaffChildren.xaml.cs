@@ -41,7 +41,7 @@ namespace Uppgift6
         DateTime choosenDate = DateTime.Today;
         Attendance selectedAttendance;
         Schedule selectedSchedule;
-        TimeSpan currentTime = DateTime.Now.TimeOfDay;
+        TimeSpan currentTime;
 
 
         #region Metoder
@@ -285,14 +285,14 @@ namespace Uppgift6
         }
         private void btnHasDrop_Click(object sender, RoutedEventArgs e)
         {
+            currentTime = DateTime.Now.TimeOfDay;
             if (selectedAttendance == null)
             {
                 return;
             }
             else
             {
-                db.UpdateAttendanceDrop(selectedAttendance.schoolchild, choosenDate, selectedAttendance.sick, comboBoxAttendance.Text, currentTime);
-
+                db.UpdateAttendanceDrop(selectedAttendance.schoolchild, choosenDate, selectedAttendance.sick, "Ja", currentTime);
                 GetAttendance();
                 FilterAttendancesByDate();
                 UpdateAttendanceList();
@@ -300,13 +300,14 @@ namespace Uppgift6
         } //För att spara ner tiden när ett barn anländer till fritids
         private void btnHasPickup_Click(object sender, RoutedEventArgs e)
         {
+            currentTime = DateTime.Now.TimeOfDay;
             if (selectedAttendance == null)
             {
                 return;
             }
             else
             {
-                db.UpdateAttendancePickup(selectedAttendance.schoolchild, choosenDate, selectedAttendance.sick, comboBoxAttendance.Text, currentTime);
+                db.UpdateAttendancePickup(selectedAttendance.schoolchild, choosenDate, selectedAttendance.sick, "Ja", currentTime);
                 GetAttendance();
                 FilterAttendancesByDate();
                 UpdateAttendanceList();
@@ -414,9 +415,8 @@ namespace Uppgift6
             {
                 return;
             }
-            //selectedAttendance.attendance = comboBoxAttendance.Text;
 
-            db.UpdateAttendance(selectedAttendance.schoolchild, choosenDate, selectedAttendance.sick, comboBoxAttendance.Text);
+            //db.UpdateAttendance(selectedAttendance.schoolchild, choosenDate, selectedAttendance.sick, comboBoxAttendance.Text);
             GetAttendance();
             FilterAttendancesByDate();
             UpdateAttendanceList();
@@ -438,11 +438,39 @@ namespace Uppgift6
             UpdateLabelView();
         }
 
+
         #endregion
 
+        private void lblDoubleClickGuardianInfo_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            string drop = "00:00:00";
+            string pickup = "00:00:00";
+            TimeSpan has_drop = TimeSpan.Parse(drop);
+            TimeSpan has_pickup = TimeSpan.Parse(pickup);
 
+            if (selectedAttendance == null)
+            {
+                return;
+            }
+            else
+            {
+                try
+                {
+                    int id = selectedAttendance.schoolchild;
+                    DateTime dt = selectedAttendance.date;
+                    db.UpdateAttendance(id, dt, "", "", has_drop, has_pickup);
+                    GetAttendance();
+                    FilterAttendancesByDate();
+                    UpdateAttendanceList();
+                }
+                catch (PostgresException ex)
+                {
+                    MessageBox.Show(ex.Message);                   
+                }
+               
+            }
 
-        
+        }
     }
 
 }

@@ -415,6 +415,10 @@ namespace Uppgift6
         private void ButtonSick_Click(object sender, RoutedEventArgs e)
         {
           schoolchild = (Schoolchild)listBoxChildName.SelectedItem;
+          string drop = "00:00:00";
+          string pickup = "00:00:00";
+          TimeSpan has_drop = TimeSpan.Parse(drop);
+          TimeSpan has_pickup = TimeSpan.Parse(pickup);
 
             if (schoolchild == null)
             {
@@ -432,7 +436,7 @@ namespace Uppgift6
                     sickDate = DateTime.Parse(textBoxDateSick.Text);
                     int staffSlump = slump.Next(1, 6);
 
-                    db.UpdateAttendance(schoolchild.id, sickDate, "Ja", "Nej");
+                    db.UpdateAttendance(schoolchild.id, sickDate, "Ja", "Nej", has_drop, has_pickup);
                     MessageBox.Show($"{schoolchild.firstname} är nu sjukanmäld för {textBoxDateSick.Text.ToString()}");
                     textBoxDateSick.Clear();
                 }
