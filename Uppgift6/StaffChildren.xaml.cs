@@ -527,7 +527,8 @@ namespace Uppgift6
                 {
                     int id = selectedAttendance.schoolchild;
                     DateTime dt = selectedAttendance.date;
-                    db.UpdateAttendance(id, dt, "", "", has_drop, has_pickup);
+                    //db.UpdateAttendance(id, dt, "", "", has_drop, has_pickup);
+                    db.UpdateAttendanceClearTimes(id, dt, "", has_drop, has_pickup);
                     GetAttendance();
                     FilterAttendancesByDate();
                     UpdateAttendanceList();

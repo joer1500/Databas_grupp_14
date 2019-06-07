@@ -455,7 +455,6 @@ namespace Uppgift6
                     textBoxDateSick.Clear();
                 }
             }          
-
         }
 
         private void ErrorMessageSelectChildInList()

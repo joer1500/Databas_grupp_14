@@ -94,7 +94,6 @@ namespace Uppgift6
                 }
             }
         }
-
         public void AddNeed(string need, int schoolchildID)
         {
             string stmt = "INSERT INTO schoolchild_need (schoolchild_id, need) VALUES (@schoolchild_id, @need)";
@@ -128,7 +127,6 @@ namespace Uppgift6
                 }
             }
         }
-
         public void DeleteSchedule(int id) //Ta bort schedule baserat på ID
         {
             string stmt = "DELETE FROM schedule WHERE schedule_id = @scheduleid";
@@ -182,7 +180,6 @@ namespace Uppgift6
                 return schedule;
             }
         }
-
         public List<Schedule> GetChildScheduleDatesFromChildID(int ID)
         {
             Schedule sd;
@@ -223,7 +220,6 @@ namespace Uppgift6
                 return schedule;
             }
         }
-
         public List<Guardian> GetGuardianFromSchoolchildID(int ID)
         {
             Guardian g;
@@ -258,7 +254,6 @@ namespace Uppgift6
                 return guardian;
             }
         }
-
         public List<Schoolchild> GetChildNameFromGuardianID(int ID)
         {
             Schoolchild sc;
@@ -293,7 +288,6 @@ namespace Uppgift6
                 }
                 return children;
             }
-
         }
 
         public void InsertSchedule(Schoolchild child, DateTime date, string day_off, string breakfast,
@@ -399,8 +393,6 @@ namespace Uppgift6
             }
         }
 
- 
-
         public List<Schoolchild> GetSchoolchildrenOrderByID()   // Hämtar skolbarn och sorterar efter ID
         {
             Schoolchild schoolchild;
@@ -428,8 +420,6 @@ namespace Uppgift6
                 return schoolchildren;
             }
         }
-
-       
 
         public Schoolchild GetSchoolchildByID(int id)
         {
@@ -535,8 +525,6 @@ namespace Uppgift6
             }
         }
 
-       
-
         public List<Pickup> GetAllAllowedPickupBySchoolchildID(int schoolchildID)    // Hämtar alla godkända hämtare för ett barn
         {
             Pickup pickup;
@@ -608,7 +596,6 @@ namespace Uppgift6
                 }
             }
         }
-
         public List<Guardian> GetAllGuardians() //Hämtar alla vårdnadshavare
         {
             Guardian g;
@@ -658,7 +645,6 @@ namespace Uppgift6
                 }
             }
         }
-
         public void DeleteGuardian(int id) //Ta bort Guardian baserat på ID
         {
 
@@ -879,7 +865,7 @@ namespace Uppgift6
         }
         public void UpdateAttendance(int schoolchild, DateTime date, string sick, string attendance, TimeSpan drop, TimeSpan pickup)
         {
-            string stmt = "UPDATE attendance SET (schoolchild_id, date, sick, attendance, has_drop, has_pickup) = (@id, @dt, @sick, @att, @drop, @pick) WHERE schoolchild_id = @id AND date = @dt;";
+            string stmt = "UPDATE attendance SET (schoolchild_id, date, sick, attendance, has_drop, has_pickup) = (@id, @dt, @sick, @att, @drop, @pick) WHERE schoolchild_id = @id AND date = @dt";
 
             using (var conn = new
             NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
@@ -892,6 +878,27 @@ namespace Uppgift6
                     cmd.Parameters.AddWithValue("id", schoolchild);
                     cmd.Parameters.AddWithValue("dt", date);
                     cmd.Parameters.AddWithValue("sick", sick);
+                    cmd.Parameters.AddWithValue("att", attendance);
+                    cmd.Parameters.AddWithValue("drop", drop);
+                    cmd.Parameters.AddWithValue("pick", pickup);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public void UpdateAttendanceClearTimes(int schoolchild, DateTime date, string attendance, TimeSpan drop, TimeSpan pickup) //För att kunna nolla närvaro direkt i gränssnittet
+        {
+            string stmt = "UPDATE attendance SET (schoolchild_id, date, attendance, has_drop, has_pickup) = (@id, @dt, @att, @drop, @pick) WHERE schoolchild_id = @id AND date = @dt";
+
+            using (var conn = new
+            NpgsqlConnection(ConfigurationManager.ConnectionStrings["DbConn"].ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = stmt;
+                    cmd.Parameters.AddWithValue("id", schoolchild);
+                    cmd.Parameters.AddWithValue("dt", date);
                     cmd.Parameters.AddWithValue("att", attendance);
                     cmd.Parameters.AddWithValue("drop", drop);
                     cmd.Parameters.AddWithValue("pick", pickup);
@@ -990,8 +997,5 @@ namespace Uppgift6
                 }
             }
         }
-
     }
-
-
 }

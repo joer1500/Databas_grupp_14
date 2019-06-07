@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Uppgift6"
         mc:Ignorable="d"
-        Title="Startsida personal" Height="450" Width="981.512" WindowStartupLocation="CenterScreen">
+        Title="Startsida personal" Height="460.313" Width="998.701" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,2.667,-0.333">
-        <ListView x:Name="listViewSC" HorizontalAlignment="Left" Height="316" VerticalAlignment="Top" Width="707" Margin="168,38,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="listViewSC_MouseDoubleClick_1" SelectionChanged="listViewSC_SelectionChanged">
+        <ListView x:Name="listViewSC" HorizontalAlignment="Left" Height="316" VerticalAlignment="Top" Width="730" Margin="168,38,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="listViewSC_MouseDoubleClick_1" SelectionChanged="listViewSC_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Förnamn" Width="70" DisplayMemberBinding="{Binding firstname}"/>
@@ -18,7 +18,7 @@
                     <GridViewColumn Header="Frukost" Width="55" DisplayMemberBinding="{Binding breakfast}"/>
                     <GridViewColumn Header="Hem med kompis" Width="100" DisplayMemberBinding="{Binding home_with_friend}"/>
                     <GridViewColumn Header="Hem själv" Width="65" DisplayMemberBinding="{Binding walk_home_alone}"/>
-                    <GridViewColumn Header="Ledig" Width="55" DisplayMemberBinding="{Binding day_off}"/>
+                    <GridViewColumn Header="Ledig" Width="45" DisplayMemberBinding="{Binding day_off}"/>
                     <!--<GridViewColumn Header="Section" Width="50" DisplayMemberBinding="{Binding section_id}"/>-->
                 </GridView>
             </ListView.View>
@@ -43,21 +43,21 @@
         <RadioButton x:Name="rbtn_green" Content="Grön" HorizontalAlignment="Left" Margin="38,153,0,0" VerticalAlignment="Top" Checked="rbtn_green_Checked"/>
         <Label x:Name="lblDoubleClickGuardianInfo" Content="Dubbelklicka för att se barnets vårdnadshavare, behov och vem som får hämta." HorizontalAlignment="Left" Margin="168,362,0,0" VerticalAlignment="Top" MouseDoubleClick="lblDoubleClickGuardianInfo_MouseDoubleClick"/>
         <ComboBox x:Name="comboBoxAttendance" HorizontalAlignment="Left" Height="24" Margin="857,178,0,0" VerticalAlignment="Top" Width="66" DropDownClosed="comboBoxAttendance_DropDownClosed" IsEnabled="False" Visibility="Hidden"/>
-        <Button x:Name="btnNewAttendance" Content="Ny närvaro" HorizontalAlignment="Left" Height="31" Margin="785,359,0,0" VerticalAlignment="Top" Width="90" IsEnabled="True" Click="btnNewAttendance_Click"/>
+        <Button x:Name="btnNewAttendance" Content="Ny närvaro" HorizontalAlignment="Left" Height="31" Margin="807,359,0,0" VerticalAlignment="Top" Width="90" IsEnabled="True" Click="btnNewAttendance_Click"/>
         <Button x:Name="btnAttendanceYes" Content="Ja" HorizontalAlignment="Left" Height="25" Margin="857,218,0,0" VerticalAlignment="Top" Width="34" IsEnabled="False" Visibility="Hidden"/>
         <Button x:Name="btnAttendanceNo" Content="Nej" HorizontalAlignment="Left" Height="25" Margin="896,218,0,0" VerticalAlignment="Top" Width="34" IsEnabled="False" Visibility="Hidden"/>
-        <ListView x:Name="listViewAttendance" HorizontalAlignment="Left" Height="311" Margin="707,40,0,0" VerticalAlignment="Top" Width="166" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0" SelectionChanged="listViewAttendance_SelectionChanged">
+        <ListView x:Name="listViewAttendance" HorizontalAlignment="Left" Height="311" Margin="695,40,0,0" VerticalAlignment="Top" Width="202" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0" SelectionChanged="listViewAttendance_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Sjuk" Width="50" DisplayMemberBinding="{Binding sick}"/>
+                    <GridViewColumn Header="Sjuk" Width="35" DisplayMemberBinding="{Binding sick}"/>
                     <GridViewColumn Header="Lämnad" Width="57" DisplayMemberBinding="{Binding has_drop, StringFormat=hh\\:mm}"/>
                     <GridViewColumn Header="Hämtad" Width="57" DisplayMemberBinding="{Binding has_pickup, StringFormat=hh\\:mm}"/>
-                    <!--<GridViewColumn Header="Närvaro" Width="50" DisplayMemberBinding="{Binding attendance}"/>-->
+                    <GridViewColumn Header="Närvaro" Width="50" DisplayMemberBinding="{Binding attendance}"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="btnHasDrop" Content="Lämnad" HorizontalAlignment="Left" Height="33" Margin="887,60,0,0" VerticalAlignment="Top" Width="75" Click="btnHasDrop_Click"/>
-        <Button x:Name="btnHasPickup" Content="Hämtad" HorizontalAlignment="Left" Height="33" Margin="887,102,0,0" VerticalAlignment="Top" Width="75" Click="btnHasPickup_Click" IsEnabled="True"/>
+        <Button x:Name="btnHasDrop" Content="Lämnad" HorizontalAlignment="Left" Height="33" Margin="903,61,0,0" VerticalAlignment="Top" Width="76" Click="btnHasDrop_Click"/>
+        <Button x:Name="btnHasPickup" Content="Hämtad" HorizontalAlignment="Left" Height="33" Margin="903,103,0,0" VerticalAlignment="Top" Width="76" Click="btnHasPickup_Click" IsEnabled="True"/>
 
 
     </Grid>
