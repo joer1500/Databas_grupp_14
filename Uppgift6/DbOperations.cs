@@ -150,7 +150,7 @@ namespace Uppgift6
             Schedule sd;
             List<Schedule> schedule = new List<Schedule>();
 
-            string stmt = "SELECT schedule_id, schedule.schoolchild_id, date, day_off, breakfast, should_drop, should_pickup, walk_home_alone, home_with_friend, firstname, lastname, section_id FROM(schedule INNER JOIN schoolchild ON schedule.schoolchild_id = schoolchild.schoolchild_id) ORDER BY lastname";
+            string stmt = "SELECT schedule_id, schedule.schoolchild_id, date, day_off, breakfast, should_drop, should_pickup, walk_home_alone, home_with_friend, firstname, lastname, section_id FROM(schedule INNER JOIN schoolchild ON schedule.schoolchild_id = schoolchild.schoolchild_id) ORDER BY lastname, firstname";
             using (var conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbConn"].ConnectionString))
             {
                 conn.Open();

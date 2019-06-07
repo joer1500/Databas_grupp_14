@@ -223,9 +223,7 @@ namespace Uppgift6
         }
 
         private void ConnectChild(Schoolchild s)
-        {
-
-            
+        {           
             string fname = textBoxFirstname.Text;
             string lname = textBoxLastname.Text;
 
@@ -309,6 +307,11 @@ namespace Uppgift6
             }
         }
 
-
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            GuardianManage win = new GuardianManage();
+            win.Show();
+            this.Close();
+        }
     }
 }

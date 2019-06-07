@@ -244,7 +244,7 @@ namespace Uppgift6
             if (rbtn_all.IsChecked == true)
             {
                 GetSchedules();
-                SortSchedulesByDate();               
+                SortSchedulesByDate();
 
                 GetAttendance();
                 FilterAttendancesByDate();
